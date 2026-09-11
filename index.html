@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<script>
+  // Apply initial theme from system preference or saved local storage
+  const savedTheme = localStorage.getItem('bpsc_theme');
+  if (savedTheme) {
+    document.documentElement.dataset.theme = savedTheme;
+  } else {
+    document.documentElement.dataset.theme =
+      (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+</script>
+<title>BPSC PYQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --serif:"Tiro Devanagari Hindi",Georgia,"Times New Roman",serif;
+  --sans:"Mukta","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+html[data-theme="light"]{
+  color-scheme:light;
+  --ink:#14213D; --indigo:#27437A; --indigo-soft:#DCE3F0;
+  --paper:#EDEFF3; --card:#FFFFFF; --line:#C9D0DE;
+  --madder:#9E2B25; --madder-soft:#F6E4E2;
+  --verdigris:#1F6B52; --verdigris-soft:#DFEDE7;
+  --amber:#B45309; --amber-soft:#FEF3C7;
+  --mute:#6A7590;
+  --fill:#14213D; --on-fill:#FFFFFF; --fill-hover:#27437A;
+  --hover:#F5F7FC; --hover-rail:#E4E8F1; --active:#E1E6F2;
+  --tint:#F3F6FC; --expl:#26304A; --chipface:#FFFFFF;
+}
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --ink:#E6EAF4; --indigo:#93AEE0; --indigo-soft:#2C3B5D;
+  --paper:#101623; --card:#18202F; --line:#2E3A54;
+  --madder:#E58C85; --madder-soft:#3B2321;
+  --verdigris:#7FC7A8; --verdigris-soft:#16302A;
+  --amber:#FBBF24; --amber-soft:#342614;
+  --mute:#96A1B9;
+  --fill:#2F4A82; --on-fill:#F2F5FC; --fill-hover:#3B5B9B;
+  --hover:#1F2A3D; --hover-rail:#1E2739; --active:#232F46;
+  --tint:#1C2740; --expl:#CBD3E4; --chipface:#18202F;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);transition:background-color .18s,color .18s; color:var(--ink); font-family:var(--sans);
+  font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--madder);outline-offset:2px;border-radius:2px}
+
+/* ---------- masthead ---------- */
+.masthead{border-bottom:1px solid var(--line);background:var(--card)}
+.masthead-in{max-width:1180px;margin:0 auto;padding:22px 24px 18px;
+  display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between}
+.title{font-family:var(--serif);font-size:30px;line-height:1.15;margin:0;font-weight:600;letter-spacing:-.01em}
+.title span{color:var(--madder)}
+.subtitle{font-size:14px;color:var(--mute);margin:5px 0 0}
+.tally{display:flex;gap:24px;align-items:flex-end}
+.tally-item{text-align:right}
+.tally-num{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.tally-lab{font-size:11.5px;color:var(--mute);margin-top:3px;text-transform:uppercase;letter-spacing:.04em}
+.tally-num.good{color:var(--verdigris)}
+.tally-num.active-cnt{color:var(--indigo)}
+
+/* ---------- controls & filter bar ---------- */
+.controls{border-bottom:1px solid var(--line);background:var(--card);position:sticky;top:0;z-index:20}
+.controls-in{max-width:1180px;margin:0 auto;padding:12px 24px;
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.search-box{flex:1;min-width:220px;position:relative}
+.search-input{
+  width:100%;padding:7px 14px 7px 34px;font-size:14px;font-family:var(--sans);
+  border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink);
+  transition:border-color .15s,background-color .15s;
+}
+.search-input:focus{outline:none;border-color:var(--indigo);background:var(--card)}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--mute);pointer-events:none}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;
+  padding:5px 14px;font-size:13.5px;color:var(--mute);transition:.15s;display:inline-flex;align-items:center;gap:6px}
+.chip:hover{border-color:var(--indigo);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--fill);border-color:var(--fill);color:var(--on-fill)}
+.chip-dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+
+/* ---------- main layout ---------- */
+.shell{max-width:1180px;margin:0 auto;padding:32px 24px 72px}
+.section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px}
+.section-title{font-family:var(--serif);font-size:22px;margin:0;font-weight:600}
+.section-sub{font-size:13px;color:var(--mute)}
+
+/* ---------- subject grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px}
+
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:8px;
+  padding:22px 24px;display:flex;flex-direction:column;position:relative;
+  transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;
+}
+.card:hover{
+  border-color:var(--indigo);transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+.card.featured{
+  border:2px solid var(--indigo);
+  background:linear-gradient(to bottom right, var(--card), var(--tint));
+}
+.card-tag{
+  display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+  font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;
+  padding:3px 10px;border-radius:999px;margin-bottom:12px;
+}
+.tag-live{background:var(--verdigris-soft);color:var(--verdigris)}
+.tag-live .dot{width:6px;height:6px;border-radius:50%;background:var(--verdigris);animation:pulse 2s infinite}
+.tag-soon{background:var(--paper);color:var(--mute);border:1px solid var(--line)}
+.tag-imp{background:var(--amber-soft);color:var(--amber)}
+
+@keyframes pulse{
+  0%{transform:scale(.95);opacity:.7}
+  50%{transform:scale(1.3);opacity:1}
+  100%{transform:scale(.95);opacity:.7}
+}
+
+.card-title{
+  font-family:var(--serif);font-size:20px;line-height:1.3;margin:0 0 8px;font-weight:600;
+}
+.card-title a{color:inherit}
+.card-title a:hover{color:var(--madder);text-decoration:underline}
+.card-desc{font-size:14px;color:var(--mute);line-height:1.6;margin:0 0 18px;flex:1}
+
+.card-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--line);padding-top:14px;margin-top:auto;
+  font-size:12.5px;color:var(--mute);font-variant-numeric:tabular-nums;
+}
+.btn-launch{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--fill);color:var(--on-fill);
+  padding:8px 18px;border-radius:6px;font-size:13.5px;font-weight:600;
+  transition:background .15s ease;
+}
+.btn-launch:hover{background:var(--fill-hover)}
+.btn-disabled{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--paper);color:var(--mute);border:1px solid var(--line);
+  padding:7px 14px;border-radius:6px;font-size:13px;cursor:not-allowed;
+}
+
+/* ---------- weightage strip ---------- */
+.blueprint{
+  margin-top:44px;background:var(--card);border:1px solid var(--line);
+  border-radius:8px;padding:24px 26px;
+}
+.blueprint-title{font-family:var(--serif);font-size:18px;margin:0 0 14px;font-weight:600}
+.blueprint-desc{font-size:13.5px;color:var(--mute);margin:0 0 16px}
+.bar-chart{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--paper);gap:2px}
+.bar-seg{height:100%;transition:opacity .15s}
+.bar-seg:hover{opacity:.85}
+.legend-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px 18px;margin-top:18px}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink)}
+.legend-swatch{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+/* ---------- footer ---------- */
+.footer{
+  border-top:1px solid var(--line);background:var(--card);
+  text-align:center;padding:28px 24px;margin-top:60px;font-size:13.5px;color:var(--mute);
+}
+
+@media (max-width:768px){
+  .masthead-in,.controls-in,.shell{padding-left:16px;padding-right:16px}
+  .grid{grid-template-columns:1fr}
+  .title{font-size:24px}
+  .tally{gap:14px}
+  .tally-num{font-size:19px}
+  .controls-in{flex-direction:column;align-items:stretch}
+  .search-box{width:100%}
+  .filter-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+}
+</style>
+</head>
+<body>
+
+<!-- Header / Masthead -->
+<header class="masthead">
+  <div class="masthead-in">
+    <div>
+      <h1 class="title">BPSC <span>PYQ</span> Practice Portal</h1>
+      <p class="subtitle">Subject-wise Bihar Public Service Commission Prelims Previous Year Questions (1992–2025)</p>
+    </div>
+    <div class="tally">
+      <div class="tally-item">
+        <div class="tally-num active-cnt">1 Active</div>
+        <div class="tally-lab">Available Modules</div>
+      </div>
+      <div class="tally-item">
+        <div class="tally-num good">462+</div>
+        <div class="tally-lab">Questions Ready</div>
+      </div>
+      <div class="tally-item">
+        <div class="tally-num">8</div>
+        <div class="tally-lab">Subjects</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Controls & Search -->
+<nav class="controls" aria-label="Portal Navigation and Filters">
+  <div class="controls-in">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="search" id="subjectSearch" class="search-input" placeholder="Search subjects, topics (e.g., Champaran, Science, Economy)..." aria-label="Search subjects">
+    </div>
+    <div class="filter-row" role="tablist">
+      <button class="chip" data-filter="all" aria-pressed="true"><span class="chip-dot"></span>All Subjects</button>
+      <button class="chip" data-filter="history" aria-pressed="false">History</button>
+      <button class="chip" data-filter="bihar" aria-pressed="false">Bihar Special</button>
+      <button class="chip" data-filter="science" aria-pressed="false">General Science</button>
+      <button class="chip" data-filter="polity" aria-pressed="false">Polity & Economy</button>
+    </div>
+    <button class="chip" id="themeToggle" type="button" aria-label="Toggle visual theme">Theme</button>
+  </div>
+</nav>
+
+<!-- Main Shell -->
+<main class="shell">
+
+  <div class="section-head">
+    <div>
+      <h2 class="section-title">Subject-Wise Question Banks</h2>
+      <span class="section-sub">Select any subject below to launch chapter-wise practice with detailed explanations</span>
+    </div>
+  </div>
+
+  <div class="grid" id="subjectGrid">
+
+    <!-- 1. MODERN HISTORY PYQ (Active Attached Module) -->
+    <article class="card featured" data-category="history">
+      <div class="card-tag tag-live">
+        <span class="dot"></span> Active Module · 462 Questions
+      </div>
+      <h3 class="card-title">
+        <!-- Direct exact anchor required -->
+        <a href="BPSC-Modern-History-PYQ-Practice (1).html" title="Modern History PYQ">Modern History PYQ</a>
+      </h3>
+      <p class="card-desc">
+        Comprehensive coverage from 1498 to 1947: Advent of Europeans, Revolt of 1857, Tribal & Peasant Uprisings, Swadeshi Movement, Champaran Satyagraha, Non-Cooperation, and Quit India Movement.
+      </p>
+      <div class="card-meta">
+        <span>Exams: 1992–2025 (71st BPSC)</span>
+        <a href="BPSC-Modern-History-PYQ-Practice (1).html" class="btn-launch" title="Modern History PYQ">
+          Practice Now &rarr;
+        </a>
+      </div>
+    </article>
+
+    <!-- 2. ANCIENT & MEDIEVAL HISTORY -->
+    <article class="card" data-category="history">
+      <div class="card-tag tag-soon">Coming Next</div>
+      <h3 class="card-title">Ancient & Medieval History</h3>
+      <p class="card-desc">
+        Indus Valley Civilization, Vedic Period, Rise of Magadha, Mahajanapadas, Mauryan & Gupta Empires, Harsha, Delhi Sultanate, and the Mughal Empire in Bihar and India.
+      </p>
+      <div class="card-meta">
+        <span>~140+ Questions</span>
+        <button class="btn-disabled" disabled>In Preparation</button>
+      </div>
+    </article>
+
+    <!-- 3. BIHAR SPECIAL -->
+    <article class="card" data-category="bihar">
+      <div class="card-tag tag-imp">High Weightage (25–30 Qs)</div>
+      <h3 class="card-title">Bihar Special: History, Geography & Polity</h3>
+      <p class="card-desc">
+        Role of Bihar in the Freedom Struggle, Babu Kunwar Singh, Kisan Sabha & Sahajanand Saraswati, Bihar rivers, soil, agriculture, minerals, forest reports, and local administrative setup.
+      </p>
+      <div class="card-meta">
+        <span>~280+ Questions</span>
+        <button class="btn-disabled" disabled>In Preparation</button>
+      </div>
+    </article>
+
+    <!-- 4. GENERAL SCIENCE -->
+    <article class="card" data-category="science">
+      <div class="card-tag tag-imp">Core Subject (30 Qs)</div>
+      <h3 class="card-title">General Science (Physics, Chemistry, Biology)</h3>
+      <p class="card-desc">
+        Everyday science, Human anatomy, nutrition & diseases, genetics, units & measurements, optics, organic chemistry, periodic elements, and recent developments in applied science.
+      </p>
+      <div class="card-meta">
+        <span>~450+ Questions</span>
+        <button class="btn-disabled" disabled>In Preparation</button>
+      </div>
+    </article>
+
+    <!-- 5. INDIAN POLITY & CONSTITUTION -->
+    <article class="card" data-category="polity">
+      <div class="card-tag tag-soon">Upcoming</div>
+      <h3 class="card-title">Indian Polity & Governance</h3>
+      <p class="card-desc">
+        Constitutional Development, Preamble, Fundamental Rights & Duties, Parliament, Supreme Court & High Courts, Panchayati Raj System (73rd/74th Amendments), and Statutory Commissions.
+      </p>
+      <div class="card-meta">
+        <span>~180+ Questions</span>
+        <button class="btn-disabled" disabled>In Preparation</button>
+      </div>
+    </article>
+
+    <!-- 6. GEOGRAPHY -->
+    <article class="card" data-category="bihar">
+      <div class="card-tag tag-soon">Upcoming</div>
+      <h3 class="card-title">Indian & World Geography</h3>
+      <p class="card-desc">
+        Physiography of India, drainage systems, monsoons & climate, agricultural crops, national parks, mineral reserves, world continents, major straits, and demographic census data.
+      </p>
+      <div class="card-meta">
+        <span>~220+ Questions</span>
+        <button class="btn-disabled" disabled>In Preparation</button>
+      </div>
+    </article>
+
+    <!-- 7. INDIAN & BIHAR ECONOMY -->
+    <article class="card" data-category="polity">
+      <div class="card-tag tag-soon">Upcoming</div>
+      <h3 class="card-title">Indian & Bihar Economy</h3>
+      <p class="card-desc">
+        National Income, Five-Year Plans to NITI Aayog, Banking & RBI Monetary Policy, Inflation, Bihar Budget & Economic Survey, poverty alleviation schemes, and census indices.
+      </p>
+      <div class="card-meta">
+        <span>~190+ Questions</span>
+        <button class="btn-disabled" disabled>In Preparation</button>
+      </div>
+    </article>
+
+    <!-- 8. MENTAL ABILITY & CSAT -->
+    <article class="card" data-category="science">
+      <div class="card-tag tag-soon">Upcoming</div>
+      <h3 class="card-title">Quantitative Aptitude & Reasoning</h3>
+      <p class="card-desc">
+        The mandatory 10 questions in BPSC Prelims: Arithmetic, percentages, profit & loss, time & work, series completion, coding-decoding, probability, and analytical reasoning.
+      </p>
+      <div class="card-meta">
+        <span>~120+ Questions</span>
+        <button class="btn-disabled" disabled>In Preparation</button>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- BPSC Prelims Pattern & Weightage Breakdown -->
+  <section class="blueprint" aria-label="BPSC Prelims Blueprint">
+    <h3 class="blueprint-title">BPSC Prelims Trend & Mark Distribution (150 Marks)</h3>
+    <p class="blueprint-desc">Modern History and General Science alone constitute around 60–65 questions. Master the high-yield sections first.</p>
+    
+    <div class="bar-chart" title="Distribution of Questions">
+      <div class="bar-seg" style="width:24%;background:#27437A" title="History (India + Bihar): ~35 Qs"></div>
+      <div class="bar-seg" style="width:20%;background:#1F6B52" title="General Science: ~30 Qs"></div>
+      <div class="bar-seg" style="width:20%;background:#B45309" title="Current Affairs: ~30 Qs"></div>
+      <div class="bar-seg" style="width:14%;background:#9E2B25" title="Bihar Special (Geo/Pol/Eco): ~20 Qs"></div>
+      <div class="bar-seg" style="width:8%;background:#6A7590" title="Polity: ~10-12 Qs"></div>
+      <div class="bar-seg" style="width:8%;background:#4F46E5" title="Economy: ~10 Qs"></div>
+      <div class="bar-seg" style="width:6%;background:#0D9488" title="Math & Aptitude: ~10 Qs"></div>
+    </div>
+
+    <div class="legend-grid">
+      <div class="legend-item"><span class="legend-swatch" style="background:#27437A"></span><strong>History (incl. Modern):</strong> ~35 Qs</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:#1F6B52"></span><strong>General Science:</strong> ~30 Qs</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:#B45309"></span><strong>Current Affairs:</strong> ~30 Qs</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:#9E2B25"></span><strong>Bihar Specific:</strong> ~20 Qs</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:#6A7590"></span><strong>Indian Polity:</strong> ~10 Qs</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:#4F46E5"></span><strong>Economy:</strong> ~10 Qs</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:#0D9488"></span><strong>Aptitude / Math:</strong> ~10 Qs</div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p><strong>BPSC PYQ Practice Portal</strong> · Designed for Bihar Civil Services Examination aspirants.</p>
+  <p style="margin-top:6px;font-size:12.5px;color:var(--mute)">Source questions compiled from 38th to 71st BPSC Prelims and Teacher Recruitment Examinations.</p>
+</footer>
+
+<script>
+// Theme switcher
+const themeToggle = document.getElementById('themeToggle');
+function updateThemeText() {
+  const cur = document.documentElement.dataset.theme;
+  themeToggle.textContent = cur === 'dark' ? '☀️ Light' : '🌙 Dark';
+}
+updateThemeText();
+
+themeToggle.addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('bpsc_theme', next);
+  updateThemeText();
+});
+
+// Search & Filter functionality
+const searchInput = document.getElementById('subjectSearch');
+const filterChips = document.querySelectorAll('.filter-row .chip');
+const cards = document.querySelectorAll('#subjectGrid .card');
+
+function filterCards() {
+  const query = searchInput.value.trim().toLowerCase();
+  const activeChip = document.querySelector('.filter-row .chip[aria-pressed="true"]');
+  const activeCategory = activeChip ? activeChip.dataset.filter : 'all';
+
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    const cat = card.dataset.category || '';
+    
+    const matchesQuery = query === '' || text.includes(query);
+    const matchesCat = activeCategory === 'all' || cat === activeCategory;
+
+    if (matchesQuery && matchesCat) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+searchInput.addEventListener('input', filterCards);
+
+filterChips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    filterChips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+    chip.setAttribute('aria-pressed', 'true');
+    filterCards();
+  });
+});
+</script>
+</body>
+</html>
