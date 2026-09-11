@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <script>
-  // Apply initial theme from system preference or saved local storage
   const savedTheme = localStorage.getItem('bpsc_theme');
   if (savedTheme) {
     document.documentElement.dataset.theme = savedTheme;
@@ -186,7 +185,7 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 </head>
 <body>
 
-<!-- Header / Masthead -->
+<!-- Masthead -->
 <header class="masthead">
   <div class="masthead-in">
     <div>
@@ -195,11 +194,11 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
     </div>
     <div class="tally">
       <div class="tally-item">
-        <div class="tally-num active-cnt">1 Active</div>
+        <div class="tally-num active-cnt">2 Active</div>
         <div class="tally-lab">Available Modules</div>
       </div>
       <div class="tally-item">
-        <div class="tally-num good">462+</div>
+        <div class="tally-num good">689</div>
         <div class="tally-lab">Questions Ready</div>
       </div>
       <div class="tally-item">
@@ -210,18 +209,18 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
   </div>
 </header>
 
-<!-- Controls & Search -->
+<!-- Controls & Filters -->
 <nav class="controls" aria-label="Portal Navigation and Filters">
   <div class="controls-in">
     <div class="search-box">
       <span class="search-icon">🔍</span>
-      <input type="search" id="subjectSearch" class="search-input" placeholder="Search subjects, topics (e.g., Champaran, Science, Economy)..." aria-label="Search subjects">
+      <input type="search" id="subjectSearch" class="search-input" placeholder="Search modules, topics (e.g., Biology, Modern History, Ecology)..." aria-label="Search subjects">
     </div>
     <div class="filter-row" role="tablist">
       <button class="chip" data-filter="all" aria-pressed="true"><span class="chip-dot"></span>All Subjects</button>
       <button class="chip" data-filter="history" aria-pressed="false">History</button>
-      <button class="chip" data-filter="bihar" aria-pressed="false">Bihar Special</button>
       <button class="chip" data-filter="science" aria-pressed="false">General Science</button>
+      <button class="chip" data-filter="bihar" aria-pressed="false">Bihar Special</button>
       <button class="chip" data-filter="polity" aria-pressed="false">Polity & Economy</button>
     </div>
     <button class="chip" id="themeToggle" type="button" aria-label="Toggle visual theme">Theme</button>
@@ -234,19 +233,18 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
   <div class="section-head">
     <div>
       <h2 class="section-title">Subject-Wise Question Banks</h2>
-      <span class="section-sub">Select any subject below to launch chapter-wise practice with detailed explanations</span>
+      <span class="section-sub">Select any active subject module to start full interactive practice with detailed solutions</span>
     </div>
   </div>
 
   <div class="grid" id="subjectGrid">
 
-    <!-- 1. MODERN HISTORY PYQ (Active Attached Module) -->
+    <!-- 1. MODERN HISTORY PYQ (Active) -->
     <article class="card featured" data-category="history">
       <div class="card-tag tag-live">
         <span class="dot"></span> Active Module · 462 Questions
       </div>
       <h3 class="card-title">
-        <!-- Direct exact anchor required -->
         <a href="BPSC-Modern-History-PYQ-Practice (1).html" title="Modern History PYQ">Modern History PYQ</a>
       </h3>
       <p class="card-desc">
@@ -260,7 +258,39 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
       </div>
     </article>
 
-    <!-- 2. ANCIENT & MEDIEVAL HISTORY -->
+    <!-- 2. BIOLOGY PYQ (Active Attached Module) -->
+    <article class="card featured" data-category="science">
+      <div class="card-tag tag-live">
+        <span class="dot"></span> Active Module · 227 Questions
+      </div>
+      <h3 class="card-title">
+        <a href="biology-pyq-mcq.html" title="Biology PYQ">Biology PYQ</a>
+      </h3>
+      <p class="card-desc">
+        High-yield coverage of Cell Biology, Biomolecules & DNA/RNA, Plant Physiology, Digestive & Circulatory Systems, Endocrine System, Genetics, Ecology & Biodiversity, and Human Diseases & Immunity.
+      </p>
+      <div class="card-meta">
+        <span>Exams: BPSC & UPPCS (up to 71st BPSC)</span>
+        <a href="biology-pyq-mcq.html" class="btn-launch" title="Biology PYQ">
+          Practice Now &rarr;
+        </a>
+      </div>
+    </article>
+
+    <!-- 3. PHYSICS & CHEMISTRY -->
+    <article class="card" data-category="science">
+      <div class="card-tag tag-soon">Coming Next</div>
+      <h3 class="card-title">General Science: Physics & Chemistry</h3>
+      <p class="card-desc">
+        Units & dimensions, optics, thermodynamics, electricity, radioactivity, organic compounds, acids & bases, metallurgy, periodic properties, and everyday chemical reactions.
+      </p>
+      <div class="card-meta">
+        <span>~220+ Questions</span>
+        <button class="btn-disabled" disabled>In Preparation</button>
+      </div>
+    </article>
+
+    <!-- 4. ANCIENT & MEDIEVAL HISTORY -->
     <article class="card" data-category="history">
       <div class="card-tag tag-soon">Coming Next</div>
       <h3 class="card-title">Ancient & Medieval History</h3>
@@ -273,12 +303,12 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
       </div>
     </article>
 
-    <!-- 3. BIHAR SPECIAL -->
+    <!-- 5. BIHAR SPECIAL -->
     <article class="card" data-category="bihar">
       <div class="card-tag tag-imp">High Weightage (25–30 Qs)</div>
-      <h3 class="card-title">Bihar Special: History, Geography & Polity</h3>
+      <h3 class="card-title">Bihar Special: History, Geography & Economy</h3>
       <p class="card-desc">
-        Role of Bihar in the Freedom Struggle, Babu Kunwar Singh, Kisan Sabha & Sahajanand Saraswati, Bihar rivers, soil, agriculture, minerals, forest reports, and local administrative setup.
+        Role of Bihar in the Indian National Movement, Babu Kunwar Singh, Kisan Sabha & Sahajanand Saraswati, Bihar drainage, soils, minerals, agro-climatic zones, and economic surveys.
       </p>
       <div class="card-meta">
         <span>~280+ Questions</span>
@@ -286,25 +316,12 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
       </div>
     </article>
 
-    <!-- 4. GENERAL SCIENCE -->
-    <article class="card" data-category="science">
-      <div class="card-tag tag-imp">Core Subject (30 Qs)</div>
-      <h3 class="card-title">General Science (Physics, Chemistry, Biology)</h3>
-      <p class="card-desc">
-        Everyday science, Human anatomy, nutrition & diseases, genetics, units & measurements, optics, organic chemistry, periodic elements, and recent developments in applied science.
-      </p>
-      <div class="card-meta">
-        <span>~450+ Questions</span>
-        <button class="btn-disabled" disabled>In Preparation</button>
-      </div>
-    </article>
-
-    <!-- 5. INDIAN POLITY & CONSTITUTION -->
+    <!-- 6. INDIAN POLITY & GOVERNANCE -->
     <article class="card" data-category="polity">
       <div class="card-tag tag-soon">Upcoming</div>
-      <h3 class="card-title">Indian Polity & Governance</h3>
+      <h3 class="card-title">Indian Polity & Constitution</h3>
       <p class="card-desc">
-        Constitutional Development, Preamble, Fundamental Rights & Duties, Parliament, Supreme Court & High Courts, Panchayati Raj System (73rd/74th Amendments), and Statutory Commissions.
+        Constitutional Development, Preamble, Fundamental Rights & DPSP, Union Executive, Parliament, Supreme Court & High Courts, Panchayati Raj System, and constitutional amendments.
       </p>
       <div class="card-meta">
         <span>~180+ Questions</span>
@@ -312,12 +329,12 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
       </div>
     </article>
 
-    <!-- 6. GEOGRAPHY -->
+    <!-- 7. INDIAN & WORLD GEOGRAPHY -->
     <article class="card" data-category="bihar">
       <div class="card-tag tag-soon">Upcoming</div>
       <h3 class="card-title">Indian & World Geography</h3>
       <p class="card-desc">
-        Physiography of India, drainage systems, monsoons & climate, agricultural crops, national parks, mineral reserves, world continents, major straits, and demographic census data.
+        Physiography of India, drainage basins, Indian monsoon mechanics, natural vegetation, mineral deposits, major mountain passes, world landforms, and census indicators.
       </p>
       <div class="card-meta">
         <span>~220+ Questions</span>
@@ -325,25 +342,12 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
       </div>
     </article>
 
-    <!-- 7. INDIAN & BIHAR ECONOMY -->
-    <article class="card" data-category="polity">
-      <div class="card-tag tag-soon">Upcoming</div>
-      <h3 class="card-title">Indian & Bihar Economy</h3>
-      <p class="card-desc">
-        National Income, Five-Year Plans to NITI Aayog, Banking & RBI Monetary Policy, Inflation, Bihar Budget & Economic Survey, poverty alleviation schemes, and census indices.
-      </p>
-      <div class="card-meta">
-        <span>~190+ Questions</span>
-        <button class="btn-disabled" disabled>In Preparation</button>
-      </div>
-    </article>
-
-    <!-- 8. MENTAL ABILITY & CSAT -->
+    <!-- 8. QUANTITATIVE APTITUDE & REASONING -->
     <article class="card" data-category="science">
       <div class="card-tag tag-soon">Upcoming</div>
-      <h3 class="card-title">Quantitative Aptitude & Reasoning</h3>
+      <h3 class="card-title">General Mental Ability (CSAT)</h3>
       <p class="card-desc">
-        The mandatory 10 questions in BPSC Prelims: Arithmetic, percentages, profit & loss, time & work, series completion, coding-decoding, probability, and analytical reasoning.
+        The mandatory 10 questions in BPSC Prelims: Arithmetic progressions, ratios, percentage calculations, time and work, clocks, series logic, and analytical problem solving.
       </p>
       <div class="card-meta">
         <span>~120+ Questions</span>
@@ -353,10 +357,10 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 
   </div>
 
-  <!-- BPSC Prelims Pattern & Weightage Breakdown -->
+  <!-- BPSC Prelims Weightage Overview -->
   <section class="blueprint" aria-label="BPSC Prelims Blueprint">
     <h3 class="blueprint-title">BPSC Prelims Trend & Mark Distribution (150 Marks)</h3>
-    <p class="blueprint-desc">Modern History and General Science alone constitute around 60–65 questions. Master the high-yield sections first.</p>
+    <p class="blueprint-desc">Modern History and General Science (with heavy Biology weightage) form the bedrock of prelims qualification (~65 questions combined).</p>
     
     <div class="bar-chart" title="Distribution of Questions">
       <div class="bar-seg" style="width:24%;background:#27437A" title="History (India + Bihar): ~35 Qs"></div>
@@ -370,7 +374,7 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 
     <div class="legend-grid">
       <div class="legend-item"><span class="legend-swatch" style="background:#27437A"></span><strong>History (incl. Modern):</strong> ~35 Qs</div>
-      <div class="legend-item"><span class="legend-swatch" style="background:#1F6B52"></span><strong>General Science:</strong> ~30 Qs</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:#1F6B52"></span><strong>General Science (Bio/Phy/Chem):</strong> ~30 Qs</div>
       <div class="legend-item"><span class="legend-swatch" style="background:#B45309"></span><strong>Current Affairs:</strong> ~30 Qs</div>
       <div class="legend-item"><span class="legend-swatch" style="background:#9E2B25"></span><strong>Bihar Specific:</strong> ~20 Qs</div>
       <div class="legend-item"><span class="legend-swatch" style="background:#6A7590"></span><strong>Indian Polity:</strong> ~10 Qs</div>
@@ -382,8 +386,8 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 </main>
 
 <footer class="footer">
-  <p><strong>BPSC PYQ Practice Portal</strong> · Designed for Bihar Civil Services Examination aspirants.</p>
-  <p style="margin-top:6px;font-size:12.5px;color:var(--mute)">Source questions compiled from 38th to 71st BPSC Prelims and Teacher Recruitment Examinations.</p>
+  <p><strong>BPSC PYQ Practice Portal</strong> · Dedicated to Bihar Civil Services Examination preparation.</p>
+  <p style="margin-top:6px;font-size:12.5px;color:var(--mute)">Source questions compiled directly from 38th to 71st BPSC Prelims, Teacher Recruitment Exams (TRE), and UPPCS.</p>
 </footer>
 
 <script>
@@ -402,7 +406,7 @@ themeToggle.addEventListener('click', () => {
   updateThemeText();
 });
 
-// Search & Filter functionality
+// Search & Filter
 const searchInput = document.getElementById('subjectSearch');
 const filterChips = document.querySelectorAll('.filter-row .chip');
 const cards = document.querySelectorAll('#subjectGrid .card');
