@@ -29,6 +29,7 @@ html[data-theme="light"]{
   --madder:#9E2B25; --madder-soft:#F6E4E2;
   --verdigris:#1F6B52; --verdigris-soft:#DFEDE7;
   --amber:#B45309; --amber-soft:#FEF3C7;
+  --teal:#0E7490; --teal-soft:#CFFAFE;
   --mute:#6A7590;
   --fill:#14213D; --on-fill:#FFFFFF; --fill-hover:#27437A;
   --hover:#F5F7FC; --hover-rail:#E4E8F1; --active:#E1E6F2;
@@ -41,6 +42,7 @@ html[data-theme="dark"]{
   --madder:#E58C85; --madder-soft:#3B2321;
   --verdigris:#7FC7A8; --verdigris-soft:#16302A;
   --amber:#FBBF24; --amber-soft:#342614;
+  --teal:#22D3EE; --teal-soft:#164E63;
   --mute:#96A1B9;
   --fill:#2F4A82; --on-fill:#F2F5FC; --fill-hover:#3B5B9B;
   --hover:#1F2A3D; --hover-rail:#1E2739; --active:#232F46;
@@ -69,6 +71,7 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 .tally-lab{font-size:11.5px;color:var(--mute);margin-top:3px;text-transform:uppercase;letter-spacing:.04em}
 .tally-num.good{color:var(--verdigris)}
 .tally-num.active-cnt{color:var(--indigo)}
+.tally-num.notes-cnt{color:var(--teal)}
 
 /* ---------- controls & filter bar ---------- */
 .controls{border-bottom:1px solid var(--line);background:var(--card);position:sticky;top:0;z-index:20}
@@ -94,7 +97,7 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 .section-title{font-family:var(--serif);font-size:22px;margin:0;font-weight:600}
 .section-sub{font-size:13px;color:var(--mute)}
 
-/* ---------- subject grid ---------- */
+/* ---------- card grid ---------- */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px}
 
 .card{
@@ -110,6 +113,10 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
   border:2px solid var(--indigo);
   background:linear-gradient(to bottom right, var(--card), var(--tint));
 }
+.card.featured-notes{
+  border:2px solid var(--teal);
+  background:linear-gradient(to bottom right, var(--card), var(--hover));
+}
 .card-tag{
   display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
   font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;
@@ -117,6 +124,8 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 }
 .tag-live{background:var(--verdigris-soft);color:var(--verdigris)}
 .tag-live .dot{width:6px;height:6px;border-radius:50%;background:var(--verdigris);animation:pulse 2s infinite}
+.tag-deck{background:var(--teal-soft);color:var(--teal)}
+.tag-deck .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
 .tag-soon{background:var(--paper);color:var(--mute);border:1px solid var(--line)}
 .tag-imp{background:var(--amber-soft);color:var(--amber)}
 
@@ -145,6 +154,8 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
   transition:background .15s ease;
 }
 .btn-launch:hover{background:var(--fill-hover)}
+.btn-teal{background:var(--teal);color:#FFFFFF}
+.btn-teal:hover{filter:brightness(1.1)}
 .btn-disabled{
   display:inline-flex;align-items:center;gap:6px;
   background:var(--paper);color:var(--mute);border:1px solid var(--line);
@@ -153,7 +164,7 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 
 /* ---------- weightage strip ---------- */
 .blueprint{
-  margin-top:44px;background:var(--card);border:1px solid var(--line);
+  margin-top:54px;background:var(--card);border:1px solid var(--line);
   border-radius:8px;padding:24px 26px;
 }
 .blueprint-title{font-family:var(--serif);font-size:18px;margin:0 0 14px;font-weight:600}
@@ -195,15 +206,15 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
     <div class="tally">
       <div class="tally-item">
         <div class="tally-num active-cnt">2 Active</div>
-        <div class="tally-lab">Available Modules</div>
+        <div class="tally-lab">PYQ Modules</div>
+      </div>
+      <div class="tally-item">
+        <div class="tally-num notes-cnt">1 Live</div>
+        <div class="tally-lab">Flashcard Deck</div>
       </div>
       <div class="tally-item">
         <div class="tally-num good">689</div>
-        <div class="tally-lab">Questions Ready</div>
-      </div>
-      <div class="tally-item">
-        <div class="tally-num">8</div>
-        <div class="tally-lab">Subjects</div>
+        <div class="tally-lab">MCQs Ready</div>
       </div>
     </div>
   </div>
@@ -214,12 +225,13 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
   <div class="controls-in">
     <div class="search-box">
       <span class="search-icon">🔍</span>
-      <input type="search" id="subjectSearch" class="search-input" placeholder="Search modules, topics (e.g., Biology, Modern History, Ecology)..." aria-label="Search subjects">
+      <input type="search" id="subjectSearch" class="search-input" placeholder="Search modules, notes (e.g., Biology, Flashcards, History)..." aria-label="Search subjects">
     </div>
     <div class="filter-row" role="tablist">
-      <button class="chip" data-filter="all" aria-pressed="true"><span class="chip-dot"></span>All Subjects</button>
-      <button class="chip" data-filter="history" aria-pressed="false">History</button>
+      <button class="chip" data-filter="all" aria-pressed="true"><span class="chip-dot"></span>All</button>
+      <button class="chip" data-filter="notes" aria-pressed="false">Flashcards & Notes</button>
       <button class="chip" data-filter="science" aria-pressed="false">General Science</button>
+      <button class="chip" data-filter="history" aria-pressed="false">History</button>
       <button class="chip" data-filter="bihar" aria-pressed="false">Bihar Special</button>
       <button class="chip" data-filter="polity" aria-pressed="false">Polity & Economy</button>
     </div>
@@ -230,10 +242,11 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 <!-- Main Shell -->
 <main class="shell">
 
+  <!-- ================= SECTION 1: QUESTION BANKS (PYQs) ================= -->
   <div class="section-head">
     <div>
       <h2 class="section-title">Subject-Wise Question Banks</h2>
-      <span class="section-sub">Select any active subject module to start full interactive practice with detailed solutions</span>
+      <span class="section-sub">Interactive previous-year question sets with instant score verification and detailed explanations</span>
     </div>
   </div>
 
@@ -258,7 +271,7 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
       </div>
     </article>
 
-    <!-- 2. BIOLOGY PYQ (Active Attached Module) -->
+    <!-- 2. BIOLOGY PYQ (Active) -->
     <article class="card featured" data-category="science">
       <div class="card-tag tag-live">
         <span class="dot"></span> Active Module · 227 Questions
@@ -267,7 +280,7 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
         <a href="biology-pyq-mcq.html" title="Biology PYQ">Biology PYQ</a>
       </h3>
       <p class="card-desc">
-        High-yield coverage of Cell Biology, Biomolecules & DNA/RNA, Plant Physiology, Digestive & Circulatory Systems, Endocrine System, Genetics, Ecology & Biodiversity, and Human Diseases & Immunity.
+        Chapter-wise question practice spanning Cell Biology, Biomolecules, Plant Physiology, Digestive & Circulatory Systems, Endocrine System, Genetics, Ecology, and Infectious Diseases.
       </p>
       <div class="card-meta">
         <span>Exams: BPSC & UPPCS (up to 71st BPSC)</span>
@@ -277,10 +290,10 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
       </div>
     </article>
 
-    <!-- 3. PHYSICS & CHEMISTRY -->
+    <!-- 3. GENERAL SCIENCE (PHYSICS & CHEMISTRY) -->
     <article class="card" data-category="science">
       <div class="card-tag tag-soon">Coming Next</div>
-      <h3 class="card-title">General Science: Physics & Chemistry</h3>
+      <h3 class="card-title">Physics & Chemistry PYQs</h3>
       <p class="card-desc">
         Units & dimensions, optics, thermodynamics, electricity, radioactivity, organic compounds, acids & bases, metallurgy, periodic properties, and everyday chemical reactions.
       </p>
@@ -357,7 +370,66 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 
   </div>
 
-  <!-- BPSC Prelims Weightage Overview -->
+
+  <!-- ================= SECTION 2: THEORY NOTES & FLASHCARDS ================= -->
+  <div class="section-head" style="margin-top: 54px;">
+    <div>
+      <h2 class="section-title">Flashcards & Rapid Theory Notes</h2>
+      <span class="section-sub">NCERT-aligned high-yield bullet notes, comparative revision tables, and active recall test decks</span>
+    </div>
+  </div>
+
+  <div class="grid" id="notesGrid">
+
+    <!-- BIOLOGY FLASHNOTES & RECALL (Active Module) -->
+    <article class="card featured-notes" data-category="notes science">
+      <div class="card-tag tag-deck">
+        <span class="dot"></span> Active Deck · 19 Chapters
+      </div>
+      <h3 class="card-title">
+        <a href="biology-theory-flashnotes.html" title="Biology Flashcards and Theory Notes">Biology Flashnotes & Active Recall Deck</a>
+      </h3>
+      <p class="card-desc">
+        High-yield study notes equipped with dual <strong>Read</strong> and <strong>Recall</strong> modes. Covers 19 comprehensive chapters including Cell Biology, Biomolecules, Plant Physiology, Human Organ Systems, Genetics, Ecology, and Landmarks in Medicine.
+      </p>
+      <div class="card-meta">
+        <span>Dual Mode: Read &amp; Flashcard Flip</span>
+        <a href="biology-theory-flashnotes.html" class="btn-launch btn-teal" title="Biology Flashcards & Notes">
+          Open Deck &rarr;
+        </a>
+      </div>
+    </article>
+
+    <!-- MODERN HISTORY RAPID REVISION NOTES (Upcoming) -->
+    <article class="card" data-category="notes history">
+      <div class="card-tag tag-soon">In Preparation</div>
+      <h3 class="card-title">Modern History Micro-Themes & Timelines</h3>
+      <p class="card-desc">
+        Chronological timeline sheets, governor-general summaries, peasant & tribal uprisings cheat-sheets, and Congress session tables tailored for rapid last-minute revision.
+      </p>
+      <div class="card-meta">
+        <span>1498–1947 Timeline Cards</span>
+        <button class="btn-disabled" disabled>In Preparation</button>
+      </div>
+    </article>
+
+    <!-- BIHAR SPECIAL FACTS & CENSUS DECK (Upcoming) -->
+    <article class="card" data-category="notes bihar">
+      <div class="card-tag tag-soon">In Preparation</div>
+      <h3 class="card-title">Bihar Special: Core Facts & Economic Survey</h3>
+      <p class="card-desc">
+        District-wise mineral distributions, river courses, forest survey figures, Bihar budget highlights, and key freedom fighters from Bihar in compact recall cards.
+      </p>
+      <div class="card-meta">
+        <span>Facts &amp; Data Tables</span>
+        <button class="btn-disabled" disabled>In Preparation</button>
+      </div>
+    </article>
+
+  </div>
+
+
+  <!-- ================= SECTION 3: BPSC PRELIMS BLUEPRINT ================= -->
   <section class="blueprint" aria-label="BPSC Prelims Blueprint">
     <h3 class="blueprint-title">BPSC Prelims Trend & Mark Distribution (150 Marks)</h3>
     <p class="blueprint-desc">Modern History and General Science (with heavy Biology weightage) form the bedrock of prelims qualification (~65 questions combined).</p>
@@ -391,7 +463,7 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 </footer>
 
 <script>
-// Theme switcher
+// Theme toggle
 const themeToggle = document.getElementById('themeToggle');
 function updateThemeText() {
   const cur = document.documentElement.dataset.theme;
@@ -406,22 +478,22 @@ themeToggle.addEventListener('click', () => {
   updateThemeText();
 });
 
-// Search & Filter
+// Search & Unified Category Filter
 const searchInput = document.getElementById('subjectSearch');
 const filterChips = document.querySelectorAll('.filter-row .chip');
-const cards = document.querySelectorAll('#subjectGrid .card');
+const allCards = document.querySelectorAll('article.card');
 
 function filterCards() {
   const query = searchInput.value.trim().toLowerCase();
   const activeChip = document.querySelector('.filter-row .chip[aria-pressed="true"]');
   const activeCategory = activeChip ? activeChip.dataset.filter : 'all';
 
-  cards.forEach(card => {
+  allCards.forEach(card => {
     const text = card.textContent.toLowerCase();
-    const cat = card.dataset.category || '';
+    const categories = (card.dataset.category || '').split(' ');
     
     const matchesQuery = query === '' || text.includes(query);
-    const matchesCat = activeCategory === 'all' || cat === activeCategory;
+    const matchesCat = activeCategory === 'all' || categories.includes(activeCategory);
 
     if (matchesQuery && matchesCat) {
       card.style.display = 'flex';
