@@ -407,5 +407,20 @@ addEventListener('keydown',e=>{
 document.documentElement.dataset.theme=S.theme;
 setMode(S.mode);
 </script>
+
+<script>
+(() => {
+  const topin = document.querySelector('.topin');
+  if (topin && !document.getElementById('flashHomeBtn')) {
+    const btn = document.createElement('a');
+    btn.id = 'flashHomeBtn';
+    btn.href = 'index.html';
+    btn.style.cssText = 'display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 12px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:.82rem;font-weight:600;text-decoration:none;flex:none;margin-right:4px;';
+    btn.textContent = '← Home';
+    topin.prepend(btn);
+  }
+})();
+</script>
+
 </body>
 </html>
