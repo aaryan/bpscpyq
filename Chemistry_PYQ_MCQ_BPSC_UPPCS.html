@@ -681,5 +681,22 @@ document.addEventListener("keydown", e => {
 /* ============ go ============ */
 buildChips(); buildHome(); show("vHome");
 </script>
+
+  <script>
+(() => {
+  const barIn = document.querySelector('.bar-in');
+  if (barIn && !document.getElementById('chemHomePortalBtn')) {
+    const btn = document.createElement('a');
+    btn.id = 'chemHomePortalBtn';
+    btn.href = 'index.html';
+    btn.style.cssText = 'display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--text);font-size:13.5px;font-weight:600;text-decoration:none;margin-right:4px;transition:border-color .15s,color .15s;';
+    btn.textContent = '← Home';
+    btn.onmouseover = () => { btn.style.borderColor = 'var(--orpiment)'; btn.style.color = 'var(--orpiment)'; };
+    btn.onmouseout = () => { btn.style.borderColor = 'var(--line)'; btn.style.color = 'var(--text)'; };
+    barIn.prepend(btn);
+  }
+})();
+</script>
+  
 </body>
 </html>
