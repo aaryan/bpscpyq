@@ -540,5 +540,35 @@ document.getElementById('spineClose').addEventListener('click', closeSpine);
 /* ---------- go ---------- */
 (async ()=>{ await Promise.all([loadTheme(), loadProgress()]); buildPool(); render(); })();
 </script>
+
+<!-- Home Button Auto-Injector -->
+<script>
+(() => {
+  // Inject chip button into control bar
+  const controls = document.querySelector('.controls-in');
+  if (controls && !document.getElementById('homeBtnNav')) {
+    const btn = document.createElement('a');
+    btn.id = 'homeBtnNav';
+    btn.href = 'index.html';
+    btn.className = 'chip';
+    btn.style.cssText = 'text-decoration:none!important;font-weight:600!important;display:inline-flex;align-items:center;border-color:var(--indigo);color:var(--ink);margin-right:2px;';
+    btn.textContent = '← Home';
+    controls.prepend(btn);
+  }
+  // Inject breadcrumb link into masthead
+  const masthead = document.querySelector('.masthead-in > div');
+  if (masthead && !document.getElementById('homeBreadcrumb')) {
+    const link = document.createElement('a');
+    link.id = 'homeBreadcrumb';
+    link.href = 'index.html';
+    link.style.cssText = 'display:inline-block;font-size:12.5px;font-weight:600;color:var(--indigo);text-decoration:none;margin-bottom:6px;';
+    link.textContent = '← Back to Portal';
+    link.onmouseover = () => link.style.textDecoration = 'underline';
+    link.onmouseout = () => link.style.textDecoration = 'none';
+    masthead.prepend(link);
+  }
+})();
+</script>
+
 </body>
 </html>
