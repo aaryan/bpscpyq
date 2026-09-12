@@ -26,6 +26,7 @@
   --radius-lg: 18px;
   --radius-full: 9999px;
   --transition: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --ruby: rgb(85, 50, 54);
 }
 
 html[data-theme="light"] {
@@ -42,8 +43,7 @@ html[data-theme="light"] {
   --navy: #1E3A8A;
   --navy-soft: #EFF4FF;
   --navy-glow: rgba(30, 58, 138, 0.08);
-  --ruby: #9E2B25;
-  --ruby-soft: #FEF2F2;
+  --ruby-soft: #FDF2F2;
   --emerald: #0D9488;
   --emerald-soft: #F0FDF4;
   --amber: #D97706;
@@ -69,8 +69,8 @@ html[data-theme="dark"] {
   --navy: #60A5FA;
   --navy-soft: rgba(96, 165, 250, 0.12);
   --navy-glow: rgba(96, 165, 250, 0.15);
-  --ruby: #F87171;
-  --ruby-soft: rgba(248, 113, 113, 0.12);
+  --ruby: #D97706;
+  --ruby-soft: rgba(217, 119, 6, 0.15);
   --emerald: #34D399;
   --emerald-soft: rgba(52, 211, 153, 0.12);
   --amber: #FBBF24;
@@ -138,7 +138,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 }
 .hero-title em {
   font-style: italic;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--ruby);
 }
 .hero-subtitle {
@@ -394,6 +394,11 @@ html[data-theme="dark"] .nav-bar-inner {
   border-color: rgba(13, 148, 136, 0.22);
   background: linear-gradient(180deg, var(--surface) 0%, var(--bg-alt) 100%);
 }
+.portal-card.theme-chemistry:hover::after { background: var(--amber); }
+.portal-card.theme-chemistry {
+  border-color: rgba(217, 119, 6, 0.22);
+  background: linear-gradient(180deg, var(--surface) 0%, var(--bg-alt) 100%);
+}
 .portal-card.theme-deck:hover::after { background: var(--teal); }
 .portal-card.theme-deck {
   border-color: rgba(8, 145, 178, 0.25);
@@ -420,6 +425,10 @@ html[data-theme="dark"] .nav-bar-inner {
 .status-badge.live-biology {
   background: var(--emerald-soft);
   color: var(--emerald);
+}
+.status-badge.live-chemistry {
+  background: var(--amber-soft);
+  color: var(--amber);
 }
 .status-badge.live-deck {
   background: var(--teal-soft);
@@ -495,6 +504,14 @@ html[data-theme="dark"] .nav-bar-inner {
   color: #FFFFFF;
 }
 .btn-cta.btn-bio:hover {
+  filter: brightness(1.1);
+  transform: translateX(1px);
+}
+.btn-cta.btn-chem {
+  background: var(--amber);
+  color: #FFFFFF;
+}
+.btn-cta.btn-chem:hover {
   filter: brightness(1.1);
   transform: translateX(1px);
 }
@@ -603,11 +620,11 @@ html[data-theme="dark"] .nav-bar-inner {
   <div class="masthead-main">
     <div>
       <h1 class="hero-title">BPSC <em>PYQ</em> and Notes</h1>
-      <p class="hero-subtitle">Enrich your prelims preparation with original and accurate explanations — subject-wise PYQs (1992–2025), chapter notes, and active recall flashcards.</p>
+      <p class="hero-subtitle">Enrich your prelims preparation with original and accurate explanation.</p>
     </div>
     <div class="stats-strip">
       <div class="stat-box">
-        <div class="stat-val c-navy">3</div>
+        <div class="stat-val c-navy">4</div>
         <div class="stat-lbl">PYQ Sets</div>
       </div>
       <div class="stat-box">
@@ -615,7 +632,7 @@ html[data-theme="dark"] .nav-bar-inner {
         <div class="stat-lbl">Theory Notes</div>
       </div>
       <div class="stat-box">
-        <div class="stat-val c-emerald">1,071</div>
+        <div class="stat-val c-emerald">1,223</div>
         <div class="stat-lbl">Verified MCQs</div>
       </div>
     </div>
@@ -627,7 +644,7 @@ html[data-theme="dark"] .nav-bar-inner {
   <nav class="nav-bar-inner" aria-label="Portal Filtering and Search">
     <div class="search-field">
       <span class="search-icon">✦</span>
-      <input type="search" id="portalSearch" class="search-input" placeholder="Search modules, notes, topics (e.g. Modern History, Ancient, Cell)..." aria-label="Search modules">
+      <input type="search" id="portalSearch" class="search-input" placeholder="Search modules, notes, topics (e.g. Modern History, Chemistry, Cell)..." aria-label="Search modules">
     </div>
     <div class="filter-pills" role="tablist">
       <button class="pill-btn" data-filter="all" aria-pressed="true">All Modules</button>
@@ -667,10 +684,10 @@ html[data-theme="dark"] .nav-bar-inner {
         <a href="BPSC-Modern-History-PYQ-Practice (1).html" title="Modern History PYQ">Modern History PYQ</a>
       </h3>
       <p class="card-summary">
-        Spanning 1498 to 1947: Advent of European Powers, Revolt of 1857, Tribal Uprisings, Swadeshi Movement, Champaran Satyagraha, Non-Cooperation, and Quit India Movement.
+        Spanning 1498 to 1947: Advent of European Powers, Revolt of 1857, Tribal Uprisings, Swadeshi Movement, Champaran Satyagraha, Non-Cooperation, and Quit India Movement[cite: 1].
       </p>
       <div class="card-foot">
-        <span>38th to 71st BPSC (1992–2025)</span>
+        <span>38th to 71st BPSC (1992–2025)[cite: 1]</span>
         <a href="BPSC-Modern-History-PYQ-Practice (1).html" class="btn-cta btn-history" title="Modern History PYQ">
           Practice PYQs &rarr;
         </a>
@@ -686,10 +703,10 @@ html[data-theme="dark"] .nav-bar-inner {
         <a href="ancient-history.html" title="Ancient India PYQ">Ancient India PYQ</a>
       </h3>
       <p class="card-summary">
-        Stone Age, Indus Valley Civilization, Vedic Period, Buddhism &amp; Jainism, 6th Century BCE Mahajanapadas, Mauryan Dynasty, Gupta Era, Ancient Architecture, and Sangam Age.
+        Stone Age, Indus Valley Civilization, Vedic Period, Buddhism &amp; Jainism, 6th Century BCE Mahajanapadas, Mauryan Dynasty, Gupta Era, Ancient Architecture, and Sangam Age[cite: 4].
       </p>
       <div class="card-foot">
-        <span>38th to 71st BPSC (1992–2025)</span>
+        <span>38th to 71st BPSC (1992–2025)[cite: 4]</span>
         <a href="ancient-history.html" class="btn-cta btn-history" title="Ancient India PYQ">
           Practice PYQs &rarr;
         </a>
@@ -705,30 +722,49 @@ html[data-theme="dark"] .nav-bar-inner {
         <a href="biology-pyq-mcq.html" title="Biology PYQ">Biology PYQ</a>
       </h3>
       <p class="card-summary">
-        Targeted practice on Cell Biology, Biomolecules, Plant Physiology, Human Organ Systems, Endocrine System, Genetics &amp; Evolution, Ecology, and Infectious Diseases.
+        Targeted practice on Cell Biology, Biomolecules, Plant Physiology, Human Organ Systems, Endocrine System, Genetics &amp; Evolution, Ecology, and Infectious Diseases[cite: 2].
       </p>
       <div class="card-foot">
-        <span>BPSC &amp; UPPCS Combined Exams</span>
+        <span>BPSC &amp; UPPCS Combined Exams[cite: 2]</span>
         <a href="biology-pyq-mcq.html" class="btn-cta btn-bio" title="Biology PYQ">
           Practice PYQs &rarr;
         </a>
       </div>
     </article>
 
-    <!-- 4. GENERAL SCIENCE: PHYSICS & CHEMISTRY -->
-    <article class="portal-card" data-category="science">
-      <div class="status-badge upcoming">Coming Next</div>
-      <h3 class="card-h">Physics &amp; Chemistry PYQs</h3>
+    <!-- 4. CHEMISTRY PYQ (Active - 152 Questions) -->
+    <article class="portal-card theme-chemistry" data-category="science">
+      <div class="status-badge live-chemistry">
+        <span class="pulse-dot"></span> Active Set · 152 MCQs
+      </div>
+      <h3 class="card-h">
+        <a href="Chemistry_PYQ_MCQ_BPSC_UPPCS.html" title="Chemistry PYQ">Chemistry PYQ</a>
+      </h3>
       <p class="card-summary">
-        Core coverage of units and dimensions, light &amp; optics, thermodynamics, electricity, radioactivity, organic functional groups, acids-bases, and everyday chemistry.
+        Atomic Structure, Periodic Table, Chemical Bonding, States of Matter, Reactions &amp; Catalysis, Acids, Bases &amp; Salts, Organic Chemistry, and Everyday Chemistry.
       </p>
       <div class="card-foot">
-        <span>~220+ MCQs</span>
+        <span>BPSC &amp; UPPCS Combined Exams</span>
+        <a href="Chemistry_PYQ_MCQ_BPSC_UPPCS.html" class="btn-cta btn-chem" title="Chemistry PYQ">
+          Practice PYQs &rarr;
+        </a>
+      </div>
+    </article>
+
+    <!-- 5. GENERAL SCIENCE: PHYSICS -->
+    <article class="portal-card" data-category="science">
+      <div class="status-badge upcoming">Coming Next</div>
+      <h3 class="card-h">Physics PYQs</h3>
+      <p class="card-summary">
+        Core coverage of units and dimensions, mechanics, light &amp; optics, thermodynamics, electricity, radioactivity, and modern applied physics.
+      </p>
+      <div class="card-foot">
+        <span>~150+ MCQs</span>
         <button class="btn-cta btn-off" disabled>In Queue</button>
       </div>
     </article>
 
-    <!-- 5. MEDIEVAL INDIA HISTORY -->
+    <!-- 6. MEDIEVAL INDIA HISTORY -->
     <article class="portal-card" data-category="history">
       <div class="status-badge upcoming">Coming Next</div>
       <h3 class="card-h">Medieval India History</h3>
@@ -741,7 +777,7 @@ html[data-theme="dark"] .nav-bar-inner {
       </div>
     </article>
 
-    <!-- 6. BIHAR SPECIAL -->
+    <!-- 7. BIHAR SPECIAL -->
     <article class="portal-card" data-category="bihar">
       <div class="status-badge weighted">Core Weightage (~25 Qs)</div>
       <h3 class="card-h">Bihar Special: History, Geo &amp; Economy</h3>
@@ -754,7 +790,7 @@ html[data-theme="dark"] .nav-bar-inner {
       </div>
     </article>
 
-    <!-- 7. INDIAN POLITY & CONSTITUTION -->
+    <!-- 8. INDIAN POLITY & CONSTITUTION -->
     <article class="portal-card" data-category="polity">
       <div class="status-badge upcoming">Upcoming</div>
       <h3 class="card-h">Indian Polity &amp; Governance</h3>
@@ -767,7 +803,7 @@ html[data-theme="dark"] .nav-bar-inner {
       </div>
     </article>
 
-    <!-- 8. INDIAN & WORLD GEOGRAPHY -->
+    <!-- 9. INDIAN & WORLD GEOGRAPHY -->
     <article class="portal-card" data-category="bihar">
       <div class="status-badge upcoming">Upcoming</div>
       <h3 class="card-h">Indian &amp; World Geography</h3>
@@ -780,7 +816,7 @@ html[data-theme="dark"] .nav-bar-inner {
       </div>
     </article>
 
-    <!-- 9. CSAT / MENTAL ABILITY -->
+    <!-- 10. CSAT / MENTAL ABILITY -->
     <article class="portal-card" data-category="science">
       <div class="status-badge upcoming">Upcoming</div>
       <h3 class="card-h">General Mental Ability &amp; Aptitude</h3>
@@ -815,10 +851,10 @@ html[data-theme="dark"] .nav-bar-inner {
         <a href="biology-theory-flashnotes.html" title="Biology Flashcards & Theory Notes">Biology Flashnotes &amp; Recall Deck</a>
       </h3>
       <p class="card-summary">
-        High-yield study notes equipped with dual Read and Recall modes. Covers 19 comprehensive chapters including Cell Biology, Biomolecules, Plant Physiology, Human Organ Systems, Genetics, Ecology, and Landmarks in Medicine.
+        High-yield study notes equipped with dual Read and Recall modes. Covers 19 comprehensive chapters including Cell Biology, Biomolecules, Plant Physiology, Human Organ Systems, Genetics, Ecology, and Landmarks in Medicine[cite: 3].
       </p>
       <div class="card-foot">
-        <span>Read &amp; Flashcard Flip Modes</span>
+        <span>Read &amp; Flashcard Flip Modes[cite: 3]</span>
         <a href="biology-theory-flashnotes.html" class="btn-cta btn-deck" title="Biology Flashcards & Theory Notes">
           Open Deck &rarr;
         </a>
