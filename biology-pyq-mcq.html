@@ -442,5 +442,22 @@ addEventListener('keydown',e=>{
 
 applyTheme(); buildFilters(); render();
 </script>
+
+<script>
+(() => {
+  const topin = document.querySelector('.topin');
+  if (topin && !document.getElementById('bioHomeBtn')) {
+    const btn = document.createElement('a');
+    btn.id = 'bioHomeBtn';
+    btn.href = 'index.html';
+    btn.style.cssText = 'display:inline-flex;align-items:center;gap:5px;height:34px;padding:0 12px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:.82rem;font-weight:600;text-decoration:none;flex-shrink:0;margin-right:2px;transition:border-color .15s,color .15s;';
+    btn.textContent = '← Home';
+    btn.onmouseover = () => { btn.style.borderColor = 'var(--haema)'; btn.style.color = 'var(--haema)'; };
+    btn.onmouseout = () => { btn.style.borderColor = 'var(--line)'; btn.style.color = 'var(--ink)'; };
+    topin.prepend(btn);
+  }
+})();
+</script>
+
 </body>
 </html>
