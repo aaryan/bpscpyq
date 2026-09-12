@@ -541,10 +541,10 @@ document.getElementById('spineClose').addEventListener('click', closeSpine);
 (async ()=>{ await Promise.all([loadTheme(), loadProgress()]); buildPool(); render(); })();
 </script>
 
-<!-- Home Button Auto-Injector -->
+
+<!-- Home Button Auto-Injector (Control Bar Only) -->
 <script>
 (() => {
-  // Inject chip button into control bar
   const controls = document.querySelector('.controls-in');
   if (controls && !document.getElementById('homeBtnNav')) {
     const btn = document.createElement('a');
@@ -555,10 +555,9 @@ document.getElementById('spineClose').addEventListener('click', closeSpine);
     btn.textContent = '← Home';
     controls.prepend(btn);
   }
-  // Inject breadcrumb link into masthead
-
 })();
 </script>
+
 
 </body>
 </html>
