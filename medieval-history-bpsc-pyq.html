@@ -1112,4 +1112,23 @@ document.addEventListener('touchend', function (e) {
 
 </script>
 </body>
+
+<!-- Home Navigation Auto-Injector -->
+<script>
+(() => {
+  const tools = document.querySelector('.mast-tools');
+  if (tools && !document.getElementById('medHomePortalBtn')) {
+    const btn = document.createElement('a');
+    btn.id = 'medHomePortalBtn';
+    btn.href = 'index.html';
+    btn.className = 'icon-btn';
+    btn.style.cssText = 'width:auto;padding:0 12px;display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;text-decoration:none;color:var(--text);margin-right:2px;';
+    btn.textContent = '← Home';
+    btn.onmouseover = () => { btn.style.borderColor = 'var(--gold)'; btn.style.color = 'var(--gold)'; };
+    btn.onmouseout = () => { btn.style.borderColor = 'var(--line)'; btn.style.color = 'var(--text-dim)'; };
+    tools.prepend(btn);
+  }
+})();
+</script>
+
 </html>
