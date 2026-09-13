@@ -399,6 +399,11 @@ html[data-theme="dark"] .nav-bar-inner {
   border-color: rgba(217, 119, 6, 0.22);
   background: linear-gradient(180deg, var(--surface) 0%, var(--bg-alt) 100%);
 }
+.portal-card.theme-physics:hover::after { background: #3B82F6; }
+.portal-card.theme-physics {
+  border-color: rgba(59, 130, 246, 0.22);
+  background: linear-gradient(180deg, var(--surface) 0%, var(--bg-alt) 100%);
+}
 .portal-card.theme-deck:hover::after { background: var(--teal); }
 .portal-card.theme-deck {
   border-color: rgba(8, 145, 178, 0.25);
@@ -429,6 +434,13 @@ html[data-theme="dark"] .nav-bar-inner {
 .status-badge.live-chemistry {
   background: var(--amber-soft);
   color: var(--amber);
+}
+.status-badge.live-physics {
+  background: rgba(59, 130, 246, 0.12);
+  color: #2563EB;
+}
+html[data-theme="dark"] .status-badge.live-physics {
+  color: #60A5FA;
 }
 .status-badge.live-deck {
   background: var(--teal-soft);
@@ -512,6 +524,14 @@ html[data-theme="dark"] .nav-bar-inner {
   color: #FFFFFF;
 }
 .btn-cta.btn-chem:hover {
+  filter: brightness(1.1);
+  transform: translateX(1px);
+}
+.btn-cta.btn-physics {
+  background: #2563EB;
+  color: #FFFFFF;
+}
+.btn-cta.btn-physics:hover {
   filter: brightness(1.1);
   transform: translateX(1px);
 }
@@ -624,7 +644,7 @@ html[data-theme="dark"] .nav-bar-inner {
     </div>
     <div class="stats-strip">
       <div class="stat-box">
-        <div class="stat-val c-navy">4</div>
+        <div class="stat-val c-navy">5</div>
         <div class="stat-lbl">PYQ Sets</div>
       </div>
       <div class="stat-box">
@@ -632,7 +652,7 @@ html[data-theme="dark"] .nav-bar-inner {
         <div class="stat-lbl">Theory Notes</div>
       </div>
       <div class="stat-box">
-        <div class="stat-val c-emerald">1,223</div>
+        <div class="stat-val c-emerald">1,367</div>
         <div class="stat-lbl">Verified MCQs</div>
       </div>
     </div>
@@ -644,7 +664,7 @@ html[data-theme="dark"] .nav-bar-inner {
   <nav class="nav-bar-inner" aria-label="Portal Filtering and Search">
     <div class="search-field">
       <span class="search-icon">✦</span>
-      <input type="search" id="portalSearch" class="search-input" placeholder="Search modules, notes, topics (e.g. Modern History, Chemistry, Cell)..." aria-label="Search modules">
+      <input type="search" id="portalSearch" class="search-input" placeholder="Search modules, notes, topics (e.g. Modern History, Physics, Cell)..." aria-label="Search modules">
     </div>
     <div class="filter-pills" role="tablist">
       <button class="pill-btn" data-filter="all" aria-pressed="true">All Modules</button>
@@ -751,16 +771,22 @@ html[data-theme="dark"] .nav-bar-inner {
       </div>
     </article>
 
-    <!-- 5. GENERAL SCIENCE: PHYSICS -->
-    <article class="portal-card" data-category="science">
-      <div class="status-badge upcoming">Coming Next</div>
-      <h3 class="card-h">Physics PYQs</h3>
+    <!-- 5. PHYSICS PYQ (Active - 144 Questions) -->
+    <article class="portal-card theme-physics" data-category="science">
+      <div class="status-badge live-physics">
+        <span class="pulse-dot"></span> Active Set · 144 MCQs
+      </div>
+      <h3 class="card-h">
+        <a href="Physics_PYQ_MCQ_BPSC_UPPCS.html" title="Physics PYQ">Physics PYQ</a>
+      </h3>
       <p class="card-summary">
-        Core coverage of units and dimensions, mechanics, light &amp; optics, thermodynamics, electricity, radioactivity, and modern applied physics.
+        Units &amp; Measurements, Motion &amp; Forces, Gravitation, Work &amp; Energy, Fluids, Heat &amp; Thermodynamics, Sound &amp; Waves, Optics, Electricity, Magnetism, and Modern Physics.
       </p>
       <div class="card-foot">
-        <span>~150+ MCQs</span>
-        <button class="btn-cta btn-off" disabled>In Queue</button>
+        <span>BPSC &amp; UPPCS Combined Exams</span>
+        <a href="Physics_PYQ_MCQ_BPSC_UPPCS.html" class="btn-cta btn-physics" title="Physics PYQ">
+          Practice PYQs &rarr;
+        </a>
       </div>
     </article>
 
