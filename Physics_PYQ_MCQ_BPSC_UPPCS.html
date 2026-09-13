@@ -365,4 +365,21 @@ document.addEventListener('keydown',e=>{
 });
 
 drawSpine(); drawModes(); rebuild();
-</script></body></html>
+</script>
+<!-- Home Button Auto-Injector -->
+<script>
+(() => {
+  const hwrap = document.querySelector('.hwrap');
+  if (hwrap && !document.getElementById('physHomeBtn')) {
+    const btn = document.createElement('a');
+    btn.id = 'physHomeBtn';
+    btn.href = 'index.html';
+    btn.style.cssText = 'display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 12px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:13px;font-weight:600;text-decoration:none;margin-right:6px;flex:none;transition:border-color .15s,color .15s;';
+    btn.textContent = '← Home';
+    btn.onmouseover = () => { btn.style.borderColor = 'var(--acc-line)'; btn.style.color = 'var(--acc)'; };
+    btn.onmouseout = () => { btn.style.borderColor = 'var(--line)'; btn.style.color = 'var(--ink)'; };
+    hwrap.prepend(btn);
+  }
+})();
+</script>
+</body></html>
