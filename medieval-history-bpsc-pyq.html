@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Medieval History — BPSC Prelims PYQs</title>
+<script>
+/* set theme before first paint so there is no flash */
+(function(){try{var t=localStorage.getItem('medievalPYQ.mcq.v1.theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<style>
+/* ============================================================
+   Medieval History — BPSC PYQ trainer
+   Palette: lapis-lazuli ground, illumination gold, wasli parchment
+   ============================================================ */
+:root{
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --r:10px; --r-sm:6px;
+  --shell:840px;
+}
+html[data-theme="dark"]{
+  --bg:#0B1024; --bg-deep:#070B1A;
+  --surface:#131A33; --surface-2:#1B2342; --surface-3:#232C4F;
+  --line:#2A3357; --line-soft:#1F2745;
+  --text:#E8E0CC; --text-dim:#9BA3C2; --text-faint:#6E769A;
+  --gold:#D9A741; --gold-soft:#3A2E13;
+  --lapis:#6A92EE; --lapis-soft:#1A2750;
+  --good:#54B08F; --good-soft:#123027;
+  --bad:#DC6450;  --bad-soft:#37150F;
+  --shadow:0 10px 30px rgba(0,0,0,.45);
+}
+html[data-theme="light"]{
+  --bg:#EDE3CE; --bg-deep:#E3D7BC;
+  --surface:#F8F2E3; --surface-2:#F1E8D3; --surface-3:#E7DABE;
+  --line:#D4C6A6; --line-soft:#E0D3B6;
+  --text:#211A10; --text-dim:#6B5E47; --text-faint:#8D8068;
+  --gold:#8C6310; --gold-soft:#F0E2BE;
+  --lapis:#1F4394; --lapis-soft:#DFE5F6;
+  --good:#256F55; --good-soft:#D8ECE2;
+  --bad:#9E3220;  --bad-soft:#F6DDD6;
+  --shadow:0 8px 22px rgba(90,70,30,.16);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:var(--sans); font-size:16px; line-height:1.55;
+  -webkit-text-size-adjust:100%;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:none}
+:focus-visible{outline:2px solid var(--gold); outline-offset:2px; border-radius:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+.shell{max-width:var(--shell);margin:0 auto;padding:0 16px}
+
+/* ---------------------------------------------------- masthead */
+.masthead{
+  background:var(--bg-deep);
+  border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:40;
+}
+.mast-row{display:flex;align-items:center;gap:14px;padding:12px 0 10px}
+.mark{flex:0 0 auto;width:34px;height:40px}
+.mast-title{flex:1 1 auto;min-width:0}
+.mast-title h1{
+  margin:0; font-family:var(--serif); font-weight:600;
+  font-size:clamp(17px,3.4vw,22px); letter-spacing:.01em; line-height:1.15;
+}
+.mast-sub{margin:2px 0 0;font-size:11.5px;color:var(--text-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mast-tools{display:flex;gap:6px;flex:0 0 auto}
+.icon-btn{
+  width:34px;height:34px;border-radius:var(--r-sm);
+  border:1px solid var(--line);background:var(--surface);
+  display:grid;place-items:center;color:var(--text-dim);
+  transition:color .15s,border-color .15s,background .15s;
+}
+.icon-btn:hover{color:var(--gold);border-color:var(--gold)}
+.icon-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* progress ribbon */
+.ribbon{display:flex;align-items:center;gap:12px;padding-bottom:11px}
+.track{flex:1;height:5px;border-radius:99px;background:var(--surface-3);overflow:hidden;display:flex}
+.track i{display:block;height:100%;transition:width .3s ease}
+.track .fg{background:var(--good)} .track .fb{background:var(--bad)}
+.tally{font-size:12px;color:var(--text-dim);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tally b{color:var(--text);font-weight:600}
+
+/* ---------------------------------------------------- controls */
+.controls{background:var(--surface);border-bottom:1px solid var(--line)}
+.controls.shut{display:none}
+.icon-btn{position:relative}
+.icon-btn.live::after{content:"";position:absolute;top:4px;right:4px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.ctl-row{display:flex;flex-wrap:wrap;gap:8px;padding:10px 0}
+.ctl-row+.ctl-row{padding-top:0}
+.field{position:relative;display:flex;align-items:center}
+.field svg{position:absolute;left:9px;width:15px;height:15px;fill:none;stroke:var(--text-faint);stroke-width:1.8;pointer-events:none}
+input[type=search]{
+  width:100%;padding:7px 30px 7px 30px;border-radius:var(--r-sm);
+  border:1px solid var(--line);background:var(--bg);font-size:14px;
+}
+input[type=search]::-webkit-search-cancel-button{display:none}
+.field.grow{flex:1 1 170px;min-width:140px}
+.clear-x{position:absolute;right:6px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;color:var(--text-faint);font-size:15px;line-height:1}
+select{
+  padding:7px 26px 7px 9px;border-radius:var(--r-sm);border:1px solid var(--line);
+  background:var(--bg) no-repeat right 8px center;font-size:13px;max-width:200px;
+  -webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'><path d='M1 1l4 4 4-4' fill='none' stroke='%23888' stroke-width='1.6' stroke-linecap='round'/></svg>");
+}
+.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chip{
+  padding:6px 11px;border-radius:99px;border:1px solid var(--line);
+  background:var(--bg);font-size:12.5px;color:var(--text-dim);
+  transition:color .15s,border-color .15s,background .15s;
+}
+.chip:hover{color:var(--text)}
+.chip[aria-pressed="true"]{background:var(--gold-soft);border-color:var(--gold);color:var(--gold);font-weight:600}
+.chip .n{opacity:.65;margin-left:4px;font-variant-numeric:tabular-nums}
+.spacer{flex:1 1 auto}
+
+/* ---------------------------------------------------- card */
+main{padding:20px 0 130px}
+.card{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;
+}
+.card-top{
+  display:flex;align-items:flex-start;gap:13px;
+  padding:14px 18px;border-bottom:1px solid var(--line-soft);
+  background:var(--surface-2);
+}
+/* pointed-arch question badge — Indo-Islamic ogee */
+.arch{flex:0 0 auto;width:42px;height:52px;position:relative}
+.arch svg{position:absolute;inset:0;width:100%;height:100%}
+.arch span{
+  position:absolute;inset:0;display:grid;place-items:center;padding-top:7px;
+  font-family:var(--serif);font-size:16px;font-weight:600;color:var(--gold);
+  font-variant-numeric:tabular-nums;
+}
+.meta{flex:1 1 auto;min-width:0;padding-top:2px}
+.meta .topic{font-family:var(--serif);font-size:15.5px;font-weight:600;line-height:1.25}
+.meta .cites{margin-top:4px;font-size:12px;color:var(--text-dim);display:flex;flex-wrap:wrap;gap:5px 9px}
+.meta .cites span{white-space:nowrap}
+.tag{
+  display:inline-block;padding:1px 7px;border-radius:99px;font-size:10.5px;
+  border:1px solid currentColor;font-weight:600;letter-spacing:.02em;
+}
+.tag.rep{color:var(--lapis)} .tag.dis{color:var(--bad)}
+.star-btn{flex:0 0 auto;width:34px;height:34px;display:grid;place-items:center;color:var(--text-faint);border-radius:var(--r-sm)}
+.star-btn svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round}
+.star-btn[aria-pressed="true"]{color:var(--gold)}
+.star-btn[aria-pressed="true"] svg{fill:var(--gold)}
+
+.card-body{padding:18px}
+.stem{font-family:var(--serif);font-size:17px;line-height:1.6}
+.stem p{margin:0 0 .55em}
+.stem p:last-child{margin-bottom:0}
+.stem .item{margin:.18em 0 .18em 1.15em;text-indent:-1.15em}
+.stem .codes{font-family:var(--mono);letter-spacing:.42em;font-size:14px;color:var(--text-dim);margin:.5em 0 .1em}
+.mtable{display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;margin:.5em 0;font-size:16.5px}
+.mtable .h{font-weight:600;color:var(--text-dim);font-size:13.5px;font-family:var(--sans)}
+.mtable .l,.mtable .r{padding:2px 0}
+
+/* options */
+.opts{margin:16px 0 0;display:flex;flex-direction:column;gap:7px}
+.opt{
+  display:flex;gap:11px;align-items:flex-start;width:100%;text-align:left;
+  padding:10px 13px;border:1px solid var(--line);border-radius:var(--r-sm);
+  background:var(--bg);font-size:15.5px;line-height:1.45;
+  transition:border-color .13s,background .13s;
+}
+.opt:hover:not(:disabled){border-color:var(--lapis)}
+.opt:disabled{cursor:default}
+.opt .k{
+  flex:0 0 auto;width:23px;height:23px;border-radius:50%;
+  border:1px solid var(--line);display:grid;place-items:center;
+  font-size:12.5px;font-weight:700;color:var(--text-dim);margin-top:.5px;
+}
+.opt .t{flex:1 1 auto;min-width:0}
+.opt .t.num{font-family:var(--mono);letter-spacing:.42em}
+.opt .mk{flex:0 0 auto;width:18px;margin-top:1px;color:inherit}
+.opt .mk svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.opt.picked{border-color:var(--lapis);background:var(--lapis-soft)}
+.opt.picked .k{border-color:var(--lapis);color:var(--lapis)}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.right .k{border-color:var(--good);color:var(--good);background:transparent}
+.opt.right .mk{color:var(--good)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.wrong .k{border-color:var(--bad);color:var(--bad)}
+.opt.wrong .mk{color:var(--bad)}
+
+/* explanation */
+.expl{margin-top:16px;border-top:1px solid var(--line-soft);padding-top:15px}
+.expl-head{
+  display:flex;align-items:center;gap:9px;margin-bottom:9px;
+  font-family:var(--serif);font-size:14.5px;font-weight:600;color:var(--gold);
+}
+.expl-head .rule{flex:1;height:1px;background:linear-gradient(to right,var(--gold),transparent);opacity:.5}
+.expl-body{font-size:15.5px;line-height:1.66;color:var(--text)}
+.expl-body p{margin:0 0 .6em}
+.expl-body p:last-child{margin-bottom:0}
+.expl-body .item{margin:.2em 0 .2em 1.3em;text-indent:-1.3em}
+.keynote{
+  margin:0 0 11px;padding:9px 12px;border-radius:var(--r-sm);
+  background:var(--bad-soft);border:1px solid var(--bad);
+  font-size:13.5px;line-height:1.5;color:var(--text);
+}
+.keynote b{color:var(--bad)}
+.verdict{font-size:13.5px;font-weight:600;margin:0 0 11px}
+.verdict.ok{color:var(--good)} .verdict.no{color:var(--bad)}
+mark{background:var(--gold-soft);color:var(--gold);padding:0 1px;border-radius:2px}
+.hidden{display:none!important}
+
+/* empty state */
+.empty{text-align:center;padding:64px 20px;color:var(--text-dim)}
+.empty svg{width:74px;height:92px;margin-bottom:14px;opacity:.5}
+.empty h2{font-family:var(--serif);font-size:19px;margin:0 0 6px;color:var(--text);font-weight:600}
+.empty p{margin:0;font-size:14px}
+
+/* ---------------------------------------------------- footer bar */
+.footbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:45;
+  background:var(--bg-deep);border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.foot-row{display:flex;align-items:center;gap:8px;padding:10px 0}
+.btn{
+  padding:9px 15px;border-radius:var(--r-sm);border:1px solid var(--line);
+  background:var(--surface);font-size:14px;font-weight:500;color:var(--text);
+  display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  transition:border-color .13s,background .13s,color .13s;
+}
+.btn:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
+.btn:disabled{opacity:.38;cursor:default}
+.btn.primary{background:var(--gold);border-color:var(--gold);color:#1A1204;font-weight:650}
+.btn.primary:hover{filter:brightness(1.07);color:#1A1204}
+.btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pos{font-size:12.5px;color:var(--text-dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---------------------------------------------------- sheet */
+.scrim{position:fixed;inset:0;background:rgba(4,7,18,.66);z-index:60;opacity:0;pointer-events:none;transition:opacity .18s}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{
+  position:fixed;z-index:61;background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;box-shadow:var(--shadow);
+  left:50%;top:50%;transform:translate(-50%,-50%) scale(.97);
+  width:min(680px,calc(100vw - 28px));max-height:min(84vh,780px);
+  display:flex;flex-direction:column;opacity:0;pointer-events:none;
+  transition:opacity .18s,transform .18s;
+}
+.sheet.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+.sheet-head{
+  display:flex;align-items:center;gap:10px;padding:14px 16px;
+  border-bottom:1px solid var(--line-soft);flex:0 0 auto;
+}
+.sheet-head h2{margin:0;font-family:var(--serif);font-size:17px;font-weight:600;flex:1}
+.sheet-body{padding:16px;overflow:auto;flex:1 1 auto;-webkit-overflow-scrolling:touch}
+
+/* palette */
+.pal-group+.pal-group{margin-top:16px}
+.pal-group h3{
+  margin:0 0 8px;font-family:var(--serif);font-size:13.5px;font-weight:600;
+  color:var(--text-dim);display:flex;align-items:center;gap:8px;
+}
+.pal-group h3 .rule{flex:1;height:1px;background:var(--line)}
+.pal{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:5px}
+.pal button{
+  aspect-ratio:1;border-radius:var(--r-sm);border:1px solid var(--line);
+  background:var(--bg);font-size:12.5px;color:var(--text-dim);
+  font-variant-numeric:tabular-nums;position:relative;
+}
+.pal button:hover{border-color:var(--gold);color:var(--gold)}
+.pal button.ok{background:var(--good-soft);border-color:var(--good);color:var(--good);font-weight:600}
+.pal button.no{background:var(--bad-soft);border-color:var(--bad);color:var(--bad);font-weight:600}
+.pal button.seen{background:var(--lapis-soft);border-color:var(--lapis);color:var(--lapis)}
+.pal button.here{outline:2px solid var(--gold);outline-offset:1px}
+.pal button.star::after{
+  content:"";position:absolute;top:2px;right:2px;width:5px;height:5px;
+  border-radius:50%;background:var(--gold);
+}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11.5px;color:var(--text-faint);margin-bottom:14px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+
+/* stats */
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:9px;margin-bottom:18px}
+.stat{border:1px solid var(--line);border-radius:var(--r-sm);padding:11px 12px;background:var(--bg)}
+.stat b{display:block;font-family:var(--serif);font-size:25px;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{font-size:11.5px;color:var(--text-dim)}
+.brk{display:flex;flex-direction:column;gap:9px}
+.brk-row{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center}
+.brk-row .nm{font-size:13.5px;line-height:1.3}
+.brk-row .fig{font-size:12px;color:var(--text-dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+.brk-row .bar{grid-column:1/-1;height:4px;border-radius:99px;background:var(--surface-3);display:flex;overflow:hidden}
+.brk-row .bar i{display:block;height:100%}
+.brk-row .bar .g{background:var(--good)} .brk-row .bar .b{background:var(--bad)}
+.unit-h{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--gold);margin:16px 0 8px;display:flex;align-items:center;gap:8px}
+.unit-h .rule{flex:1;height:1px;background:linear-gradient(to right,var(--gold),transparent);opacity:.45}
+
+/* help */
+.keys{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;align-items:center;font-size:14px}
+kbd{
+  font-family:var(--mono);font-size:11.5px;padding:3px 7px;border-radius:4px;
+  border:1px solid var(--line);background:var(--bg);color:var(--text-dim);white-space:nowrap;
+}
+.note{font-size:13px;color:var(--text-dim);line-height:1.6;margin-top:16px;border-top:1px solid var(--line-soft);padding-top:13px}
+.danger{color:var(--bad);border-color:var(--bad)}
+.danger:hover{background:var(--bad-soft);color:var(--bad)}
+
+/* toast */
+.toast{
+  position:fixed;left:50%;bottom:78px;transform:translateX(-50%) translateY(8px);
+  background:var(--surface-3);border:1px solid var(--line);color:var(--text);
+  padding:8px 15px;border-radius:99px;font-size:13px;z-index:70;
+  opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:var(--shadow);
+}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (max-width:620px){
+  body{font-size:15px}
+  .shell{padding:0 11px}
+  .card-body{padding:14px}
+  .stem{font-size:16.5px}
+  .opt{font-size:15px;padding:9px 11px}
+  .mtable{grid-template-columns:1fr;gap:0}
+  .mtable .r{padding-bottom:7px;color:var(--text-dim)}
+  .mtable .h.r{display:none}
+  .foot-row .pos{display:none}
+  .btn{padding:9px 12px}
+  .spacer{display:none}
+  .ctl-row{gap:6px}
+  .chips{gap:5px}
+  .chip{padding:5px 9px;font-size:12px}
+  .icon-btn{width:31px;height:31px}
+  .mast-tools{gap:4px}
+  .mast-row{gap:10px}
+  .mark{width:29px;height:34px}
+  select{max-width:none;flex:1 1 44%;min-width:0}
+  .field.grow{flex:1 1 100%}
+  .mast-sub .wide{display:none}
+}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="shell">
+    <div class="mast-row">
+      <svg class="mark" viewBox="0 0 34 40" aria-hidden="true">
+        <path d="M17 2 C9 8 3 14 3 22 v16 h28 V22 C31 14 25 8 17 2 Z"
+              fill="none" stroke="var(--gold)" stroke-width="1.5"/>
+        <path d="M17 11 C12.5 15 9.5 18.5 9.5 23 v15 h15 V23 C24.5 18.5 21.5 15 17 11 Z"
+              fill="none" stroke="var(--lapis)" stroke-width="1.2"/>
+      </svg>
+      <div class="mast-title">
+        <h1>Medieval History</h1>
+        <p class="mast-sub" id="mastSub"></p>
+      </div>
+      <div class="mast-tools">
+        <button class="icon-btn" id="btnFilters" title="Filters" aria-label="Filters" aria-expanded="true" aria-controls="controls">
+          <svg viewBox="0 0 24 24"><path d="M3 5h18M6.5 12h11M10 19h4"/></svg>
+        </button>
+        <button class="icon-btn" id="btnStats" title="Progress report" aria-label="Progress report">
+          <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+        </button>
+        <button class="icon-btn" id="btnPal" title="Question map (g)" aria-label="Question map">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </button>
+        <button class="icon-btn" id="btnTheme" title="Switch theme (t)" aria-label="Switch theme">
+          <svg viewBox="0 0 24 24" id="themeIcon"></svg>
+        </button>
+        <button class="icon-btn" id="btnHelp" title="Shortcuts and settings (?)" aria-label="Shortcuts and settings">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.2 9.3a2.9 2.9 0 015.6 1c0 2-2.8 2.4-2.8 4"/><path d="M12 17.4h.01"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="ribbon">
+      <div class="track"><i class="fg" id="barOk" style="width:0"></i><i class="fb" id="barNo" style="width:0"></i></div>
+      <div class="tally" id="tally"></div>
+    </div>
+  </div>
+</header>
+
+<section class="controls" id="controls">
+  <div class="shell">
+    <div class="ctl-row">
+      <label class="field grow">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+        <input type="search" id="search" placeholder="Search questions and explanations" autocomplete="off" spellcheck="false">
+        <button class="clear-x hidden" id="clearSearch" aria-label="Clear search">&times;</button>
+      </label>
+      <select id="selUnit" aria-label="Filter by unit"></select>
+      <select id="selTopic" aria-label="Filter by topic"></select>
+      <select id="selYear" aria-label="Filter by exam year"></select>
+    </div>
+    <div class="ctl-row">
+      <div class="chips" id="chipRow">
+        <button class="chip" data-scope="all" aria-pressed="true">All<span class="n" id="cAll"></span></button>
+        <button class="chip" data-scope="new" aria-pressed="false">Unattempted<span class="n" id="cNew"></span></button>
+        <button class="chip" data-scope="wrong" aria-pressed="false">Wrong<span class="n" id="cWrong"></span></button>
+        <button class="chip" data-scope="star" aria-pressed="false">Starred<span class="n" id="cStar"></span></button>
+        <button class="chip" data-scope="repeat" aria-pressed="false">Repeats<span class="n" id="cRep"></span></button>
+      </div>
+      <div class="spacer"></div>
+      <div class="chips">
+        <button class="chip" id="btnShuffle" aria-pressed="false" title="Shuffle the question order">Shuffle</button>
+        <button class="chip" id="btnMode" aria-pressed="false" title="Hide the answer until you finish">Exam mode</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <div class="shell">
+    <article class="card" id="card">
+      <div class="card-top">
+        <div class="arch">
+          <svg viewBox="0 0 42 52" aria-hidden="true">
+            <path d="M21 1 C10 10 3.5 17 3.5 27.5 V51 h35 V27.5 C38.5 17 32 10 21 1 Z"
+                  fill="none" stroke="var(--gold)" stroke-width="1.2" opacity=".75"/>
+          </svg>
+          <span id="qNum">1</span>
+        </div>
+        <div class="meta">
+          <div class="topic" id="qTopic"></div>
+          <div class="cites" id="qCites"></div>
+        </div>
+        <button class="star-btn" id="btnStar" aria-pressed="false" title="Star this question (s)" aria-label="Star this question">
+          <svg viewBox="0 0 24 24"><path d="M12 2.8l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.65 6.2 20.7l1.1-6.45-4.7-4.6 6.5-.95z"/></svg>
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="stem" id="qStem"></div>
+        <div class="opts" id="qOpts"></div>
+        <div class="expl hidden" id="qExpl">
+          <div class="expl-head"><span>Explanation</span><span class="rule"></span></div>
+          <div id="qVerdict"></div>
+          <div id="qKeyNote"></div>
+          <div class="expl-body" id="qExplBody"></div>
+        </div>
+      </div>
+    </article>
+
+    <div class="empty hidden" id="empty">
+      <svg viewBox="0 0 34 40" aria-hidden="true">
+        <path d="M17 2 C9 8 3 14 3 22 v16 h28 V22 C31 14 25 8 17 2 Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      </svg>
+      <h2>Nothing matches these filters</h2>
+      <p>Widen the search, or switch back to All.</p>
+    </div>
+  </div>
+</main>
+
+<nav class="footbar">
+  <div class="shell">
+    <div class="foot-row">
+      <button class="btn" id="btnPrev" title="Previous (←)">
+        <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><span>Prev</span>
+      </button>
+      <button class="btn" id="btnReveal" title="Show the answer (r)">
+        <svg viewBox="0 0 24 24"><path d="M2 12s3.8-7 10-7 10 7 10 7-3.8 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Reveal</span>
+      </button>
+      <div class="spacer"></div>
+      <span class="pos" id="pos"></span>
+      <button class="btn primary" id="btnNext" title="Next (→ or Enter)">
+        <span>Next</span><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+
+<!-- question map -->
+<div class="sheet" id="sheetPal" role="dialog" aria-modal="true" aria-labelledby="palTitle">
+  <div class="sheet-head">
+    <h2 id="palTitle">Question map</h2>
+    <button class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="sheet-body">
+    <div class="legend">
+      <span><i style="background:var(--good)"></i>Correct</span>
+      <span><i style="background:var(--bad)"></i>Wrong</span>
+      <span><i style="background:var(--lapis)"></i>Answered, not checked</span>
+      <span><i style="background:var(--gold)"></i>Starred</span>
+    </div>
+    <div id="palBody"></div>
+  </div>
+</div>
+
+<!-- progress report -->
+<div class="sheet" id="sheetStats" role="dialog" aria-modal="true" aria-labelledby="statsTitle">
+  <div class="sheet-head">
+    <h2 id="statsTitle">Progress report</h2>
+    <button class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="sheet-body" id="statsBody"></div>
+</div>
+
+<!-- help -->
+<div class="sheet" id="sheetHelp" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+  <div class="sheet-head">
+    <h2 id="helpTitle">Shortcuts</h2>
+    <button class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="sheet-body">
+    <div class="keys">
+      <kbd>1</kbd><span>&hellip;<kbd>5</kbd> or <kbd>a</kbd>&hellip;<kbd>e</kbd> — choose an option</span>
+      <kbd>&rarr;</kbd><span>Next question (also <kbd>Enter</kbd>)</span>
+      <kbd>&larr;</kbd><span>Previous question</span>
+      <kbd>r</kbd><span>Reveal the answer</span>
+      <kbd>s</kbd><span>Star this question</span>
+      <kbd>g</kbd><span>Open the question map</span>
+      <kbd>p</kbd><span>Open the progress report</span>
+      <kbd>f</kbd><span>Shuffle on or off</span>
+      <kbd>t</kbd><span>Switch theme</span>
+      <kbd>/</kbd><span>Jump to search</span>
+      <kbd>Esc</kbd><span>Close this panel</span>
+    </div>
+    <div class="note">
+      <p style="margin:0 0 10px">123 previous-year questions from pages 35&ndash;54 of the BPSC Prelims General Studies chapterwise solved papers, covering the Delhi Sultanate through the decline of the Mughals. Every answer and explanation is the book&rsquo;s own. Four questions carry a disputed or cancelled official key and are flagged where they appear.</p>
+      <p style="margin:0 0 12px">Your answers, stars and settings are saved in this browser only.</p>
+      <button class="btn danger" id="btnReset">Clear all progress</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+window.__DATA__=[{"i":1,"u":"Delhi Sultanate — Foundation","c":"Muslim Invasion of India","p":35,"q":["Muhammad Ghori granted first Iqta in India to –"],"o":[["a","Tajuddin Yalduz"],["b","Qutbuddin Aibak"],["c","Shamsuddin Iltutmish"],["d","Nasir-ud-din Qubacha"]],"a":["b"],"x":["Soon after Ghori’s victories, the Iqta system was established in North India. In India, Muhammad Ghori granted the first Iqta to Qutbuddin Aibak. From 1192 to 1206 AD, Aibak administered the conquered parts of North India as Ghori’s representative. During this period, Aibak also expanded Turkish power in North India."],"s":["39th B.P.S.C. (Pre) 1994"],"y":[1994],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":2,"u":"Delhi Sultanate — Foundation","c":"Muslim Invasion of India","p":35,"q":["Muhammad Ghori was defeated by the Chaulukyas of Gujarat in"],"o":[["a","1192 AD"],["b","1191 AD"],["c","1185 AD"],["d","1178 AD"],["e","None of the above/More than one of the above"]],"a":["d"],"x":["Muhammad Ghori attacked Gujarat in 1178 AD. At that time, the Anhilwad Chalukya ruler of Gujarat was Mularaja II. Naika Devi, the widowed mother of Mularaja II, acted as his guardian and led the Chalukya (Solanki) army against Ghori. Near Mount Abu, on the field of Kasahrada, the Chalukya/ Solanki army defeated Muhammad Ghori. This was Ghori’s first defeat in India. Some sources also mention this invasion (1178 AD) during the reign of Bhima II. This confusion probably arises because Mularaja II’s reign ended in 1178 AD and Bhima II’s reign began in the same year. However, most historians accept Mularaja II as the Chalukya/Solanki ruler of Gujarat at the time of Ghori’s invasion (1178 AD)."],"s":["B.P.S.C. CDPO (Pre) 2018"],"y":[2018],"e":["CDPO"],"r":false,"d":false,"n":""},{"i":3,"u":"Delhi Sultanate — Foundation","c":"Delhi Sultanate : Slave Dynasty","p":35,"q":["Who was the first ruler of the Slave Dynasty?"],"o":[["a","Iltutmish"],["b","Qutbuddin Aibak"],["c","Raziyya"],["d","Balban"]],"a":["b"],"x":["The first ruler of the Slave Dynasty in India was Qutbuddin Aibak (1206–1210 AD). He belonged to a Turkish tribe called Aibak. In childhood, he was purchased as a slave by Qazi Fakhruddin Abdul Aziz Kufi of Nishapur. The Qazi took proper care of him and ensured that he received complete education. Aibak recited the Quran in a very melodious voice; therefore, he became famous as Quran-khwan (one who recites the Quran). Later, he was brought from Nishapur to Ghazni, where Ghori purchased him. Due to his talent, dedication, and honesty, Aibak soon gained Ghori’s trust. Ghori promoted him to the post of Amir-e-Akhur, and from there a new chapter of his life began. He was the first Turkish ruler of Delhi, although he ruled from Lahore. Aibak never formally assumed the title of Sultan. He remained content with the titles of Malik and Sipahsalar. After receiving a deed of manumission from Ghiyasuddin, Ghori’s successor, Aibak was officially freed from slavery in 1208 AD."],"s":["47th B.P.S.C. (Pre) 2005"],"y":[2005],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":4,"u":"Delhi Sultanate — Foundation","c":"Delhi Sultanate : Slave Dynasty","p":35,"q":["The capital of Qutbuddin Aibak was:"],"o":[["a","Lahore"],["b","Delhi"],["c","Ajmer"],["d","Lakhnauti"]],"a":["a"],"x":["After the death of Muhammad Ghori (1206 AD), the notable people and amirs of Lahore invited Qutb-ud-din Aibak to assume sovereign powers. Therefore, he went to Lahore, assumed power, and was formally enthroned in 1206 AD. Aibak’s capital was Lahore. After ascending the throne, Aibak’s biggest challenge came from Taj-ud-din Yalduz and Nasir-ud-din Qubacha—Ghori’s slaves and successors/ claimants to his territories. Aibak married his daughter to Qubacha and thus brought him to his side; however, the threat from Yalduz continued. This is why Aibak always stayed in Lahore. He never got an opportunity to go to Delhi."],"s":["41st B.P.S.C. (Pre) 1996"],"y":[1996],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":5,"u":"Delhi Sultanate — Foundation","c":"Delhi Sultanate : Slave Dynasty","p":35,"q":["The Muslim ruler whose empire was regarded as a part of Dar-ul-Islam was"],"o":[["a","Balban"],["b","Razia"],["c","Iltutmish"],["d","Nasir-ud-Din"],["e","None of the above/More than one of the above"]],"a":["c"],"x":["During the reign of Iltutmish, in 1229 AD, the Caliph of Baghdad bestowed a robe of honour (khilat) upon him. Now the Sultanate, in theory, became a part of Dar-ul-Islam under the Caliph of Baghdad."],"s":["67th B.P.S.C. (Re-Exam) (Pre)-2022"],"y":[2022],"e":["Re-Exam"],"r":false,"d":false,"n":""},{"i":6,"u":"Delhi Sultanate — Foundation","c":"Delhi Sultanate : Slave Dynasty","p":35,"q":["Iltutmish appointed his first Subedar in Bihar to :"],"o":[["a","Iwaz"],["b","Nasiruddin Mahmud"],["c","Alimardan"],["d","Malik Jani"]],"a":["d"],"x":["Iltutmish captured Bihar Sharif and Barh, and near Teliyagarhi (close to the Rajmahal hills) a minor skirmish took place between Hisam-ud-din Aiwaz and the royal army. According to Minhaj, ultimately a treaty was concluded between the two sides. Iltutmish appointed Malik Jani as the Subedar of Bihar in place of Aiwaz."],"s":["48th to 52nd B.P.S.C. (Pre) 2008"],"y":[2008],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":7,"u":"Delhi Sultanate — Foundation","c":"Delhi Sultanate : Slave Dynasty","p":36,"q":["\"His theory of kingship was based on the principles of prestige, power and justice.\" Who said these words about Balban?"],"o":[["a","A. B. M. Habibullah"],["b","Zia-ud-din Barani"],["c","Stanley Lane-Poole"],["d","R. P. Tripathi"],["e","None of the above / More than one of the above"]],"a":["b"],"x":["Dr. R.P. Tripathi, in his book 'Some Aspects of Muslim Administration', while explaining Balban’s concept of kingship, stated that “His theory of kingship was based on the principles of prestige, power and justice.” For this conclusion regarding Balban’s kingship, he used as his basis the description presented by Zia-ud-din Barani on Balban’s theory of kingship. Probably for this reason, in its preliminary and final answer keys, the Bihar Public Service Commission has accepted option (b) as correct."],"s":["B.P.S.C. CDPO (Pre) 2022"],"y":[2022],"e":["CDPO"],"r":false,"d":false,"n":""},{"i":8,"u":"Delhi Sultanate — Foundation","c":"Delhi Sultanate : Slave Dynasty","p":36,"q":["Who was the first Muslim ruler to formulate the 'Theory of Kingship' similar to the 'Theory of divine right of the kings'?"],"o":[["a","Aibak"],["b","Iltutmish"],["c","Balban"],["d","Alauddin"],["e","None of the above/ More than one of the above"]],"a":["c"],"x":["Balban was the first Muslim ruler who propounded the theory of kingship on the lines of the theory of divine right of kings. According to this, the Sultan is the representative of God on earth (niyabat-e-khudai), and his position comes after the Prophet. The king is zill-e-Allah or zill-e-ilahi, i.e., the reflection of God. He said to his son Bughra Khan—“The office of the Sultan is the living symbol of absolutism.”"],"s":["63rd B.P.S.C. (Pre.) 2017"],"y":[2017],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":9,"u":"Delhi Sultanate — Foundation","c":"Delhi Sultanate : Slave Dynasty","p":36,"q":["The term Zillillah was first used by"],"o":[["a","Alauddin Khilji"],["b","Akbar"],["c","Balban"],["d","Iltutmish"]],"a":["c"],"x":["See the explanation of the above question."],"s":["70th B.P.S.C Re-Exam 2024"],"y":[2024],"e":["Re-Exam"],"r":false,"d":false,"n":""},{"i":10,"u":"Delhi Sultanate — Foundation","c":"Delhi Sultanate : Slave Dynasty","p":36,"q":["Which Delhi Sultan is known for adopting the 'blood and iron' policy?"],"o":[["a","Iltutmish"],["b","Balban"],["c","Ala-ud-Din Khilji"],["d","Muhammad bin Tughluq"],["e","None of the above/More than one of the above"]],"a":["b"],"x":["It is said about Balban that he adopted the policy of “blood and iron.” Two main features of Balban’s theory of kingship were: first, the post of the Sultan is bestowed by God, and second, the Sultan must be absolute. According to him, “The Sultan is God’s representative on earth (niyabat-e-khudai), and his position is after the Prophet. The Sultan receives inspiration and power from God. Therefore, common people or nobles have no right to criticize his actions.”"],"s":["66th B.P.S.C. (Pre) 2020"],"y":[2020],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":11,"u":"Delhi Sultanate — Foundation","c":"Delhi Sultanate : Slave Dynasty","p":36,"q":["Tughril Khan raised a standard of revolt during whose reign?"],"o":[["a","Balban"],["b","Alauddin Khalji"],["c","Firoz Tughluq"],["d","Khizr Khan"],["e","None of the above/More than one of the above"]],"a":["a"],"x":["An important revolt during Balban’s reign was the revolt of Tughril Khan. Balban had appointed Tughril Khan as the governor of Bengal, but he declared himself the independent ruler of Bengal, assumed the title of “Sultan Mugisuddin,” issued coins in his own name, and also had the khutba read in his name. To suppress Tughril’s revolt, Balban first sent an army under Amin Khan and thereafter under Bahadur, but both failed. Enraged, Balban advanced towards Bengal along with his son Bughra Khan, but Tughril fled after abandoning his capital. Ultimately, Tughril was captured and killed, and Balban appointed his son Bughra Khan as the iqtadar of Bengal."],"s":["67th B.P.S.C. (Re-Exam) (Pre)-2022"],"y":[2022],"e":["Re-Exam"],"r":false,"d":false,"n":""},{"i":12,"u":"Delhi Sultanate — Foundation","c":"Delhi Sultanate : Slave Dynasty","p":36,"q":["Who among the following introduced the Persian festival Nouruz in India?"],"o":[["a","Firoz Shah Tughlaq"],["b","Alauddin Khilji"],["c","Balban"],["d","Iltutmish"]],"a":["c"],"x":["Ghiyas-ud-din Balban (1266–1287 A.D.) started the practice of celebrating the Iranian festival Nauroz in India. Nauroz is the Iranian New Year, also known as the Persian New Year. Balban also introduced the practices of sijda and paibos in his court, which were imitations of Persian tradition."],"s":["69th B.P.S.C. (Pre) 2023"],"y":[2023],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":13,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":37,"q":["Who was the first ruler of the Khilji dynasty?"],"o":[["a","Jalaluddin Khilji"],["b","Alauddin Khilji"],["c","Balban"],["d","Razia Sultan"]],"a":["a"],"x":["Jalaluddin Khilji founded the Khilji dynasty in 1290 A.D. He had his coronation in 1290 A.D. in the unfinished Kilokhari (Kilughari) palace built by Kaiqubad. According to Dr. A.L. Srivastava, Jalaluddin Khilji was the first Turkish Sultan of Delhi who placed before himself the principle of “liberal despotism.”"],"s":["B.P.S.C. (CDPO) (Pre) 2005"],"y":[2005],"e":["CDPO"],"r":false,"d":false,"n":""},{"i":14,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":37,"q":["\"Thus to Ala-ud-din belongs the credit of being the first Turkish Sultan of Delhi to bring the church under the control of the state and to usher in factors that might make the state secular in theory.\" Who wrote these words?"],"o":[["a","Wolseley Haig"],["b","K. S. Lal"],["c","A. L. Srivastava"],["d","Zia-ud-din Barani"],["e","None of the above / More than one of the above"]],"a":["c"],"x":["A.L. Srivastava, in his book The Sultanate of Delhi (711– 1526 A.D.), wrote about Alauddin Khilji: “Alauddin was the first Turkish Sultan of Delhi who was credited with bringing religion under the control of the state and introducing such elements which, in theory, made the state secular.”"],"s":["B.P.S.C. CDPO 2022"],"y":[2022],"e":["CDPO"],"r":false,"d":false,"n":""},{"i":15,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":37,"q":["“When he attained Kingship, he was fully independent of rules and orders of Shariat.” For which Sultan Barani made this statement?"],"o":[["a","Iltutmish"],["b","Balban"],["c","Alauddin Khilji"],["d","Muhammad Tughluq"]],"a":["c"],"x":["Ziauddin Barani made the above statement for Alauddin Khalji. Alauddin was the first Sultan of Delhi who established state control over religion. Explaining his policy in this context, he himself said that, “I do not know what is right and what is wrong in the eyes of the law. I give orders for whatever I consider suitable for the welfare of the state or for a particular occasion. What will happen to me on the Day of Judgment, I do not know.” Alauddin revived Balban’s idea regarding kingship. He believed in the sovereign authority of the king, who is merely the representative of God on earth. He did not consider it necessary to seek the Caliph’s permission to increase his power; therefore, he made no request to the Caliph for recognition of his position. He described himself as ‘Yamin-ul-Khilafat Nasir Amir-ul-Muminin’. Thus, Alauddin was the first Sultan of Delhi who did not allow religion to interfere in politics. Alauddin remained free from the influence of the ulama."],"s":["46th B.P.S.C. (Pre) 2004"],"y":[2004],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":16,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":37,"q":["Who among the army-commanders of Alauddin Khilji died fighting against the Mongols?"],"o":[["a","Zafar Khan"],["b","Nusrat Khan"],["c","Alp Khan"],["d","Ulugh Khan"]],"a":["a"],"x":["Alauddin’s famous general Zafar Khan was killed while fighting the Mongols. He was the best and bravest general of his time."],"s":["41st B.P.S.C. (Pre) 1996"],"y":[1996],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":17,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":37,"q":["Padmini is associated with Ala-ud-Din’s conquest of Chittor. She was the wife of"],"o":[["a","Maharana Pratap Singh"],["b","Ranjit Singh"],["c","Raja Man Singh"],["d","Rana Ratan Singh"]],"a":["d"],"x":["The story of Padmini is based on the poetic work ‘Padmavat’, written in 1540 AD by Malik Muhammad Jayasi. According to it, Padmini was the extremely beautiful and learned wife of Rana Ratan Singh of Chittor. Amir Khusro mentioned the love episode of Solomon and the Queen of Sheba in his work, and in his hints he compared Alauddin to Solomon and Padmini to Sheba. Probably on this basis, Malik Muhammad Jayasi composed Padmavat, and the story of Queen Padmini as the queen of Rana Ratan Singh took shape."],"s":["43rd B.P.S.C. (Pre) 1999"],"y":[1999],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":18,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":37,"q":["Who was the ruler of Chittor at the time of Alauddin Khilji’s invasion?"],"o":[["a","Malik Kafur"],["b","Rana Ratan Singh"],["c","Ramchandra Dev"],["d","Prataparudra Dev"]],"a":["b"],"x":["See the explanation of the above question."],"s":["B.P.S.C. (CDPO) (Pre) 2005"],"y":[2005],"e":["CDPO"],"r":false,"d":false,"n":""},{"i":19,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":38,"q":["Who was the ruler of Devagiri at the time of Alauddin Khilji’s invasion?"],"o":[["a","Ramchandra Dev"],["b","Prataprudra Dev"],["c","Malik Kafur"],["d","Rana Ratan Singh"]],"a":["a"],"x":["At the time of Alauddin Khilji’s invasion, Ramchandra Dev was the Yadava dynasty ruler of Devagiri. During Jalaluddin Khilji’s reign, Alauddin Khalji first attacked Devagiri in 1296 AD and forced its ruler Ramchandra Dev to pay an annual tribute. But after Alauddin became the Sultan, when Ramchandra Dev stopped paying the annual tribute, Alauddin, angered by this, sent an army against Devagiri under the leadership of Malik Kafur. In this war, Ramchandra Dev was defeated and he surrendered."],"s":["53rd to 55th B.P.S.C. (Pre) 2011","47th B.P.S.C. (Pre) 2005"],"y":[2005,2011],"e":["Prelims"],"r":true,"d":false,"n":""},{"i":20,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":38,"q":["During the regime of which Sultan was the Khalisa land developed on a large scale?"],"o":[["a","Ghiyasuddin Balban"],["b","Alauddin Khilji"],["c","Muhammad-Bin-Tughluq"],["d","Firuz Shah Tughluq"]],"a":["b"],"x":["The main objective of Alauddin’s revenue and land-tax system was to establish a powerful and autocratic state. He confiscated land from those persons who had received it as milk-idrar, inam, and waqf (land received as a religious/ charitable endowment), etc. As a result, Khalisa land was developed on a large scale."],"s":["39th B.P.S.C. (Pre) 1994"],"y":[1994],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":21,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":38,"q":["Which Sultan demanded half the crops on land after measurement as revenue?"],"o":[["a","Iltutmish"],["b","Balban"],["c","Alauddin Khilji"],["d","Muhammad-Bin-Tughluq"],["e","None of the above/More than one of the above"]],"a":["c"],"x":["Alauddin Khilji was the first Sultan of the Delhi Sultanate to introduce certain changes in land-revenue policy. He fixed 50% of the produce as land revenue and insisted that it should be collected in the form of grain. Before him, Balban and Iltutmish did not levy land revenue at a rate higher than one-third of the produce. During the reign of Muhammad bin Tughlaq too, the rate of land tax was 50%, similar to Alauddin’s. Although in this question both options (c) and (d) are correct, the Bihar Public Service Commission, in its final answer key, accepted option (c) as correct."],"s":["64th B.P.S.C. (Pre) 2018"],"y":[2018],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":22,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":38,"q":["Who was deputed for the conquest of Dwarasamudra by Ala-ud-din Khilji ?"],"o":[["a","Alp Khan"],["b","Khizr Khan"],["c","Umar Khan"],["d","Malik Kafur"],["e","None of the above/More than one of the above"]],"a":["d"],"x":["Alauddin Khilji appointed Malik Kafur for the conquest of Dwarasamudra. Dwarasamudra was the capital of the Hoysala kingdom, and its ruler was Vira Ballala III. The conquest of most parts of South India is largely credited to Malik Kafur."],"s":["B.P.S.C. CDPO (Pre) 2018"],"y":[2018],"e":["CDPO"],"r":false,"d":false,"n":""},{"i":23,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":38,"q":["Nizamuddin Auliya refused to meet which Sultan?"],"o":[["a","Jalaluddin Khilji"],["b","Alauddin Khilji"],["c","Ghiyasuddin Tughlaq"],["d","Muhammad bin Tughlaq"]],"a":["a"],"x":["Shaikh Nizamuddin Auliya witnessed the reign of more than seven Sultans who came to power one after another; however, he never went to anyone’s court. Sultan Jalaluddin Khilji was probably the first ruler who, after hearing about the Shaikh’s fame and greatness, offered him a few villages and expressed a desire to meet him. The Shaikh refused, saying: “My khanqah has two doors; if the Sultan enters from one, I will leave from the other.” Later, when Sultan Jalaluddin wished to meet him without prior notice, Auliya’s beloved disciple Amir Khusro informed Auliya about it. As soon as he received the information, Shaikh Nizamuddin Auliya immediately left for Ajodhan to visit his spiritual master (Baba Farid). Thus, Auliya continued to avoid meeting the Sultan directly. It is also mentioned that Alauddin Khilji wished to meet Auliya, but no such dramatic incident is associated with Alauddin as is associated with Jalaluddin."],"s":["44th B.P.S.C. (Pre) 2000"],"y":[2000],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":24,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":38,"q":["Who started the Public Distribution System in the Sultanate period?"],"o":[["a","Ala-ud-din Khalji"],["b","Sikandar Lodhi"],["c","Muhammad bin Tughluq"],["d","Firoz Shah Tughluq"],["e","None of the above/More than one of the above"]],"a":["a"],"x":["The Sultanate ruler Alauddin Khilji started the Public Distribution System"],"s":["66th B.P.S.C. Re-Exam (Pre) 2020"],"y":[2020],"e":["Re-Exam"],"r":false,"d":false,"n":""},{"i":25,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":38,"q":["Malik Kafur also known as \"Hazar Dinari\" was bought by whom ?"],"o":[["a","Alauddin Khilji"],["b","Ghiyasuddin Tughlaq"],["c","Nusrat Khan"],["d","More than one of the above"]],"a":["c"],"x":["According to the famous book 'History of Khalijis' written by famous historian K.S.Lal, around 1299 CE, during Alauddin Khilji’s Gujarat campaign, the commander Nusrat Khan attacked the wealthy port of Cambay (Khambhat) and obtained a large amount of gold, silver, jewels, and other valuable items. During the same campaign, the slave Malik Kafur was captured. This was the time when Nusrat Khan seized Malik Kafur from his owner. Since Malik Kafur’s owner had purchased him for one thousand dinars, he came to be called “Hazar-Dinari.” Along with the booty, Nusrat Khan sent Malik Kafur to Delhi to Alauddin. Later, impressed by Kafur’s extraordinary ability and personality, Sultan Alauddin Khilji made him his most trusted commander. The credit for Alauddin’s Deccan campaigns and victories is mainly given to Malik Kafur. From this description, it is clear that Nusrat Khan did not purchase Malik Kafur; rather, he captured him during the Gujarat campaign. Therefore, the closest answer is option (c)."],"s":["70th B.P.S.C. Pre-2024"],"y":[2024],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":26,"u":"Sultanate Dynasties & Vijayanagara","c":"Khilji Dynasty","p":39,"q":["Who among the following opposed the power of the Khalifa?"],"o":[["a","Iltutmish"],["b","Alauddin Khilji"],["c","Muhammad-bin-Tughluq"],["d","Balban"],["e","None of the above/More than one of the above"]],"a":["e"],"x":["None of the sultans given in the options opposed the power of the Khalifa. Iltutmish obtained recognition from the Khalifa; however, the Sultan of Bengal, Ghiyasuddin, had also obtained recognition from the Khalifa. By attacking him, Iltutmish, in a way, also challenged the authority of the Khalifa. Alauddin Khilji, Balban, and Muhammad bin Tughlaq were all practically independent rulers, but none of them opposed the power or authority of the Khalifa. Only Mubarak Khilji declared himself the Khalifa and assumed the title Khalifatullah. In this way, he opposed the authority of the Khalifa."],"s":["67th B.P.S.C. (Re-Exam) (Pre)-2022"],"y":[2022],"e":["Re-Exam"],"r":false,"d":false,"n":""},{"i":27,"u":"Sultanate Dynasties & Vijayanagara","c":"Tughluq Dynasty","p":39,"q":["Who among the following rulers, ruled for the maximum period?"],"o":[["a","Muhammad bin Tughluq"],["b","Alauddin Khilji"],["c","Bahlol Lodi"],["d","Balban"]],"a":["c"],"x":["The reigns of these four rulers of the Delhi Sultanate are estimated to be as follows: Alauddin Khilji – approximately 20 years. Muhammad bin Tughlaq – approximately 26 years. Ghiyasuddin Balban – approximately 20/21 years. Bahlol Lodi, the founder of the Lodi dynasty, reigned approximately 38 years, which is clearly longer than all the other rulers mentioned above."],"s":["71st B.P.S.C. (Pre) 2025"],"y":[2025],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":28,"u":"Sultanate Dynasties & Vijayanagara","c":"Tughluq Dynasty","p":39,"q":["Which one of the following Sultans provided employment to the unemployed?"],"o":[["a","Alauddin Khilji"],["b","Muhammad-Bin-Tughluq"],["c","Firoz Tughluq"],["d","Sher Shah Suri"]],"a":["c"],"x":["Firoz Shah Tughlaq carried out some welfare works for the benefit of ordinary people. He opened an office for appointments (employment office) and, after thoroughly examining each person’s qualities and abilities, he appointed as many people as possible and tried to solve the problem of unemployment."],"s":["45th B.P.S.C. (Pre) 2001"],"y":[2001],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":29,"u":"Sultanate Dynasties & Vijayanagara","c":"Tughluq Dynasty","p":39,"q":["Which of the following Sultan had the most number of slaves in his court?"],"o":[["a","Balban"],["b","Alauddin Khilji"],["c","Muhammad-Bin-Tughluq"],["d","Firoz Tughluq"]],"a":["d"],"x":["Firoz Tughlaq was very fond of slaves. During his time, the number of slaves possibly reached up to 180,000. For their supervision, a separate department (Diwan-i-Bandagan) was formed, and full attention was given to the education of the slaves."],"s":["45th B.P.S.C. (Pre) 2001"],"y":[2001],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":30,"u":"Sultanate Dynasties & Vijayanagara","c":"Tughluq Dynasty","p":39,"q":["What was ‘Dar-ul-Shafa’ established by Firoz Tughluq?"],"o":[["a","An almshouse"],["b","A Charitable hospital"],["c","A library"],["d","A guest house for pilgrims"]],"a":["b"],"x":["Firoz Tughlaq was the first Indian ruler who arranged Hajj at the expense of the state. He also established a charitable hospital named Dar-ul-Shafa (also written Dar-ul-Shifa) and appointed skilled physicians (hakims) there."],"s":["53rd to 55th B.P.S.C. (Pre) 2011"],"y":[2011],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":31,"u":"Sultanate Dynasties & Vijayanagara","c":"Tughluq Dynasty","p":40,"q":["Which one of the following Sultans of Delhi introduced measures for improving the quality of fruits?"],"o":[["a","Muhammad-Bin-Tughluq"],["b","Firoz Tughluq"],["c","Sikandar Lodi"],["d","Sher Shah Suri"]],"a":["b"],"x":["Due to his interest in horticulture, Firoz Shah Tughlaq got about 1200 new gardens planted near Delhi, and he also took measures to improve the quality of fruits in those gardens."],"s":["44th B.P.S.C. (Pre) 2000"],"y":[2000],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":32,"u":"Sultanate Dynasties & Vijayanagara","c":"Tughluq Dynasty","p":40,"q":["Which Delhi Sultan built the maximum number of canals?"],"o":[["a","Firoz Shah Tughluq"],["b","Iltutmish"],["c","Balban"],["d","Sikandar Lodi"],["e","None of the above/More than one of the above"]],"a":["a"],"x":["The reign of Firoz Shah Tughlaq became famous for creating the largest network of canals in India. To provide irrigation facilities, he constructed five major canals. After obtaining the approval of the ulema (religious scholars), Firoz Tughlaq was the first Delhi Sultan to impose an irrigation tax called Haqq-e-Sharb. Farmers who used water from royal canals for irrigation had to pay an additional tax equal to one-tenth of their produce."],"s":["65th B.P.S.C. (Pre) 2019"],"y":[2019],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":33,"u":"Sultanate Dynasties & Vijayanagara","c":"Tughluq Dynasty","p":40,"q":["Which one of the following dynasties ruled over India after the invasion of Timur?"],"o":[["a","Lodi Dynasty"],["b","Sayyid dynasty"],["c","Tughluq dynasty"],["d","Khilji dynasty"]],"a":["b"],"x":["Timur’s invasion (1398 AD) greatly weakened the Delhi Sultanate and the power of the Tughlaq dynasty, and it hastened their decline. With the death of Nasiruddin Mahmud Shah in 1412 AD, the Tughlaq dynasty came to an end. In 1413 AD, the nobles chose Daulat Khan as the Sultan of Delhi; however, he was defeated by Khizr Khan. Khizr Khan was the Subahdar (provincial governor) of Multan appointed by Timur. Later, he captured Lahore, Dipalpur, and Upper Sindh. After Timur’s invasion, in 1414 AD, he took control of Delhi and laid the foundation of a new dynasty—the Sayyid dynasty."],"s":["45th B.P.S.C. (Pre) 2001"],"y":[2001],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":34,"u":"Sultanate Dynasties & Vijayanagara","c":"Lodi Dynasty","p":40,"q":["Which of the following Sultans founded a town where now stands Agra?"],"o":[["a","Muhammad-Bin-Tughluq"],["b","Firoz Tughluq"],["c","Bahlul Lodi"],["d","Sikandar Lodi"]],"a":["d"],"x":["In 1504 AD, Sikandar Lodi founded a new city named Agra on the banks of the Yamuna River with the objective of keeping the rulers of Rajasthan under control, and he made it his capital. He made efforts to promote agriculture and trade. A standard measure called “Gaz-e-Sikandari” was introduced during his time. He arranged free food for the poor. During his reign, a list of capable persons was prepared and presented before him every six months. He was educated and scholarly. On his orders, an Ayurvedic text was translated into Persian and was named “Farhang-e-Sikandari.” During his period, an excellent treatise on vocal music, “Lazzat-e-Sikandarshahi,” was composed. Sikandar Lodi was very fond of listening to the shehnai. He wrote poems under the pen-name “Gulrukhi.”"],"s":["44th B.P.S.C. (Pre) 2000"],"y":[2000],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":35,"u":"Sultanate Dynasties & Vijayanagara","c":"Vijayanagara Empire","p":40,"q":["Who was the founder of the Vijayanagara Empire?"],"o":[["a","Devaray"],["b","Krishnadevaray"],["c","Harihara- Bukka"],["d","Vir Narasimharay"],["e","None of the above/ More than one of the above"]],"a":["c"],"x":["The Vijayanagara Empire was founded in 1336 AD during the reign of Muhammad bin Tughlaq by two brothers, Harihara and Bukka. The capital of this kingdom was Hampi, situated on the banks of the Tungabhadra River."],"s":["67th B.P.S.C. (Pre) 2022"],"y":[2022],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":36,"u":"Sultanate Dynasties & Vijayanagara","c":"Vijayanagara Empire","p":40,"q":["Identify the first ruler of Vijayanagara who captured Goa from the Bahamani’s?"],"o":[["a","Harihara- I"],["b","Harihara- II"],["c","Bukka- II"],["d","Devaraya- II"]],"a":["b"],"x":["After Bukka’s death in 1377 AD, his son Harihara II (1377– 1404 AD) ascended the throne and adopted the title “Maharajadhiraja.” He conquered regions like Kanara, Mysore, Tiruchanapalli, Kanchi, etc., and collected tribute from the king of Sri Lanka. He also struggled with the Bahmani kingdom. Harihara II’s greatest achievement was the capture of Goa in the west from the Bahmani state. He was a devotee of Shiva (in the form of Virupaksha)."],"s":["40th B.P.S.C. (Pre) 1995"],"y":[1995],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":37,"u":"Sultanate Dynasties & Vijayanagara","c":"Vijayanagara Empire","p":41,"q":["With whom did the king of Vijayanagara, Krishnadeva Raya fought the battle of Golconda?"],"o":[["a","Quli Qutb Shah"],["b","Qutbuddin Aibak"],["c","Ismail-Adil Khan"],["d","Gajapati"]],"a":["a"],"x":["Vijayanagara king Krishnadeva Raya fought the Golconda war against the Golconda Sultan Quli Qutb Shah. The Qutb Shahi dynasty in Golconda was founded by Quli Qutb Shah. When Krishnadeva Raya was busy in a war with Odisha, Qutb Shah attacked the forts of Pangala and Guntur located on the Vijayanagar frontier and captured forts such as Warangal, Kondavidu, etc. After this, he tried to attack Vijayanagar. A conflict took place between Krishnadeva Raya and Qutb Shah, and the Qutb Shahi army was defeated."],"s":["43rd B.P.S.C. (Pre) 1999"],"y":[1999],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":38,"u":"Sultanate Dynasties & Vijayanagara","c":"Vijayanagara Empire","p":41,"q":["What was the chief characteristic of the financial system of the Vijayanagara Empire?"],"o":[["a","Surplus rent"],["b","Land Revenue"],["c","Income from seaports"],["d","Monetary system"]],"a":["b"],"x":["The Vijayanagara state derived income from various sources, such as land revenue, property tax, trade tax, professional tax, taxes imposed on industries, social and community taxes, and fines imposed for crimes. Land was properly surveyed, and 1/6 of the produce was collected as land tax (1/6 as land tax was the ideal rate, but in practice it ranged between 1/6 and 1/3 depending on the productivity of the land). A tax called ‘Shisht’ (land tax) was the chief source of the state’s income. The central revenue department was called ‘Athavane’ (Asthavan or Athvan)."],"s":["39th B.P.S.C. (Pre) 1994"],"y":[1994],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":39,"u":"Sultanate Dynasties & Vijayanagara","c":"Vijayanagara Empire","p":41,"q":["The remains of the Vijayanagara Empire are found in?"],"o":[["a","Bijapur"],["b","Golconda"],["c","Hampi"],["d","Baroda"],["e","None of the above/ More than one of the above"]],"a":["c"],"x":["The ruins of Hampi (located in present-day Karnataka) represent the ancient capital of the Vijayanagara Empire. The famous Virupaksha Temple is located here. Hampi is also included in the UNESCO World Heritage Sites list."],"s":["63rd B.P.S.C. (Pre) 2017"],"y":[2017],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":40,"u":"Sultanate Dynasties & Vijayanagara","c":"Vijayanagara Empire","p":41,"q":["Which among the following King's region Persian traveller 'Abdur Razzaq' came to India?"],"o":[["a","Dev Rai I"],["b","Krishnadeva Raya I"],["c","Dev Rai II"],["d","Krishna Rai II"],["e","None of the above/More than one of the above"]],"a":["c"],"x":["The Persian ambassador Abdur Razzaq came to Vijayanagara during the reign of Devaraya II of the Sangama dynasty (tenure: 1422–1446 A.D.)."],"s":["60th to 62nd B.P.S.C. (Pre) 2016"],"y":[2016],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":41,"u":"Sultanate Dynasties & Vijayanagara","c":"Vijayanagara Empire","p":41,"q":["Who among the following famous rulers founded a suburban township of Nagalapuram, near Vijayanagara, after his mother's name?"],"o":[["a","Krishnadevaraya"],["b","Harihara"],["c","Bukka"],["d","More than one of the above"],["e","None of the above"]],"a":["a"],"x":["Krishnadevaraya (1509–1529 A.D.) was a ruler of the Tuluva dynasty of the Vijayanagara Empire and is considered its most powerful ruler. He founded Nagalambapuram, now known as Nagalapuram, named after his mother Nagalamba. It is located in the Tirupati district of Andhra Pradesh."],"s":["68th B.P.S.C. (Pre) 2023"],"y":[2023],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":42,"u":"Sultanate Dynasties & Vijayanagara","c":"Vijayanagara Empire","p":41,"q":["Which famous war took place in 1565 A.D.?"],"o":[["a","Panipat I War"],["b","Panipat II War"],["c","Khanwa War"],["d","Talikota War"],["e","None of the above/More than one of the above"]],"a":["d"],"x":["In 1565, in the famous Battle of Talikota, the combined forces of Bijapur, Ahmadnagar, Golconda, and Bidar defeated Vijayanagara. In this combined army, Berar alone was not included. According to Firishta, the battle was fought at Talikota, but the actual battlefield lay between two villages named Rakkasi and Tangadi. At the time of the Battle of Talikota, Sadasiva Raya was the ruler of Vijayanagara, but the real power was in the hands of his minister Rama Raya. Rama Raya was a capable commander; he tried to create divisions among the Muslim rulers of the Bahmani states, but he did not succeed. In this very battle, Hussain Nizam Shah personally killed Rama Raya."],"s":["66th B.P.S.C. Re-Exam (Pre) 2020"],"y":[2020],"e":["Re-Exam"],"r":false,"d":false,"n":""},{"i":43,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Administration","p":42,"q":["'Diwan-i-Arz' department was associated with:"],"o":[["a","Royal correspondence"],["b","Foreign"],["c","Defence"],["d","Finance"]],"a":["c"],"x":["Diwan-i-Arz was the military department of the Sultanate period, and the head of this department was called ‘Ariz-i-Mumalik’. He was responsible for the administration of military affairs. He inspected the military contingents maintained by the iqta-holders."],"s":["60th to 62nd B.P.S.C. (Pre) 2016"],"y":[2016],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":44,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Administration","p":42,"q":["Which of the following indicates taxes levied on the land product?","i. Kharaj ii. Khums","iii. Ushr iv. Mukta'i","Select your answer from the following codes –"],"o":[["a","only i"],["b","ii and iii"],["c","i, ii and iii"],["d","i, iii, and iv"]],"a":["d"],"x":["Kharaj, Ushr and Muqta’i indicate taxes levied on land produce, whereas Khums was not a tax on land produce; rather, Khums was war booty. Khums was obtained through plunder from the people of the enemy state during war. From this booty, 4/5 was distributed among the soldiers and the remaining 1/5 was deposited in the state treasury; however, Alauddin Khalji and Muhammad Tughlaq deposited 4/5 in the treasury and distributed the remaining 1/5 among the soldiers. Sikandar Lodi did not take any share from buried treasure."],"s":["40th B.P.S.C. (Pre) 1995"],"y":[1995],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":45,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Administration","p":42,"q":["Zawabits were concerned with :"],"o":[["a","State laws"],["b","Laws regulating mansab system"],["c","Laws regulating mint house"],["d","Agricultural taxes"]],"a":["a"],"x":["In the administrative terminology of the Sultanate period, Zawabit was related to state law."],"s":["39th B.P.S.C. (Pre) 1994"],"y":[1994],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":46,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Administration","p":42,"q":["During the Delhi Sultanate, the designation 'Muqaddam or Chaudhari' was used for"],"o":[["a","Village headman"],["b","Revenue officials"],["c","Village accountant"],["d","More than one of the above"],["e","None of the above"]],"a":["a"],"x":["During the Delhi Sultanate, the terms ‘Khut’, ‘Muqaddam’, or ‘Chaudhary’ were used for the village headman (sarpanch), who also worked to collect revenue for the Sultanate."],"s":["70th B.P.S.C. Re-Exam (Pre) 2024","68th B.P.S.C. (Pre) 2022"],"y":[2022,2024],"e":["Prelims","Re-Exam"],"r":true,"d":false,"n":""},{"i":47,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Administration","p":42,"q":["Coins-Tanka, Shashgani and Jital of Sultanate period was made of which of the following metals-"],"o":[["a","Silver, Copper"],["b","Gold, Silver, Copper"],["c","Silver, Zinc, Copper"],["d","Gold, Zinc, Copper"]],"a":["a"],"x":["The two major coins of the Sultanate period were Jital and Tanka. Iltutmish was the first Turkish ruler of the Delhi Sultanate to issue pure Arabic coins. His contribution to the currency system was the greatest among the rulers of the Delhi Sultanate because he introduced two major coins— the silver Tanka and the copper Jital. Shashgani was also a silver coin. The ratio of Tanka and Jital was 1 : 48."],"s":["39th B.P.S.C. (Pre) 1994"],"y":[1994],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":48,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Art and Architecture","p":42,"q":["What is ‘Adhai Din ka Jhonpra’?"],"o":[["a","Mosque"],["b","Temple"],["c","Saint’s hut"],["d","Tower"]],"a":["a"],"x":["Aibak constructed the mosques ‘Quwwat-ul-Islam’ in Delhi and ‘Adhai Din Ka Jhonpra’ in Ajmer. He started the construction of the Qutub Minar in Delhi, which was completed by Iltutmish."],"s":["56th to 59th B.P.S.C. (Pre) 2014"],"y":[2014],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":49,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Art and Architecture","p":42,"q":["The Qutub Minar was completed by-"],"o":[["a","Iltutmish"],["b","Qutbuddin Aibak"],["c","Ulugh Khan"],["d","Razia Sultan"],["e","None of the above/ More than one of the above"]],"a":["a"],"x":["The construction of the Qutub Minar was started by Qutb-ud-din Aibak, and it was completed during the reign of Sultan Iltutmish. It was named ‘Qutub Minar’ after the famous Sufi saint Khwaja Qutb-ud-din Bakhtiyar Kaki. It is a circular, five-storeyed structure. During the reign of Firoz Shah Tughlaq, the fourth storey suffered considerable damage; therefore, Firoz not only reconstructed the fourth storey but also got the fifth storey built. Thus, instead of four storeys, the Qutub Minar came to have five storeys, which still exist today. Sultan Ulugh Khan and Razia Sultan had no contribution to the construction of the Qutub Minar."],"s":["67th B.P.S.C. (Pre) 2022"],"y":[2022],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":50,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Art and Architecture","p":43,"q":["Which Sultan built Alai Darwaza?"],"o":[["a","Iltutmish"],["b","Balban"],["c","Alauddin Khalji"],["d","Firoz Tughluq"]],"a":["c"],"x":["The ‘Alai Darwaza’ was constructed by Sultan Alauddin Khalji near the Qutub Minar. It was built using red sandstone and marble. It was completed in 1311 A.D. Like Iltutmish’s tomb, it has a large square chamber with a dome on the roof, and on each of its four walls there is an arched entrance gateway."],"s":["42nd B.P.S.C. (Pre) 1997-98"],"y":[1997],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":51,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Literature","p":43,"q":["Who was the author of Tabaqat-i-Nasiri?"],"o":[["a","Shaikh Jamaluddin"],["b","Al-Biruni"],["c","Minhaj-us-Siraj"],["d","Ziyauddin Barani"]],"a":["c"],"x":["The author of ‘Tabaqat-i-Nasiri’ was Minhaj-us-Siraj, and it was dedicated to Sultan Nasiruddin. This work has 23 chapters. H. G. Raverty translated it into English. This book contains a direct account of Muhammad Ghori’s conquest of India. It is noteworthy that Minhaj stated that Qutbuddin Aibak issued coins in his own name and had the khutba read."],"s":["42nd B.P.S.C. (Pre) 1997-98"],"y":[1997],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":52,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Literature","p":43,"q":["The account of the Moroccan traveller Ibn Battuta is known as"],"o":[["a","Rihla"],["b","Subh-u'l-Asha"],["c","Tarikh-i-Rashidi"],["d","Riyaz-us-Salatin"],["e","None of the above/More than one of the above"]],"a":["a"],"x":["Ibn Battuta was a resident of Morocco in Africa, who came to Delhi during the reign of Muhammad bin Tughlaq. He wrote his travel account in the Arabic language in a book titled Rihla (Rehla). He criticized the policies of Muhammad Tughlaq’s period."],"s":["B.P.S.C. CDPO 2018"],"y":[2018],"e":["CDPO"],"r":false,"d":false,"n":""},{"i":53,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Literature","p":43,"q":["Who composed ‘Barahmasa’?"],"o":[["a","Amir Khusrau"],["b","Imami"],["c","Malik Muhammad Jayasi"],["d","Raskhan"]],"a":["c"],"x":["‘Barahmasa’ was composed by Malik Muhammad Jayasi. Among Jayasi’s works—‘Padmavat’, ‘Akharavat’, and ‘Aakhiri Kalam’—‘Padmavat’ holds an important place in Hindi literature."],"s":["39th B.P.S.C. (Pre) 1994"],"y":[1994],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":54,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Literature","p":43,"q":["Which great saint wrote the book Gyan Deepak?"],"o":[["a","Salar Masud Ghazi"],["b","Dariya Saheb"],["c","Imam Shah Faqih"],["d","More than one of the above"],["e","None of the above"]],"a":["b"],"x":["Saint Dariya Saheb composed the book titled ‘Gyan Deepak’. He was from Bihar. Salar Masood Ghazi was the head of Mahmud of Ghazni’s army. His dargah is located at Bahraich in Uttar Pradesh."],"s":["B.P.S.C. (11th-12th) 26.08.2023"],"y":[2023],"e":["Other"],"r":false,"d":false,"n":""},{"i":55,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Literature","p":43,"q":["“Chach Nama” was translated in to Persian by"],"o":[["a","Nuruddin Muhammad Aufi"],["b","Shams-i-Siraj"],["c","Muhammad Ali bin Abu Bakr Kufi"],["d","More than one of the above"]],"a":["c"],"x":["Chachnama was translated into Persian by Muhammad Ali bin Abu Bakr Kufi. Chachnama is a book written in the Arabic language. Clear information about the author’s name is not available. Chachnama contains an account of the history of Sindh from 680 to 718 C.E. A complete translation from Persian into English was done in 1900 A.D. by Mirza Kalichbeg Fredunbeg."],"s":["70th B.P.S.C. Pre-2024"],"y":[2024],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":56,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Literature","p":43,"q":["''Tarikh-i-Firoz Shahi' was written by"],"o":[["a","Shams Siraj Afif"],["b","Yahya Sarhindi"],["c","Minhaj Siraj"],["d","Isami"]],"a":["a"],"x":["‘Tarikh-i-Firoz Shahi’ is the title of two separate Persian works written by Shams-e-Siraj Afif and Ziauddin Barani, which have the same title. In the given options, option (a) is the correct answer."],"s":["70th B.P.S.C Re-Exam 2024"],"y":[2024],"e":["Re-Exam"],"r":false,"d":false,"n":""},{"i":57,"u":"Sultanate Society & Culture","c":"Delhi Sultanate : Literature","p":43,"q":["Paper came to be used in India in the -:"],"o":[["a","12th century"],["b","13th century"],["c","14th century"],["d","15th century"],["e","None of the above/ More than one of the above"]],"a":["a"],"x":["The first use of paper in India may be considered to have begun approximately during the 7th to 8th centuries. According to available evidence, by the 11th century, documents written on paper began to appear in India, and in the 12th–13th centuries, the use of paper is clearly seen in manuscripts and royal records. In its final answer key, the Bihar Public Service Commission has selected option (a) as the correct option."],"s":["63rd B.P.S.C. (Pre.) 2017"],"y":[2017],"e":["Prelims"],"r":false,"d":true,"n":"Disputed. BPSC’s final key is (a); the book notes paper was in use in India well before the 12th century."},{"i":58,"u":"Sultanate Society & Culture","c":"Provincial Dynasties of North India and the Deccan Region","p":44,"q":["Who was the founder of the Bahamani Kingdom?"],"o":[["a","Alauddin Hasan"],["b","Firuz Shah"],["c","Mahmud Gawana"],["d","Asaf Khan"],["e","None of the above/More than one of the above"]],"a":["a"],"x":["As a result of the rebellion of the Amiran-e-Sadah in the Deccan, the Bahmani Empire was established in the last days of Muhammad bin Tughlaq’s reign. A chief named Zafar Khan (Hasan Gangu, 1347–1358 A.D.) assumed the title of “Alauddin Hasan Bahman Shah” and ascended the throne in 1347 A.D., thereby laying the foundation of the Bahmani Empire. He made Gulbarga the capital of his newly established empire and named it “Ahsanabad.” For administering the empire, he divided it into four tarafs (provinces)—Gulbarga, Daulatabad, Berar, and Bidar. Each province was under a governor. The Gulbarga province was the most important, and Bijapur was also included in it. He fought the Hindu rulers of the south and adopted the practice of granting posts and jagirs to his followers. He ordered that jizya should not be collected from Hindus."],"s":["60th to 62nd B.P.S.C. (Pre) 2016"],"y":[2016],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":59,"u":"Sultanate Society & Culture","c":"Bhakti and Sufi Movement","p":44,"q":["Shaikh Bahauddin Zakaria belonged to which sect?"],"o":[["a","Suhrawardi order"],["b","Rishi order"],["c","Chishti order"],["d","Firdausi order"],["e","None of the above/More than one of the above"]],"a":["a"],"x":["In India, the Suhrawardi order began with Shaikh Bahauddin Zakariya (1182–1262 A.D.). In this Sufi order, saints like Shaikh Sadruddin Arif, Shaikh Ruknuddin Abul Fath, and Shaikh Jalaluddin Surkh-Posh Bukhari were notable. The saints of this order emphasized a comfortable life. They did not consider wealth and property as obstacles in spiritual practice."],"s":["64th B.P.S.C. (Pre) 2018"],"y":[2018],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":60,"u":"Sultanate Society & Culture","c":"Bhakti and Sufi Movement","p":44,"q":["A common feature of all Bhakti Saints was that they –"],"o":[["a","Composed their verses in the language understood by (their followers"],["b","Rejected the authority of the priestly class"],["c","Encouraged women to go to the temples"],["d","Encouraged idol worship"]],"a":["a"],"x":["The conduct of the saints of the Bhakti movement was very lofty. Many of them travelled widely and met different kinds of people with differing ideas. These saints contributed significantly to the development of the common people’s languages. They greatly aided the growth of Hindi, Punjabi, Bengali, Telugu, Kannada, Tamil, etc. Bhakti saints gave their teachings in regional languages so that people could easily listen and understand them. As a result, regional languages developed."],"s":["47th B.P.S.C. (Pre) 2005"],"y":[2005],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":61,"u":"Sultanate Society & Culture","c":"Bhakti and Sufi Movement","p":44,"q":["Nathpanthis, Siddhas and Yogis made devotional religion popular in"],"o":[["a","Northern India"],["b","Southern India"],["c","Eastern India"],["d","Western India"]],"a":["a"],"x":["The Nath-panthis, Siddhas, and Yogis popularized Bhakti religion in North India. They believed that the path to liberation and the attainment of the formless divine is possible through meditation; therefore, they advocated methods like yogic postures, breathing practices, exercise, and meditation as means to attain God."],"s":["69th B.P.S.C. (Pre) 2023"],"y":[2023],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":62,"u":"Sultanate Society & Culture","c":"Bhakti and Sufi Movement","p":44,"q":["Which of the following Sufi Silsilah was founded in Bihar?"],"o":[["a","Quaderia"],["b","Firdousia"],["c","Qalandhar"],["d","Kubrawiya"]],"a":["b"],"x":["The Firdousia (Firdausi) silsila was established in Bihar. The most prominent Sufi of this silsila in India was Shaikh Sharfuddin Yahya Maneri. Shaikh Maneri was the leading propagator of this silsila in Bihar."],"s":["70th B.P.S.C Re-Exam (Pre) 2024"],"y":[2024],"e":["Re-Exam"],"r":false,"d":false,"n":""},{"i":63,"u":"Mughal Emperors","c":"Mughal Dynasty : Babur","p":44,"q":["Who was the founder of the Mughal dynasty in India?"],"o":[["a","Humayun"],["b","Aurangzeb"],["c","Akbar"],["d","Babur"]],"a":["d"],"x":["Babur was the founder of the Mughal dynasty. The Mughal rulers were actually from a Turkic branch called Chagatai. This branch was named after the second son of the famous Mongol leader Genghis Khan, who held authority over the Turkistan region of Central Asia."],"s":["B.P.S.C. (CDPO) (Pre) 2005"],"y":[2005],"e":["CDPO"],"r":false,"d":false,"n":""},{"i":64,"u":"Mughal Emperors","c":"Mughal Dynasty : Babur","p":45,"q":["The main reason for Babur’s victory in the battle of Panipat was –"],"o":[["a","His horse riding force"],["b","His skilled warfare"],["c","Tulghuma system"],["d","Internal disputes among Afghans"]],"a":["b"],"x":["The First Battle of Panipat was fought on 21 April 1526 between Babur and Ibrahim Lodi, in which Babur won on the strength of his military skill. Although Babur’s army was smaller than Lodi’s, he achieved victory due to his skilled military strategy. Ibrahim Lodi himself was an inexperienced person. Babur writes, “He was an inexperienced man and showed great carelessness in his actions. He advanced and halted without any arrangement, and became absorbed in the struggle without any foresight.”"],"s":["39th B.P.S.C. (Pre) 1994"],"y":[1994],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":65,"u":"Mughal Emperors","c":"Mughal Dynasty : Babur","p":45,"q":["Consider the following statements : The arrival of Babur into India led to the","1. introduction of gunpowder in the subcontinent","2. introduction of arch and dome in the region’s architecture","3. establishment of the Timurid dynasty in the region","4. introduction of cannons in warfare","Which of the above statements are correct?"],"o":[["a","Only 1 and 2"],["b","1, 2 and 3"],["c","3 and 4"],["d","None of the above"]],"a":["c"],"x":["As a result of Babur’s arrival, the Timurid dynasty was established in India. Babur was the fifth descendant of Timur from the paternal line. With Babur’s arrival, the use of cannons in warfare began in India. His artillery is regarded as the main factor behind his victory in the First Battle of Panipat. With the help of Turkish gunners named Ustad Ali and Mustafa, he prepared a strong artillery unit. Gunpowder had already reached the Indian subcontinent before Babur came, whereas the use of arches and domes in architecture began only after the arrival of the Turks. Hence, statements 1 and 2 are incorrect, while statements 3 and 4 are correct."],"s":["69th B.P.S.C. (Pre) 2023"],"y":[2023],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":66,"u":"Mughal Emperors","c":"Humayun and Sher Shah","p":45,"q":["Who among the following made an offer to Humayun that he would surrender Bihar and pay an annual tribute of 10 lakh dinars if he was allowed to retain Bengal?"],"o":[["a","Bahadur Shah"],["b","Sher Khan"],["c","Bairam Khan"],["d","More than one of the above"],["e","None of the above"]],"a":["b"],"x":["During the Bengal campaign, Sher Khan proposed to Humayun that he would hand over Bihar to Humayun if he was allowed to capture Bengal, and he would also pay an annual tribute of 10 lakh dinars."],"s":["68th B.P.S.C. (Pre) 2023"],"y":[2023],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":67,"u":"Mughal Emperors","c":"Humayun and Sher Shah","p":45,"q":["Who among these rulers divided his troops into units of two hundred, two hundred and fifty and five hundred?"],"o":[["a","Bahlul Lodi"],["b","Sikandar Shah"],["c","Sher Shah"],["d","Islam Shah"],["e","None of the above/ More than one of the above"]],"a":["e"],"x":["Islam Shah was the son of Sher Shah. Islam Shah ruled over almost the whole of North India for about 8 years, and he died around 1553 AD. Islam Shah divided his military troops into units of 50, 200, 250 and 500. Possibly, this system of military division was also in practice during Sher Shah’s time. It is noteworthy that the Bihar Public Service Commission has considered option (e) as the correct answer."],"s":["64th B.P.S.C. (Pre) 2018"],"y":[2018],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":68,"u":"Mughal Emperors","c":"Humayun and Sher Shah","p":45,"q":["When Humayun invaded Chunar Fort first time ?"],"o":[["a","1532"],["b","1531"],["c","1533"],["d","1536"]],"a":["a"],"x":["Humayun attacked Chunar Fort for the first time in 1532 AD. He besieged the fort for four months, after which Sher Khan accepted Humayun’s suzerainty. In addition, in 1531 AD he attacked Kalinjar."],"s":["48th to 52nd B.P.S.C. (Pre) 2008"],"y":[2008],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":69,"u":"Mughal Emperors","c":"Humayun and Sher Shah","p":45,"q":["Who among the following has constructed a mausoleum for her emperor husband ?"],"o":[["a","Shah Begum"],["b","Haji Begum"],["c","Mumtaz Mahal Begum"],["d","Nur-un-Nissa Begum"]],"a":["b"],"x":["Haji Begum had the mausoleum (tomb) of her husband Humayun built in Delhi during 1565–72 A.D. The plan of this mausoleum was prepared by Mirak Mirza Ghiyas (an Iranian architect). This mausoleum is mainly built of red sandstone and white marble. A Charbagh-style garden was laid out for this mausoleum."],"s":["48th to 52nd B.P.S.C. (Pre) 2008"],"y":[2008],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":70,"u":"Mughal Emperors","c":"Humayun and Sher Shah","p":46,"q":["Arrange properly as per dates of four important battles fought by Humayun, the names of the battlefields are given below –"],"o":[["a","Chausa, Deora, Kannauj, Sirhind"],["b","Deora, Kannauj, Chausa, Sirhind"],["c","Sirhind, Deora, Chausa, Kannauj"],["d","Deora, Chausa, Kannauj, Sirhind"]],"a":["d"],"x":["The sequence of the four major battles fought by Humayun is as follows—Deora, Chausa, Kannauj and Sirhind. In 1532 A.D., he defeated the Afghan rebels at a place called Daurah (Deora), situated on the banks of the Gomati River. In 1539 A.D., in the Battle of Chausa, Humayun had to face defeat at the hands of Sher Shah; in this very battle, a water-carrier (bhishti) named Nizam saved Humayun’s life. This victory at Chausa against Humayun enhanced both the power and prestige of Sher Khan (Sher Shah). He assumed the title “Farid al-Din Sher Shah,” got the khutba read in his name, and also had it inscribed on the coins. In 1540 A.D., in the Battle of Kannauj or Bilgram too, Humayun was defeated by Sher Shah and was forced to wander here and there like an exile. In 1555 A.D., the victory in the Battle of Sirhind once again restored Humayun’s lost kingdom to him. Thus, the correct order of the battles is—Deora (1532 A.D.), Chausa (1539 A.D.), Kannauj (1540 A.D.) and Sirhind (1555 A.D.)."],"s":["41st B.P.S.C. (Pre) 1996"],"y":[1996],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":71,"u":"Mughal Emperors","c":"Humayun and Sher Shah","p":46,"q":["Which of the following rulers at first assumed the title of ‘Hazrat-e-Ala’ and afterward ‘Sultan’?"],"o":[["a","Bahlul Lodi"],["b","Sikandar Lodi"],["c","Sher Shah Suri"],["d","Islam Shah Suri"]],"a":["c"],"x":["After defeating the Bengal ruler Nusrat Shah, Sher Khan (Sher Shah Suri) assumed the title “Hazrat-e-Ala.” After defeating Humayun in the Battle of Chausa in 1539 A.D., he assumed the title “Sher Shah,” got the khutba read in his name, and had coins minted."],"s":["44th B.P.S.C. (Pre) 2000"],"y":[2000],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":72,"u":"Mughal Emperors","c":"Humayun and Sher Shah","p":46,"q":["Where is Sher Shah’s tomb located ?"],"o":[["a","Sasaram"],["b","Maner"],["c","Sitamani"],["d","Pawapuri"],["e","None of the above/ More than one of the above"]],"a":["a"],"x":["Sher Shah’s tomb is built at a place called Sasaram in Rohtas district of Bihar, on a high platform in the middle of a pond. Sher Shah died after being injured during the Kalinjar war (1545 A.D.)."],"s":["67th B.P.S.C. (Pre) 2021"],"y":[2021],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":73,"u":"Mughal Emperors","c":"Humayun and Sher Shah","p":46,"q":["Zabti system was introduced by –"],"o":[["a","Ghiyasuddin Tughluq"],["b","Sikandar Lodi"],["c","Sher Shah"],["d","Akbar"]],"a":["c"],"x":["Zabti was an important system of revenue assessment in the Mughal period. According to major historical sources and Abu’l Fazl’s account, this system is considered to have begun in Sher Shah’s period, while during Akbar’s reign several changes were made to it and it was made more scientific. In Akbar’s time, the Zabti system later became the basis of the “Ain-e-Dahsala.”"],"s":["39th B.P.S.C. (Pre) 1994"],"y":[1994],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":74,"u":"Mughal Emperors","c":"Humayun and Sher Shah","p":46,"q":["No government, not even the English, showed as much wisdom as this Pathan did.” Who wrote these words about Sher Shah Suri?"],"o":[["a","H. G. Keene"],["b","K. R. Qanungo"],["c","W. H. Moreland"],["d","V. A. Smith"],["e","None of the above / More than one of the above"]],"a":["a"],"x":["H. G. Keene wrote about Sher Shah Suri: “No government, not even the English, showed as much wisdom as this Pathan did.” In fact, Keene made this remark in the context of Sher Shah’s administrative/governance system—maintenance of peace and order, roads, sarais (rest houses), the postal system, and other reforms."],"s":["B.P.S.C. (CDPO) (Pre) 2022"],"y":[2022],"e":["CDPO"],"r":false,"d":false,"n":""},{"i":75,"u":"Mughal Emperors","c":"Humayun and Sher Shah","p":46,"q":["Where was the battle fought between Sher Shah and Humayun on June 26, 1539?"],"o":[["a","Teliagarhi"],["b","Rohtas"],["c","Chunar"],["d","Chausa"],["e","None of the above"]],"a":["d"],"x":["The Battle of Chausa was fought in 1539 between Sher Shah Suri and the Mughal ruler Humayun. Sher Shah Suri defeated Humayun and assumed the title ‘Farid al-Din Sher Shah’."],"s":["B.P.S.C. (CDPO) (Pre) 2018"],"y":[2018],"e":["CDPO"],"r":false,"d":false,"n":""},{"i":76,"u":"Mughal Emperors","c":"Akbar","p":46,"q":["\"After uniting India, he wanted to unite the Mid-East and Western Asia with him as a very important step towards the establishment of a world empire.\" R. P. Tripathi wrote it about which ruler of Mughal India?"],"o":[["a","Babur"],["b","Sher Shah Suri"],["c","Akbar"],["d","Aurangzeb"],["e","None of the above / More than one of the above"]],"a":["c"],"x":["R.P. Tripathi wrote about the Mughal emperor Akbar that “after the unification of India, he wanted to unify the Middle East and Western Asia, which was an important step towards establishing a world empire.”"],"s":["B.P.S.C. CDPO (Pre) 2022"],"y":[2022],"e":["CDPO"],"r":false,"d":false,"n":""},{"i":77,"u":"Mughal Emperors","c":"Akbar","p":47,"q":["The famous Buland Darwaza at Fatehpur Sikri forms which entrance to the Jama Masjid?"],"o":[["a","Western"],["b","Eastern"],["c","Southern"],["d","Northern"],["e","None of the above/More than one of the above"]],"a":["c"],"x":["The famous Buland Darwaza at Fatehpur Sikri serves as the southern entrance of the Jama Masjid. The Jama Masjid at Fatehpur Sikri was built by the Mughal ruler Akbar."],"s":["B.P.S.C. CDPO 2018"],"y":[2018],"e":["CDPO"],"r":false,"d":false,"n":""},{"i":78,"u":"Mughal Emperors","c":"Akbar","p":47,"q":["Who was the commander of Rana Pratap’s army in the Battle of Haldighati?"],"o":[["a","Amar Singh"],["b","Man Singh"],["c","Hakim Khan"],["d","Shakti Singh"]],"a":["c"],"x":["The Battle of Haldighati was fought in June, 1576 between Maharana Pratap and the Mughal commanders Man Singh and Asaf Khan. Besides the Rajput warriors, the vanguard of Rana’s army was led by Hakim Khan Sur, along with a contingent of Afghans. A small unit of Bhil warriors was also part of Rana’s army. This was Rana’s last direct confrontation with the Mughals; afterwards, he adopted guerrilla warfare."],"s":["56th to 59th B.P.S.C. (Pre) 2015"],"y":[2015],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":79,"u":"Mughal Emperors","c":"Akbar","p":47,"q":["Who of the following Muslim rulers abolished the pilgrimage tax?"],"o":[["a","Bahlul Lodi"],["b","Sher Shah"],["c","Humayun"],["d","Akbar"]],"a":["d"],"x":["The credit for establishing the Mughal administrative system mainly goes to Akbar. His central administration; the explanation of the emperor’s position, powers, and duties; his provincial administration; his revenue system; his currency system; and his mansabdari system all achieved success in his time and became the foundation for his successors. Akbar was the first Muslim emperor who adopted Hindu–Muslim unity and religious tolerance as a political ideal through a well-organzed and declared policy (Sulh-i-kul). Under his liberal religious policy, he abolished the slavery system in 1562, the pilgrimage tax in 1563, and the jizya in 1564. As part of social reforms, he also tried to curb child marriage and the practice of sati. Hence, the above four points are included among the reasons for Akbar’s popularity."],"s":["53rd to 55th B.P.S.C. (Pre) 2011"],"y":[2011],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":80,"u":"Mughal Emperors","c":"Akbar","p":47,"q":["Akbar merged Bengal and Bihar in to his empire :"],"o":[["a","1590 A.D."],["b","1575 A.D."],["c","1576 A.D."],["d","1572 A.D."]],"a":["c"],"x":["After Suleiman’s death in 1572, his son Daud Khan ascended the throne. Daud Khan declared himself independent and attacked the Mughal fort at Patna. Akbar ordered Munim Khan to attack Daud and conquer Bihar. Munim Khan defeated Daud in a battle, and by 1574, Mughal authority was established over Bihar. After the defeat, Daud fled to Bengal; however, on 12 July, 1576, in the Battle of Rajmahal, Todar Mal, Muzaffar Khan, and Husain Quli together defeated Daud completely. Thus, in 1576, Bengal and Bihar were fully annexed into the Mughal Empire."],"s":["48th to 52nd B.P.S.C. (Pre) 2008"],"y":[2008],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":81,"u":"Mughal Emperors","c":"Akbar","p":47,"q":["Who promulgated Din-e-Elahi?"],"o":[["a","Babur"],["b","Akbar"],["c","Jahangir"],["d","Shah Jahan"],["e","None of the above/More than one of the above"]],"a":["b"],"x":["In 1582, Akbar established ‘Tauhid-i-Ilahi’ or ‘Din-i-Ilahi’. Under it, Akbar tried to include the core principles of all religions and make it universally acceptable. Din-i-Ilahi was essentially a system of thought based on Sufi pantheism. Its chief priest was Abul Fazl. Among Hindus, only Birbal accepted it."],"s":["66th B.P.S.C. Re-Exam (Pre) 2020"],"y":[2020],"e":["Re-Exam"],"r":false,"d":false,"n":""},{"i":82,"u":"Mughal Emperors","c":"Jahangir","p":47,"q":["During the time of which Mughal Emperor did Sir Thomas Roe come to India?"],"o":[["a","Babur"],["b","Akbar"],["c","Jahangir"],["d","Shah Jahan"],["e","None of the above/ More than one of the above"]],"a":["c"],"x":["William Hawkins (1608-1611 A.D.) was the first English ambassador sent by the East India Company to Jahangir’s court, and the first Englishman to appear at the Mughal court as a representative of the Company. Emperor Jahangir granted him a mansab of 400. He conferred on Hawkins the title of ‘English Khan’ and arranged his marriage with an Armenian woman. Sir Thomas Roe was the first ambassador sent by King James I, who came to Jahangir’s court."],"s":["67th B.P.S.C. (Pre) 2022"],"y":[2022],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":83,"u":"Mughal Emperors","c":"Jahangir","p":48,"q":["Whom of the following Englishmen did Jahangir honour with the title ‘English Khan’?"],"o":[["a","Hawkins"],["b","Sir Thomas Roe"],["c","Edward Terry"],["d","None of the above"]],"a":["a"],"x":["See the explanation of the above question."],"s":["40th B.P.S.C. (Pre) 1995"],"y":[1995],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":84,"u":"Mughal Emperors","c":"Jahangir","p":48,"q":["Itimad-ud-Daulah’s tomb at Agra was built by"],"o":[["a","Akbar"],["b","Jahangir"],["c","Nur Jahan"],["d","Shah Jahan"]],"a":["c"],"x":["The tomb of Itimad-ud-Daulah was built by Nur Jahan between 1622-28 A.D., after the death of her father. It is a highly ornate building situated on the bank of the Yamuna River in Agra. This quadrangular tomb is the first Mughal-period tomb in which marble was used on a large scale, and for decoration, the pietra dura technique was used—probably for the first time in Islamic buildings."],"s":["48th to 52nd B.P.S.C. (Pre) 2008"],"y":[2008],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":85,"u":"Mughal Emperors","c":"Jahangir","p":48,"q":["Pachchikari/Parchinkari (Pietra dura) is related to which of the following?"],"o":[["a","Decorating the walls with floral designs made of semi- (precious stones"],["b","Building sloping walls in Minarets"],["c","Use of arches in construction"],["d","Use of marble in buildings"],["e","None of the above/More than one of the above"]],"a":["a"],"x":["Pachchikari/Parchinkari (pietra dura) is related to making floral designs by inlaying semi-precious stones into walls. It should be noted that in India, pietra dura inlay work was first carried out in the tomb of Itimad-ud-Daulah. This tomb was built by Nur Jahan, the wife of Jahangir."],"s":["66th B.P.S.C. (Pre) 2020","66th B.P.S.C. Re-Exam (Pre) 2021"],"y":[2020,2021],"e":["Prelims","Re-Exam"],"r":true,"d":false,"n":""},{"i":86,"u":"Mughal Emperors","c":"Shahjahan","p":48,"q":["Who built the Red Fort in Delhi?"],"o":[["a","Akbar"],["b","Nur Jahan"],["c","Jahangir"],["d","Shah Jahan"]],"a":["d"],"x":["Like Akbar’s Fatehpur Sikri, Shah Jahan founded a city in Delhi in his own name called ‘Shahjahanabad’ in 1638 A.D., and tried to adorn it by constructing many beautiful and magnificent buildings. Among the buildings of Shahjahanabad, the Red Fort is the most prominent. This fort is of an irregular octagonal shape and is called the Red Fort because it is built of red sandstone. Its construction began in 1639 A.D. and was completed in about nine years. The western gate of the fort is called the Lahori Gate, and the southern gate is called the Delhi Gate. It is unique in beauty and splendour and is perhaps incomparable in the world."],"s":["42nd B.P.S.C. (Pre) 1997-98"],"y":[1997],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":87,"u":"Mughal Emperors","c":"Shahjahan","p":48,"q":["Who among the following historians declared the regime of Shah Jahan to be the Golden Era of the Mughal period?"],"o":[["a","V.A. Smith"],["b","J.N. Sarkar"],["c","A.L. Srivastava"],["d","None of the above"]],"a":["c"],"x":["Dr. A. L. Shrivastava wrote in his book Mughal India that Shah Jahan’s reign is famous as the ‘Golden Age’ in the medieval history of India. This can be considered true only in the sphere of art—particularly architecture. J. N. Sarkar and V. A. Smith do not consider Shah Jahan’s period as a golden age. S. R. Sharma clearly regarded Shah Jahan’s period as the golden age of the Mughal era. Therefore, option (c) is the correct answer."],"s":["41st B.P.S.C. (Pre) 1996"],"y":[1996],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":88,"u":"Mughal Emperors","c":"Shahjahan","p":48,"q":["What was the root of the dispute between the Shah of Iran and Mughal rulers?"],"o":[["a","Kabul"],["b","Qandahar"],["c","Kunduz"],["d","Ghazni"]],"a":["b"],"x":["Qandahar (Kandahar) was the root of the conflict between the Shah of Iran and the Mughals, because keeping Qandahar under one’s control became a matter of strategic importance, economic interest, as well as emotion and prestige for both the Mughal rulers and the Shah of Iran. The implementation of the imperial plans of both rulers largely depended on holding Qandahar under their control."],"s":["39th B.P.S.C. (Pre) 1994"],"y":[1994],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":89,"u":"Mughal Emperors","c":"Aurangzeb","p":48,"q":["The meaning of ‘Jihad’ carried on by Aurangzeb is –"],"o":[["a","Dar-ul-Harb"],["b","Dar-ul-Islam"],["c","Holy War"],["d","Jizya"]],"a":["b"],"x":["Aurangzeb was, above all, a zealous Sunni Muslim. His religious policy was not influenced by any idea of worldly gain. Having obtained the throne as a supporter of Sunni orthodoxy against the liberal Dara, he tried to enforce the law of the Quran strictly. According to this law, every devout Muslim should “strive in the path of Allah,” or in other words, should continue jihad against non-Muslim countries (Dar-ul-Harb) until they are transformed into the domain of Islam (Dar-ul-Islam)."],"s":["43rd B.P.S.C. (Pre) 1999"],"y":[1999],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":90,"u":"Mughal Emperors","c":"Aurangzeb","p":49,"q":["Who was the first Mughal ruler who fought against the British?"],"o":[["a","Jahangir"],["b","Aurangzeb"],["c","Shah Jahan"],["d","Bahadur Shah Zafar"],["e","None of the above/More than one of the above"]],"a":["b"],"x":["The first conflict of the Mughals with the English (British) took place in 1686 A.D. during the reign of Aurangzeb. The Mughal governor Shaista Khan drove out the English, including Job Charnock, from Hugli (Hooghly)."],"s":["67th B.P.S.C. (Re-Exam) (Pre)-2022"],"y":[2022],"e":["Re-Exam"],"r":false,"d":false,"n":""},{"i":91,"u":"Mughal Polity & Culture","c":"Mughal Administration","p":49,"q":["The meaning of the word Bantai during the Medieval period was?"],"o":[["a","Religious Tax"],["b","System of calculating revenue"],["c","Wealth tax"],["d","Property tax"]],"a":["b"],"x":["In the medieval period, the term Bantai referred to a method of revenue assessment in which the actual produce was divided between the state and the cultivator. Sher Shah Suri adopted three systems for revenue assessment—(1) Nashq or Muqta‘i or Kanqut, (2) Cash assessment or Zabti, and (3) Galla Bakhshi or Batai (Bantai). Bantai was of three types—","(1) Khet Batai, (2) Lang Batai, and (3) Ras Batai."],"s":["48th to 52nd B.P.S.C. (Pre) 2008"],"y":[2008],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":92,"u":"Mughal Polity & Culture","c":"Mughal Administration","p":49,"q":["Who introduced ‘Do-aspa and Sih-aspa’ system?"],"o":[["a","Akbar"],["b","Jahangir"],["c","Shah Jahan"],["d","Aurangzeb"]],"a":["b"],"x":["The ‘Do-Aspa and Sih-Aspa’ system was introduced by Jahangir. Under it, mansabdars had to maintain a larger force without any increase in their zat rank.","(i) Do-Aspa—In this, mansabdars had to keep horses double the number of their ‘sawar’ rank.","(ii) Sih-Aspa—In this, mansabdars had to keep horses three times the number of their sawar rank."],"s":["46th B.P.S.C. (Pre) 2004"],"y":[2004],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":93,"u":"Mughal Polity & Culture","c":"Mughal Administration","p":49,"q":["In the Mughal administration ‘Muhtasib’ was –"],"o":[["a","Military Officer"],["b","Head of Foreign Affairs"],["c","An Officer-in-Charge of public morals"],["d","Officer of Correspondence Department"]],"a":["c"],"x":["In administration, the Muhtasib was the officer of the department for inspection of public conduct. His duty was to maintain high moral standards among the people. To keep public conduct pure, Akbar imposed restrictions on the open and uncontrolled trade of liquor and prohibited prostitutes from residing in cities. Prostitutes were expelled from the city and settled at a new place, which was named ‘Shaitanpuri’."],"s":["47th B.P.S.C. (Pre) 2005"],"y":[2005],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":94,"u":"Mughal Polity & Culture","c":"Mughal Administration","p":49,"q":["‘Madad-e-Mash’ indicates in Mughal administration –"],"o":[["a","Toll Tax"],["b","Revenue free land granted to a learned person"],["c","Pension provided to military officials"],["d","Cultivation Tax"]],"a":["b"],"x":["In the Mughal administration, the revenue-free grant of land given to scholars and religious persons was called ‘Madad-e-Maash’. It was also known as ‘Suyurghal’. The inspection of all donated lands was done by the Sadr, and it was also the Sadr’s responsibility to ensure that these grants were not misused. This land was non-transferable, and it remained with the grantee on a hereditary basis."],"s":["46th B.P.S.C. (Pre) 2004"],"y":[2004],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":95,"u":"Mughal Polity & Culture","c":"Mughal Administration","p":49,"q":["In Mughal administration, the 'Chief Qazi' was -"],"o":[["a","Chief Justice"],["b","Military Officer"],["c","Head of the Foreign Department"],["d","An officer of public conduct"]],"a":["a"],"x":["The ‘Chief Qazi’ (Qazi-ul-Quzat) was the principal Qazi and the head of the judicial department."],"s":["B.P.S.C. (CDPO) (Pre) 2005"],"y":[2005],"e":["CDPO"],"r":false,"d":false,"n":""},{"i":96,"u":"Mughal Polity & Culture","c":"Mughal Administration","p":49,"q":["In medieval India, why was the mansabdari system introduced?"],"o":[["a","For revenue collection"],["b","Facilitating recruitment to the army"],["c","To establish religious harmony"],["d","Ensuring clean administration"],["e","None of the above/More than one of the above"]],"a":["d"],"x":["The Mansabdari system was a special administrative system introduced by the Mughal ruler Akbar. A mansab determined three things—(1) the officer’s order of precedence, (2) the pay scale, and (3) military responsibility. Under military responsibility, a mansabdar had to maintain soldiers according to his mansab. Through this system, the state placed the direct responsibility of recruitment and maintenance of soldiers upon the mansabdars, in return for which the mansabdar was granted cash or a jagir."],"s":["47th B.P.S.C. (Pre) 2005","65th B.P.S.C. (Pre) 2019"],"y":[2005,2019],"e":["Prelims"],"r":true,"d":false,"n":""},{"i":97,"u":"Mughal Polity & Culture","c":"Music and Painting of the Mughal Period","p":50,"q":["Which Mughal ruler established Karkhanas for painting?"],"o":[["a","Humayun"],["b","Akbar"],["c","Jahangir"],["d","Shah Jahan"],["e","None of the above/More than one of the above"]],"a":["b"],"x":["Humayun had a painting workshop (Nigar-khana / Tasvir-khana) set up, which was connected to his library. Akbar established painting studios—at Agra from 1558 to 1572 AD, at Fatehpur Sikri from 1572 to 1585 AD, at Lahore from 1585 to 1601 Ad, and again at Agra from 1603 to 1605 AD. Notably, the Bihar Public Service Commission considered option (b) as the answer to this question in its official answer sheet."],"s":["66th B.P.S.C. (Pre) 2020"],"y":[2020],"e":["Prelims"],"r":false,"d":true,"n":"Disputed. BPSC’s official key is (b), though Humayun set up the first painting workshop."},{"i":98,"u":"Mughal Polity & Culture","c":"Music and Painting of the Mughal Period","p":50,"q":["Who illustrated “Dastan-e-Amir Hamza”?"],"o":[["a","Abdus Samad"],["b","Mansur"],["c","Mir Sayyid Ali"],["d","Abul Hasan"]],"a":["a","c"],"x":["Akbar got many books illustrated. Among them, the earliest is Dastan-e-Amir Hamza, or Hamzanama (Tutinama is also mentioned as the first book illustrated during Akbar’s reign). This work began to be illustrated during Humayun’s period and was completed during Akbar’s reign. It is also stated that its illustration started in Akbar’s reign in 1507 AD, not during Humayun’s period. It took about 15 years to prepare, and about fifty painters participated in its preparation—initially under the supervision of Mir Sayyid Ali and later under Abdus Samad. It contains around 1400 illustrations. This work describes the heroic exploits of Amir Hamza, the uncle of Prophet Muhammad. Hence, both options (a) and (c) are correct."],"s":["47th B.P.S.C. (Pre) 2005"],"y":[2005],"e":["Prelims"],"r":false,"d":true,"n":"Both (a) and (c) are correct — Mir Sayyid Ali supervised first, Abdus Samad later."},{"i":99,"u":"Mughal Polity & Culture","c":"Music and Painting of the Mughal Period","p":50,"q":["European paintings were introduced in the court of :"],"o":[["a","Humayun"],["b","Akbar"],["c","Jahangir"],["d","Shah Jahan"],["e","None of the above/ More than one of the above"]],"a":["b"],"x":["European painting entered Akbar’s court through the Portuguese, from whom Mughal painters adopted two special features— 1 - Depiction of a particular individual 2 - Making the objects shown in the front of the scene in a smaller size. The development of painting began during Humayun’s reign. In Akbar’s reign, European painting influenced the Mughal painting style. In Akbar’s court, Miskin was a painter of the European style. During Akbar’s time, Daswanth was a leading painter. Jahangir’s reign is called the Golden Age (Golden Period) of Mughal painting."],"s":["63rd B.P.S.C. (Pre.) 2017"],"y":[2017],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":100,"u":"Mughal Polity & Culture","c":"Music and Painting of the Mughal Period","p":50,"q":["'Daswant and Basawan' the famous painters were courtiers of Mughal emperor :"],"o":[["a","Akbar"],["b","Jahangir"],["c","Shah Jahan"],["d","Aurangzeb"],["e","None of the above/More than one of the above"]],"a":["a"],"x":["“Daswanth and Basawan” were painters of Akbar’s period. Daswanth, who was the son of a kahar, impressed Akbar so much with his work that he helped him become “a leading painter of his time.” Later, however, this great painter became mentally disturbed and committed suicide in 1584 A.D. The names of Akbar’s painters were listed by Abul Fazl in his book Ain-i-Akbari, such as—Daswanth, Basawan, Keshu/Keshav Lal, Mukund, Miskin, Farukh, Kalamak, Madhav, Jagannath, Mahesh, Khemkaran, Tara, Sanwal and Harivansh, etc."],"s":["60th to 62nd B.P.S.C. (Pre) 2016"],"y":[2016],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":101,"u":"Mughal Polity & Culture","c":"Music and Painting of the Mughal Period","p":50,"q":["Mughal painting reached its zenith under –"],"o":[["a","Jahangir"],["b","Humayun"],["c","Shah Jahan"],["d","Akbar"],["e","None of the above/More than one of the above"]],"a":["a"],"x":["Mughal painting reached its peak during Jahangir’s reign. Jahangir was a highly skilled connoisseur of painting. In the Mughal style, while painting human figures, it was common that in the same painting different painters painted the face, the body and the legs. Jahangir claimed that he could identify the separate contributions of different painters in any painting. Besides painting hunting, war and royal court scenes, there was special progress during Jahangir’s reign in the art of painting humans and animals. Abul Hasan made a painting of Jahangir’s coronation, which was placed on the main page of Jahangir’s autobiography Tuzuk-i-Jahangiri. Jahangir’s period is called the Golden Age of Mughal painting."],"s":["65th B.P.S.C. (Pre) 2019"],"y":[2019],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":102,"u":"Mughal Polity & Culture","c":"Mughal Literature","p":51,"q":["Which one of the following is not written by Tulsidas?"],"o":[["a","Vinay Patrika"],["b","Geetavali"],["c","Sahitya Lahari"],["d","Kavitavali"]],"a":["c"],"x":["Tulsidas has written Geetavali, Vinaypatrika and Kavitavali, while Surdas has written Sahitya Lahari."],"s":["71st B.P.S.C. (Pre) 2025"],"y":[2025],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":103,"u":"Mughal Polity & Culture","c":"Mughal Literature","p":51,"q":["Who wrote Humayun Nama?"],"o":[["a","Babur"],["b","Humayun"],["c","Gulbadan Begum"],["d","Jahangir"]],"a":["c"],"x":["Babur’s daughter Gulbadan Begum composed Humayun-nama, which is in the Persian language. Emperor Akbar ordered that anyone who remembered anything about the reigns of Babur and Humayun should write it down and present it to him, so that material could be collected for the composition of Akbarnama. Therefore, many people began writing history, and Gulbadan’s Humayun-nama was also written according to this order."],"s":["42nd B.P.S.C. (Pre) 1997-98"],"y":[1997],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":104,"u":"Mughal Polity & Culture","c":"Mughal Literature","p":51,"q":["Tabaqat-i-Akbari, which has been sometimes considered more reliable than Abul Fazl's Akbarnama, was written by"],"o":[["a","Gulbadan Begum"],["b","Nizamuddin Ahmad"],["c","Abdul Hamid Lahori"],["d","More than one of the above"],["e","None of the above"]],"a":["b"],"x":["Tabaqat-i-Akbari was composed by Nizamuddin Ahmad. This work has an important role in understanding Mughal history."],"s":["68th B.P.S.C. (Pre) 2023"],"y":[2023],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":105,"u":"Mughal Polity & Culture","c":"Mughal Literature","p":51,"q":["Ain-i-Akbari was written by -"],"o":[["a","Abdul Qadir"],["b","Akbar"],["c","Khwaja Nizamuddin"],["d","Abul Fazl"],["e","None of the above/ More than one of the above"]],"a":["d"],"x":["Ain-i-Akbari was written by Abul Fazl, one of Akbar’s Navratnas. It is the third part of the three parts of Akbarnama. It contains the official account of the administrative system of Akbar’s reign."],"s":["67th B.P.S.C. (Pre) 2022"],"y":[2022],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":106,"u":"Mughal Polity & Culture","c":"Mughal Literature","p":51,"q":["Futuhat-i-Alamgiri was written by"],"o":[["a","Ishwardas Nagar"],["b","Bhimsen"],["c","Haridas"],["d","None of them"]],"a":["a"],"x":["The book Futuhat-i-Alamgiri was written by Ishwardas Nagar, who served as a Mughal officer in the Jodhpur region for a long time. This work includes some important events of Aurangzeb’s reign (up to A.D. 1698). It also throws considerable light on provincial administration in Malwa and Rajputana. It contains deep insights into some of the mysteries surrounding his reign; however, the work has at times been portrayed as biased, orthodox, communal, sectarian, and even anti-people. It is noteworthy that in Futuhat-i-Alamgiri, the emperor is shown neither as a supporter of Islam nor as a persecutor of Hinduism. Moreover, neither the conflict with Shivaji nor the events after the death of Jaswant Singh are presented from a religious perspective."],"s":["69th B.P.S.C. (Pre) 2023"],"y":[2023],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":107,"u":"Mughal Polity & Culture","c":"Mughal Literature","p":51,"q":["In which language was Tuzuk-i-Baburi’ written?"],"o":[["a","Persian"],["b","Arabic"],["c","Turkish"],["d","Urdu"]],"a":["c"],"x":["Tuzuk-i-Baburi, or Baburnama, was written by Babur in his mother tongue, Chagatai Turkish. Its Persian translation was prepared during Akbar’s reign. Abdur Rahim Khan-i-Khanan translated it into Persian, while the first English translation of Baburnama was done by John Leyden and William Erskine."],"s":["56th to 59th B.P.S.C. (Pre) 2014"],"y":[2014],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":108,"u":"Mughal Polity & Culture","c":"Mughal Period : Miscellaneous","p":52,"q":["Match List I with List II","List-I List-II","Father Son","A. Babur 1. Salim","B. Akbar 2. Khusrau","C. Shah Jahan 3. Kamran","D. Jahangir 4. Murad","Select the correct answer using the codes","A B C D"],"o":[["a","3 1 4 2"],["b","4 1 3 2"],["c","3 1 2 4"],["d","4 2 3 1"]],"a":["a"],"x":["Babur's sons included Humayun, Kamran Mirza, Askari Mirza, and Hindal Mirza. Akbar's most prominent sons were Salim, Murad Mirza, and Daniyal. Shah Jahan's four most prominent sons were Dara Shikoh, Shah Shuja, Aurangzeb (Alamgir), and Murad Baksh. Jahangir's (Salim) sons included Khurram (later Shah Jahan), Khusrau Mirza, and Parvez etc."],"s":["71st B.P.S.C. (Pre) 2025"],"y":[2025],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":109,"u":"Mughal Polity & Culture","c":"Mughal Period : Miscellaneous","p":52,"q":["Match List I with List II","List-I List-II","(Building) (Built by)","A. Kabuli Bagh Mosque 1. Qutb ud-Din Aibak","B. Adhai Din Ka Jhopra 2. Nur Jahan","C. Allahabad Fort 3. Akbar","D. Itmad-ud-Daulah Mausoleum 4. Babar","Select the correct answer using the codes given below:","A B C D"],"o":[["a","2 1 4 3"],["b","4 1 3 2"],["c","4 1 2 3"],["d","1 4 3 2"]],"a":["b"],"x":["The Kabuli Bagh Mosque in Panipat, Haryana, was built by Babur to commemorate his victory over Ibrahim Lodi in the Battle of Panipat (1526 AD). The Adhai Din Ka Jhopra, which served as a mosque, is believed to have been built by Qutb ud-Din Aibak. The Allahabad Fort was built by the Mughal Emperor Akbar in 1583 AD. The Tomb of Itmad-ud-Daulah was built by Jahangir's wife, Nur Jahan, in memory of her father, Mirza Ghiyas Beg (who bore the title of Itmad-ud-Daulah)."],"s":["71st B.P.S.C. (Pre) 2025"],"y":[2025],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":110,"u":"Mughal Polity & Culture","c":"Mughal Period : Miscellaneous","p":52,"q":["In which of the following battles are the main opponents not correctly stated?"],"o":[["a","Battle of Haldighati-Maharana Pratap and Akbar"],["b","First Battle of Panipat-Babur and Ibrahim Lodi"],["c","Second Battle of Panipat-Tipu Sultan and Marathas"],["d","More than one of the above"],["e","None of the above"]],"a":["c"],"x":["The First Battle of Panipat was fought on 21 April, 1526, between Babur and Ibrahim Lodi, whereas the Battle of Haldighati was fought in June, 1576, between Maharana Pratap and Akbar. The Second Battle of Panipat was fought in November, 1556, between Emperor Hemchandra Vikramaditya (Hemu) and Akbar’s army, in which Akbar’s army emerged victorious."],"s":["68th B.P.S.C. (Pre) 2022"],"y":[2022],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":111,"u":"Mughal Polity & Culture","c":"Mughal Period : Miscellaneous","p":52,"q":["Which among the following ports was called Bab-ul -Makkah (Gate of Makkah) during the Mughal period?"],"o":[["a","Calicut"],["b","Surat"],["c","Cambay"],["d","Broach"]],"a":["b"],"x":["During the Mughal period, Surat was called Bab-ul-Makkah (Gateway to Makkah) because the pilgrimage to Makkah began from Surat. Surat is a major city of Gujarat. It is known for its textiles and is one of the main centres of diamond cutting and polishing. In world history, during the medieval period, it was an important port. It was known as the Gateway to Makkah because many travellers used to depart from Surat by sea route. It was also known as a gateway to West Asia, because Surat was one of the major centres for goods and textiles traded with other Asian countries through sea routes."],"s":["69th B.P.S.C. (Pre) 2023"],"y":[2023],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":112,"u":"Mughal Polity & Culture","c":"Mughal Period : Miscellaneous","p":53,"q":["Who stated that five thousand to twenty thousand men worked for forty years to build the palace of forty pillars at Allahabad in Akbar's time?"],"o":[["a","Manucci"],["b","Tavernier"],["c","William Finch"],["d","Abdul Hamid Lahori"],["e","None of the above/More than one of the above"]],"a":["c"],"x":["According to William Finch, the construction of the “Palace of Forty Pillars” in Allahabad took about 40 years, and around five thousand to twenty thousand people worked for its construction."],"s":["64th B.P.S.C. (Pre) 2018"],"y":[2018],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":113,"u":"Sikhs, Marathas & Mughal Decline","c":"Sikh Sect","p":53,"q":["Which Sikh Guru was born in Patna?"],"o":[["a","Nanak"],["b","Tegh Bahadur"],["c","Hargobind"],["d","Gobind Singh"]],"a":["d"],"x":["Guru Gobind Singh was the tenth Guru of the Sikhs. He was born in A.D. 1666 in Patna, Bihar, and died on 7 October, 1708, in Nanded, Maharashtra."],"s":["56th to 59th B.P.S.C. (Pre) 2015"],"y":[2015],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":114,"u":"Sikhs, Marathas & Mughal Decline","c":"Sikh Sect","p":53,"q":["The sikh pilgrimage site \"Takhat Sri Hari Mandir Ji Patna Sahib\" which is considered as the second holiest Takhat is located at"],"o":[["a","Bhagalpur"],["b","Gaya"],["c","Patna"],["d","More than one of the above"]],"a":["c"],"x":["The Sikh pilgrimage site ‘Takht Shri Harimandir Ji Patna Sahib’ (Harimandir Sahib) is located in Patna."],"s":["70th B.P.S.C. Pre-2024"],"y":[2024],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":115,"u":"Sikhs, Marathas & Mughal Decline","c":"Maratha State and Confederacy","p":53,"q":["Where was the capital of Shivaji?"],"o":[["a","Raigarh"],["b","Sindhudurg"],["c","Poona"],["d","Kolhapur"]],"a":["a"],"x":["In 1674, Shivaji got himself crowned, assumed the title of ‘Chhatrapati’, and made Raigad his capital. The great scholar of that era, Pandit Vishweshwar of Banaras, also known as ‘Ganga Bhatt’, performed his coronation by declaring him a Kshatriya."],"s":["56th to 59th B.P.S.C. (Pre) 2014"],"y":[2014],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":116,"u":"Sikhs, Marathas & Mughal Decline","c":"Maratha State and Confederacy","p":53,"q":["'Ashta Pradhan' was helping in the Administration of which ruler?"],"o":[["a","Babur"],["b","Akbar"],["c","Aurangzeb"],["d","Shivaji"],["e","None of the above/More than one of the above"]],"a":["d"],"x":["For the administration of the Maratha state, Shivaji created the Ashtapradhan system at the central level, under which eight ministers were appointed. These included Peshwa, Amatya, Mantri, Sachiv, Sumant, Senapati, Panditrao, and Nyayadhish. They functioned like modern-day secretaries in Shivaji’s administration. Their role was only to advise the king. It cannot be called a council of ministers in the real sense. Each minister was responsible to the king. Details are as follows—","(i) Peshwa – Prime Minister of the king.","(ii) Amatya or Mazumdar – Minister of Finance and Revenue.","(iii) Waqia Navis or Mantri – Kept records of the king’s daily work and the day-to-day proceedings of the court.","(iv) Sachiv or Shurunavis – Looked after official correspondence.","(v) Sumant or Dabir – Foreign Minister.","(vi) Senapati or Sar-e-Naubat – Managed recruitment, organization, supplies, etc., of the army. (vii)Panditrao – Responsible for grants to scholars and for religious works. (viii)Nyayadhish – Chief Justice."],"s":["66th B.P.S.C. Re-Exam (Pre) 2020"],"y":[2020],"e":["Re-Exam"],"r":false,"d":false,"n":""},{"i":117,"u":"Sikhs, Marathas & Mughal Decline","c":"Maratha State and Confederacy","p":53,"q":["Match the following in the context of Ashta pradhan system of the Maratha rulers :","Official Department","a. Sachiva 1. Prime Minister","b. Peshwa 2. In-charge of Correspondence","c. Sumant 3. Finance Minister","d. Amatya 4. Foreign Minister","Choose the correct option :"],"o":[["a","a-2, b-1, c-4, d-3"],["b","a-1, b-2, c-3, d-4"],["c","a-3, b-4, c-1, d-2"],["d","More than one of the above"]],"a":["a"],"x":["See the explanation of the above question."],"s":["70th B.P.S.C. Pre-2024"],"y":[2024],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":118,"u":"Sikhs, Marathas & Mughal Decline","c":"Maratha State and Confederacy","p":54,"q":["Who established Ashtapradhan?"],"o":[["a","Chandragupta"],["b","Ashoka"],["c","Harshavardhana"],["d","Shivaji"],["e","None of the above/More than one of the above"]],"a":["d"],"x":["See the explanation of the above question."],"s":["65th B.P.S.C. (Pre) 2019"],"y":[2019],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":119,"u":"Sikhs, Marathas & Mughal Decline","c":"Maratha State and Confederacy","p":54,"q":["‘Ashtapradhan’ was a Council of Ministers"],"o":[["a","In the Gupta administration"],["b","In the Chola administration"],["c","In the Maratha administration"],["d","In the Vijayanagara administration"]],"a":["c"],"x":["See the explanation of the above question."],"s":["69th B.P.S.C. (Pre) 2023"],"y":[2023],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":120,"u":"Sikhs, Marathas & Mughal Decline","c":"Maratha State and Confederacy","p":54,"q":["Saranjami system was related to –"],"o":[["a","Land revenue system of Maratha"],["b","Taluqdari system"],["c","Qutb Shahi administration"],["d","None of the above"]],"a":["a"],"x":["In the Maratha period, the Saranjami system was related to land-revenue administration. During this period, Maratha jagirdars were given Saranjami lands for their maintenance."],"s":["39th B.P.S.C. (Pre) 1994"],"y":[1994],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":121,"u":"Sikhs, Marathas & Mughal Decline","c":"Disintegration of the Mughal Empire","p":54,"q":["Who was the last Mughal Emperor to sit on Mayur Singhasan?"],"o":[["a","Shah Alam I"],["b","Muhammad Shah"],["c","Bahadur Shah"],["d","Jahandar Shah"]],"a":["b"],"x":["The last Mughal ruler to sit on the famous Peacock Throne made by Shah Jahan was Muhammad Shah, because during his reign Nadir Shah invaded India in 1739 and defeated the Mughal army in the Battle of Karnal. Nadir Shah took with him sixty lakh rupees, several thousand ashrafis, gold articles worth one crore rupees, jewels worth fifty crore rupees, the Koh-i-Noor, and the Takht-e-Taus (Peacock Throne) to Iran."],"s":["40th B.P.S.C. (Pre) 1995"],"y":[1995],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":122,"u":"Sikhs, Marathas & Mughal Decline","c":"Disintegration of the Mughal Empire","p":54,"q":["Which of the following Mughal emperors was not allowed to enter into Delhi by Wazir Ghaziuddin?"],"o":[["a","Alamgir- II"],["b","Shah Alam- II"],["c","Akbar- II"],["d","Bahadur Shah- II"]],"a":["b"],"x":["The reign of Shah Alam II lasted from 1759 to 1806. His real name was Ali Gauhar. At the time of his father Alamgir II’s death, he was in Bihar. Although he was declared the Mughal emperor, due to factionalism in the Mughal court, he remained outside Delhi, and the throne of Delhi remained vacant from 1760 to 1771. In 1772, he could reach Delhi only with the help of the Marathas. During Shah Alam II’s time, the British captured Delhi (1803)."],"s":["44th B.P.S.C. (Pre) 2000"],"y":[2000],"e":["Prelims"],"r":false,"d":false,"n":""},{"i":123,"u":"Sikhs, Marathas & Mughal Decline","c":"Disintegration of the Mughal Empire","p":54,"q":["It was said about Mughal emperor Bahadur Shah Zafar that the extent of his empire was-"],"o":[["a","Chandni Chowk to Palam"],["b","Delhi to Bihar"],["c","Peshawar to Bihar"],["d","Peshawar to Varanasi"],["e","None of the above/More than one of the above"]],"a":[],"x":["This saying was not famous about Bahadur Shah Zafar, but about the Mughal ruler Shah Alam II. In Persian, the proverb was: “Saltanat-e-Shah Alam, az Dilli ta Palam.” That is, in Shah Alam’s time, the Mughal empire shrank and remained confined from Delhi’s Red Fort to Palam village. The Bihar Public Service Commission cancelled this question."],"s":["64th B.P.S.C. (Pre) 2018"],"y":[2018],"e":["Prelims"],"r":false,"d":true,"n":"Cancelled by BPSC. The saying belongs to Shah Alam II, not Bahadur Shah Zafar."}];
+</script>
+<script>
+/* =========================================================
+   Medieval History — BPSC PYQ trainer
+   ========================================================= */
+(function () {
+'use strict';
+
+var KEY = 'medievalPYQ.mcq.v1';
+var Q = window.__DATA__;
+var LETTERS = ['a', 'b', 'c', 'd', 'e'];
+
+/* ---------------------------------------------------- storage */
+function load() {
+  try {
+    var raw = localStorage.getItem(KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+function save() {
+  try {
+    localStorage.setItem(KEY, JSON.stringify({
+      ans: S.ans, star: S.star, seen: S.seen,
+      scope: S.scope, unit: S.unit, topic: S.topic, year: S.year,
+      shuffle: S.shuffle, exam: S.exam, seed: S.seed, at: S.at, open: S.open
+    }));
+    localStorage.setItem(KEY + '.theme', document.documentElement.getAttribute('data-theme'));
+  } catch (e) {}
+}
+
+var saved = load() || {};
+var S = {
+  ans:   saved.ans   || {},   /* id -> chosen letter          */
+  seen:  saved.seen  || {},   /* id -> 1 once graded/revealed */
+  star:  saved.star  || {},   /* id -> 1                      */
+  scope: saved.scope || 'all',
+  unit:  saved.unit  || '',
+  topic: saved.topic || '',
+  year:  saved.year  || '',
+  q:     '',
+  shuffle: !!saved.shuffle,
+  exam:    !!saved.exam,
+  seed:  saved.seed || (Date.now() % 100000),
+  at:    saved.at || 0,       /* id of the question last viewed */
+  open:  typeof saved.open === 'boolean' ? saved.open : (window.innerWidth > 620),
+  idx:   0,
+  view:  []
+};
+
+/* ---------------------------------------------------- helpers */
+var $ = function (id) { return document.getElementById(id); };
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+function hay(q) {
+  return (q.q.join(' ') + ' ' + q.o.map(function (o) { return o[1]; }).join(' ') + ' ' +
+          q.x.join(' ') + ' ' + q.c + ' ' + q.s.join(' ')).toLowerCase();
+}
+Q.forEach(function (q) { q._h = hay(q); });
+
+function mark(html, needle) {
+  if (!needle) return html;
+  var re = new RegExp('(' + needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+  return html.replace(/>([^<]+)</g, function (m, txt) {
+    return '>' + txt.replace(re, '<mark>$1</mark>') + '<';
+  });
+}
+
+/* verdict: 'ok' | 'no' | 'na' (unscored) | null (not answered) */
+function verdict(q) {
+  var a = S.ans[q.i];
+  if (!a) return null;
+  if (!q.a.length) return 'na';
+  return q.a.indexOf(a) >= 0 ? 'ok' : 'no';
+}
+function graded(q) { return !!S.seen[q.i]; }
+
+/* seeded shuffle so the order is stable across reloads */
+function shuffled(arr, seed) {
+  var a = arr.slice(), s = seed || 1;
+  function rnd() { s = (s * 1664525 + 1013904223) % 4294967296; return s / 4294967296; }
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(rnd() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+/* ---------------------------------------------------- filtering */
+function passScope(q) {
+  switch (S.scope) {
+    case 'new':    return !S.ans[q.i];
+    case 'wrong':  return verdict(q) === 'no';
+    case 'star':   return !!S.star[q.i];
+    case 'repeat': return !!q.r;
+    default:       return true;
+  }
+}
+function passRest(q) {
+  if (S.unit  && q.u !== S.unit)  return false;
+  if (S.topic && q.c !== S.topic) return false;
+  if (S.year  && q.y.indexOf(+S.year) < 0) return false;
+  if (S.q && q._h.indexOf(S.q) < 0) return false;
+  return true;
+}
+function rebuild(keepId) {
+  var list = Q.filter(function (q) { return passScope(q) && passRest(q); });
+  S.view = S.shuffle ? shuffled(list, S.seed) : list;
+  var want = keepId || S.at;
+  var pos = -1;
+  for (var i = 0; i < S.view.length; i++) if (S.view[i].i === want) { pos = i; break; }
+  S.idx = pos >= 0 ? pos : 0;
+}
+
+/* ---------------------------------------------------- stem / prose rendering */
+var RE_ROW   = /^([A-Da-d][.)])\s+(.+?)\s+(\d[.)])\s+(.+)$/;
+var RE_ROW2  = /^(\d[.)])\s+(.+?)\s+([A-Da-d][.)])\s+(.+)$/;
+var RE_LIST  = /^(List\s?-?\s?I)\s+(List\s?-?\s?II.*)$/i;
+var RE_PAREN = /^\((.+?)\)\s+\((.+?)\)$/;
+var RE_CODES = /^[A-Da-d](\s+[A-Da-d]){2,}$/;
+var RE_ITEM  = /^(\(?[ivxIVX]{1,4}[.)]|\(?\d{1,2}[.)]|[\u2022\u2013\u2014-])\s/;
+
+function headerPair(b) {
+  var m = b.match(RE_LIST);           if (m) return [m[1], m[2]];
+  m = b.match(RE_PAREN);              if (m) return ['(' + m[1] + ')', '(' + m[2] + ')'];
+  var w = b.split(/\s+/);
+  if (w.length === 2 && !/\d/.test(b) && /^[A-Z]/.test(w[0])) return [w[0], w[1]];
+  return null;
+}
+function rowPair(b) {
+  var m = b.match(RE_ROW);  if (m) return [m[1] + ' ' + m[2], m[3] + ' ' + m[4]];
+  m = b.match(RE_ROW2);     if (m) return [m[1] + ' ' + m[2], m[3] + ' ' + m[4]];
+  return null;
+}
+
+function opensTable(blocks, i) {
+  /* headers may stack before the first real row */
+  for (var j = i + 1; j < blocks.length && j <= i + 2; j++) {
+    if (rowPair(blocks[j])) return true;
+    if (!headerPair(blocks[j])) return false;
+  }
+  return false;
+}
+function renderStem(blocks) {
+  var out = [], i = 0;
+  while (i < blocks.length) {
+    var b = blocks[i];
+    var pair = rowPair(b) || (opensTable(blocks, i) ? headerPair(b) : null);
+    if (pair) {
+      var cells = [];
+      var isHead = !rowPair(b);
+      if (isHead) {
+        cells.push('<div class="h l">' + esc(pair[0]) + '</div><div class="h r">' + esc(pair[1]) + '</div>');
+        i++;
+      }
+      while (i < blocks.length) {
+        var p = rowPair(blocks[i]);
+        if (!p) {
+          var hp = headerPair(blocks[i]);
+          if (hp && opensTable(blocks, i)) {
+            cells.push('<div class="h l">' + esc(hp[0]) + '</div><div class="h r">' + esc(hp[1]) + '</div>');
+            i++; continue;
+          }
+          break;
+        }
+        cells.push('<div class="l">' + esc(p[0]) + '</div><div class="r">' + esc(p[1]) + '</div>');
+        i++;
+      }
+      out.push('<div class="mtable">' + cells.join('') + '</div>');
+      continue;
+    }
+    if (RE_CODES.test(b))      out.push('<div class="codes">' + esc(b) + '</div>');
+    else if (RE_ITEM.test(b))  out.push('<div class="item">' + esc(b) + '</div>');
+    else                       out.push('<p>' + esc(b) + '</p>');
+    i++;
+  }
+  return out.join('');
+}
+function renderProse(blocks) {
+  return blocks.map(function (b) {
+    return RE_ITEM.test(b) ? '<div class="item">' + esc(b) + '</div>' : '<p>' + esc(b) + '</p>';
+  }).join('');
+}
+
+/* ---------------------------------------------------- the question card */
+function paint() {
+  var has = S.view.length > 0;
+  $('card').classList.toggle('hidden', !has);
+  $('empty').classList.toggle('hidden', has);
+  $('pos').textContent = has ? (S.idx + 1) + ' of ' + S.view.length : '';
+  $('btnPrev').disabled = !has || S.idx === 0;
+  $('btnNext').disabled = !has || S.idx >= S.view.length - 1;
+  $('btnReveal').disabled = !has;
+  if (!has) { paintRibbon(); paintPanel(); return; }
+
+  var q = S.view[S.idx];
+  S.at = q.i;
+
+  $('qNum').textContent = q.i;
+  $('qTopic').textContent = q.c;
+
+  var cites = q.s.map(function (s) { return '<span>' + esc(s) + '</span>'; });
+  cites.push('<span>Book p.&#8202;' + q.p + '</span>');
+  if (q.r) cites.push('<span class="tag rep">Repeat</span>');
+  if (q.d) cites.push('<span class="tag dis">' + (q.a.length ? 'Disputed key' : 'Cancelled') + '</span>');
+  $('qCites').innerHTML = cites.join('');
+
+  $('btnStar').setAttribute('aria-pressed', S.star[q.i] ? 'true' : 'false');
+  $('qStem').innerHTML = mark(renderStem(q.q), S.q);
+
+  var show = graded(q);
+  var picked = S.ans[q.i];
+  $('qOpts').innerHTML = q.o.map(function (o) {
+    var k = o[0], cls = 'opt', badge = '';
+    if (show) {
+      if (q.a.indexOf(k) >= 0) { cls += ' right'; badge = tick(); }
+      else if (picked === k)   { cls += ' wrong'; badge = cross(); }
+      else if (picked === k)   { cls += ' picked'; }
+    } else if (picked === k)   { cls += ' picked'; }
+    var numeric = /^[\d\s]+$/.test(o[1]);
+    return '<button class="' + cls + '" data-k="' + k + '"' + (show ? ' disabled' : '') + '>' +
+           '<span class="k">' + k + '</span>' +
+           '<span class="t' + (numeric ? ' num' : '') + '">' + mark(esc(o[1]), S.q) + '</span>' +
+           '<span class="mk">' + badge + '</span></button>';
+  }).join('');
+
+  var ex = $('qExpl');
+  ex.classList.toggle('hidden', !show);
+  if (show) {
+    var v = verdict(q), vd = '';
+    if (v === 'ok') vd = '<p class="verdict ok">Correct</p>';
+    else if (v === 'no') vd = '<p class="verdict no">Not this one \u2014 the key is (' + q.a.join(') or (') + ')</p>';
+    else if (v === 'na') vd = '<p class="verdict no">This question was cancelled, so it is not scored</p>';
+    $('qVerdict').innerHTML = vd;
+    $('qKeyNote').innerHTML = q.n
+      ? '<div class="keynote"><b>Note on the key.</b> ' + esc(q.n) + '</div>' : '';
+    $('qExplBody').innerHTML = mark(renderProse(q.x), S.q);
+  }
+  $('btnReveal').querySelector('span').textContent = show ? 'Explanation' : 'Reveal';
+  paintRibbon(); paintPanel();
+}
+function tick()  { return '<svg viewBox="0 0 24 24"><path d="M4 12.5l5.2 5.2L20 7"/></svg>'; }
+function cross() { return '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>'; }
+
+/* ---------------------------------------------------- ribbon + counters */
+function tallyAll() {
+  var ok = 0, no = 0, att = 0;
+  Q.forEach(function (q) {
+    if (!S.ans[q.i]) return;
+    att++;
+    var v = verdict(q);
+    if (v === 'ok') ok++; else if (v === 'no') no++;
+  });
+  return { ok: ok, no: no, att: att, total: Q.length };
+}
+function paintRibbon() {
+  var t = tallyAll();
+  if (S.exam) {
+    $('barOk').style.width = (t.att / t.total * 100) + '%';
+    $('barNo').style.width = '0%';
+    $('tally').innerHTML = '<b>' + t.att + '</b> / ' + t.total + ' answered';
+  } else {
+    $('barOk').style.width = (t.ok / t.total * 100) + '%';
+    $('barNo').style.width = (t.no / t.total * 100) + '%';
+    var pct = (t.ok + t.no) ? Math.round(t.ok / (t.ok + t.no) * 100) : 0;
+    $('tally').innerHTML = '<b>' + t.ok + '</b>\u2009/\u2009' + (t.ok + t.no) + ' right &middot; <b>' + pct + '%</b>';
+  }
+  $('cAll').textContent   = ' ' + Q.length;
+  $('cNew').textContent   = ' ' + Q.filter(function (q) { return !S.ans[q.i]; }).length;
+  $('cWrong').textContent = ' ' + Q.filter(function (q) { return verdict(q) === 'no'; }).length;
+  $('cStar').textContent  = ' ' + Q.filter(function (q) { return S.star[q.i]; }).length;
+  $('cRep').textContent   = ' ' + Q.filter(function (q) { return q.r; }).length;
+}
+
+/* ---------------------------------------------------- actions */
+function choose(k) {
+  var q = S.view[S.idx];
+  if (!q || graded(q)) return;
+  S.ans[q.i] = k;
+  if (!S.exam) S.seen[q.i] = 1;
+  paint(); save();
+}
+function reveal() {
+  var q = S.view[S.idx];
+  if (!q) return;
+  if (graded(q)) {                       /* already open: take me to it */
+    $('qExpl').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+  S.seen[q.i] = 1; paint(); save();
+}
+function go(d) {
+  var n = S.idx + d;
+  if (n < 0 || n >= S.view.length) return;
+  S.idx = n; paint(); save();          /* paint first: it sets S.at */
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function jump(id) {
+  for (var i = 0; i < S.view.length; i++) if (S.view[i].i === id) { S.idx = i; paint(); save(); return true; }
+  return false;
+}
+function toggleStar() {
+  var q = S.view[S.idx]; if (!q) return;
+  if (S.star[q.i]) { delete S.star[q.i]; toast('Star removed'); }
+  else { S.star[q.i] = 1; toast('Starred'); }
+  paint(); save();
+}
+var toastT;
+function toast(msg) {
+  var el = $('toast'); el.textContent = msg; el.classList.add('on');
+  clearTimeout(toastT); toastT = setTimeout(function () { el.classList.remove('on'); }, 1500);
+}
+
+/* ---------------------------------------------------- filter panel */
+function anyFilter() {
+  return !!(S.unit || S.topic || S.year || S.q || S.scope !== 'all');
+}
+function paintPanel() {
+  $('controls').classList.toggle('shut', !S.open);
+  var b = $('btnFilters');
+  b.setAttribute('aria-expanded', S.open ? 'true' : 'false');
+  b.classList.toggle('live', anyFilter());
+}
+
+/* ---------------------------------------------------- filter widgets */
+function fillSelects() {
+  var units = [], topicsOf = {};
+  Q.forEach(function (q) {
+    if (units.indexOf(q.u) < 0) { units.push(q.u); topicsOf[q.u] = []; }
+    if (topicsOf[q.u].indexOf(q.c) < 0) topicsOf[q.u].push(q.c);
+  });
+  var su = $('selUnit');
+  su.innerHTML = '<option value="">All units</option>' + units.map(function (u) {
+    var n = Q.filter(function (q) { return q.u === u; }).length;
+    return '<option value="' + esc(u) + '">' + esc(u) + ' (' + n + ')</option>';
+  }).join('');
+  su.value = S.unit;
+
+  var list = S.unit ? topicsOf[S.unit] : units.reduce(function (a, u) { return a.concat(topicsOf[u]); }, []);
+  var st = $('selTopic');
+  st.innerHTML = '<option value="">All topics</option>' + list.map(function (c) {
+    var n = Q.filter(function (q) { return q.c === c; }).length;
+    return '<option value="' + esc(c) + '">' + esc(c) + ' (' + n + ')</option>';
+  }).join('');
+  if (list.indexOf(S.topic) < 0) S.topic = '';
+  st.value = S.topic;
+
+  var years = [];
+  Q.forEach(function (q) { q.y.forEach(function (y) { if (years.indexOf(y) < 0) years.push(y); }); });
+  years.sort(function (a, b) { return b - a; });
+  var sy = $('selYear');
+  sy.innerHTML = '<option value="">All years</option>' + years.map(function (y) {
+    var n = Q.filter(function (q) { return q.y.indexOf(y) >= 0; }).length;
+    return '<option value="' + y + '">' + y + ' (' + n + ')</option>';
+  }).join('');
+  sy.value = S.year;
+}
+
+/* ---------------------------------------------------- question map */
+function paintPal() {
+  var units = [];
+  Q.forEach(function (q) { if (units.indexOf(q.u) < 0) units.push(q.u); });
+  var here = S.view[S.idx] ? S.view[S.idx].i : 0;
+  $('palBody').innerHTML = units.map(function (u) {
+    var qs = Q.filter(function (q) { return q.u === u; });
+    return '<div class="pal-group"><h3>' + esc(u) + '<span class="rule"></span></h3><div class="pal">' +
+      qs.map(function (q) {
+        var c = [], v = verdict(q);
+        if (graded(q) && v === 'ok') c.push('ok');
+        else if (graded(q) && v === 'no') c.push('no');
+        else if (S.ans[q.i]) c.push('seen');
+        if (S.star[q.i]) c.push('star');
+        if (q.i === here) c.push('here');
+        return '<button class="' + c.join(' ') + '" data-id="' + q.i + '">' + q.i + '</button>';
+      }).join('') + '</div></div>';
+  }).join('');
+}
+
+/* ---------------------------------------------------- progress report */
+function paintStats() {
+  var t = tallyAll();
+  var acc = (t.ok + t.no) ? Math.round(t.ok / (t.ok + t.no) * 100) : 0;
+  var html = '<div class="grid4">' +
+    stat(t.att + '<span style="font-size:14px;color:var(--text-dim)">/' + t.total + '</span>', 'Answered') +
+    stat(t.ok, 'Correct') + stat(t.no, 'Wrong') + stat(acc + '%', 'Accuracy') + '</div>';
+
+  var units = [];
+  Q.forEach(function (q) { if (units.indexOf(q.u) < 0) units.push(q.u); });
+  units.forEach(function (u) {
+    html += '<div class="unit-h">' + esc(u) + '<span class="rule"></span></div><div class="brk">';
+    var topics = [];
+    Q.forEach(function (q) { if (q.u === u && topics.indexOf(q.c) < 0) topics.push(q.c); });
+    topics.forEach(function (c) {
+      var qs = Q.filter(function (q) { return q.c === c; });
+      var ok = 0, no = 0;
+      qs.forEach(function (q) { var v = verdict(q); if (v === 'ok') ok++; else if (v === 'no') no++; });
+      var n = qs.length;
+      html += '<div class="brk-row"><div class="nm">' + esc(c) + '</div>' +
+              '<div class="fig">' + ok + '/' + (ok + no) + ' of ' + n + '</div>' +
+              '<div class="bar"><i class="g" style="width:' + (ok / n * 100) + '%"></i>' +
+              '<i class="b" style="width:' + (no / n * 100) + '%"></i></div></div>';
+    });
+    html += '</div>';
+  });
+  $('statsBody').innerHTML = html;
+}
+function stat(v, l) { return '<div class="stat"><b>' + v + '</b><span>' + l + '</span></div>'; }
+
+/* ---------------------------------------------------- sheets */
+var openSheet = null;
+function sheet(el) {
+  if (openSheet) openSheet.classList.remove('on');
+  openSheet = el; el.classList.add('on'); $('scrim').classList.add('on');
+  var f = el.querySelector('[data-close]'); if (f) f.focus();
+}
+function closeSheet() {
+  if (openSheet) openSheet.classList.remove('on');
+  openSheet = null; $('scrim').classList.remove('on');
+}
+
+/* ---------------------------------------------------- theme */
+var SUN  = '<circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.3M12 19.3v2.3M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.4 12h2.3M19.3 12h2.3M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/>';
+var MOON = '<path d="M20 14.2A8.4 8.4 0 019.8 4 8.5 8.5 0 1020 14.2Z"/>';
+function paintTheme() {
+  var d = document.documentElement.getAttribute('data-theme') === 'dark';
+  $('themeIcon').innerHTML = d ? SUN : MOON;
+}
+function flipTheme() {
+  var d = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.setAttribute('data-theme', d ? 'light' : 'dark');
+  paintTheme(); save();
+}
+
+/* ---------------------------------------------------- wiring */
+function refresh(keepId) { fillSelects(); rebuild(keepId); paint(); save(); }
+
+$('qOpts').addEventListener('click', function (e) {
+  var b = e.target.closest('.opt'); if (b && !b.disabled) choose(b.dataset.k);
+});
+$('btnPrev').addEventListener('click', function () { go(-1); });
+$('btnNext').addEventListener('click', function () { go(1); });
+$('btnReveal').addEventListener('click', reveal);
+$('btnStar').addEventListener('click', toggleStar);
+
+$('chipRow').addEventListener('click', function (e) {
+  var b = e.target.closest('.chip'); if (!b) return;
+  S.scope = b.dataset.scope;
+  [].forEach.call(this.querySelectorAll('.chip'), function (c) {
+    c.setAttribute('aria-pressed', c === b ? 'true' : 'false');
+  });
+  refresh();
+});
+$('selUnit').addEventListener('change', function () { S.unit = this.value; S.topic = ''; refresh(); });
+$('selTopic').addEventListener('change', function () { S.topic = this.value; refresh(); });
+$('selYear').addEventListener('change', function () { S.year = this.value; refresh(); });
+
+var tmr;
+$('search').addEventListener('input', function () {
+  var v = this.value;
+  $('clearSearch').classList.toggle('hidden', !v);
+  clearTimeout(tmr);
+  tmr = setTimeout(function () { S.q = v.trim().toLowerCase(); rebuild(); paint(); }, 160);
+});
+$('clearSearch').addEventListener('click', function () {
+  $('search').value = ''; S.q = ''; this.classList.add('hidden'); rebuild(); paint(); $('search').focus();
+});
+
+$('btnShuffle').addEventListener('click', function () {
+  S.shuffle = !S.shuffle;
+  if (S.shuffle) S.seed = Date.now() % 100000;
+  this.setAttribute('aria-pressed', S.shuffle ? 'true' : 'false');
+  toast(S.shuffle ? 'Order shuffled' : 'Book order restored');
+  refresh(S.at);
+});
+$('btnMode').addEventListener('click', function () {
+  S.exam = !S.exam;
+  this.setAttribute('aria-pressed', S.exam ? 'true' : 'false');
+  if (!S.exam) Object.keys(S.ans).forEach(function (id) { S.seen[id] = 1; });
+  toast(S.exam ? 'Exam mode on \u2014 answers stay hidden' : 'Practice mode \u2014 answers show as you go');
+  paint(); save();
+});
+
+$('btnPal').addEventListener('click', function () { paintPal(); sheet($('sheetPal')); });
+$('btnStats').addEventListener('click', function () { paintStats(); sheet($('sheetStats')); });
+$('btnHelp').addEventListener('click', function () { sheet($('sheetHelp')); });
+$('btnFilters').addEventListener('click', function () {
+  S.open = !S.open; paintPanel(); save();
+});
+$('btnTheme').addEventListener('click', flipTheme);
+$('scrim').addEventListener('click', closeSheet);
+[].forEach.call(document.querySelectorAll('[data-close]'), function (b) {
+  b.addEventListener('click', closeSheet);
+});
+$('palBody').addEventListener('click', function (e) {
+  var b = e.target.closest('button[data-id]'); if (!b) return;
+  var id = +b.dataset.id;
+  if (!jump(id)) {
+    S.scope = 'all'; S.unit = ''; S.topic = ''; S.year = ''; S.q = '';
+    $('search').value = '';
+    [].forEach.call($('chipRow').querySelectorAll('.chip'), function (c) {
+      c.setAttribute('aria-pressed', c.dataset.scope === 'all' ? 'true' : 'false');
+    });
+    fillSelects(); rebuild(id); paint();
+    toast('Filters cleared to reach question ' + id);
+  }
+  closeSheet();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+$('btnReset').addEventListener('click', function () {
+  if (!confirm('Clear every answer, star and setting for this app?')) return;
+  S.ans = {}; S.seen = {}; S.star = {};
+  try { localStorage.removeItem(KEY); } catch (e) {}
+  closeSheet(); refresh(); toast('Progress cleared');
+});
+
+/* keyboard */
+document.addEventListener('keydown', function (e) {
+  var t = e.target.tagName;
+  if (t === 'INPUT' || t === 'SELECT' || t === 'TEXTAREA') {
+    if (e.key === 'Escape') { e.target.blur(); }
+    return;
+  }
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  var k = e.key;
+  if (k === 'Escape') { closeSheet(); return; }
+  if (openSheet) return;
+  if (k === '/') { e.preventDefault(); $('search').focus(); return; }
+  if (k === 'ArrowRight' || k === 'Enter') { e.preventDefault(); go(1); return; }
+  if (k === 'ArrowLeft')  { e.preventDefault(); go(-1); return; }
+  var low = k.toLowerCase();
+  if (low === 'r') { reveal(); return; }
+  if (low === 's') { toggleStar(); return; }
+  if (low === 't') { flipTheme(); return; }
+  if (low === 'g') { paintPal(); sheet($('sheetPal')); return; }
+  if (low === 'p') { paintStats(); sheet($('sheetStats')); return; }
+  if (low === 'f') { $('btnShuffle').click(); return; }
+  if (low === '?') { sheet($('sheetHelp')); return; }
+  var q = S.view[S.idx]; if (!q) return;
+  var i = LETTERS.indexOf(low);
+  if (i < 0 && /^[1-5]$/.test(k)) i = +k - 1;
+  if (i >= 0 && i < q.o.length) { e.preventDefault(); choose(q.o[i][0]); }
+});
+
+/* swipe on touch */
+var x0 = null, y0 = null;
+document.addEventListener('touchstart', function (e) {
+  if (openSheet || e.touches.length !== 1) { x0 = null; return; }
+  x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+}, { passive: true });
+document.addEventListener('touchend', function (e) {
+  if (x0 === null) return;
+  var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+  if (Math.abs(dx) > 64 && Math.abs(dx) > Math.abs(dy) * 1.8) go(dx < 0 ? 1 : -1);
+  x0 = null;
+}, { passive: true });
+
+/* ---------------------------------------------------- boot */
+(function boot() {
+  var yrs = [];
+  Q.forEach(function (q) { q.y.forEach(function (y) { if (yrs.indexOf(y) < 0) yrs.push(y); }); });
+  yrs.sort(function (a, b) { return a - b; });
+  $('mastSub').innerHTML = 'BPSC Prelims \u00b7 ' + Q.length + ' PYQs \u00b7 ' +
+                           yrs[0] + '\u2013' + yrs[yrs.length - 1] +
+                           '<span class="wide"> \u00b7 pages 35\u201354</span>';
+  [].forEach.call($('chipRow').querySelectorAll('.chip'), function (c) {
+    c.setAttribute('aria-pressed', c.dataset.scope === S.scope ? 'true' : 'false');
+  });
+  $('btnShuffle').setAttribute('aria-pressed', S.shuffle ? 'true' : 'false');
+  $('btnMode').setAttribute('aria-pressed', S.exam ? 'true' : 'false');
+  paintTheme();
+  paintPanel();
+  refresh(S.at);
+})();
+
+})();
+
+</script>
+</body>
+</html>
