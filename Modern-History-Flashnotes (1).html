@@ -691,5 +691,23 @@ document.getElementById('btnShuffle').setAttribute('aria-pressed', S.shuffle);
 renderHome();
 tab('home');
 </script>
+
+<!-- Home Navigation Auto-Injector -->
+<script>
+(() => {
+  const bar = document.querySelector('header .bar');
+  if (bar && !document.getElementById('modHomePortalBtn')) {
+    const btn = document.createElement('a');
+    btn.id = 'modHomePortalBtn';
+    btn.href = 'index.html';
+    btn.style.cssText = 'display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 12px;border-radius:9px;border:1px solid var(--line);background:var(--ink2);color:var(--tx);font-family:var(--sans);font-size:13px;font-weight:600;text-decoration:none;margin-right:6px;flex:none;transition:border-color .15s,background .15s;';
+    btn.textContent = '← Home';
+    btn.onmouseover = () => { btn.style.borderColor = 'var(--cin)'; btn.style.background = 'var(--ink3)'; };
+    btn.onmouseout = () => { btn.style.borderColor = 'var(--line)'; btn.style.background = 'var(--ink2)'; };
+    bar.prepend(btn);
+  }
+})();
+</script>
+
 </body>
 </html>
