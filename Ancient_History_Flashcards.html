@@ -591,5 +591,23 @@ $('#topicSel').onchange=e=>{topic=e.target.value;filter='all';rebuild()};
 
 buildRail();rebuild();
 </script>
+
+<!-- Home Button Auto-Injector -->
+<script>
+(() => {
+  const topbar = document.querySelector('.topbar');
+  if (topbar && !document.getElementById('ancientHomePortalBtn')) {
+    const btn = document.createElement('a');
+    btn.id = 'ancientHomePortalBtn';
+    btn.href = 'index.html';
+    btn.style.cssText = 'display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 11px;border-radius:8px;border:1px solid var(--line-soft);background:var(--surface);color:var(--text);font-size:13px;font-weight:600;text-decoration:none;margin-right:4px;flex:none;transition:border-color .15s,color .15s;';
+    btn.textContent = '← Home';
+    btn.onmouseover = () => { btn.style.borderColor = 'var(--lapis)'; btn.style.color = 'var(--lapis)'; };
+    btn.onmouseout = () => { btn.style.borderColor = 'var(--line-soft)'; btn.style.color = 'var(--text)'; };
+    topbar.prepend(btn);
+  }
+})();
+</script>
+
 </body>
 </html>
