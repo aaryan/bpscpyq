@@ -414,6 +414,11 @@ html[data-theme="dark"] .nav-bar-inner {
   border-color: rgba(245, 158, 11, 0.25);
   background: linear-gradient(180deg, var(--surface) 0%, var(--bg-alt) 100%);
 }
+.portal-card.theme-geography:hover::after { background: #0284C7; }
+.portal-card.theme-geography {
+  border-color: rgba(2, 132, 199, 0.25);
+  background: linear-gradient(180deg, var(--surface) 0%, var(--bg-alt) 100%);
+}
 .portal-card.theme-deck:hover::after { background: var(--teal); }
 .portal-card.theme-deck {
   border-color: rgba(8, 145, 178, 0.25);
@@ -465,6 +470,13 @@ html[data-theme="dark"] .status-badge.live-polity {
 }
 html[data-theme="dark"] .status-badge.live-bihar {
   color: #FBBF24;
+}
+.status-badge.live-geography {
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284C7;
+}
+html[data-theme="dark"] .status-badge.live-geography {
+  color: #38BDF8;
 }
 .status-badge.live-deck {
   background: var(--teal-soft);
@@ -572,6 +584,14 @@ html[data-theme="dark"] .status-badge.live-bihar {
   color: #FFFFFF;
 }
 .btn-cta.btn-bihar:hover {
+  filter: brightness(1.1);
+  transform: translateX(1px);
+}
+.btn-cta.btn-geo {
+  background: #0284C7;
+  color: #FFFFFF;
+}
+.btn-cta.btn-geo:hover {
   filter: brightness(1.1);
   transform: translateX(1px);
 }
@@ -684,7 +704,7 @@ html[data-theme="dark"] .status-badge.live-bihar {
     </div>
     <div class="stats-strip">
       <div class="stat-box">
-        <div class="stat-val c-navy">8</div>
+        <div class="stat-val c-navy">9</div>
         <div class="stat-lbl">PYQ Sets</div>
       </div>
       <div class="stat-box">
@@ -692,7 +712,7 @@ html[data-theme="dark"] .status-badge.live-bihar {
         <div class="stat-lbl">Theory Notes</div>
       </div>
       <div class="stat-box">
-        <div class="stat-val c-emerald">2,470</div>
+        <div class="stat-val c-emerald">3,058</div>
         <div class="stat-lbl">Verified MCQs</div>
       </div>
     </div>
@@ -704,12 +724,13 @@ html[data-theme="dark"] .status-badge.live-bihar {
   <nav class="nav-bar-inner" aria-label="Portal Filtering and Search">
     <div class="search-field">
       <span class="search-icon">✦</span>
-      <input type="search" id="portalSearch" class="search-input" placeholder="Search modules, notes, topics (e.g. Modern History, Bihar Special, Polity)..." aria-label="Search modules">
+      <input type="search" id="portalSearch" class="search-input" placeholder="Search modules, notes, topics (e.g. Modern History, Geography, Polity)..." aria-label="Search modules">
     </div>
     <div class="filter-pills" role="tablist">
       <button class="pill-btn" data-filter="all" aria-pressed="true">All Modules</button>
       <button class="pill-btn" data-filter="history" aria-pressed="false">History</button>
       <button class="pill-btn" data-filter="science" aria-pressed="false">General Science</button>
+      <button class="pill-btn" data-filter="geography" aria-pressed="false">Geography</button>
       <button class="pill-btn" data-filter="notes" aria-pressed="false">Flashcards &amp; Notes</button>
       <button class="pill-btn" data-filter="bihar" aria-pressed="false">Bihar Special</button>
       <button class="pill-btn" data-filter="polity" aria-pressed="false">Polity &amp; Economy</button>
@@ -830,7 +851,26 @@ html[data-theme="dark"] .status-badge.live-bihar {
       </div>
     </article>
 
-    <!-- 6. BIOLOGY PYQ (Active - 227 Questions) -->
+    <!-- 6. INDIAN & WORLD GEOGRAPHY PYQ (Active - 588 Questions) -->
+    <article class="portal-card theme-geography" data-category="geography">
+      <div class="status-badge live-geography">
+        <span class="pulse-dot"></span> Active Set · 588 MCQs
+      </div>
+      <h3 class="card-h">
+        <a href="Geography_PYQ_BPSC.html" title="Geography PYQ">Indian &amp; World Geography PYQ</a>
+      </h3>
+      <p class="card-summary">
+        Physical divisions of India, river basins &amp; drainage systems, monsoons &amp; climate, soil classification, mineral resources, transport networks, world continents, oceans, and ecology.
+      </p>
+      <div class="card-foot">
+        <span>38th to 71st BPSC Chapterwise (1992–2025)</span>
+        <a href="Geography_PYQ_BPSC.html" class="btn-cta btn-geo" title="Geography PYQ">
+          Practice PYQs &rarr;
+        </a>
+      </div>
+    </article>
+
+    <!-- 7. BIOLOGY PYQ (Active - 227 Questions) -->
     <article class="portal-card theme-biology" data-category="science">
       <div class="status-badge live-biology">
         <span class="pulse-dot"></span> Active Set · 227 MCQs
@@ -849,7 +889,7 @@ html[data-theme="dark"] .status-badge.live-bihar {
       </div>
     </article>
 
-    <!-- 7. CHEMISTRY PYQ (Active - 152 Questions) -->
+    <!-- 8. CHEMISTRY PYQ (Active - 152 Questions) -->
     <article class="portal-card theme-chemistry" data-category="science">
       <div class="status-badge live-chemistry">
         <span class="pulse-dot"></span> Active Set · 152 MCQs
@@ -868,7 +908,7 @@ html[data-theme="dark"] .status-badge.live-bihar {
       </div>
     </article>
 
-    <!-- 8. PHYSICS PYQ (Active - 144 Questions) -->
+    <!-- 9. PHYSICS PYQ (Active - 144 Questions) -->
     <article class="portal-card theme-physics" data-category="science">
       <div class="status-badge live-physics">
         <span class="pulse-dot"></span> Active Set · 144 MCQs
@@ -884,19 +924,6 @@ html[data-theme="dark"] .status-badge.live-bihar {
         <a href="Physics_PYQ_MCQ_BPSC_UPPCS.html" class="btn-cta btn-physics" title="Physics PYQ">
           Practice PYQs &rarr;
         </a>
-      </div>
-    </article>
-
-    <!-- 9. INDIAN & WORLD GEOGRAPHY -->
-    <article class="portal-card" data-category="bihar">
-      <div class="status-badge upcoming">Upcoming</div>
-      <h3 class="card-h">Indian &amp; World Geography</h3>
-      <p class="card-summary">
-        Physiography of India, river basins, monsoon mechanics, natural vegetation, mineral distribution, mountain passes, world geography, and census data.
-      </p>
-      <div class="card-foot">
-        <span>~220+ MCQs</span>
-        <button class="btn-cta btn-off" disabled>In Queue</button>
       </div>
     </article>
 
