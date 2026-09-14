@@ -409,6 +409,11 @@ html[data-theme="dark"] .nav-bar-inner {
   border-color: rgba(99, 102, 241, 0.22);
   background: linear-gradient(180deg, var(--surface) 0%, var(--bg-alt) 100%);
 }
+.portal-card.theme-bihar:hover::after { background: #F59E0B; }
+.portal-card.theme-bihar {
+  border-color: rgba(245, 158, 11, 0.25);
+  background: linear-gradient(180deg, var(--surface) 0%, var(--bg-alt) 100%);
+}
 .portal-card.theme-deck:hover::after { background: var(--teal); }
 .portal-card.theme-deck {
   border-color: rgba(8, 145, 178, 0.25);
@@ -453,6 +458,13 @@ html[data-theme="dark"] .status-badge.live-physics {
 }
 html[data-theme="dark"] .status-badge.live-polity {
   color: #818CF8;
+}
+.status-badge.live-bihar {
+  background: rgba(245, 158, 11, 0.14);
+  color: #B45309;
+}
+html[data-theme="dark"] .status-badge.live-bihar {
+  color: #FBBF24;
 }
 .status-badge.live-deck {
   background: var(--teal-soft);
@@ -552,6 +564,14 @@ html[data-theme="dark"] .status-badge.live-polity {
   color: #FFFFFF;
 }
 .btn-cta.btn-polity:hover {
+  filter: brightness(1.1);
+  transform: translateX(1px);
+}
+.btn-cta.btn-bihar {
+  background: #D97706;
+  color: #FFFFFF;
+}
+.btn-cta.btn-bihar:hover {
   filter: brightness(1.1);
   transform: translateX(1px);
 }
@@ -664,7 +684,7 @@ html[data-theme="dark"] .status-badge.live-polity {
     </div>
     <div class="stats-strip">
       <div class="stat-box">
-        <div class="stat-val c-navy">7</div>
+        <div class="stat-val c-navy">8</div>
         <div class="stat-lbl">PYQ Sets</div>
       </div>
       <div class="stat-box">
@@ -672,7 +692,7 @@ html[data-theme="dark"] .status-badge.live-polity {
         <div class="stat-lbl">Theory Notes</div>
       </div>
       <div class="stat-box">
-        <div class="stat-val c-emerald">1,867</div>
+        <div class="stat-val c-emerald">2,470</div>
         <div class="stat-lbl">Verified MCQs</div>
       </div>
     </div>
@@ -684,7 +704,7 @@ html[data-theme="dark"] .status-badge.live-polity {
   <nav class="nav-bar-inner" aria-label="Portal Filtering and Search">
     <div class="search-field">
       <span class="search-icon">✦</span>
-      <input type="search" id="portalSearch" class="search-input" placeholder="Search modules, notes, topics (e.g. Modern History, Polity, Physics)..." aria-label="Search modules">
+      <input type="search" id="portalSearch" class="search-input" placeholder="Search modules, notes, topics (e.g. Modern History, Bihar Special, Polity)..." aria-label="Search modules">
     </div>
     <div class="filter-pills" role="tablist">
       <button class="pill-btn" data-filter="all" aria-pressed="true">All Modules</button>
@@ -772,7 +792,26 @@ html[data-theme="dark"] .status-badge.live-polity {
       </div>
     </article>
 
-    <!-- 4. INDIAN POLITY & CONSTITUTION PYQ (Active - 377 Questions) -->
+    <!-- 4. BIHAR SPECIAL PYQ (Active - 603 Questions) -->
+    <article class="portal-card theme-bihar" data-category="bihar">
+      <div class="status-badge live-bihar">
+        <span class="pulse-dot"></span> Active Set · 603 MCQs
+      </div>
+      <h3 class="card-h">
+        <a href="bihar_pyq_mcq.html" title="Bihar Special PYQ">Bihar Special: State-Based PYQ</a>
+      </h3>
+      <p class="card-summary">
+        Comprehensive coverage of Bihar history (1857, Champaran, Kisan Sabha, Quit India), state polity, physical geography, soil systems, rivers, minerals, agriculture, and census data.
+      </p>
+      <div class="card-foot">
+        <span>37th to 71st BPSC &amp; TRE (1991–2025)</span>
+        <a href="bihar_pyq_mcq.html" class="btn-cta btn-bihar" title="Bihar Special PYQ">
+          Practice PYQs &rarr;
+        </a>
+      </div>
+    </article>
+
+    <!-- 5. INDIAN POLITY & CONSTITUTION PYQ (Active - 377 Questions) -->
     <article class="portal-card theme-polity" data-category="polity">
       <div class="status-badge live-polity">
         <span class="pulse-dot"></span> Active Set · 377 MCQs
@@ -791,7 +830,7 @@ html[data-theme="dark"] .status-badge.live-polity {
       </div>
     </article>
 
-    <!-- 5. BIOLOGY PYQ (Active - 227 Questions) -->
+    <!-- 6. BIOLOGY PYQ (Active - 227 Questions) -->
     <article class="portal-card theme-biology" data-category="science">
       <div class="status-badge live-biology">
         <span class="pulse-dot"></span> Active Set · 227 MCQs
@@ -810,7 +849,7 @@ html[data-theme="dark"] .status-badge.live-polity {
       </div>
     </article>
 
-    <!-- 6. CHEMISTRY PYQ (Active - 152 Questions) -->
+    <!-- 7. CHEMISTRY PYQ (Active - 152 Questions) -->
     <article class="portal-card theme-chemistry" data-category="science">
       <div class="status-badge live-chemistry">
         <span class="pulse-dot"></span> Active Set · 152 MCQs
@@ -829,7 +868,7 @@ html[data-theme="dark"] .status-badge.live-polity {
       </div>
     </article>
 
-    <!-- 7. PHYSICS PYQ (Active - 144 Questions) -->
+    <!-- 8. PHYSICS PYQ (Active - 144 Questions) -->
     <article class="portal-card theme-physics" data-category="science">
       <div class="status-badge live-physics">
         <span class="pulse-dot"></span> Active Set · 144 MCQs
@@ -845,19 +884,6 @@ html[data-theme="dark"] .status-badge.live-polity {
         <a href="Physics_PYQ_MCQ_BPSC_UPPCS.html" class="btn-cta btn-physics" title="Physics PYQ">
           Practice PYQs &rarr;
         </a>
-      </div>
-    </article>
-
-    <!-- 8. BIHAR SPECIAL -->
-    <article class="portal-card" data-category="bihar">
-      <div class="status-badge weighted">Core Weightage (~25 Qs)</div>
-      <h3 class="card-h">Bihar Special: History, Geo &amp; Economy</h3>
-      <p class="card-summary">
-        1857 in Bihar, Babu Kunwar Singh, Bihar Kisan Sabha, drainage networks, soil zones, mineral belts, state budget highlights, and socio-economic indices.
-      </p>
-      <div class="card-foot">
-        <span>~280+ MCQs</span>
-        <button class="btn-cta btn-off" disabled>In Queue</button>
       </div>
     </article>
 
@@ -1003,8 +1029,8 @@ html[data-theme="dark"] .status-badge.live-polity {
       <div class="bar-chunk" style="width:20%;background:#0D9488" title="General Science: ~30 Qs"></div>
       <div class="bar-chunk" style="width:20%;background:#D97706" title="Current Affairs: ~30 Qs"></div>
       <div class="bar-chunk" style="width:14%;background:#9E2B25" title="Bihar Specific: ~20 Qs"></div>
-      <div class="bar-chunk" style="width:8%;background:#4F46E5" title="Indian Polity: ~10 Qs"></div>
-      <div class="bar-chunk" style="width:8%;background:#64748B" title="Economy: ~10 Qs"></div>
+      <div class="bar-chunk" style="width:8%;background:#64748B" title="Indian Polity: ~10 Qs"></div>
+      <div class="bar-chunk" style="width:8%;background:#4F46E5" title="Economy: ~10 Qs"></div>
       <div class="bar-chunk" style="width:6%;background:#0891B2" title="CSAT / Aptitude: ~10 Qs"></div>
     </div>
     <div class="breakdown-matrix">
@@ -1012,8 +1038,8 @@ html[data-theme="dark"] .status-badge.live-polity {
       <div class="matrix-item"><span class="matrix-dot" style="background:#0D9488"></span><strong>General Science:</strong> ~30 Qs</div>
       <div class="matrix-item"><span class="matrix-dot" style="background:#D97706"></span><strong>Current Affairs:</strong> ~30 Qs</div>
       <div class="matrix-item"><span class="matrix-dot" style="background:#9E2B25"></span><strong>Bihar Special:</strong> ~20 Qs</div>
-      <div class="matrix-item"><span class="matrix-dot" style="background:#4F46E5"></span><strong>Indian Polity:</strong> ~10 Qs</div>
-      <div class="matrix-item"><span class="matrix-dot" style="background:#64748B"></span><strong>Economy:</strong> ~10 Qs</div>
+      <div class="matrix-item"><span class="matrix-dot" style="background:#64748B"></span><strong>Indian Polity:</strong> ~10 Qs</div>
+      <div class="matrix-item"><span class="matrix-dot" style="background:#4F46E5"></span><strong>Economy:</strong> ~10 Qs</div>
       <div class="matrix-item"><span class="matrix-dot" style="background:#0891B2"></span><strong>Math &amp; Aptitude:</strong> ~10 Qs</div>
     </div>
   </section>
