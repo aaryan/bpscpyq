@@ -766,5 +766,23 @@ document.addEventListener('keydown', function(ev){
 build(); render();
 })();
 </script>
+
+  <!-- Home Navigation Auto-Injector -->
+<script>
+(() => {
+  const topIn = document.querySelector('.top-in');
+  if (topIn && !document.getElementById('polityHomePortalBtn')) {
+    const btn = document.createElement('a');
+    btn.id = 'polityHomePortalBtn';
+    btn.href = 'index.html';
+    btn.className = 'tbtn';
+    btn.style.cssText = 'text-decoration:none;display:inline-flex;align-items:center;gap:4px;padding:0 10px;font-size:12.5px;font-weight:600;flex:none;margin-right:2px;';
+    btn.textContent = '← Home';
+    topIn.prepend(btn);
+  }
+})();
+</script>
 </body>
+
+  
 </html>
