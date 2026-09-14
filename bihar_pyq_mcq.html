@@ -810,5 +810,26 @@ document.addEventListener('keydown', e => {
 drawRail(); syncChips(); draw();
 })();
 </script>
+
+<!-- Home Navigation Auto-Injector -->
+<script>
+(() => {
+  const topRow = document.querySelector('.top-row');
+  if (topRow && !document.getElementById('biharHomePortalBtn')) {
+    const btn = document.createElement('a');
+    btn.id = 'biharHomePortalBtn';
+    btn.href = 'index.html';
+    btn.style.cssText = 'display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 12px;border-radius:7px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);font-size:13px;font-weight:600;text-decoration:none;margin-right:4px;flex:none;transition:color .15s,border-color .15s;';
+    btn.textContent = '← Home';
+    btn.onmouseover = () => { btn.style.color = 'var(--ink)'; btn.style.borderColor = 'var(--accent)'; };
+    btn.onmouseout = () => { btn.style.color = 'var(--ink-2)'; btn.style.borderColor = 'var(--line)'; };
+    topRow.prepend(btn);
+  }
+})();
+</script>
+
 </body>
+
+
+
 </html>
