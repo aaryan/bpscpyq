@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
+<title>Modern History of India — BPSC Previous Year Questions</title>
 <script>
 document.documentElement.dataset.theme =
   (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
 </script>
-<title>Modern History of India — BPSC Previous Year Questions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
@@ -23,10 +23,12 @@ html[data-theme="light"]{
   --paper:#EDEFF3; --card:#FFFFFF; --line:#C9D0DE;
   --madder:#9E2B25; --madder-soft:#F6E4E2;
   --verdigris:#1F6B52; --verdigris-soft:#DFEDE7;
+  --amber:#8A5A0B; --amber-soft:#F7ECD8;
   --mute:#6A7590;
   --fill:#14213D; --on-fill:#FFFFFF; --fill-hover:#27437A;
   --hover:#F5F7FC; --hover-rail:#E4E8F1; --active:#E1E6F2;
   --tint:#F3F6FC; --expl:#26304A; --chipface:#FFFFFF;
+  --art-op:.07;
 }
 html[data-theme="dark"]{
   color-scheme:dark;
@@ -34,19 +36,29 @@ html[data-theme="dark"]{
   --paper:#101623; --card:#18202F; --line:#2E3A54;
   --madder:#E58C85; --madder-soft:#3B2321;
   --verdigris:#7FC7A8; --verdigris-soft:#16302A;
+  --amber:#E0B069; --amber-soft:#3A2E18;
   --mute:#96A1B9;
   --fill:#2F4A82; --on-fill:#F2F5FC; --fill-hover:#3B5B9B;
   --hover:#1F2A3D; --hover-rail:#1E2739; --active:#232F46;
   --tint:#1C2740; --expl:#CBD3E4; --chipface:#18202F;
+  --art-op:.075;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{
-  background:var(--paper);transition:background-color .18s,color .18s; color:var(--ink); font-family:var(--sans);
+  background:var(--paper); color:var(--ink); font-family:var(--sans);
   font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
+  transition:background-color .18s,color .18s;
 }
 button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 :focus-visible{outline:2px solid var(--madder);outline-offset:2px;border-radius:2px}
+
+/* ---------- artwork ---------- */
+#art{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  color:var(--indigo);opacity:var(--art-op);transition:opacity .25s}
+#art.off{opacity:0}
+#art svg{position:absolute;display:block}
+.masthead,.controls,.shell{position:relative;z-index:1}
 
 /* ---------- masthead ---------- */
 .masthead{border-bottom:1px solid var(--line);background:var(--card)}
@@ -60,6 +72,9 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 .tally-lab{font-size:11.5px;color:var(--mute);margin-top:3px}
 .tally-num.good{color:var(--verdigris)}
 .tally-num.bad{color:var(--madder)}
+.clock{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.clock.warn{color:var(--amber)}
+.clock.crit{color:var(--madder)}
 
 /* ---------- controls ---------- */
 .controls{border-bottom:1px solid var(--line);background:var(--card)}
@@ -69,6 +84,10 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
   padding:5px 13px;font-size:13.5px;color:var(--mute);transition:.15s}
 .chip:hover{border-color:var(--indigo);color:var(--ink)}
 .chip[aria-pressed="true"]{background:var(--fill);border-color:var(--fill);color:var(--on-fill)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;
+  background:var(--card)}
+.seg button{padding:5px 15px;font-size:13.5px;color:var(--mute)}
+.seg button[aria-pressed="true"]{background:var(--fill);color:var(--on-fill)}
 .sel{border:1px solid var(--line);background:var(--card);border-radius:999px;
   padding:5px 11px;font-size:13.5px;color:var(--ink);font-family:var(--sans)}
 .spacer{flex:1}
@@ -79,18 +98,19 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 /* ---------- shell ---------- */
 .shell{max-width:1180px;margin:0 auto;padding:26px 24px 64px;
   display:grid;grid-template-columns:264px 1fr;gap:36px;align-items:start}
+.shell.wide{grid-template-columns:1fr}
 
-/* ---------- timeline spine ---------- */
+/* ---------- rail: timeline ---------- */
 .spine{position:sticky;top:16px;max-height:calc(100vh - 40px);overflow-y:auto;
   padding-right:4px;scrollbar-width:thin}
-.spine-head{font-size:12px;color:var(--mute);padding:0 0 10px 0;letter-spacing:.02em}
+.spine-head{font-size:12px;color:var(--mute);padding:0 0 10px 0}
 .allbtn{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:4px;
   border:1px solid var(--line);background:var(--card);margin-bottom:14px;font-size:14px}
 .allbtn[aria-pressed="true"]{background:var(--fill);color:var(--on-fill);border-color:var(--fill)}
-.chapters{list-style:none;margin:0;padding:0 0 0 0;position:relative}
+.chapters{list-style:none;margin:0;padding:0;position:relative}
 .chapters::before{content:"";position:absolute;left:37px;top:6px;bottom:10px;
   width:1px;background:var(--indigo-soft)}
-.chap{display:grid;grid-template-columns:34px 14px 1fr;gap:0;align-items:start;
+.chap{display:grid;grid-template-columns:34px 14px 1fr;align-items:start;
   width:100%;text-align:left;padding:5px 6px 5px 0;border-radius:4px;position:relative}
 .chap:hover{background:var(--hover-rail)}
 .chap .yr{font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums;
@@ -108,18 +128,39 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 .chap[aria-pressed="true"] .dot i{background:var(--madder);border-color:var(--madder)}
 .chap.done .dot i{background:var(--indigo);border-color:var(--indigo)}
 
+/* ---------- rail: exam palette ---------- */
+.palette{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:10px}
+.pq{aspect-ratio:1;border:1px solid var(--line);border-radius:4px;background:var(--card);
+  font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--mute);
+  display:flex;align-items:center;justify-content:center}
+.pq:hover{border-color:var(--indigo)}
+.pq.seen{background:var(--hover-rail);color:var(--ink)}
+.pq.done{background:var(--verdigris-soft);border-color:var(--verdigris);color:var(--verdigris);font-weight:600}
+.pq.flag{background:var(--amber-soft);border-color:var(--amber);color:var(--amber);font-weight:600}
+.pq.ok{background:var(--verdigris-soft);border-color:var(--verdigris);color:var(--verdigris)}
+.pq.no{background:var(--madder-soft);border-color:var(--madder);color:var(--madder)}
+.pq.now{outline:2px solid var(--fill);outline-offset:1px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:12px;font-size:11.5px;color:var(--mute)}
+.legend i{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:5px;
+  border:1px solid var(--line);vertical-align:-1px}
+.legend .l-done{background:var(--verdigris-soft);border-color:var(--verdigris)}
+.legend .l-flag{background:var(--amber-soft);border-color:var(--amber)}
+.legend .l-wrong{background:var(--madder-soft);border-color:var(--madder)}
+.legend .l-seen{background:var(--hover-rail)}
+
 /* ---------- question ---------- */
 .stage{min-width:0}
 .qhead{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;
   justify-content:space-between;margin-bottom:12px}
 .counter{font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums}
 .counter b{color:var(--ink);font-weight:600}
+.qmeta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .src{font-size:12px;color:var(--indigo);border:1px solid var(--indigo-soft);
   background:var(--tint);border-radius:3px;padding:3px 9px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:6px;
-  padding:26px 28px}
-.stem{font-family:var(--serif);font-size:19.5px;line-height:1.6;margin:0 0 20px;
-  max-width:62ch}
+.stopwatch{font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums;
+  border:1px solid var(--line);border-radius:3px;padding:3px 9px;background:var(--card)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:26px 28px}
+.stem{font-family:var(--serif);font-size:19.5px;line-height:1.6;margin:0 0 20px;max-width:62ch}
 .listblock{margin:0 0 20px;border-left:2px solid var(--indigo-soft);padding:2px 0 2px 16px;
   display:grid;grid-template-columns:max-content 1fr;gap:5px 22px;
   font-family:var(--serif);font-size:16px;line-height:1.5;max-width:62ch}
@@ -136,6 +177,8 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
   border:1px solid var(--line);border-radius:3px;text-align:center;line-height:22px;height:24px}
 .opt .txt{font-family:var(--serif);font-size:16.5px;line-height:1.5}
 .opt .mk{font-size:15px;line-height:1.6;text-align:right}
+.opt.picked{border-color:var(--fill);background:var(--active)}
+.opt.picked .ltr{border-color:var(--fill);color:var(--ink)}
 .opt.correct{border-color:var(--verdigris);background:var(--verdigris-soft)}
 .opt.correct .ltr{border-color:var(--verdigris);color:var(--verdigris);background:var(--chipface)}
 .opt.correct .mk{color:var(--verdigris)}
@@ -144,22 +187,26 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 .opt.wrong .mk{color:var(--madder)}
 
 .verdict{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
-.verdict-h{font-size:13.5px;font-weight:600;margin:0 0 8px}
+.verdict-h{font-size:13.5px;font-weight:600;margin:0 0 8px;
+  display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
 .verdict-h.good{color:var(--verdigris)}
 .verdict-h.bad{color:var(--madder)}
 .verdict-h.void{color:var(--indigo)}
+.took{font-weight:400;color:var(--mute);font-size:12.5px;font-variant-numeric:tabular-nums}
 .expl{font-family:var(--serif);font-size:16px;line-height:1.72;color:var(--expl);
   margin:0;max-width:68ch;white-space:pre-line}
 .borrowed{font-size:12px;color:var(--mute);margin:8px 0 0;font-style:italic}
-.hidden{display:none}
 
-.navrow{display:flex;gap:10px;align-items:center;margin-top:18px}
+.navrow{display:flex;gap:10px;align-items:center;margin-top:18px;flex-wrap:wrap}
 .nav{border:1px solid var(--line);background:var(--card);border-radius:5px;
   padding:9px 18px;font-size:14px;transition:.12s}
 .nav:hover:not(:disabled){border-color:var(--indigo);background:var(--hover)}
 .nav:disabled{opacity:.4;cursor:default}
 .nav.primary{background:var(--fill);color:var(--on-fill);border-color:var(--fill)}
 .nav.primary:hover{background:var(--fill-hover);border-color:var(--fill-hover)}
+.nav.flag[aria-pressed="true"]{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+.nav.danger{border-color:var(--madder);color:var(--madder)}
+.nav.danger:hover{background:var(--madder-soft);border-color:var(--madder)}
 .save{margin-left:auto;font-size:14px;color:var(--mute);border:1px solid var(--line);
   background:var(--card);border-radius:5px;padding:9px 14px}
 .save[aria-pressed="true"]{color:var(--madder);border-color:var(--madder);background:var(--madder-soft)}
@@ -168,6 +215,41 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
   padding:44px 28px;text-align:center}
 .empty h2{font-family:var(--serif);font-weight:400;font-size:21px;margin:0 0 8px}
 .empty p{color:var(--mute);font-size:14.5px;margin:0}
+
+/* ---------- exam setup ---------- */
+.setup{background:var(--card);border:1px solid var(--line);border-radius:6px;
+  padding:28px;max-width:720px}
+.setup h2{font-family:var(--serif);font-weight:400;font-size:23px;margin:0 0 6px}
+.setup .lede{color:var(--mute);font-size:14.5px;margin:0 0 24px;max-width:58ch}
+.field{margin-bottom:20px}
+.field > label{display:block;font-size:13px;font-weight:600;margin-bottom:8px}
+.field .note{font-size:12.5px;color:var(--mute);margin-top:7px}
+.opts-row{display:flex;flex-wrap:wrap;gap:7px}
+.orb{border:1px solid var(--line);background:var(--card);border-radius:5px;
+  padding:7px 15px;font-size:14px;color:var(--mute)}
+.orb:hover{border-color:var(--indigo);color:var(--ink)}
+.orb[aria-pressed="true"]{background:var(--fill);border-color:var(--fill);color:var(--on-fill)}
+
+/* ---------- results ---------- */
+.res{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:28px}
+.res h2{font-family:var(--serif);font-weight:400;font-size:23px;margin:0 0 20px}
+.scorebig{display:flex;gap:34px;flex-wrap:wrap;align-items:flex-end;
+  padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.scorebig .big{font-size:44px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.scorebig .of{font-size:14px;color:var(--mute);margin-top:6px}
+.statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:18px 20px}
+.stat .v{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat .k{font-size:11.5px;color:var(--mute);margin-top:4px}
+.breakdown{margin-top:26px;border-top:1px solid var(--line);padding-top:20px}
+.breakdown h3{font-size:13px;font-weight:600;margin:0 0 12px}
+.brow{display:grid;grid-template-columns:1fr 62px 52px;gap:12px;align-items:center;
+  font-size:13.5px;padding:6px 0;border-bottom:1px solid var(--line)}
+.brow:last-child{border-bottom:none}
+.brow .bs{color:var(--mute);font-variant-numeric:tabular-nums;text-align:right}
+.brow .bb{height:4px;background:var(--indigo-soft);border-radius:3px;overflow:hidden}
+.brow .bb span{display:block;height:100%;background:var(--verdigris)}
+.timeout{background:var(--amber-soft);border:1px solid var(--amber);color:var(--amber);
+  border-radius:5px;padding:10px 14px;font-size:13.5px;margin-bottom:20px}
 
 @media (max-width:900px){
   .shell{grid-template-columns:1fr;gap:0;padding:18px 16px 56px}
@@ -179,11 +261,15 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
     display:flex;justify-content:space-between;align-items:center;
     border-bottom:1px solid var(--line);margin-bottom:14px}
   .masthead-in,.controls-in{padding-left:16px;padding-right:16px}
-  .card{padding:20px 18px}
+  .card,.setup,.res{padding:20px 18px}
   .stem{font-size:18px}
   .opt{grid-template-columns:24px 1fr 18px;padding:10px 12px}
   .title{font-size:21px}
   .tally{gap:16px}
+  .clock{font-size:26px}
+  .palette{grid-template-columns:repeat(8,1fr)}
+  .scorebig .big{font-size:36px}
+  #art svg{transform:scale(.68)}
 }
 @media (min-width:901px){.spine-close{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -191,45 +277,105 @@ button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 </head>
 <body>
 
+<div id="art" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="m-charkha" viewBox="0 0 120 120">
+ <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="44" cy="64" r="33"/><circle cx="44" cy="64" r="6.5"/>
+  <path d="M11 64H77M15.4 47.5 72.6 80.5M27.5 35.4 60.5 92.6M44 31V97M60.5 35.4 27.5 92.6M72.6 47.5 15.4 80.5"/>
+  <path d="M8 104h100"/><path d="M22 104 40 70M62 104 48 70"/>
+  <path d="M97 104V74"/><circle cx="97" cy="67" r="6.5"/>
+  <path d="M44 31C64 36 86 50 93 61"/><path d="M103 64 116 72"/>
+  <circle cx="63" cy="45" r="3.4"/>
+ </g></symbol>
+<symbol id="m-gandhi" viewBox="0 0 120 120">
+ <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M40 40c0-15 9-24 20-24s20 9 20 24c0 13-9 22-20 22s-20-9-20-22Z"/>
+  <path d="M40 34c-5-1-8 2-8 6s3 8 8 8"/><path d="M80 34c5-1 8 2 8 6s-3 8-8 8"/>
+  <circle cx="51" cy="40" r="7.5"/><circle cx="69" cy="40" r="7.5"/>
+  <path d="M58.5 40h3"/><path d="M43.5 39 40 38M76.5 39 80 38"/>
+  <path d="M55 50c3 2 7 2 10 0"/><path d="M54 56c4 2 8 2 12 0"/>
+  <path d="M48 60 44 74M72 60l4 14"/>
+  <path d="M44 74c-12 6-19 17-21 32"/><path d="M76 74c12 6 19 17 21 32"/>
+  <path d="M44 74c6 10 10 18 12 32"/><path d="M76 74c-8 6-14 10-20 12"/>
+  <path d="M56 86 60 106"/>
+ </g></symbol>
+<symbol id="m-jhansi" viewBox="0 0 120 120">
+ <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M26 66C24 36 40 16 60 16s36 20 34 50"/>
+  <path d="M26 66c0 14 3 26 6 38M94 66c0 14-3 26-6 38"/>
+  <path d="M43 42c1-13 8-20 17-20s16 7 17 20"/>
+  <path d="M43 42c0 13 8 22 17 22s17-9 17-22"/>
+  <circle cx="60" cy="29" r="2.6"/>
+  <path d="M50 42c2-2 5-2 7 0M63 42c2-2 5-2 7 0"/><path d="M57 52c2 1 4 1 6 0"/>
+  <circle cx="39" cy="50" r="3.4"/><circle cx="81" cy="50" r="3.4"/>
+  <path d="M52 63 50 72M68 63l2 9"/>
+  <path d="M50 72c-11 4-18 14-20 32M70 72c11 4 18 14 20 32"/>
+  <path d="M52 70c3 7 8 11 14 11"/><path d="M36 88c8 6 16 9 24 9"/>
+  <path d="M96 34 116 12"/><path d="M92 38l6 6"/><path d="M88 44l10-10"/>
+ </g></symbol>
+<symbol id="m-clive" viewBox="0 0 120 120">
+ <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M18 46c6-4 12-14 16-20 6-8 16-12 26-12s20 4 26 12c4 6 10 16 16 20-10 6-26 9-42 9s-32-3-42-9Z"/>
+  <path d="M40 40c4-10 11-16 20-16s16 6 20 16"/><circle cx="34" cy="38" r="4"/>
+  <path d="M44 54c1 11 7 19 16 19s15-8 16-19"/>
+  <path d="M50 70 48 80M70 70l2 10"/><path d="M62 73c4 4 7 9 8 15"/>
+  <path d="M48 80c-13 4-22 13-24 26"/><path d="M72 80c13 4 22 13 24 26"/>
+  <path d="M48 80 60 96 72 80"/><path d="M60 96v14"/>
+  <path d="M30 92c-5 1-8 4-9 8M90 92c5 1 8 4 9 8"/>
+ </g></symbol>
+<symbol id="m-bose" viewBox="0 0 120 120">
+ <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M36 34c0-8 11-14 24-14s24 6 24 14v4H36Z"/><path d="M32 38h56l-4 7H36Z"/>
+  <path d="M42 45c0 14 8 25 18 25s18-11 18-25"/>
+  <circle cx="51" cy="52" r="6"/><circle cx="69" cy="52" r="6"/>
+  <path d="M57 52h6"/><path d="M45 50 40 48M75 50l5-2"/>
+  <path d="M50 68 48 78M70 68l2 10"/>
+  <path d="M48 78c-14 4-24 13-26 26"/><path d="M72 78c14 4 24 13 26 26"/>
+  <path d="M48 78 60 94 72 78"/><path d="M60 94v16"/>
+ </g></symbol>
+<symbol id="m-ship" viewBox="0 0 120 120">
+ <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M14 84h92c-6 12-20 18-46 18s-40-6-46-18Z"/><path d="M18 90h84"/>
+  <path d="M36 84V26M62 84V10M88 84V30"/>
+  <path d="M36 28c14 3 17 11 17 11-6 4-17 4-17 4ZM36 50c16 3 20 11 20 11-7 4-20 4-20 4Z"/>
+  <path d="M62 14c16 3 20 12 20 12-7 4-20 4-20 4ZM62 38c18 3 23 12 23 12-8 4-23 4-23 4ZM62 62c15 3 19 10 19 10-7 4-19 4-19 4Z"/>
+  <path d="M88 32c-12 3-15 10-15 10 6 4 15 4 15 4Z"/>
+  <path d="M62 10V4h14l-4 4 4 4H62Z"/>
+  <path d="M6 108c6-4 10-4 16 0s10 4 16 0 10-4 16 0 10 4 16 0 10-4 16 0 10 4 16 0"/>
+ </g></symbol>
+<symbol id="m-bhagat" viewBox="0 0 120 120">
+ <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M30 40c2-12 14-20 30-20s28 8 30 20c-6 4-18 6-30 6s-24-2-30-6Z"/>
+  <path d="M42 44c0 13 8 24 18 24s18-11 18-24"/>
+  <path d="M48 52c4-2 8-2 11 0M70 52c-3-2-6-2-9 0"/><path d="M54 64c4 2 8 2 12 0"/>
+  <path d="M50 67 48 78M70 67l2 11"/>
+  <path d="M48 78c-14 4-24 13-26 26"/><path d="M72 78c14 4 24 13 26 26"/>
+  <path d="M48 78 60 92 72 78"/><path d="M60 92v18"/>
+ </g></symbol>
+<symbol id="m-scales" viewBox="0 0 120 120">
+ <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M60 14v88"/><path d="M20 30h80"/><circle cx="60" cy="22" r="5"/>
+  <path d="M20 30 8 58h24ZM100 30 88 58h24Z"/><path d="M20 30v6M100 30v6"/>
+  <path d="M40 102h40"/><path d="M50 102c0-8 4-12 10-12s10 4 10 12"/>
+ </g></symbol>
+</defs></svg>
+
 <header class="masthead">
   <div class="masthead-in">
     <div>
       <h1 class="title">Modern History of India</h1>
-      <p class="subtitle">BPSC Prelims previous-year questions · <span id="totalQ"></span> questions · exams 1992–2025</p>
+      <p class="subtitle">BPSC Prelims previous-year questions, pages 55–150 · <span id="totalQ"></span> questions · exams 1992–2025</p>
     </div>
-    <div class="tally">
-      <div class="tally-item"><div class="tally-num good" id="tCorrect">0</div><div class="tally-lab">correct</div></div>
-      <div class="tally-item"><div class="tally-num bad" id="tWrong">0</div><div class="tally-lab">wrong</div></div>
-      <div class="tally-item"><div class="tally-num" id="tSeen">0</div><div class="tally-lab">attempted</div></div>
-    </div>
+    <div class="tally" id="tally"></div>
   </div>
 </header>
 
-<div class="controls">
-  <div class="controls-in">
-    <button class="chip" id="chapToggle">Chapters</button>
-    <button class="chip" id="fUnseen" aria-pressed="false">Unattempted only</button>
-    <button class="chip" id="fWrong" aria-pressed="false">My mistakes</button>
-    <button class="chip" id="fSaved" aria-pressed="false">Saved</button>
-    <button class="chip" id="fShuffle" aria-pressed="false">Shuffle</button>
-    <select class="sel" id="fYear" aria-label="Filter by exam year"></select>
-    <span class="spacer"></span>
-    <button class="chip" id="themeBtn" type="button">Dark</button>
-    <button class="reset" id="reset">Clear progress</button>
-  </div>
-</div>
+<div class="controls"><div class="controls-in" id="controls"></div></div>
 
-<main class="shell">
-  <nav class="spine" id="spine" aria-label="Chapters">
-    <div class="spine-close">
-      <strong style="font-size:15px">Chapters</strong>
-      <button class="chip" id="spineClose">Close</button>
-    </div>
-    <div class="spine-head">1498 &rarr; 1947, in the order the book teaches them</div>
-    <button class="allbtn" id="allChapters" aria-pressed="true">All chapters</button>
-    <ul class="chapters" id="chapList"></ul>
-  </nav>
-
+<main class="shell" id="shell">
+  <nav class="spine" id="spine" aria-label="Navigation"></nav>
   <section class="stage" id="stage" aria-live="polite"></section>
 </main>
 
@@ -238,56 +384,95 @@ const DATA = {"chapters":[{"id":0,"name":"Advent of European Companies","short":
 const CH = DATA.chapters, Q = DATA.questions;
 document.getElementById('totalQ').textContent = Q.length;
 
-/* ---------- progress store ---------- */
 const KEY = 'bpsc-modern-history-v1';
-let P = { ans:{}, saved:{} };
-let memoryOnly = false;
+const THEME_KEY = KEY + ':theme';
+const ART_KEY = KEY + ':art';
+const hasStore = !!(window.storage && typeof window.storage.get === 'function'
+                                   && typeof window.storage.set === 'function');
+let memoryOnly = !hasStore;
+let P = { ans:{}, saved:{}, times:{} };
 
-async function loadProgress(){
-  try{
-    const r = await window.storage.get(KEY);
-    if(r && r.value){ const v = JSON.parse(r.value); P.ans = v.ans||{}; P.saved = v.saved||{}; }
-  }catch(e){ /* nothing stored yet, or storage unavailable */ }
+async function sget(k){
+  if(!hasStore) return null;
+  try{ const r = await window.storage.get(k); return r && r.value ? JSON.parse(r.value) : null; }
+  catch(e){ return null; }
+}
+async function sset(k, v){
+  if(!hasStore) return;
+  try{ await window.storage.set(k, JSON.stringify(v)); }catch(e){ memoryOnly = true; }
 }
 let saveTimer = null;
 function saveProgress(){
+  if(!hasStore) return;
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(async ()=>{
-    try{ await window.storage.set(KEY, JSON.stringify(P)); }
-    catch(e){ memoryOnly = true; }
-  }, 350);
+  saveTimer = setTimeout(()=>sset(KEY, P), 350);
 }
 
-/* ---------- theme ---------- */
-const THEME_KEY = KEY + ':theme';
-const themeBtn = document.getElementById('themeBtn');
+/* ---------- time helpers ---------- */
+function clock(ms){
+  const t = Math.max(0, Math.round(ms/1000));
+  const h = Math.floor(t/3600), m = Math.floor(t%3600/60), s = t%60;
+  return (h ? h+':'+String(m).padStart(2,'0') : m) + ':' + String(s).padStart(2,'0');
+}
+function dur(ms){
+  const t = Math.max(0, Math.round(ms/1000));
+  if(t < 60) return t + 's';
+  const m = Math.floor(t/60), s = t%60;
+  return s ? m+'m '+s+'s' : m+'m';
+}
+
+/* ---------- theme + artwork ---------- */
 let theme = document.documentElement.dataset.theme || 'light';
+let artOn = true;
 function applyTheme(t){
   theme = t;
   document.documentElement.dataset.theme = t;
-  themeBtn.textContent = t === 'dark' ? 'Light' : 'Dark';
-  themeBtn.setAttribute('aria-label',
-    t === 'dark' ? 'Switch to the light theme' : 'Switch to the dark theme');
+  const b = document.getElementById('themeBtn');
+  if(b){
+    b.textContent = t === 'dark' ? 'Light' : 'Dark';
+    b.setAttribute('aria-label', t === 'dark' ? 'Switch to the light theme' : 'Switch to the dark theme');
+  }
 }
-applyTheme(theme);
-themeBtn.addEventListener('click', ()=>{
-  applyTheme(theme === 'dark' ? 'light' : 'dark');
-  try{ window.storage.set(THEME_KEY, JSON.stringify(theme)); }catch(e){}
-});
-async function loadTheme(){
-  try{
-    const r = await window.storage.get(THEME_KEY);
-    const t = r && r.value ? JSON.parse(r.value) : null;
-    if(t === 'light' || t === 'dark') applyTheme(t);
-  }catch(e){ /* no saved preference; system setting stands */ }
+const SPOTS = [
+  ['m-charkha', 2, 14, 300, -8], ['m-gandhi', 79, 4, 210, 6],
+  ['m-jhansi', 63, 56, 250, -5], ['m-ship', 6, 60, 230, 4],
+  ['m-clive', 38, 22, 180, 7],   ['m-bose', 24, 76, 165, -6],
+  ['m-bhagat', 88, 42, 150, 5],  ['m-scales', 48, 82, 140, 0]
+];
+function buildArt(){
+  document.getElementById('art').innerHTML = SPOTS.map(function(s){
+    return '<svg width="'+s[3]+'" height="'+s[3]+'" style="left:'+s[1]+'%;top:'+s[2]
+      + '%;transform:rotate('+s[4]+'deg)"><use href="#'+s[0]+'"/></svg>';
+  }).join('');
+}
+function applyArt(on){
+  artOn = on;
+  document.getElementById('art').classList.toggle('off', !on);
+  const b = document.getElementById('artBtn');
+  if(b) b.setAttribute('aria-pressed', on);
 }
 
 /* ---------- state ---------- */
-let chapter = null;          // null = all
+let mode = 'practice';
+let examPhase = 'setup';
+let chapter = null;
 let shuffle = false, onlyUnseen = false, onlyWrong = false, onlySaved = false, year = 'all';
 let pool = [], pos = 0;
 let seed = 20260904;
 function rnd(){ seed = (seed*1103515245 + 12345) & 0x7fffffff; return seed/0x7fffffff; }
+function shuffled(list, s){
+  seed = s; return list.map(x=>[rnd(), x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+}
+
+let qStart = 0, ticker = null;
+const sessionStart = Date.now();
+
+const exam = {
+  ids:[], ans:{}, flags:{}, times:{},
+  start:0, durationMs:0, pos:0, negative:true,
+  count:25, minutes:0, scope:'all', timedOut:false, reviewing:false, submittedAt:0
+};
+let examTimer = null;
 
 function buildPool(keepId){
   let list = Q.filter(q=>{
@@ -298,107 +483,230 @@ function buildPool(keepId){
     if(onlyWrong){ const a=P.ans[q.id]; if(a===undefined || a===q.a) return false; }
     return true;
   });
-  if(shuffle){
-    seed = 20260904;
-    list = list.map(q=>[rnd(),q]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
-  }
-  pool = list;
-  pos = 0;
+  if(shuffle) list = shuffled(list, 20260904);
+  pool = list; pos = 0;
   if(keepId!==undefined){
     const i = pool.findIndex(q=>q.id===keepId);
     if(i>=0) pos = i;
   }
 }
 
-/* ---------- chapter spine ---------- */
-const chapList = document.getElementById('chapList');
-CH.forEach(c=>{
-  const li = document.createElement('li');
-  const b = document.createElement('button');
-  b.className = 'chap'; b.type='button'; b.setAttribute('aria-pressed','false');
-  b.dataset.c = c.id;
-  b.innerHTML = '<span class="yr"></span><span class="dot"><i></i></span>'
-    + '<span class="body"><span class="nm"></span><span class="meta"></span>'
-    + '<span class="bar"><span></span></span></span>';
-  b.querySelector('.yr').textContent = c.era;
-  b.querySelector('.nm').textContent = c.short;
-  b.addEventListener('click', ()=>{
-    chapter = (chapter===c.id) ? null : c.id;
-    buildPool(); render(); closeSpine();
+/* ---------- controls ---------- */
+function renderControls(){
+  const c = document.getElementById('controls');
+  c.innerHTML = '';
+  const seg = document.createElement('div');
+  seg.className = 'seg';
+  [['practice','Practice'],['exam','Exam']].forEach(([m,label])=>{
+    const b=document.createElement('button');
+    b.type='button'; b.textContent=label; b.setAttribute('aria-pressed', mode===m);
+    b.addEventListener('click', ()=>{
+      if(mode===m) return;
+      if(mode==='exam' && examPhase==='running'
+         && !confirm('Leave the test? Your answers on this paper will be discarded.')) return;
+      stopExamTimer();
+      mode=m;
+      if(m==='exam'){ examPhase='setup'; exam.reviewing=false; }
+      route();
+    });
+    seg.appendChild(b);
   });
-  li.appendChild(b); chapList.appendChild(li);
-});
+  c.appendChild(seg);
 
-function refreshSpine(){
-  document.getElementById('allChapters').setAttribute('aria-pressed', chapter===null);
-  chapList.querySelectorAll('.chap').forEach(b=>{
-    const id = +b.dataset.c, c = CH[id];
-    const qs = Q.filter(q=>q.c===id);
-    const done = qs.filter(q=>P.ans[q.id]!==undefined).length;
-    const ok = qs.filter(q=>P.ans[q.id]!==undefined && P.ans[q.id]===q.a).length;
-    b.setAttribute('aria-pressed', chapter===id);
-    b.classList.toggle('done', done===qs.length && qs.length>0);
-    b.querySelector('.meta').textContent = done ? done+'/'+c.n+' done · '+ok+' right' : c.n+' questions';
-    b.querySelector('.bar span').style.width = (done/c.n*100)+'%';
-  });
+  if(mode==='practice'){
+    const tog=document.createElement('button');
+    tog.className='chip'; tog.id='chapToggle'; tog.type='button'; tog.textContent='Chapters';
+    tog.addEventListener('click', ()=>document.getElementById('spine').classList.add('open'));
+    c.appendChild(tog);
+    [['fUnseen','Unattempted only',()=>onlyUnseen,v=>onlyUnseen=v],
+     ['fWrong','My mistakes',()=>onlyWrong,v=>onlyWrong=v],
+     ['fSaved','Saved',()=>onlySaved,v=>onlySaved=v],
+     ['fShuffle','Shuffle',()=>shuffle,v=>shuffle=v]
+    ].forEach(([id,label,get,set])=>{
+      const b=document.createElement('button');
+      b.className='chip'; b.id=id; b.type='button'; b.textContent=label;
+      b.setAttribute('aria-pressed', get());
+      b.addEventListener('click', ()=>{
+        set(!get());
+        const cur = (id==='fShuffle' || !pool[pos]) ? undefined : pool[pos].id;
+        buildPool(cur); route();
+      });
+      c.appendChild(b);
+    });
+    const ySel=document.createElement('select');
+    ySel.className='sel'; ySel.id='fYear'; ySel.setAttribute('aria-label','Filter by exam year');
+    const years=[...new Set(Q.map(q=>q.y).filter(Boolean))].sort((a,b)=>b-a);
+    ySel.innerHTML='<option value="all">Every exam year</option>'
+      + years.map(y=>'<option value="'+y+'"'+(String(y)===year?' selected':'')+'>'+y+'</option>').join('');
+    ySel.addEventListener('change', ()=>{ year=ySel.value; buildPool(); route(); });
+    c.appendChild(ySel);
+  } else if(examPhase==='running'){
+    const s=document.createElement('span');
+    s.className='chip'; s.style.cursor='default';
+    s.textContent = exam.negative ? 'Negative marking −1/3' : 'No negative marking';
+    c.appendChild(s);
+    const tog=document.createElement('button');
+    tog.className='chip'; tog.id='chapToggle'; tog.type='button'; tog.textContent='Question palette';
+    tog.addEventListener('click', ()=>document.getElementById('spine').classList.add('open'));
+    c.appendChild(tog);
+  }
+
+  const sp=document.createElement('span'); sp.className='spacer'; c.appendChild(sp);
+
+  const art=document.createElement('button');
+  art.className='chip'; art.id='artBtn'; art.type='button'; art.textContent='Artwork';
+  art.setAttribute('aria-pressed', artOn);
+  art.addEventListener('click', ()=>{ applyArt(!artOn); sset(ART_KEY, artOn); });
+  c.appendChild(art);
+
+  const th=document.createElement('button');
+  th.className='chip'; th.id='themeBtn'; th.type='button';
+  th.addEventListener('click', ()=>{ applyTheme(theme==='dark'?'light':'dark'); sset(THEME_KEY, theme); });
+  c.appendChild(th);
+  applyTheme(theme);
+
+  if(mode==='practice'){
+    const r=document.createElement('button');
+    r.className='reset'; r.id='reset'; r.type='button'; r.textContent='Clear progress';
+    r.addEventListener('click', ()=>{
+      if(!confirm('Clear every answer, saved question and timing?')) return;
+      P={ans:{},saved:{},times:{}}; saveProgress(); buildPool(); route();
+    });
+    c.appendChild(r);
+  }
 }
 
 /* ---------- tally ---------- */
-function refreshTally(){
-  let ok=0, bad=0;
-  for(const q of Q){
-    const a = P.ans[q.id];
-    if(a===undefined) continue;
-    if(a===q.a) ok++; else bad++;
-  }
-  document.getElementById('tCorrect').textContent = ok;
-  document.getElementById('tWrong').textContent = bad;
-  document.getElementById('tSeen').textContent = ok+bad;
+function tallyItem(num, lab, cls){
+  const d=document.createElement('div'); d.className='tally-item';
+  const n=document.createElement('div'); n.className='tally-num'+(cls?' '+cls:''); n.textContent=num;
+  const l=document.createElement('div'); l.className='tally-lab'; l.textContent=lab;
+  d.append(n,l); return d;
 }
-
-/* ---------- question view ---------- */
-const stage = document.getElementById('stage');
-
-function render(){
-  refreshSpine(); refreshTally();
-  stage.innerHTML = '';
-  if(!pool.length){
-    const d = document.createElement('div');
-    d.className = 'empty';
-    d.innerHTML = '<h2>Nothing matches these filters</h2><p></p>';
-    d.querySelector('p').textContent = 'Turn one off, or pick a different chapter, to bring questions back.';
-    stage.appendChild(d);
+function renderTally(){
+  const t=document.getElementById('tally');
+  t.innerHTML='';
+  if(mode==='exam' && examPhase!=='running') return;
+  if(mode==='exam'){
+    const d=document.createElement('div'); d.className='tally-item';
+    const n=document.createElement('div'); n.className='clock'; n.id='clockEl';
+    const l=document.createElement('div'); l.className='tally-lab'; l.textContent='time left';
+    d.append(n,l);
+    t.append(tallyItem(Object.keys(exam.ans).length+'/'+exam.ids.length,'answered'), d);
+    paintClock();
     return;
   }
-  pos = Math.max(0, Math.min(pos, pool.length-1));
-  const q = pool[pos];
-  const chosen = P.ans[q.id];
-  const answered = chosen !== undefined;
+  let ok=0,bad=0,ms=0;
+  for(const q of Q){
+    const a=P.ans[q.id];
+    if(a===undefined) continue;
+    if(a===q.a) ok++; else bad++;
+    if(P.times[q.id]) ms+=P.times[q.id];
+  }
+  const seen=ok+bad;
+  t.append(tallyItem(ok,'correct','good'), tallyItem(bad,'wrong','bad'), tallyItem(seen,'attempted'));
+  if(seen) t.append(tallyItem(dur(ms/seen),'avg / question'));
+}
+function paintClock(){
+  const el=document.getElementById('clockEl');
+  if(!el) return;
+  const left = exam.durationMs - (Date.now()-exam.start);
+  el.textContent = clock(left);
+  el.className = 'clock' + (left<=60000 ? ' crit' : left<=300000 ? ' warn' : '');
+}
 
-  const head = document.createElement('div');
-  head.className = 'qhead';
-  const cn = document.createElement('span');
-  cn.className = 'counter';
-  cn.innerHTML = '<b>'+(pos+1)+'</b> of '+pool.length+' · ';
-  cn.append(CH[q.c].short);
-  const src = document.createElement('span');
-  src.className='src'; src.textContent = q.s;
-  head.append(cn, src);
+/* ---------- rail ---------- */
+function renderRail(){
+  const rail=document.getElementById('spine'), shell=document.getElementById('shell');
+  const examView = mode==='exam' && (examPhase==='running' || exam.reviewing);
+  if(mode==='exam' && !examView){ shell.classList.add('wide'); rail.style.display='none'; return; }
+  shell.classList.remove('wide'); rail.style.display='';
+  rail.innerHTML='';
 
-  const card = document.createElement('div');
-  card.className='card';
+  const close=document.createElement('div'); close.className='spine-close';
+  const h=document.createElement('strong'); h.style.fontSize='15px';
+  h.textContent = examView ? 'Questions' : 'Chapters';
+  const cb=document.createElement('button'); cb.className='chip'; cb.type='button'; cb.textContent='Close';
+  cb.addEventListener('click', ()=>rail.classList.remove('open'));
+  close.append(h,cb); rail.appendChild(close);
 
-  const stem = document.createElement('p');
-  stem.className='stem';
-  stem.textContent = q.q;
+  if(examView){ renderPalette(rail); return; }
+
+  const head=document.createElement('div');
+  head.className='spine-head'; head.textContent='1498 → 1947, in the order the book teaches them';
+  rail.appendChild(head);
+  const all=document.createElement('button');
+  all.className='allbtn'; all.type='button'; all.textContent='All chapters';
+  all.setAttribute('aria-pressed', chapter===null);
+  all.addEventListener('click', ()=>{ chapter=null; buildPool(); rail.classList.remove('open'); route(); });
+  rail.appendChild(all);
+
+  const ul=document.createElement('ul'); ul.className='chapters';
+  CH.forEach(c=>{
+    const qs=Q.filter(q=>q.c===c.id);
+    const done=qs.filter(q=>P.ans[q.id]!==undefined).length;
+    const ok=qs.filter(q=>P.ans[q.id]!==undefined && P.ans[q.id]===q.a).length;
+    const li=document.createElement('li');
+    const b=document.createElement('button');
+    b.className='chap'+((done===c.n && c.n)?' done':''); b.type='button';
+    b.setAttribute('aria-pressed', chapter===c.id);
+    b.innerHTML='<span class="yr"></span><span class="dot"><i></i></span>'
+      +'<span class="body"><span class="nm"></span><span class="meta"></span>'
+      +'<span class="bar"><span></span></span></span>';
+    b.querySelector('.yr').textContent=c.era;
+    b.querySelector('.nm').textContent=c.short;
+    b.querySelector('.meta').textContent = done ? done+'/'+c.n+' done · '+ok+' right' : c.n+' questions';
+    b.querySelector('.bar span').style.width=(done/c.n*100)+'%';
+    b.addEventListener('click', ()=>{
+      chapter = (chapter===c.id)?null:c.id;
+      buildPool(); rail.classList.remove('open'); route();
+    });
+    li.appendChild(b); ul.appendChild(li);
+  });
+  rail.appendChild(ul);
+}
+
+function renderPalette(rail){
+  const grid=document.createElement('div'); grid.className='palette';
+  exam.ids.forEach((id,i)=>{
+    const q=Q[id];
+    const b=document.createElement('button');
+    b.className='pq'; b.type='button'; b.textContent=i+1;
+    if(exam.reviewing){
+      const a=exam.ans[id];
+      if(a===undefined) b.classList.add('seen');
+      else b.classList.add(a===q.a?'ok':'no');
+    } else {
+      if(exam.flags[id]) b.classList.add('flag');
+      else if(exam.ans[id]!==undefined) b.classList.add('done');
+      else if(exam.times[id]) b.classList.add('seen');
+    }
+    if(i===exam.pos) b.classList.add('now');
+    b.addEventListener('click', ()=>{
+      rail.classList.remove('open');
+      if(exam.reviewing){ exam.pos=i; route(); } else gotoExam(i);
+    });
+    grid.appendChild(b);
+  });
+  rail.appendChild(grid);
+  const lg=document.createElement('div'); lg.className='legend';
+  lg.innerHTML = exam.reviewing
+    ? '<span><i class="l-done"></i>correct</span><span><i class="l-wrong"></i>wrong</span><span><i class="l-seen"></i>skipped</span>'
+    : '<span><i class="l-done"></i>answered</span><span><i class="l-flag"></i>marked</span><span><i class="l-seen"></i>seen</span>';
+  rail.appendChild(lg);
+}
+
+/* ---------- shared card ---------- */
+function questionCard(q, chosen, reveal, onPick){
+  const card=document.createElement('div'); card.className='card';
+  const stem=document.createElement('p'); stem.className='stem'; stem.textContent=q.q;
   card.appendChild(stem);
 
   if(q.L && q.L.length){
-    const lb = document.createElement('div');
-    lb.className='listblock';
+    const lb=document.createElement('div'); lb.className='listblock';
     q.L.forEach(row=>{
       const isHead = row.charCodeAt(0)===0x299A;
-      const cols = (isHead?row.slice(1):row).split('\u2999');
+      const cols=(isHead?row.slice(1):row).split('\u2999');
       if(cols.length===2){
         const l=document.createElement('span'), r=document.createElement('span');
         l.textContent=cols[0].trim(); r.textContent=cols[1].trim();
@@ -413,135 +721,456 @@ function render(){
     card.appendChild(lb);
   }
   if(q.n){
-    const ins = document.createElement('p');
-    ins.className='instr'; ins.textContent = q.n;
+    const ins=document.createElement('p'); ins.className='instr'; ins.textContent=q.n;
     card.appendChild(ins);
   }
 
-  const opts = document.createElement('div');
-  opts.className='opts';
+  const wrap=document.createElement('div'); wrap.className='opts';
   q.o.forEach(([ltr,txt])=>{
-    const b = document.createElement('button');
-    b.className='opt'; b.type='button'; b.dataset.l = ltr;
-    b.innerHTML = '<span class="ltr"></span><span class="txt"></span><span class="mk"></span>';
-    b.querySelector('.ltr').textContent = ltr;
-    b.querySelector('.txt').textContent = txt;
-    if(answered){
-      b.disabled = true;
+    const b=document.createElement('button');
+    b.className='opt'; b.type='button';
+    b.innerHTML='<span class="ltr"></span><span class="txt"></span><span class="mk"></span>';
+    b.querySelector('.ltr').textContent=ltr;
+    b.querySelector('.txt').textContent=txt;
+    if(reveal){
+      b.disabled=true;
       if(ltr===q.a){ b.classList.add('correct'); b.querySelector('.mk').textContent='✓'; }
       else if(ltr===chosen){ b.classList.add('wrong'); b.querySelector('.mk').textContent='✕'; }
     } else {
-      b.addEventListener('click', ()=>{
-        P.ans[q.id] = ltr; saveProgress(); render();
-      });
+      if(ltr===chosen){ b.classList.add('picked'); b.querySelector('.mk').textContent='●'; }
+      b.addEventListener('click', ()=>onPick(ltr));
     }
-    opts.appendChild(b);
+    wrap.appendChild(b);
   });
-  card.appendChild(opts);
+  card.appendChild(wrap);
+  return card;
+}
 
-  if(answered){
-    const v = document.createElement('div');
-    v.className='verdict';
-    const h = document.createElement('p');
-    h.className='verdict-h';
-    if(q.a==='*'){ h.classList.add('void'); h.textContent='BPSC cancelled this question — no option was accepted.'; }
-    else if(chosen===q.a){ h.classList.add('good'); h.textContent='Correct.'; }
-    else { h.classList.add('bad'); h.textContent='Not this one. The answer is ('+q.a+').'; }
-    const e = document.createElement('p');
-    e.className='expl'; e.textContent = q.e;
-    v.append(h,e);
-    if(q.b){
-      const n = document.createElement('p');
-      n.className='borrowed';
-      n.textContent='The book explains this together with the preceding question; that explanation is shown above.';
-      v.appendChild(n);
-    }
-    card.appendChild(v);
+function verdictBlock(q, chosen, tookMs){
+  const v=document.createElement('div'); v.className='verdict';
+  const h=document.createElement('p'); h.className='verdict-h';
+  const label=document.createElement('span');
+  if(q.a==='*'){ h.classList.add('void'); label.textContent='BPSC cancelled this question — no option was accepted.'; }
+  else if(chosen===undefined){ h.classList.add('void'); label.textContent='Not attempted. The answer is ('+q.a+').'; }
+  else if(chosen===q.a){ h.classList.add('good'); label.textContent='Correct.'; }
+  else { h.classList.add('bad'); label.textContent='Not this one. The answer is ('+q.a+').'; }
+  h.appendChild(label);
+  if(tookMs){
+    const t=document.createElement('span'); t.className='took'; t.textContent='took '+dur(tookMs);
+    h.appendChild(t);
   }
+  const e=document.createElement('p'); e.className='expl'; e.textContent=q.e;
+  v.append(h,e);
+  if(q.b){
+    const n=document.createElement('p'); n.className='borrowed';
+    n.textContent='The book explains this together with the preceding question; that explanation is shown above.';
+    v.appendChild(n);
+  }
+  return v;
+}
 
-  const nav = document.createElement('div');
-  nav.className='navrow';
-  const prev = document.createElement('button');
+/* ---------- practice ---------- */
+function render(){
+  const stage=document.getElementById('stage');
+  stage.innerHTML='';
+  if(!pool.length){
+    const d=document.createElement('div'); d.className='empty';
+    d.innerHTML='<h2>Nothing matches these filters</h2><p></p>';
+    d.querySelector('p').textContent='Turn one off, or pick a different chapter, to bring questions back.';
+    stage.appendChild(d); return;
+  }
+  pos=Math.max(0,Math.min(pos,pool.length-1));
+  const q=pool[pos], chosen=P.ans[q.id], answered=chosen!==undefined;
+  if(!answered) qStart=Date.now();
+
+  const head=document.createElement('div'); head.className='qhead';
+  const cn=document.createElement('span'); cn.className='counter';
+  cn.innerHTML='<b>'+(pos+1)+'</b> of '+pool.length+' · ';
+  cn.append(CH[q.c].short);
+  const meta=document.createElement('div'); meta.className='qmeta';
+  const sw=document.createElement('span'); sw.className='stopwatch'; sw.id='sw';
+  sw.textContent = answered ? (P.times[q.id] ? 'took '+dur(P.times[q.id]) : '—') : '0:00';
+  const src=document.createElement('span'); src.className='src'; src.textContent=q.s;
+  meta.append(sw,src); head.append(cn,meta);
+
+  const card=questionCard(q, chosen, answered, ltr=>{
+    P.ans[q.id]=ltr; P.times[q.id]=Date.now()-qStart; saveProgress(); route();
+  });
+  if(answered) card.appendChild(verdictBlock(q, chosen, P.times[q.id]));
+
+  const nav=document.createElement('div'); nav.className='navrow';
+  const prev=document.createElement('button');
   prev.className='nav'; prev.type='button'; prev.textContent='Previous';
-  prev.disabled = pos===0;
-  prev.addEventListener('click', ()=>{ pos--; render(); });
-  const next = document.createElement('button');
+  prev.disabled=pos===0;
+  prev.addEventListener('click', ()=>{ pos--; route(); });
+  const next=document.createElement('button');
   next.className='nav'+(answered?' primary':''); next.type='button';
   next.textContent = pos===pool.length-1 ? 'Back to first' : 'Next';
-  next.addEventListener('click', ()=>{ pos = pos===pool.length-1 ? 0 : pos+1; render(); });
-  const sv = document.createElement('button');
+  next.addEventListener('click', ()=>{ pos = pos===pool.length-1?0:pos+1; route(); });
+  const sv=document.createElement('button');
   sv.className='save'; sv.type='button';
   sv.setAttribute('aria-pressed', !!P.saved[q.id]);
   sv.textContent = P.saved[q.id] ? '★ Saved' : '☆ Save';
   sv.addEventListener('click', ()=>{
     if(P.saved[q.id]) delete P.saved[q.id]; else P.saved[q.id]=1;
-    saveProgress(); render();
+    saveProgress(); route();
   });
   nav.append(prev,next,sv);
 
-  const hint = document.createElement('p');
-  hint.className='hint';
-  hint.textContent = memoryOnly
+  const hint=document.createElement('p'); hint.className='hint';
+  hint.textContent = (memoryOnly
     ? 'Keys 1–5 answer · arrow keys move between questions · progress is kept for this session only'
-    : 'Keys 1–5 answer · arrow keys move between questions · progress is saved automatically';
+    : 'Keys 1–5 answer · arrow keys move between questions · progress is saved automatically')
+    + ' · this session ' + dur(Date.now()-sessionStart);
 
-  stage.append(head, card, nav, hint);
+  stage.append(head,card,nav,hint);
+
+  if(!answered){
+    ticker=setInterval(()=>{
+      const el=document.getElementById('sw');
+      if(!el){ clearInterval(ticker); return; }
+      el.textContent=clock(Date.now()-qStart);
+    },1000);
+  }
+}
+
+/* ---------- exam setup ---------- */
+function renderExamSetup(){
+  const stage=document.getElementById('stage');
+  stage.innerHTML='';
+  const box=document.createElement('div'); box.className='setup';
+  const h=document.createElement('h2'); h.textContent='Set up a timed paper';
+  const p=document.createElement('p'); p.className='lede';
+  p.textContent='Questions are drawn at random, answers stay hidden until you submit, and the clock runs down on its own. Nothing here touches your practice progress.';
+  box.append(h,p);
+
+  const avail = (exam.scope==='chapter' && chapter!==null)
+    ? Q.filter(q=>q.c===chapter).length : Q.length;
+  if(exam.count>avail) exam.count=avail;
+
+  function field(label, note){
+    const f=document.createElement('div'); f.className='field';
+    const l=document.createElement('label'); l.textContent=label;
+    const row=document.createElement('div'); row.className='opts-row';
+    f.append(l,row);
+    if(note){ const n=document.createElement('p'); n.className='note'; n.textContent=note; f.appendChild(n); }
+    box.appendChild(f); return row;
+  }
+  function pill(row, label, on, fn){
+    const b=document.createElement('button');
+    b.className='orb'; b.type='button'; b.textContent=label;
+    b.setAttribute('aria-pressed', on);
+    b.addEventListener('click', fn); row.appendChild(b);
+  }
+
+  const r1=field('How many questions', avail+' available in the current scope');
+  [10,25,50,100,150].forEach(n=>{
+    if(n>=avail) return;
+    pill(r1, String(n), exam.count===n, ()=>{ exam.count=n; renderExamSetup(); });
+  });
+  pill(r1, 'All '+avail, exam.count>=avail, ()=>{ exam.count=avail; renderExamSetup(); });
+
+  const autoMin=Math.max(1, exam.count);
+  const r2=field('Time limit',
+    'BPSC allows roughly a minute a question. Auto gives you '+autoMin+' minute'+(autoMin===1?'':'s')+'.');
+  pill(r2, 'Auto ('+autoMin+' min)', exam.minutes===0, ()=>{ exam.minutes=0; renderExamSetup(); });
+  [10,20,30,60,90,150].forEach(m=>pill(r2, m+' min', exam.minutes===m, ()=>{ exam.minutes=m; renderExamSetup(); }));
+
+  const r3=field('Which questions');
+  pill(r3, 'Every chapter', exam.scope==='all', ()=>{ exam.scope='all'; renderExamSetup(); });
+  pill(r3, chapter!==null ? CH[chapter].short : 'Current chapter (none picked)',
+       exam.scope==='chapter', ()=>{
+         if(chapter===null){ alert('Pick a chapter in Practice mode first, then come back.'); return; }
+         exam.scope='chapter'; renderExamSetup();
+       });
+
+  const r4=field('Negative marking', 'BPSC deducts a third of a mark for each wrong answer.');
+  pill(r4, 'On (−1/3)', exam.negative, ()=>{ exam.negative=true; renderExamSetup(); });
+  pill(r4, 'Off', !exam.negative, ()=>{ exam.negative=false; renderExamSetup(); });
+
+  const nav=document.createElement('div'); nav.className='navrow';
+  const go=document.createElement('button');
+  go.className='nav primary'; go.type='button'; go.textContent='Start the paper';
+  go.addEventListener('click', startExam);
+  nav.appendChild(go); box.appendChild(nav);
+  stage.appendChild(box);
+}
+
+function startExam(){
+  let src = (exam.scope==='chapter' && chapter!==null) ? Q.filter(q=>q.c===chapter) : Q.slice();
+  src = shuffled(src, Date.now() & 0x7fffffff);
+  const n=Math.min(exam.count, src.length);
+  exam.ids=src.slice(0,n).map(q=>q.id);
+  exam.ans={}; exam.flags={}; exam.times={}; exam.pos=0;
+  exam.timedOut=false; exam.reviewing=false;
+  exam.durationMs=(exam.minutes || n)*60000;
+  exam.start=Date.now(); qStart=Date.now();
+  examPhase='running';
+  startExamTimer(); route();
+}
+function startExamTimer(){
+  stopExamTimer();
+  examTimer=setInterval(()=>{
+    paintClock();
+    if(Date.now()-exam.start >= exam.durationMs){ exam.timedOut=true; submitExam(); }
+  },1000);
+}
+function stopExamTimer(){ if(examTimer){ clearInterval(examTimer); examTimer=null; } }
+function bankTime(){
+  const id=exam.ids[exam.pos];
+  if(id===undefined) return;
+  exam.times[id]=(exam.times[id]||0)+(Date.now()-qStart);
+  qStart=Date.now();
+}
+function gotoExam(i){
+  bankTime();
+  exam.pos=Math.max(0, Math.min(i, exam.ids.length-1));
+  route();
+}
+function submitExam(){
+  bankTime(); stopExamTimer();
+  exam.submittedAt=Date.now();
+  examPhase='results'; exam.reviewing=false;
+  route();
+}
+
+/* ---------- exam running ---------- */
+function renderExamQuestion(){
+  const stage=document.getElementById('stage');
+  stage.innerHTML='';
+  const id=exam.ids[exam.pos], q=Q[id], chosen=exam.ans[id];
+
+  const head=document.createElement('div'); head.className='qhead';
+  const cn=document.createElement('span'); cn.className='counter';
+  cn.innerHTML='<b>'+(exam.pos+1)+'</b> of '+exam.ids.length;
+  const meta=document.createElement('div'); meta.className='qmeta';
+  const sw=document.createElement('span'); sw.className='stopwatch'; sw.id='sw'; sw.textContent='0:00';
+  const src=document.createElement('span'); src.className='src'; src.textContent=q.s;
+  meta.append(sw,src); head.append(cn,meta);
+
+  const card=questionCard(q, chosen, false, ltr=>{ exam.ans[id]=ltr; route(); });
+
+  const nav=document.createElement('div'); nav.className='navrow';
+  const prev=document.createElement('button');
+  prev.className='nav'; prev.type='button'; prev.textContent='Previous';
+  prev.disabled=exam.pos===0;
+  prev.addEventListener('click', ()=>gotoExam(exam.pos-1));
+  const next=document.createElement('button');
+  next.className='nav primary'; next.type='button';
+  next.textContent = exam.pos===exam.ids.length-1 ? 'Back to first' : 'Next';
+  next.addEventListener('click', ()=>gotoExam(exam.pos===exam.ids.length-1?0:exam.pos+1));
+  const flag=document.createElement('button');
+  flag.className='nav flag'; flag.type='button';
+  flag.setAttribute('aria-pressed', !!exam.flags[id]);
+  flag.textContent = exam.flags[id] ? 'Marked' : 'Mark for review';
+  flag.addEventListener('click', ()=>{
+    if(exam.flags[id]) delete exam.flags[id]; else exam.flags[id]=1;
+    route();
+  });
+  const clr=document.createElement('button');
+  clr.className='nav'; clr.type='button'; clr.textContent='Clear';
+  clr.disabled=chosen===undefined;
+  clr.addEventListener('click', ()=>{ delete exam.ans[id]; route(); });
+  const sub=document.createElement('button');
+  sub.className='nav danger'; sub.type='button'; sub.textContent='Submit paper';
+  sub.style.marginLeft='auto';
+  sub.addEventListener('click', ()=>{
+    const left=exam.ids.length-Object.keys(exam.ans).length;
+    const msg = left ? 'Submit now? '+left+' question'+(left===1?'':'s')+' still unanswered.'
+                     : 'Submit the paper?';
+    if(confirm(msg)) submitExam();
+  });
+  nav.append(prev,next,flag,clr,sub);
+
+  const hint=document.createElement('p'); hint.className='hint';
+  hint.textContent='Keys 1–5 answer · arrow keys move · M marks for review · answers stay hidden until you submit';
+
+  stage.append(head,card,nav,hint);
+  ticker=setInterval(()=>{
+    const el=document.getElementById('sw');
+    if(!el){ clearInterval(ticker); return; }
+    el.textContent=clock((exam.times[id]||0)+(Date.now()-qStart));
+  },1000);
+}
+
+/* ---------- exam results ---------- */
+function renderExamResults(){
+  if(exam.reviewing){ renderExamReview(); return; }
+  const stage=document.getElementById('stage');
+  stage.innerHTML='';
+  let ok=0,bad=0,skip=0,voidq=0;
+  const perCh={};
+  exam.ids.forEach(id=>{
+    const q=Q[id], a=exam.ans[id];
+    const c=perCh[q.c] || (perCh[q.c]={n:0,ok:0});
+    c.n++;
+    if(q.a==='*'){ voidq++; return; }
+    if(a===undefined){ skip++; return; }
+    if(a===q.a){ ok++; c.ok++; } else bad++;
+  });
+  const total=exam.ids.length-voidq;
+  const raw=ok-(exam.negative?bad/3:0);
+  const used=(exam.submittedAt||Date.now())-exam.start;
+  const spent=exam.ids.reduce((s,id)=>s+(exam.times[id]||0),0);
+  const attempted=ok+bad;
+
+  const box=document.createElement('div'); box.className='res';
+  if(exam.timedOut){
+    const t=document.createElement('div'); t.className='timeout';
+    t.textContent='Time ran out — the paper was submitted automatically.';
+    box.appendChild(t);
+  }
+  const h=document.createElement('h2'); h.textContent='Paper finished';
+  box.appendChild(h);
+
+  const sb=document.createElement('div'); sb.className='scorebig';
+  const s1=document.createElement('div');
+  s1.innerHTML='<div class="big"></div><div class="of"></div>';
+  s1.querySelector('.big').textContent=String(Math.round(raw*100)/100);
+  s1.querySelector('.of').textContent='marks out of '+total+(exam.negative?' (−1/3 applied)':'');
+  const s2=document.createElement('div');
+  s2.innerHTML='<div class="big"></div><div class="of"></div>';
+  s2.querySelector('.big').textContent = attempted ? Math.round(ok/attempted*100)+'%' : '—';
+  s2.querySelector('.of').textContent='accuracy on what you attempted';
+  sb.append(s1,s2); box.appendChild(sb);
+
+  function stat(v,k){
+    const d=document.createElement('div'); d.className='stat';
+    d.innerHTML='<div class="v"></div><div class="k"></div>';
+    d.querySelector('.v').textContent=v; d.querySelector('.k').textContent=k;
+    return d;
+  }
+  const sg=document.createElement('div'); sg.className='statgrid';
+  sg.append(
+    stat(ok,'correct'), stat(bad,'wrong'), stat(skip,'unattempted'),
+    stat(clock(used),'time on the clock'),
+    stat(exam.ids.length ? dur(spent/exam.ids.length) : '—','avg / question'),
+    stat(clock(Math.max(0, exam.durationMs-used)),'time to spare')
+  );
+  if(voidq) sg.append(stat(voidq,'cancelled by BPSC'));
+  box.appendChild(sg);
+
+  const chIds=Object.keys(perCh).map(Number)
+    .filter(c=>perCh[c].n>=2)
+    .sort((a,b)=>perCh[b].n-perCh[a].n).slice(0,12);
+  if(chIds.length>1){
+    const bd=document.createElement('div'); bd.className='breakdown';
+    const bh=document.createElement('h3'); bh.textContent='Where the marks went';
+    bd.appendChild(bh);
+    chIds.forEach(c=>{
+      const r=perCh[c];
+      const row=document.createElement('div'); row.className='brow';
+      row.innerHTML='<span class="bn"></span><span class="bb"><span></span></span><span class="bs"></span>';
+      row.querySelector('.bn').textContent=CH[c].short;
+      row.querySelector('.bb span').style.width=(r.ok/r.n*100)+'%';
+      row.querySelector('.bs').textContent=r.ok+'/'+r.n;
+      bd.appendChild(row);
+    });
+    box.appendChild(bd);
+  }
+
+  const nav=document.createElement('div'); nav.className='navrow';
+  const rev=document.createElement('button');
+  rev.className='nav primary'; rev.type='button'; rev.textContent='Review every question';
+  rev.addEventListener('click', ()=>{ exam.reviewing=true; exam.pos=0; route(); });
+  const again=document.createElement('button');
+  again.className='nav'; again.type='button'; again.textContent='New paper';
+  again.addEventListener('click', ()=>{ examPhase='setup'; route(); });
+  const back=document.createElement('button');
+  back.className='nav'; back.type='button'; back.textContent='Back to practice';
+  back.addEventListener('click', ()=>{ mode='practice'; route(); });
+  nav.append(rev,again,back); box.appendChild(nav);
+  stage.appendChild(box);
+}
+
+function renderExamReview(){
+  const stage=document.getElementById('stage');
+  stage.innerHTML='';
+  const id=exam.ids[exam.pos], q=Q[id], chosen=exam.ans[id];
+
+  const head=document.createElement('div'); head.className='qhead';
+  const cn=document.createElement('span'); cn.className='counter';
+  cn.innerHTML='<b>'+(exam.pos+1)+'</b> of '+exam.ids.length+' · ';
+  cn.append(CH[q.c].short);
+  const meta=document.createElement('div'); meta.className='qmeta';
+  const src=document.createElement('span'); src.className='src'; src.textContent=q.s;
+  meta.appendChild(src); head.append(cn,meta);
+
+  const card=questionCard(q, chosen, true, ()=>{});
+  card.appendChild(verdictBlock(q, chosen, exam.times[id]));
+
+  const nav=document.createElement('div'); nav.className='navrow';
+  const prev=document.createElement('button');
+  prev.className='nav'; prev.type='button'; prev.textContent='Previous';
+  prev.disabled=exam.pos===0;
+  prev.addEventListener('click', ()=>{ exam.pos--; route(); });
+  const next=document.createElement('button');
+  next.className='nav primary'; next.type='button';
+  next.textContent = exam.pos===exam.ids.length-1 ? 'Back to first' : 'Next';
+  next.addEventListener('click', ()=>{ exam.pos = exam.pos===exam.ids.length-1?0:exam.pos+1; route(); });
+  const sum=document.createElement('button');
+  sum.className='nav'; sum.type='button'; sum.textContent='Back to the score';
+  sum.style.marginLeft='auto';
+  sum.addEventListener('click', ()=>{ exam.reviewing=false; route(); });
+  nav.append(prev,next,sum);
+  stage.append(head,card,nav);
+}
+
+/* ---------- router ---------- */
+function route(){
+  if(ticker){ clearInterval(ticker); ticker=null; }
+  renderControls(); renderTally(); renderRail();
+  if(mode==='exam'){
+    if(examPhase==='setup') renderExamSetup();
+    else if(examPhase==='running') renderExamQuestion();
+    else renderExamResults();
+  } else render();
 }
 
 /* ---------- keyboard ---------- */
 document.addEventListener('keydown', e=>{
   if(e.target.tagName==='SELECT'||e.metaKey||e.ctrlKey||e.altKey) return;
-  if(!pool.length) return;
-  const q = pool[pos];
-  if(e.key==='ArrowRight'){ pos = Math.min(pos+1, pool.length-1); render(); e.preventDefault(); }
-  else if(e.key==='ArrowLeft'){ pos = Math.max(pos-1, 0); render(); e.preventDefault(); }
+  if(mode==='exam' && examPhase==='running'){
+    const id=exam.ids[exam.pos], q=Q[id];
+    if(e.key==='ArrowRight'){ gotoExam(exam.pos+1); e.preventDefault(); }
+    else if(e.key==='ArrowLeft'){ gotoExam(exam.pos-1); e.preventDefault(); }
+    else if(/^[1-5]$/.test(e.key)){
+      const o=q.o[+e.key-1];
+      if(o){ exam.ans[id]=o[0]; route(); e.preventDefault(); }
+    } else if(e.key==='m'||e.key==='M'){
+      if(exam.flags[id]) delete exam.flags[id]; else exam.flags[id]=1;
+      route(); e.preventDefault();
+    }
+    return;
+  }
+  if(mode==='exam' && examPhase==='results' && exam.reviewing){
+    if(e.key==='ArrowRight'){ exam.pos=Math.min(exam.pos+1,exam.ids.length-1); route(); e.preventDefault(); }
+    else if(e.key==='ArrowLeft'){ exam.pos=Math.max(exam.pos-1,0); route(); e.preventDefault(); }
+    return;
+  }
+  if(mode!=='practice' || !pool.length) return;
+  const q=pool[pos];
+  if(e.key==='ArrowRight'){ pos=Math.min(pos+1,pool.length-1); route(); e.preventDefault(); }
+  else if(e.key==='ArrowLeft'){ pos=Math.max(pos-1,0); route(); e.preventDefault(); }
   else if(/^[1-5]$/.test(e.key) && P.ans[q.id]===undefined){
-    const o = q.o[+e.key-1];
-    if(o){ P.ans[q.id]=o[0]; saveProgress(); render(); e.preventDefault(); }
+    const o=q.o[+e.key-1];
+    if(o){ P.ans[q.id]=o[0]; P.times[q.id]=Date.now()-qStart; saveProgress(); route(); e.preventDefault(); }
   }
 });
 
-/* ---------- controls ---------- */
-function toggle(btn, get, set){
-  btn.addEventListener('click', ()=>{
-    set(!get());
-    btn.setAttribute('aria-pressed', get());
-    const cur = pool[pos] ? pool[pos].id : undefined;
-    buildPool(cur); render();
-  });
-}
-toggle(document.getElementById('fUnseen'), ()=>onlyUnseen, v=>onlyUnseen=v);
-toggle(document.getElementById('fWrong'),  ()=>onlyWrong,  v=>onlyWrong=v);
-toggle(document.getElementById('fSaved'),  ()=>onlySaved,  v=>onlySaved=v);
-document.getElementById('fShuffle').addEventListener('click', e=>{
-  shuffle = !shuffle;
-  e.currentTarget.setAttribute('aria-pressed', shuffle);
-  buildPool(); render();
-});
-
-const ySel = document.getElementById('fYear');
-const years = [...new Set(Q.map(q=>q.y).filter(Boolean))].sort((a,b)=>b-a);
-ySel.innerHTML = '<option value="all">Every exam year</option>' +
-  years.map(y=>'<option value="'+y+'">'+y+'</option>').join('');
-ySel.addEventListener('change', ()=>{ year = ySel.value; buildPool(); render(); });
-
-document.getElementById('allChapters').addEventListener('click', ()=>{
-  chapter = null; buildPool(); render(); closeSpine();
-});
-document.getElementById('reset').addEventListener('click', ()=>{
-  P = { ans:{}, saved:{} }; saveProgress(); buildPool(); render();
-});
-
-const spine = document.getElementById('spine');
-function closeSpine(){ spine.classList.remove('open'); }
-document.getElementById('chapToggle').addEventListener('click', ()=>spine.classList.add('open'));
-document.getElementById('spineClose').addEventListener('click', closeSpine);
-
-/* ---------- go ---------- */
-(async ()=>{ await Promise.all([loadTheme(), loadProgress()]); buildPool(); render(); })();
+/* ---------- boot ---------- */
+(async ()=>{
+  buildArt();
+  const res = await Promise.all([sget(KEY), sget(THEME_KEY), sget(ART_KEY)]);
+  const prog=res[0], th=res[1], ar=res[2];
+  if(prog){ P.ans=prog.ans||{}; P.saved=prog.saved||{}; P.times=prog.times||{}; }
+  if(th==='light'||th==='dark') theme=th;
+  artOn = (ar===null ? true : !!ar);
+  buildPool();
+  route();
+  applyArt(artOn);
+})();
 </script>
-
-
 <!-- Home Button Auto-Injector (Control Bar Only) -->
 <script>
 (() => {
