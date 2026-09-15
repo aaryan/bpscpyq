@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background Badge -->
+  <rect width="64" height="64" rx="14" fill="#0B0F17" stroke="#333B4F" stroke-width="2"/>
+  
+  <!-- Line 1: BPSC -->
+  <text 
+    x="32" 
+    y="28" 
+    font-family="system-ui, -apple-system, sans-serif" 
+    font-weight="800" 
+    font-size="18" 
+    fill="#F1F5F9" 
+    text-anchor="middle" 
+    letter-spacing="0.5">
+    BPSC
+  </text>
+
+  <!-- Line 2: PYQ (Italic Warm Orange) -->
+  <text 
+    x="32" 
+    y="51" 
+    font-family="Georgia, serif" 
+    font-style="italic" 
+    font-weight="700" 
+    font-size="20" 
+    fill="#FB923C" 
+    text-anchor="middle">
+    PYQ
+  </text>
+</svg>
