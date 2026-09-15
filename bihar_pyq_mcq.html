@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-pattern="paint">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -9,6 +9,9 @@
   try {
     var t = localStorage.getItem('biharPYQ.theme');
     if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    var a = localStorage.getItem('biharPYQ.pattern');
+    document.documentElement.setAttribute('data-pattern',
+      (a === 'line' || a === 'off' || a === 'paint') ? a : 'paint');
   } catch (e) {}
 </script>
 <style>
@@ -88,7 +91,7 @@ a{color:var(--accent)}
 .tbtn:hover{color:var(--ink);border-color:var(--ink-3)}
 
 /* ---- main ---- */
-.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.main{flex:1;min-width:0;display:flex;flex-direction:column;position:relative;z-index:1}
 .top{
   position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);
   backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft);
@@ -252,7 +255,11 @@ kbd{
   }
   body.rail-open .rail{transform:none}
   body.rail-open .scrim{display:block;position:fixed;inset:0;background:rgba(6,7,11,.5);z-index:50}
-  .top-row{padding:9px 14px}
+  .top-row{padding:9px 14px;flex-wrap:wrap;row-gap:8px}
+  .search{order:10;flex:1 0 100%}
+  #timer{margin-left:auto}
+  .btn-exam{padding:0 11px}
+  .timer{padding:0 8px;font-size:12.5px}
   .filters{padding:0 14px 9px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .filters::-webkit-scrollbar{display:none}
   .filters::after{content:'';flex:0 0 4px}
@@ -261,6 +268,92 @@ kbd{
   .stem{font-size:18px}
 }
 @media (min-width:901px){ .only-mobile{display:none!important} }
+
+/* ---- Madhubani background ---- */
+.bgart{
+  position:fixed;inset:0;z-index:0;pointer-events:none;color:var(--accent);opacity:.055;
+  --mb-a:transparent;--mb-b:transparent;--mb-c:transparent;--mb-d:transparent;
+}
+html[data-theme="light"] .bgart{opacity:.085}
+html[data-pattern="off"] .bgart{display:none}
+html[data-pattern="paint"] .bgart{
+  opacity:.16;color:#efe0c6;--mb-a:#d9a03c;--mb-b:#b0453c;--mb-c:#35618f;--mb-d:#4f7a4c;
+}
+html[data-theme="light"][data-pattern="paint"] .bgart{
+  opacity:.17;color:#2b2118;--mb-a:#c98f2c;--mb-b:#a33c33;--mb-c:#2c5480;--mb-d:#40683f;
+}
+@media (min-width:901px){
+  html[data-pattern="paint"] .bgart{
+    -webkit-mask-image:radial-gradient(ellipse 42% 75% at 61% 48%, transparent 0 56%, #000 100%);
+            mask-image:radial-gradient(ellipse 42% 75% at 61% 48%, transparent 0 56%, #000 100%);
+  }
+}
+@media (max-width:900px){
+  html[data-pattern="paint"] .bgart{opacity:.07}
+  html[data-theme="light"][data-pattern="paint"] .bgart{opacity:.1}
+}
+
+/* ---- timer ---- */
+.timer{
+  display:flex;align-items:center;gap:6px;padding:0 11px;height:34px;border-radius:7px;
+  border:1px solid var(--line);background:var(--surface);font-size:13px;color:var(--ink-3);
+  font-variant-numeric:tabular-nums;flex:none;
+}
+.timer b{font-weight:600;color:var(--ink-2);letter-spacing:.01em}
+.timer svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+.timer.run b{color:var(--ink)}
+.timer.warn{border-color:var(--accent);color:var(--accent)} .timer.warn b{color:var(--accent)}
+.timer.crit{border-color:var(--no);color:var(--no)} .timer.crit b{color:var(--no)}
+.btn-exam{
+  height:34px;padding:0 14px;border-radius:7px;border:1px solid var(--accent);
+  background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:500;flex:none;
+}
+.btn-exam:hover{filter:brightness(1.07)}
+body.in-exam .filters,body.in-exam .search,body.in-exam #btnShuffle,body.in-exam #btnReshuffle{display:none}
+body.in-exam .fnav{display:none!important}
+
+/* ---- exam runtime ---- */
+.ex-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px;
+  padding-bottom:14px;border-bottom:1px solid var(--line-soft)}
+.ex-head .counter{min-width:auto}
+.ex-title{font-family:var(--read);font-size:17px;flex:1;min-width:0}
+.ex-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px;margin-top:14px}
+.pal{height:34px;border-radius:6px;border:1px solid var(--line);background:var(--surface);
+  font-size:12.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.pal:hover{border-color:var(--ink-3)}
+.pal.ans{background:var(--ok);border-color:var(--ok);color:#fff}
+.pal.mark{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.pal.ansmark{background:var(--ok);border-color:var(--accent);color:#fff;box-shadow:inset 0 0 0 2px var(--accent)}
+.pal.cur{outline:2px solid var(--ink);outline-offset:1px}
+.pal-key{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--ink-3);margin-top:12px}
+.pal-key span{display:flex;align-items:center;gap:6px}
+.pal-key i{width:11px;height:11px;border-radius:3px;border:1px solid var(--line);display:block;flex:none}
+.pal-key i.ans{background:var(--ok);border-color:var(--ok)}
+.pal-key i.mark{background:var(--accent);border-color:var(--accent)}
+.pal-key i.ansmark{background:var(--ok);border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+.sheet-h{font-size:12px;color:var(--ink-3);margin:30px 0 0;padding-top:18px;border-top:1px solid var(--line-soft)}
+
+/* ---- results ---- */
+.res-score{font-family:var(--read);font-size:clamp(30px,6vw,44px);line-height:1.05;margin:0}
+.res-score small{font-size:.42em;color:var(--ink-3);font-family:var(--ui);margin-left:8px}
+.res-tbl{width:100%;border-collapse:collapse;margin-top:22px;font-size:13.5px}
+.res-tbl th,.res-tbl td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line-soft);font-variant-numeric:tabular-nums}
+.res-tbl th{font-weight:500;color:var(--ink-3);font-size:11.5px}
+.res-tbl td:not(:first-child),.res-tbl th:not(:first-child){text-align:right}
+.yours{display:inline-block;margin-left:10px;font-size:11px;color:var(--ink-3)}
+
+/* ---- exam setup form ---- */
+.fset{margin:0 0 16px}
+.fset > span{display:block;font-size:11.5px;color:var(--ink-3);margin-bottom:7px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{
+  font-size:12.5px;padding:6px 12px;border-radius:7px;border:1px solid var(--line);
+  background:var(--surface);color:var(--ink-2);
+}
+.seg button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.fset input[type=number]{width:84px;padding:6px 9px;border-radius:7px;border:1px solid var(--line);background:var(--surface)}
+.note{font-size:12px;color:var(--ink-3);margin:2px 0 0;line-height:1.5}
 
 /* ---- footer nav (mobile sticky) ---- */
 .fnav{
@@ -274,6 +367,7 @@ kbd{
 </style>
 </head>
 <body>
+<div class="bgart" id="bgart" aria-hidden="true"></div>
 <div class="scrim" id="scrim"></div>
 <div class="app">
 
@@ -291,6 +385,7 @@ kbd{
       <button class="tbtn" id="btnKeys">Shortcuts</button>
       <button class="tbtn" id="btnData">Progress</button>
       <button class="tbtn" id="btnSrc">About</button>
+      <button class="tbtn" id="btnPattern" aria-label="Background art">Painted</button>
     </div>
   </aside>
 
@@ -305,9 +400,17 @@ kbd{
           <input id="q" type="search" placeholder="Search questions, options, explanations" autocomplete="off">
           <button class="clr" id="qClr" hidden aria-label="Clear search">&times;</button>
         </div>
-        <button class="icon-btn" id="btnShuffle" aria-pressed="false" aria-label="Shuffle order" title="Shuffle">
+        <button class="icon-btn" id="btnShuffle" aria-pressed="false" aria-label="Shuffle question order" title="Shuffle questions">
           <svg viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
         </button>
+        <button class="icon-btn" id="btnReshuffle" hidden aria-label="Shuffle again" title="Shuffle again">
+          <svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 5v6h-6"/></svg>
+        </button>
+        <button class="timer" id="timer" aria-label="Timer">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>
+          <b id="clock">00:00</b>
+        </button>
+        <button class="btn-exam" id="btnExam">Exam</button>
         <button class="icon-btn" id="btnTheme" aria-label="Switch theme" title="Theme">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
         </button>
@@ -368,7 +471,7 @@ function save(){ clearTimeout(saveT); saveT = setTimeout(() => {
   try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){}
 }, 200); }
 
-const view = { sec:null, i:0, filter:'all', query:'', exam:'', year:'', shuffle:false, read:false, order:[] };
+const view = { sec:null, i:0, filter:'all', query:'', exam:'', year:'', shuffle:false, seed:0, read:false, order:[] };
 
 /* ---------- helpers ---------- */
 const isRight = q => store.pick[q.id] && q.ans !== '*' && store.pick[q.id] === q.ans;
@@ -388,7 +491,7 @@ function pool(){
     a = a.filter(q => words.every(w => q.hay.indexOf(w) > -1));
   }
   if (view.shuffle){
-    const key = a.map(q => q.id).join('|');
+    const key = view.seed + '#' + a.map(q => q.id).join('|');
     if (view.orderKey !== key){
       view.orderKey = key;
       view.order = a.slice();
@@ -577,6 +680,9 @@ function drawQ(){
       ? 'The Commission found no correct option for this question.'
       : picked === '?' ? 'Answer shown — this one is not counted in your score.'
       : (picked === q.ans ? 'Correct.' : 'Not correct — the answer is (' + q.ans + ').');
+    const secs = (store.time || {})[q.id];
+    if (secs && picked !== '?') v.appendChild(el('span', 'yours', secs < 60 ? secs + 's'
+      : Math.floor(secs / 60) + 'm ' + (secs % 60) + 's'));
     const redo = el('button', 'btn', 'Try again');
     redo.style.marginLeft = 'auto';
     redo.onclick = () => { delete store.pick[q.id]; save(); drawQ(); drawRail(); };
@@ -596,6 +702,7 @@ function drawQ(){
     c.appendChild(row);
   }
   $('#fStar').textContent = store.star[q.id] ? 'Starred' : 'Star';
+  qStart = picked ? 0 : Date.now();
   window.scrollTo({ top:0, behavior:'instant' in window ? 'instant' : 'auto' });
 }
 
@@ -605,7 +712,11 @@ function iconBtn(d, label){
   b.innerHTML = '<svg viewBox="0 0 24 24"><path d="' + d + '"/></svg>';
   return b;
 }
-function choose(q, k){ store.pick[q.id] = k; store.seen[q.id] = 1; save(); drawQ(); drawRail(); }
+function choose(q, k){
+  store.pick[q.id] = k; store.seen[q.id] = 1;
+  if (qStart) { store.time = store.time || {}; store.time[q.id] = Math.round((Date.now() - qStart) / 1000); }
+  save(); drawQ(); drawRail();
+}
 function toggleStar(q){
   if (store.star[q.id]) delete store.star[q.id]; else store.star[q.id] = 1;
   save(); drawQ(); drawCounts();
@@ -666,7 +777,14 @@ function drawEmpty(c){
 
 /* ---------- nav ---------- */
 function openSec(i){ view.sec = i; view.i = 0; drawRail(); draw(); }
-function draw(){ if (view.sec === null && !view.query && view.filter === 'all' && !view.read) drawHome(); else drawQ(); drawCounts(); }
+function draw(){
+  if (EX && EX.done) { drawResult(); return; }
+  if (EX) { drawExam(); return; }
+  document.body.classList.remove('in-exam');
+  $('#btnExam').textContent = 'Exam';
+  if (view.sec === null && !view.query && view.filter === 'all' && !view.read) drawHome(); else drawQ();
+  drawCounts();
+}
 function syncChips(){
   document.querySelectorAll('#filters .chip[data-f]').forEach(b =>
     b.setAttribute('aria-pressed', b.dataset.f === view.filter ? 'true' : 'false'));
@@ -708,10 +826,12 @@ qi.oninput = () => {
 };
 $('#qClr').onclick = () => { qi.value = ''; $('#qClr').hidden = true; view.query = ''; draw(); qi.focus(); };
 $('#btnShuffle').onclick = () => {
-  view.shuffle = !view.shuffle; view.orderKey = null; view.i = 0;
+  view.shuffle = !view.shuffle; view.orderKey = null; view.seed++; view.i = 0;
   $('#btnShuffle').setAttribute('aria-pressed', view.shuffle ? 'true' : 'false');
+  $('#btnReshuffle').hidden = !view.shuffle;
   draw();
 };
+$('#btnReshuffle').onclick = () => { view.seed++; view.orderKey = null; view.i = 0; draw(); };
 $('#btnHome').onclick = () => {
   view.sec = null; view.i = 0; view.filter = 'all'; view.query = ''; view.read = false;
   qi.value = ''; $('#qClr').hidden = true;
@@ -739,6 +859,7 @@ $('#btnKeys').onclick = () => openDlg('Keyboard shortcuts', b => {
    ['Enter / Space', 'Show answer, then go to next'],
    ['→  or  N', 'Next question'], ['←  or  P', 'Previous question'],
    ['S', 'Star this question'], ['R', 'Toggle shuffle'],
+   ['M', 'Mark for review (exam mode)'], ['C', 'Clear response (exam mode)'],
    ['/', 'Search'], ['T', 'Switch theme'], ['Esc', 'Close this box']]
   .forEach(([k, d]) => { g.append(el('kbd', null, k), el('span', null, d)); });
   b.appendChild(g);
@@ -769,6 +890,22 @@ $('#btnData').onclick = () => openDlg('Progress', b => {
     store = { pick:{}, star:{}, seen:{} }; save(); drawRail(); draw(); dlg.close(); } };
   row.append(exp, imp, rst, fi);
   b.appendChild(row);
+  const hist = (store.exams || []).slice().reverse();
+  if (hist.length){
+    b.appendChild(el('p', 'sheet-h', 'Recent exams'));
+    const tb = el('table', 'res-tbl');
+    const th = el('tr');
+    ['Attempt', 'Score', 'Right', 'Wrong', 'Time'].forEach(x => th.appendChild(el('th', null, x)));
+    tb.appendChild(th);
+    hist.slice(0, 8).forEach(h => {
+      const tr = el('tr');
+      const when = new Date(h.when).toLocaleDateString(undefined, { day:'numeric', month:'short' });
+      [h.label + ' · ' + when, h.marks + '/' + h.n, h.ok, h.no, fmt(h.used)]
+        .forEach(v => tr.appendChild(el('td', null, String(v))));
+      tb.appendChild(tr);
+    });
+    b.appendChild(tb);
+  }
 });
 $('#btnSrc').onclick = () => openDlg('About', b => {
   b.appendChild(el('p', null, DATA.meta.source + '.'));
@@ -776,6 +913,499 @@ $('#btnSrc').onclick = () => openDlg('About', b => {
     ' topics. Where the book prints “see the explanation of the above question”, the referenced explanation has been copied in and labelled.'));
   b.appendChild(el('p', null, 'Questions marked “no correct option” are ones the Commission deleted or where the book judges every option wrong.'));
 });
+
+
+/* ============= Bihar background: Madhubani (Mithila) painting ============= */
+(function paintBg(){
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
+  const P  = (d, a) => mk('path', Object.assign({ d }, a || {}));
+  const C  = (cx, cy, r, a) => mk('circle', Object.assign({ cx, cy, r }, a || {}));
+  const G  = (a) => mk('g', a || {});
+  const add = (p, ...kids) => { kids.forEach(k => p.appendChild(k)); return p; };
+  const r1 = n => Math.round(n * 10) / 10;
+  // pigments: turmeric, kusum red, indigo, leaf green — the traditional four
+  const A = 'var(--mb-a)', B = 'var(--mb-b)', I = 'var(--mb-c)', L = 'var(--mb-d)';
+
+  /* --- motifs, each drawn around its own origin --- */
+
+  function peacock(){                                   // the Mithila peacock
+    const g = G();
+    for (let i = 0; i < 13; i++){                      // fanned tail with eye-feathers
+      const a = (-92 + i * 10) * Math.PI / 180, len = 64, bx = 14, by = 10;
+      const tx = bx + Math.cos(a) * len, ty = by + Math.sin(a) * len;
+      const mx = bx + Math.cos(a) * len * .55 - Math.sin(a) * 9;
+      const my = by + Math.sin(a) * len * .55 + Math.cos(a) * 9;
+      add(g, P(`M${bx} ${by} Q${r1(mx)} ${r1(my)} ${r1(tx)} ${r1(ty)}`, { 'stroke-width':'.8' }),
+             C(r1(tx), r1(ty), 7, { fill:L }),
+             C(r1(tx), r1(ty), 4.4, { fill:I }),
+             C(r1(tx), r1(ty), 1.9, { fill:B }));
+    }
+    add(g,
+      P('M2 -6 C14 -9, 23 2, 21 13 C19 25, 4 29, -4 22 C-13 15, -10 0, 2 -6 Z', { fill:I }),
+      P('M-4 -2 C-12 -9, -18 -17, -19 -27'), P('M3 0 C-5 -7, -13 -16, -14 -27'),
+      C(-17, -31, 6.5, { fill:A }), C(-19, -32, 1.6, { fill:'currentColor' }),
+      P('M-23.5 -30 l-8 3 l8 3'),
+      P('M-17 -38 v-8 M-22 -37 l-4 -7 M-12 -37 l4 -7'),
+      C(-17, -47, 2, { fill:B }), C(-27, -45, 2, { fill:B }), C(-7, -45, 2, { fill:B }),
+      P('M2 27 v9 m-5 0 h10 M12 26 v10 m-5 0 h10'),
+      C(6, 10, 3, { fill:A }), C(13, 17, 2.2, { fill:B }));
+    return g;
+  }
+
+  function elephant(){
+    const g = G();
+    add(g,
+      P('M-26 6 C-28 -8, -16 -18, 2 -18 C19 -18, 30 -9, 30 5 C30 12, 27 17, 22 18 L-20 18 C-24 17, -26 12, -26 6 Z', { fill:A }),
+      P('M-20 18 v13 h10 v-13 M-4 18 v13 h10 v-13 M12 18 v13 h10 v-13'),
+      P('M-26 2 C-38 6, -41 22, -35 32 C-32 37, -25 36, -24 30 C-25 26, -30 27, -30 30 C-33 24, -31 12, -21 7 Z', { fill:A }),
+      P('M-33 12 l6 2 M-35 19 l6 1 M-35 26 l6 0'),   // trunk rings
+      P('M-29 16 c-7 2 -10 7 -10 11'),                               // tusk
+      P('M-16 -6 c12 -3 17 6 15 15 c-2 8 -12 11 -17 6 c-4 -5 -5 -17 2 -21 Z', { fill:B }),
+      P('M-13 -1 c8 -1 11 5 9 11'),
+      C(-22, -5, 2, { fill:'currentColor' }),
+      P('M30 2 c7 5 8 13 6 19 m-4 -3 l4 4 m0 -4 l-4 4'),
+      C(4, -4, 4, { fill:L }), C(16, 2, 3, { fill:B }), C(10, 9, 2.4, { fill:I }), C(22, -6, 2.4, { fill:I }));
+    return g;
+  }
+
+  function bird(){
+    return add(G(),
+      P('M0 0 c6 -7 17 -7 21 0 c-5 7 -16 7 -21 0 Z', { fill:B }),
+      C(22, -4, 4.2, { fill:A }), P('M26 -4 l6 2 l-6 2.4'),
+      P('M0 0 l-9 -5 m9 5 l-9 5'), C(20, -5, 1.3, { fill:'currentColor' }));
+  }
+
+  function tree(){                                       // tree of life
+    const g = G();
+    add(g, P('M-5 48 C-8 26, -8 12, -3 -4 L4 -4 C9 12, 9 26, 6 48 Z', { fill:A }),
+           P('M-5 48 c-9 4 -15 4 -20 1 M6 48 c9 4 15 4 20 1'),
+           P('M-4 36 h9 M-5 24 h10 M-4 12 h9'));
+    [[-2, 0], [10, 1], [22, 2]].forEach(([y, k]) => {
+      const w = 30 - k * 5;
+      add(g, P(`M-2 ${y} C${-w * .6} ${y - 7}, ${-w} ${y - 16}, ${-w - 3} ${y - 27}`),
+             P(`M3 ${y} C${w * .6} ${y - 7}, ${w} ${y - 16}, ${w + 3} ${y - 27}`));
+      for (let j = 1; j <= 5; j++){
+        const t = j / 5.6, lx = -(w + 3) * t - 2, rx = (w + 3) * t + 2, ly = y - 27 * t * .95;
+        add(g, P(`M${r1(lx)} ${r1(ly)} q-7 -6 -10 -1 q4 5 10 1 Z`, { fill:L }),
+               P(`M${r1(rx)} ${r1(ly)} q7 -6 10 -1 q-4 5 -10 1 Z`, { fill:L }));
+      }
+    });
+    add(g, C(0, -16, 12, { fill:A }), C(0, -16, 5, { fill:B }));
+    for (let i = 0; i < 8; i++)
+      g.appendChild(P('M0 -28 v-6', { transform:`rotate(${i * 45} 0 -16)` }));
+    const b1 = bird(); b1.setAttribute('transform', 'translate(-46,-26) scale(.8)');
+    const b2 = bird(); b2.setAttribute('transform', 'translate(46,-26) scale(-.8,.8)');
+    add(g, b1, b2);
+    return g;
+  }
+
+  function tortoise(){
+    const g = G();
+    add(g, mk('ellipse', { rx:30, ry:21, fill:L }), mk('ellipse', { rx:20, ry:13, fill:A }),
+           mk('ellipse', { rx:9, ry:6, fill:B }), C(0, 0, 3, { fill:I }),
+           P('M-20 -6 l-10 -8 M20 -6 l10 -8 M-20 6 l-10 8 M20 6 l10 8 M0 -13 v-8 M0 13 v8'),
+           P('M30 -1 c10 -2 16 2 16 6 c0 5 -7 7 -14 5'),
+           C(40, 3, 1.7, { fill:'currentColor' }),
+           P('M-18 13 c-4 7 -9 8 -12 5 M18 13 c4 7 9 8 12 5 M-18 -13 c-4 -7 -9 -8 -12 -5 M18 -13 c4 -7 9 -8 12 -5'),
+           P('M-25 1 c-7 2 -10 5 -10 8'));
+    return g;
+  }
+
+  function sun(){
+    const g = G();
+    for (let i = 0; i < 16; i++)
+      g.appendChild(P(i % 2 ? 'M0 -20 v-11' : 'M0 -20 l-4 -6 l4 -7 l4 7 z',
+        { transform:`rotate(${i * 22.5})`, fill:i % 2 ? 'none' : B }));
+    add(g, C(0, 0, 19, { fill:A }), C(0, 0, 14.5),
+           C(-6, -4, 2.4, { fill:'currentColor' }), C(6, -4, 2.4, { fill:'currentColor' }),
+           P('M0 -2 v5 M-6 7 q6 6 12 0'));
+    return g;
+  }
+
+  function fish(){
+    return add(G(),
+      P('M-27 0 C-15 -14, 15 -14, 26 0 C15 14, -15 14, -27 0 Z', { fill:I }),
+      P('M26 0 l14 -10 v20 z', { fill:B }),
+      C(-16, -3, 1.9, { fill:'currentColor' }),
+      P('M-7 -10 q7 10 0 20 M3 -11.5 q7 11.5 0 23'),
+      P('M-2 -12 c4 -6 10 -7 13 -4'));
+  }
+
+  function lotus(){                                      // kohbar lotus
+    const g = G();
+    for (let i = 0; i < 12; i++)
+      g.appendChild(mk('ellipse', { cx:0, cy:-22, rx:6, ry:16, transform:`rotate(${i * 30})`, fill:B }));
+    for (let i = 0; i < 8; i++)
+      g.appendChild(mk('ellipse', { cx:0, cy:-12, rx:4.5, ry:9, transform:`rotate(${i * 45 + 22})`, fill:A }));
+    add(g, C(0, 0, 6, { fill:L }), C(0, 0, 34, { 'stroke-dasharray':'2 7' }));
+    return g;
+  }
+
+  function bamboo(){                                     // the kohbar's bamboo stalk
+    const g = G();
+    add(g, P('M0 42 V-40'), P('M5 42 V-40'));
+    for (let i = 0; i < 6; i++){
+      const y = 34 - i * 15;
+      add(g, P(`M0 ${y} h5`),
+             P(`M0 ${y - 4} q-11 -4 -15 -11 q11 2 15 11 Z`, { fill:L }),
+             P(`M5 ${y - 9} q11 -4 15 -11 q-11 2 -15 11 Z`, { fill:L }));
+    }
+    return g;
+  }
+
+  function flower(){
+    const g = G();
+    for (let i = 0; i < 6; i++)
+      g.appendChild(mk('ellipse', { cx:0, cy:-7, rx:3.2, ry:6, transform:`rotate(${i * 60})`, fill:A }));
+    g.appendChild(C(0, 0, 2.6, { fill:B }));
+    return g;
+  }
+
+  // wavy vine with alternating leaves — Madhubani rarely leaves a line bare
+  function vine(len, step){
+    const g = G();
+    let d = 'M0 0';
+    for (let x = 0; x < len; x += step) d += ` q${step / 2} -7 ${step} 0 q${step / 2} 7 ${step} 0`;
+    g.appendChild(P(d));
+    for (let x = step; x < len; x += step * 2){
+      add(g, P(`M${x} 0 q-6 -9 -13 -10 q3 9 13 10 Z`, { fill:L }),
+             P(`M${x + step} 0 q6 9 13 10 q-3 -9 -13 -10 Z`, { fill:L }));
+    }
+    return g;
+  }
+
+  /* --- assemble one framed panel, bordered the way a Mithila painting is --- */
+  const T = 400, M = 30;                       // tile, frame margin
+  const g = G({ fill:'none', stroke:'currentColor', 'stroke-width':'1.15',
+                'stroke-linecap':'round', 'stroke-linejoin':'round' });
+
+  // seeded jitter so the tile is identical on every render
+  let _s = 7;
+  const rnd = () => (_s = (_s * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+
+  // the filled ground: a dotted field, as in kachni work
+  const ground = G({ 'stroke-width':'.85' });
+  for (let y = M + 8; y < T - M; y += 21)
+    for (let x = M + 8; x < T - M; x += 21){
+      const jx = x + (rnd() - .5) * 5, jy = y + (rnd() - .5) * 5, k = rnd();
+      if (k < .42) ground.appendChild(C(r1(jx), r1(jy), 1.5, { fill:'currentColor', stroke:'none' }));
+      else if (k < .72) ground.appendChild(P(`M${r1(jx - 3)} ${r1(jy)} h6`));
+      else ground.appendChild(P(`M${r1(jx)} ${r1(jy - 3)} q4 3 0 6 q-4 -3 0 -6 Z`, { fill:A, stroke:'none' }));
+    }
+  g.appendChild(ground);
+
+  // border: double rule, a band of teeth, then an inner rule
+  add(g, mk('rect', { x:7, y:7, width:T - 14, height:T - 14, rx:4 }),
+         mk('rect', { x:12, y:12, width:T - 24, height:T - 24, rx:4 }),
+         mk('rect', { x:M - 4, y:M - 4, width:T - 2 * M + 8, height:T - 2 * M + 8, rx:3 }));
+  let teeth = '';
+  for (let x = 14; x < T - 14; x += 14){
+    teeth += `M${x} 12 l7 9 l7 -9 `;
+    teeth += `M${x} ${T - 12} l7 -9 l7 9 `;
+  }
+  for (let y = 14; y < T - 14; y += 14){
+    teeth += `M12 ${y} l9 7 l-9 7 `;
+    teeth += `M${T - 12} ${y} l-9 7 l9 7 `;
+  }
+  g.appendChild(P(teeth, { fill:B, 'stroke-width':'.9' }));
+  [[20, 20], [T - 20, 20], [20, T - 20], [T - 20, T - 20]].forEach(([x, y]) =>
+    add(g, C(x, y, 6, { fill:A }), C(x, y, 2.5, { fill:I })));
+
+  const place = (node, x, y, sc, rot) => {
+    node.setAttribute('transform', `translate(${x},${y}) scale(${sc})` + (rot ? ` rotate(${rot})` : ''));
+    g.appendChild(node);
+  };
+
+  place(vine(T - 2 * M - 16, 26), M + 8, M + 6, 1);
+  place(vine(T - 2 * M - 16, 26), M + 8, T - M - 6, 1);
+
+  place(peacock(),  108, 112, 1.02);
+  place(lotus(),    300,  98, 1);
+  place(bamboo(),   356, 116, .88);
+  place(elephant(), 116, 292, 1.05);
+  place(tree(),     292, 286, .98);
+  place(sun(),      212,  56, .82);
+  place(fish(),     176, 190, .84);
+  place(fish(),     236, 214, -.7);
+  place(tortoise(), 200, 352, .82);
+  place(bird(),      52, 198, 1.3);
+  place(bird(),     344, 238, -1.2);
+  [[200, 130], [60, 60], [346, 348], [268, 170], [130, 214], [58, 348], [346, 46]]
+    .forEach(([x, y]) => place(flower(), x, y, 1));
+
+  const pat = mk('pattern', { id:'madhubani', width:T, height:T, patternUnits:'userSpaceOnUse' });
+  pat.appendChild(g);
+  const defs = mk('defs'); defs.appendChild(pat);
+  const svg = mk('svg', { width:'100%', height:'100%', preserveAspectRatio:'none' });
+  add(svg, defs, mk('rect', { width:'100%', height:'100%', fill:'url(#madhubani)' }));
+  document.getElementById('bgart').appendChild(svg);
+})();
+
+const ART = ['paint', 'line', 'off'];
+const ART_LABEL = { paint:'Painted', line:'Line art', off:'No art' };
+function setArt(v){
+  document.documentElement.setAttribute('data-pattern', v);
+  $('#btnPattern').textContent = ART_LABEL[v];
+  try { localStorage.setItem('biharPYQ.pattern', v); } catch(e){}
+}
+setArt(document.documentElement.getAttribute('data-pattern') || 'paint');
+$('#btnPattern').onclick = () => setArt(ART[(ART.indexOf(document.documentElement.getAttribute('data-pattern')) + 1) % 3]);
+
+/* ==================== timer ==================== */
+let sessionMs = 0, sessionFrom = Date.now(), sessionOn = true, qStart = 0;
+function fmt(ms){
+  if (ms < 0) ms = 0;
+  const s = Math.floor(ms / 1000), h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60), ss = s % 60;
+  const p = n => (n < 10 ? '0' : '') + n;
+  return (h ? h + ':' : '') + p(m) + ':' + p(ss);
+}
+function tick(){
+  const box = $('#timer'), c = $('#clock');
+  box.classList.remove('warn', 'crit', 'run');
+  if (EX && !EX.done){
+    const left = EX.ends - Date.now();
+    c.textContent = fmt(left);
+    box.classList.add(left < 60000 ? 'crit' : left < 300000 ? 'warn' : 'run');
+    box.title = 'Time left in this exam';
+    if (left <= 0) submitExam(true);
+    return;
+  }
+  const total = sessionMs + (sessionOn ? Date.now() - sessionFrom : 0);
+  c.textContent = fmt(total);
+  if (sessionOn) box.classList.add('run');
+  box.title = sessionOn ? 'Session time — click to pause' : 'Paused — click to resume';
+}
+setInterval(tick, 500);
+$('#timer').onclick = () => {
+  if (EX && !EX.done) return;
+  if (sessionOn){ sessionMs += Date.now() - sessionFrom; sessionOn = false; }
+  else { sessionFrom = Date.now(); sessionOn = true; }
+  tick();
+};
+
+/* ==================== exam mode ==================== */
+const EXKEY = 'biharPYQ.exam.v1';
+let EX = null;
+try { const r = localStorage.getItem(EXKEY); if (r) EX = JSON.parse(r); } catch(e){}
+function exSave(){ try { EX ? localStorage.setItem(EXKEY, JSON.stringify(EX)) : localStorage.removeItem(EXKEY); } catch(e){} }
+const byId = {}; ALL.forEach(q => byId[q.id] = q);
+
+function shuffledCopy(a, n){
+  a = a.slice();
+  for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return n ? a.slice(0, n) : a;
+}
+
+function examSetup(){
+  const cfg = { scope:(view.sec === null ? 'all' : 'topic'), count:25, per:60, neg:0, shuffle:true, custom:null };
+  openDlg('Start an exam', b => {
+    const mkSeg = (label, opts, get, set, note) => {
+      const f = el('div', 'fset'); f.appendChild(el('span', null, label));
+      const seg = el('div', 'seg');
+      opts.forEach(([txt, val]) => {
+        const x = el('button', null, txt);
+        const paint = () => seg.querySelectorAll('button').forEach((n, i) =>
+          n.setAttribute('aria-pressed', opts[i][1] === get() ? 'true' : 'false'));
+        x.onclick = () => { set(val); paint(); if (f.upd) f.upd(); };
+        seg.appendChild(x);
+      });
+      f.appendChild(seg);
+      seg.querySelectorAll('button').forEach((n, i) => n.setAttribute('aria-pressed', opts[i][1] === get() ? 'true' : 'false'));
+      if (note) f.appendChild(el('p', 'note', note));
+      b.appendChild(f); return f;
+    };
+    const scopes = [['All topics', 'all']];
+    if (view.sec !== null) scopes.unshift([DATA.sections[view.sec].title, 'topic']);
+    scopes.push(['Starred', 'star'], ['Unattempted', 'todo']);
+    const fScope = mkSeg('Draw questions from', scopes, () => cfg.scope, v => cfg.scope = v);
+    const fCount = mkSeg('How many', [['10', 10], ['25', 25], ['50', 50], ['100', 100], ['150', 150]],
+      () => cfg.count, v => cfg.count = v);
+    const fPer = mkSeg('Seconds per question', [['30s', 30], ['45s', 45], ['1 min', 60], ['90s', 90]],
+      () => cfg.per, v => cfg.per = v);
+    mkSeg('Negative marking', [['None', 0], ['¼ mark', 0.25], ['⅓ mark', 1 / 3]],
+      () => cfg.neg, v => cfg.neg = v, 'Check the notification for the exam you are targeting — this is yours to set.');
+    const avail = el('p', 'note'); b.appendChild(avail);
+    const upd = () => {
+      const n = Math.min(cfg.count, examPool(cfg).length);
+      avail.textContent = n + ' questions available for this choice · ' + fmt(n * cfg.per * 1000) + ' on the clock';
+    };
+    fScope.upd = upd; fCount.upd = upd; fPer.upd = upd; upd();
+    const row = el('div', 'row');
+    const go = el('button', 'btn primary', 'Start');
+    go.onclick = () => { dlg.close(); startExam(cfg); };
+    const cancel = el('button', 'btn', 'Cancel'); cancel.onclick = () => dlg.close();
+    row.append(go, cancel); b.appendChild(row);
+  });
+}
+
+function examPool(cfg){
+  let a = cfg.scope === 'topic' && view.sec !== null ? ALL.filter(q => q.si === view.sec)
+        : cfg.scope === 'star' ? ALL.filter(q => store.star[q.id])
+        : cfg.scope === 'todo' ? ALL.filter(q => !store.pick[q.id])
+        : ALL;
+  return a.filter(q => q.ans !== '*');
+}
+
+function startExam(cfg){
+  const src = examPool(cfg);
+  if (!src.length){ alert('No questions available for that choice.'); return; }
+  const picked = cfg.shuffle ? shuffledCopy(src, cfg.count) : src.slice(0, cfg.count);
+  const mins = picked.length * cfg.per * 1000;
+  EX = { ids:picked.map(q => q.id), i:0, ans:{}, mark:{}, neg:cfg.neg,
+         started:Date.now(), ends:Date.now() + mins, dur:mins, done:false,
+         label:cfg.scope === 'topic' ? DATA.sections[view.sec].title
+             : cfg.scope === 'star' ? 'Starred questions'
+             : cfg.scope === 'todo' ? 'Unattempted questions' : 'All topics' };
+  exSave(); closeRail(); draw();
+}
+
+function drawExam(){
+  $('#btnExam').textContent = 'Resume';
+  document.body.classList.add('in-exam');
+  document.body.classList.remove('in-q');
+  const c = $('#stage'); c.textContent = '';
+  const q = byId[EX.ids[EX.i]];
+  const head = el('div', 'ex-head');
+  head.appendChild(el('span', 'ex-title', EX.label));
+  head.appendChild(el('span', 'counter', (EX.i + 1) + ' / ' + EX.ids.length));
+  const sub = el('button', 'btn', 'Submit');
+  sub.onclick = () => { if (confirm('Submit this exam now?')) submitExam(false); };
+  head.appendChild(sub);
+  c.appendChild(head);
+
+  const stem = el('div', 'stem'); renderBlocks(q.stem, stem); c.appendChild(stem);
+  const opts = el('div', 'opts');
+  q.opts.forEach(o => {
+    const btn = el('button', 'opt' + (EX.ans[q.id] === o.k ? ' chosen' : ''));
+    btn.append(el('span', 'disc', o.k.toUpperCase()), el('span', 'opt-t', o.t));
+    btn.onclick = () => { EX.ans[q.id] = o.k; exSave(); nextEx(1); };
+    opts.appendChild(btn);
+  });
+  c.appendChild(opts);
+
+  const act = el('div', 'ex-actions');
+  const clr = el('button', 'btn', 'Clear');
+  clr.onclick = () => { delete EX.ans[q.id]; exSave(); drawExam(); };
+  const mk = el('button', 'btn', EX.mark[q.id] ? 'Unmark' : 'Mark for review');
+  mk.onclick = () => { EX.mark[q.id] ? delete EX.mark[q.id] : EX.mark[q.id] = 1; exSave(); drawExam(); };
+  const pv = el('button', 'btn', 'Previous'); pv.onclick = () => nextEx(-1);
+  const nx = el('button', 'btn primary', 'Next'); nx.onclick = () => nextEx(1);
+  act.append(pv, clr, mk, nx); c.appendChild(act);
+
+  c.appendChild(el('p', 'sheet-h', 'Answer sheet'));
+  const pal = el('div', 'palette');
+  EX.ids.forEach((id, i) => {
+    const a = !!EX.ans[id], m = !!EX.mark[id];
+    const p = el('button', 'pal' + (a && m ? ' ansmark' : a ? ' ans' : m ? ' mark' : '') + (i === EX.i ? ' cur' : ''), String(i + 1));
+    p.onclick = () => { EX.i = i; exSave(); drawExam(); };
+    pal.appendChild(p);
+  });
+  c.appendChild(pal);
+  const key = el('div', 'pal-key');
+  [['Answered', 'ans'], ['Marked', 'mark'], ['Answered and marked', 'ansmark'], ['Not visited', '']]
+    .forEach(([lab, cls]) => { const sp = el('span'); const i = el('i', cls); sp.append(i, document.createTextNode(lab)); key.appendChild(sp); });
+  c.appendChild(key);
+  window.scrollTo({ top:0 });
+}
+function nextEx(d){ EX.i = (EX.i + d + EX.ids.length) % EX.ids.length; exSave(); drawExam(); }
+
+function submitExam(auto){
+  let ok = 0, no = 0, skip = 0;
+  const per = {};
+  EX.ids.forEach(id => {
+    const q = byId[id], a = EX.ans[id];
+    per[q.sec] = per[q.sec] || { n:0, ok:0, no:0, skip:0 };
+    per[q.sec].n++;
+    if (!a){ skip++; per[q.sec].skip++; return; }
+    store.pick[id] = a; store.seen[id] = 1;
+    if (a === q.ans){ ok++; per[q.sec].ok++; } else { no++; per[q.sec].no++; }
+  });
+  save();
+  EX.done = true; EX.auto = !!auto; EX.finished = Date.now();
+  EX.res = { ok, no, skip, per, marks:+(ok - EX.neg * no).toFixed(2),
+             used:Math.min(EX.dur, (EX.finished - EX.started)) };
+  store.exams = (store.exams || []).concat([{ when:EX.finished, label:EX.label, n:EX.ids.length,
+    ok, no, skip, marks:EX.res.marks, used:EX.res.used }]).slice(-20);
+  save(); exSave(); drawRail(); draw();
+}
+
+function drawResult(){
+  $('#btnExam').textContent = 'New exam';
+  document.body.classList.add('in-exam');
+  const c = $('#stage'); c.textContent = '';
+  const r = EX.res, n = EX.ids.length;
+  const head = el('div', 'home-head');
+  head.appendChild(el('p', 'crumb', EX.label + (EX.auto ? ' — time ran out' : '')));
+  const sc = el('h2', 'res-score', r.marks + ' ');
+  sc.appendChild(Object.assign(el('small'), { textContent:'of ' + n }));
+  head.appendChild(sc);
+  const stats = el('div', 'stats');
+  [[r.ok, 'correct'], [r.no, 'wrong'], [r.skip, 'not answered'],
+   [(r.ok + r.no) ? Math.round(r.ok / (r.ok + r.no) * 100) + '%' : '—', 'accuracy'],
+   [fmt(r.used), 'time used'],
+   [Math.round(r.used / 1000 / n) + 's', 'per question']]
+   .forEach(([v, l]) => { const s2 = el('div', 'stat'); s2.append(el('b', null, String(v)), el('span', null, l)); stats.appendChild(s2); });
+  head.appendChild(stats);
+  if (EX.neg) head.appendChild(el('p', 'note', 'Scored with a ' + (EX.neg === 0.25 ? '¼' : '⅓') + ' mark penalty for each wrong answer.'));
+  c.appendChild(head);
+
+  const keys = Object.keys(r.per);
+  if (keys.length > 1){
+    const tb = el('table', 'res-tbl');
+    const thead = el('thead'), htr = el('tr');
+    ['Topic', 'Asked', 'Right', 'Wrong', 'Skipped'].forEach(h => htr.appendChild(el('th', null, h)));
+    thead.appendChild(htr); tb.appendChild(thead);
+    const tbody = el('tbody');
+    keys.sort((a, b2) => r.per[b2].n - r.per[a].n).forEach(k => {
+      const tr = el('tr'); const p = r.per[k];
+      [k, p.n, p.ok, p.no, p.skip].forEach(v => tr.appendChild(el('td', null, String(v))));
+      tbody.appendChild(tr);
+    });
+    tb.appendChild(tbody); c.appendChild(tb);
+  }
+
+  const row = el('div', 'ex-actions');
+  const again = el('button', 'btn primary', 'New exam');
+  again.onclick = () => { EX = null; exSave(); draw(); examSetup(); };
+  const back = el('button', 'btn', 'Back to practice');
+  back.onclick = () => { EX = null; exSave(); document.body.classList.remove('in-exam'); draw(); };
+  row.append(again, back); c.appendChild(row);
+
+  c.appendChild(el('p', 'sheet-h', 'Review — your answer against the key'));
+  const wrap = el('div', 'rev'); wrap.style.marginTop = '14px';
+  EX.ids.forEach((id, i) => {
+    const q = byId[id], a = EX.ans[id];
+    const it = el('div', 'rev-item');
+    const cr = el('div', 'crumb'); cr.style.marginBottom = '10px';
+    cr.appendChild(el('b', null, 'Q' + (i + 1)));
+    cr.appendChild(el('span', null, q.sec));
+    cr.appendChild(el('span', 'pill', !a ? 'not answered' : a === q.ans ? 'right' : 'wrong'));
+    it.appendChild(cr);
+    const st = el('div', 'stem'); renderBlocks(q.stem, st); it.appendChild(st);
+    const os = el('div', 'rev-opts');
+    q.opts.forEach(o => {
+      const rr = el('div', 'rev-opt' + (o.k === q.ans ? ' is-ans' : ''));
+      rr.append(el('i', null, '(' + o.k + ')'), el('span', null, o.t));
+      if (o.k === a && o.k !== q.ans) rr.appendChild(el('span', 'yours', 'your answer'));
+      os.appendChild(rr);
+    });
+    it.appendChild(os);
+    const ex = el('div', 'expl');
+    if (q.xref) ex.appendChild(el('p', 'xref', 'Carried over from question ' + q.xref + ' of this topic.'));
+    const body = el('div', 'expl-b'); renderBlocks(q.expl, body); ex.appendChild(body);
+    it.appendChild(ex); wrap.appendChild(it);
+  });
+  c.appendChild(wrap);
+  window.scrollTo({ top:0 });
+}
+
+$('#btnExam').onclick = () => {
+  if (EX && !EX.done){ draw(); return; }
+  if (EX && EX.done){ EX = null; exSave(); }
+  examSetup();
+};
 
 /* ---------- keyboard ---------- */
 document.addEventListener('keydown', e => {
@@ -789,6 +1419,16 @@ document.addEventListener('keydown', e => {
   if (k === 't'){ $('#btnTheme').click(); return; }
   if (k === 'r'){ $('#btnShuffle').click(); return; }
   if (dlg.open) return;
+  if (EX && !EX.done){
+    const q = byId[EX.ids[EX.i]];
+    if (k === 'arrowright' || k === 'n' || k === 'enter'){ e.preventDefault(); nextEx(1); return; }
+    if (k === 'arrowleft'  || k === 'p'){ e.preventDefault(); nextEx(-1); return; }
+    if (k === 'm'){ e.preventDefault(); EX.mark[q.id] ? delete EX.mark[q.id] : EX.mark[q.id] = 1; exSave(); drawExam(); return; }
+    if (k === 'c'){ e.preventDefault(); delete EX.ans[q.id]; exSave(); drawExam(); return; }
+    let L = /^[1-5]$/.test(k) ? 'abcde'[+k - 1] : (/^[a-e]$/.test(k) ? k : null);
+    if (L && q.opts.some(o => o.k === L)){ e.preventDefault(); EX.ans[q.id] = L; exSave(); nextEx(1); }
+    return;
+  }
   const list = pool(); if (!list.length || view.read) return;
   const q = list[view.i];
   if (k === 'arrowright' || k === 'n'){ e.preventDefault(); step(1); return; }
@@ -807,6 +1447,8 @@ document.addEventListener('keydown', e => {
 });
 
 /* ---------- go ---------- */
+if (EX && !EX.done && EX.ends <= Date.now()) submitExam(true);
+tick();
 drawRail(); syncChips(); draw();
 })();
 </script>
@@ -829,7 +1471,4 @@ drawRail(); syncChips(); draw();
 </script>
 
 </body>
-
-
-
 </html>
