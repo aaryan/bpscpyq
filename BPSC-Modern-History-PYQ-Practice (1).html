@@ -1171,69 +1171,24 @@ document.addEventListener('keydown', e=>{
   applyArt(artOn);
 })();
 </script>
-<!-- ================= UNIVERSAL HOME NAVIGATION ================= -->
+
+<!-- Home Button Auto-Injector (Control Bar Only) -->
 <script>
-/**
- * Universal Home navigation handler
- * Handles: iframes, popup tabs, local file:// protocols, relative paths, and browser history fallbacks.
- */
-function goHome(event) {
-  if (event) event.preventDefault();
-
-  // 1. If loaded inside an iframe, navigate top-level window
-  try {
-    if (window.self !== window.top && window.top) {
-      window.top.location.href = 'index.html';
-      return false;
-    }
-  } catch (err) {}
-
-  // 2. If opened as a popup tab from home portal, focus or close
-  try {
-    if (window.opener && !window.opener.closed) {
-      if (document.referrer && document.referrer.includes('index.html')) {
-        window.close();
-        return false;
-      }
-    }
-  } catch (err) {}
-
-  // 3. If navigated internally from the portal within the same origin, perform smooth history back
-  try {
-    const isSameHost = document.referrer && new URL(document.referrer).origin === window.location.origin;
-    if (isSameHost && window.history.length > 1 && /index\.html|bpscpyq/i.test(document.referrer)) {
-      window.history.back();
-      return false;
-    }
-  } catch (err) {}
-
-  // 4. Fallback: navigate directly to index.html (works across http, https, and file:// protocols)
-  window.location.href = 'index.html';
-  return false;
-}
-
-// Auto-inject styled button into controls bar
 (() => {
-  const controls = document.getElementById('controls');
-  if (controls && !document.getElementById('btnHomePortal')) {
-    const homeBtn = document.createElement('a');
-    homeBtn.id = 'btnHomePortal';
-    homeBtn.href = 'index.html';
-    homeBtn.setAttribute('aria-label', 'Return to Home Portal');
-    homeBtn.className = 'chip';
-    homeBtn.style.cssText = 'display:inline-flex;align-items:center;gap:6px;font-weight:600;text-decoration:none;cursor:pointer;flex-shrink:0;';
-    homeBtn.innerHTML = `
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;">
-        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-        <polyline points="9 22 9 12 15 12 15 22"/>
-      </svg>
-      <span>← Home</span>
-    `;
-    homeBtn.addEventListener('click', goHome);
-    controls.prepend(homeBtn);
+  const controls = document.querySelector('.controls-in');
+  if (controls && !document.getElementById('homeBtnNav')) {
+    const btn = document.createElement('a');
+    btn.id = 'homeBtnNav';
+    btn.href = 'index.html';
+    btn.className = 'chip';
+    btn.style.cssText = 'text-decoration:none!important;font-weight:600!important;display:inline-flex;align-items:center;border-color:var(--indigo);color:var(--ink);margin-right:2px;';
+    btn.textContent = '← Home';
+    controls.prepend(btn);
   }
 })();
 </script>
+
+
 
 
 </body>
