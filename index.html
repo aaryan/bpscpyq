@@ -772,12 +772,81 @@ html[data-theme="dark"] .status-badge.live-geography {
   flex-shrink: 0;
 }
 
+/* ---------- Share Box Component ---------- */
+.share-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.share-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.share-btns-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.share-btn {
+  height: 32px;
+  padding: 0 14px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.share-btn.btn-wa {
+  background: #25D366;
+  color: #FFFFFF;
+}
+.share-btn.btn-wa:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+.share-btn.btn-tg {
+  background: #229ED9;
+  color: #FFFFFF;
+}
+.share-btn.btn-tg:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+.share-btn.btn-native {
+  background: var(--bg-alt);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+.share-btn.btn-native:hover {
+  border-color: var(--border-strong);
+  background: var(--surface);
+}
+.share-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   border-top: 1px solid var(--border);
   background: var(--surface);
   text-align: center;
-  padding: 30px 24px;
+  padding: 34px 24px 30px;
   font-size: 13px;
   color: var(--text-muted);
 }
@@ -900,6 +969,20 @@ html[data-theme="dark"] .status-badge.live-geography {
   .breakdown-matrix {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+
+  .share-section {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .share-btns-wrap {
+    justify-content: center;
+    width: 100%;
+  }
+  .share-btn {
+    flex: 1;
+    justify-content: center;
+    min-width: 100px;
   }
 }
 
@@ -1321,6 +1404,34 @@ html[data-theme="dark"] .status-badge.live-geography {
 
 <!-- Footer -->
 <footer class="site-footer">
+
+  <!-- Share with Aspirants Bar -->
+  <div class="share-section">
+    <span class="share-title">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      Share with fellow aspirants:
+    </span>
+    <div class="share-btns-wrap">
+      <!-- WhatsApp Share Link -->
+      <a href="https://api.whatsapp.com/send?text=Prepare%20for%20BPSC%20Prelims%20with%203%2C000%2B%20verified%20PYQs%20and%2075%2B%20chapters%20of%20theory%20notes%20at%20https%3A%2F%2Fbpscpyq.com%2F" target="_blank" rel="noopener noreferrer" class="share-btn btn-wa" title="Share on WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24zm4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.45 1.03 2.62.13.17 1.77 2.71 4.3 3.8.6.26 1.07.42 1.44.54.61.19 1.16.16 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.32z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+
+      <!-- Telegram Share Link -->
+      <a href="https://t.me/share/url?url=https%3A%2F%2Fbpscpyq.com%2F&text=Prepare%20for%20BPSC%20Prelims%20with%203%2C000%2B%20verified%20PYQs%20and%2075%2B%20chapters%20of%20theory%20notes" target="_blank" rel="noopener noreferrer" class="share-btn btn-tg" title="Share on Telegram">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.14-.26.26-.534.26l.213-3.05 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.87 4.326-2.96-.924c-.64-.203-.654-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>
+        <span>Telegram</span>
+      </a>
+
+      <!-- Native Web Share / Copy Link Trigger -->
+      <button type="button" class="share-btn btn-native" id="nativeShareBtn" title="Share portal">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        <span>Share</span>
+      </button>
+    </div>
+  </div>
+
   <p><strong>BPSC PYQ and Notes</strong> · Designed for Bihar Civil Services Examination aspirants. · Follow us on <a href="https://t.me/bpscpyqandnotes" target="_blank" rel="noopener noreferrer" style="color:var(--text-primary);font-weight:600;">Telegram</a> for updates.</p>
   <p style="margin-top:6px;font-size:13px;">Made with <span style="color:#ef4444;">&#10084;</span> by <a href="https://moongfali.com" target="_blank" rel="noopener noreferrer" style="color:var(--text-primary);font-weight:600;text-decoration:none;">Aaryan</a></p>
 </footer>
@@ -1375,6 +1486,31 @@ filterPills.forEach(pill => {
     runFilter();
   });
 });
+
+// Device Native Share Trigger
+const nativeShareBtn = document.getElementById('nativeShareBtn');
+if (nativeShareBtn) {
+  nativeShareBtn.addEventListener('click', async () => {
+    const shareData = {
+      title: 'BPSC PYQ and Notes',
+      text: 'Prepare for BPSC Prelims with 3,000+ verified PYQs and 75+ chapters of theory notes!',
+      url: 'https://bpscpyq.com/'
+    };
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {}
+    } else {
+      try {
+        await navigator.clipboard.writeText('https://bpscpyq.com/');
+        const span = nativeShareBtn.querySelector('span');
+        const orig = span.textContent;
+        span.textContent = 'Link Copied!';
+        setTimeout(() => { span.textContent = orig; }, 2000);
+      } catch (err) {}
+    }
+  });
+}
 </script>
 </body>
 </html>
