@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-   <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N7Y1J0QC66"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -11,9 +10,9 @@
 
   gtag('config', 'G-N7Y1J0QC66');
 </script>
-  
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 
 <!-- Favicon (Standalone SVG Method) -->
@@ -109,7 +108,7 @@
   --font-serif: "Newsreader", "Tiro Devanagari Hindi", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --radius-sm: 6px;
-  --radius-md: 12px;
+  --radius-md: 14px;
   --radius-lg: 18px;
   --radius-full: 9999px;
   --transition: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
@@ -170,6 +169,14 @@ html[data-theme="dark"] {
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
 body {
   background-color: var(--bg);
   color: var(--text-primary);
@@ -178,8 +185,6 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
 }
 
 body::before {
@@ -188,7 +193,7 @@ body::before {
   top: -120px;
   left: 50%;
   transform: translateX(-50%);
-  width: 900px;
+  width: min(900px, 100vw);
   height: 480px;
   background: radial-gradient(circle, var(--navy-glow) 0%, transparent 70%);
   pointer-events: none;
@@ -216,7 +221,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 }
 .hero-title {
   font-family: var(--font-serif);
-  font-size: clamp(32px, 4.5vw, 44px);
+  font-size: clamp(28px, 4.5vw, 44px);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.15;
@@ -280,26 +285,25 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   padding: 0 24px;
 }
 .nav-bar-inner {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-full);
-  padding: 6px 10px;
+  padding: 6px 12px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
   box-shadow: var(--shadow-md);
 }
 html[data-theme="dark"] .nav-bar-inner {
-  background: rgba(20, 29, 46, 0.88);
+  background: rgba(20, 29, 46, 0.9);
 }
 
 .search-field {
   position: relative;
-  flex: 1;
-  min-width: 180px;
+  flex: 0 1 240px;
+  min-width: 150px;
 }
 .search-icon {
   position: absolute;
@@ -312,7 +316,7 @@ html[data-theme="dark"] .nav-bar-inner {
 }
 .search-input {
   width: 100%;
-  height: 28px;
+  height: 32px;
   padding: 0 12px 0 34px;
   border-radius: var(--radius-full);
   border: 1px solid transparent;
@@ -333,9 +337,10 @@ html[data-theme="dark"] .nav-bar-inner {
 .filter-pills {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   overflow-x: auto;
   scrollbar-width: none;
+  flex: 1;
 }
 .filter-pills::-webkit-scrollbar { display: none; }
 
@@ -352,6 +357,7 @@ html[data-theme="dark"] .nav-bar-inner {
   border: 1px solid transparent;
   white-space: nowrap;
   transition: var(--transition);
+  flex-shrink: 0;
 }
 .pill-btn:hover {
   color: var(--text-primary);
@@ -363,9 +369,17 @@ html[data-theme="dark"] .nav-bar-inner {
   font-weight: 600;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
 /* Telegram Connect Badge */
 .telegram-badge {
-  height: 28px;
+  height: 30px;
   padding: 0 12px;
   border-radius: var(--radius-full);
   display: inline-flex;
@@ -384,14 +398,14 @@ html[data-theme="dark"] .nav-bar-inner {
   transform: translateY(-1px);
 }
 .telegram-badge svg {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
   fill: currentColor;
 }
 
 .theme-toggle {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -399,7 +413,7 @@ html[data-theme="dark"] .nav-bar-inner {
   background: var(--bg-alt);
   color: var(--text-secondary);
   border: 1px solid var(--border);
-  font-size: 12.5px;
+  font-size: 13px;
   transition: var(--transition);
   flex-shrink: 0;
 }
@@ -438,7 +452,7 @@ html[data-theme="dark"] .nav-bar-inner {
 /* ---------- Cards Grid ---------- */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
   gap: 20px;
 }
 
@@ -741,7 +755,7 @@ html[data-theme="dark"] .status-badge.live-geography {
 .bar-chunk:hover { opacity: 0.8; }
 .breakdown-matrix {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
   gap: 10px 16px;
 }
 .matrix-item {
@@ -769,14 +783,138 @@ html[data-theme="dark"] .status-badge.live-geography {
 }
 .site-footer strong { color: var(--text-primary); font-weight: 600; }
 
+/* ==========================================================================
+   MOBILE-FIRST ENHANCEMENTS & NO-OVERFLOW ARCHITECTURE
+   ========================================================================== */
 @media (max-width: 768px) {
-  .masthead { padding: 32px 18px 20px; }
-  .nav-bar { padding: 0 18px; top: 10px; }
-  .container { padding: 0 18px 50px; }
-  .cards-grid { grid-template-columns: 1fr; }
-  .hero-title { font-size: 30px; }
-  .stats-strip { width: 100%; justify-content: space-around; }
-  .stat-box { padding: 4px 10px; }
+  .masthead {
+    padding: 28px 16px 16px;
+  }
+  .masthead-main {
+    gap: 16px;
+  }
+  .hero-title {
+    font-size: 27px;
+  }
+  .hero-subtitle {
+    font-size: 14px;
+  }
+  .stats-strip {
+    width: 100%;
+    justify-content: space-between;
+    padding: 6px 4px;
+  }
+  .stat-box {
+    padding: 4px 8px;
+    text-align: center;
+    flex: 1;
+  }
+  .stat-val {
+    font-size: 16px;
+  }
+  .stat-lbl {
+    font-size: 9.5px;
+  }
+
+  /* Adaptive Mobile Navigation Bar */
+  .nav-bar {
+    top: 8px;
+    padding: 0 12px;
+    margin-bottom: 22px;
+  }
+  .nav-bar-inner {
+    border-radius: 16px;
+    padding: 8px 10px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "search actions"
+      "pills pills";
+    gap: 8px;
+    align-items: center;
+  }
+  .search-field {
+    grid-area: search;
+    min-width: 0;
+    width: 100%;
+  }
+  .nav-actions {
+    grid-area: actions;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+  }
+  .telegram-badge {
+    height: 32px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
+  }
+  .filter-pills {
+    grid-area: pills;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 6px;
+    padding: 2px 0 2px;
+  }
+
+  .container {
+    padding: 0 14px 44px;
+  }
+  .section-title-wrap {
+    margin-bottom: 14px;
+  }
+  .section-heading {
+    font-size: 20px;
+  }
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .portal-card {
+    padding: 16px 16px 14px;
+  }
+  .card-h {
+    font-size: 18px;
+  }
+  .card-summary {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+  .card-foot {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .blueprint-card {
+    margin-top: 36px;
+    padding: 18px 14px;
+  }
+  .breakdown-matrix {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  .telegram-badge span {
+    display: none;
+  }
+  .telegram-badge {
+    padding: 0;
+    width: 32px;
+    justify-content: center;
+  }
+  .stat-box {
+    padding: 4px 4px;
+  }
 }
 </style>
 </head>
@@ -811,7 +949,7 @@ html[data-theme="dark"] .status-badge.live-geography {
   <nav class="nav-bar-inner" aria-label="Portal Filtering and Search">
     <div class="search-field">
       <span class="search-icon">✦</span>
-      <input type="search" id="portalSearch" class="search-input" placeholder="Search modules, notes, topics (e.g. Modern History, Geography, Polity)..." aria-label="Search modules">
+      <input type="search" id="portalSearch" class="search-input" placeholder="Search topics, questions, notes..." aria-label="Search modules">
     </div>
     <div class="filter-pills" role="tablist">
       <button class="pill-btn" data-filter="all" aria-pressed="true">All Modules</button>
@@ -822,11 +960,13 @@ html[data-theme="dark"] .status-badge.live-geography {
       <button class="pill-btn" data-filter="bihar" aria-pressed="false">Bihar Special</button>
       <button class="pill-btn" data-filter="polity" aria-pressed="false">Polity &amp; Economy</button>
     </div>
-    <a href="https://t.me/bpscpyqandnotes" target="_blank" rel="noopener noreferrer" class="telegram-badge" title="Connect with us on Telegram">
-      <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.14-.26.26-.534.26l.213-3.05 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.87 4.326-2.96-.924c-.64-.203-.654-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>
-      <span>Telegram</span>
-    </a>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle Theme">◐</button>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle Theme">◐</button>
+      <a href="https://t.me/bpscpyqandnotes" target="_blank" rel="noopener noreferrer" class="telegram-badge" title="Connect with us on Telegram">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.14-.26.26-.534.26l.213-3.05 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.87 4.326-2.96-.924c-.64-.203-.654-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>
+        <span>Telegram</span>
+      </a>
+    </div>
   </nav>
 </div>
 
