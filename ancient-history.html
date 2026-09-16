@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N7Y1J0QC66"></script>
 <script>
@@ -10,277 +11,823 @@
 
   gtag('config', 'G-N7Y1J0QC66');
 </script>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BPSC Ancient India — PYQ Practice</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<title>BPSC Ancient India - PYQ Practice</title>
 <script>
-  (function() {
-    const saved = localStorage.getItem('theme');
-    if (saved) {
-      document.documentElement.setAttribute('data-theme', saved);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      document.documentElement.setAttribute('data-theme', 'light');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-  })();
+  try{
+    var s=JSON.parse(localStorage.getItem('ancientPYQ.mcq.v1')||'{}');
+    var t=s.theme||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+    document.documentElement.setAttribute('data-theme',t);
+  }catch(e){}
 </script>
 <style>
-  :root {
-    --ink: #0F1513; 
-    --panel: #18211E; 
-    --panel2: #1E2926; 
-    --line: #2C3B37;
-    --text: #DFE6E2; 
-    --dim: #8C9A95; 
-    --faint: #6A7873;
-    --patina: #4FA88B; 
-    --patina-dim: #2E5E50;
-    --rust: #C4614F; 
-    --haldi: #C9A227;
-    --flag-border: #4A3D14;
-    --right-bg: rgba(79, 168, 139, 0.11);
-    --wrong-bg: rgba(196, 97, 79, 0.10);
-    --btn-text: #08110E;
-    --shadow: rgba(0, 0, 0, 0.35);
-    --radius: 10px;
+  :root{
+    --ink:#0F1513; --panel:#18211E; --panel2:#1E2926; --line:#2C3B37;
+    --text:#DFE6E2; --dim:#8C9A95; --faint:#6A7873;
+    --patina:#4FA88B; --patina-dim:#2E5E50; --on-accent:#08110E;
+    --rust:#C4614F; --haldi:#C9A227;
+    --okfill:rgba(79,168,139,.11); --nofill:rgba(196,97,79,.10);
+    --markfill:rgba(201,162,39,.14);
+    --motif:.055; --radius:10px;
+    --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   }
+  :root[data-theme="light"]{
+    --ink:#EDEFEC; --panel:#FFFFFF; --panel2:#E6EAE6; --line:#D3D9D4;
+    --text:#18201D; --dim:#5C6A65; --faint:#66736E;
+    --patina:#2E7D66; --patina-dim:#9DC7B8; --on-accent:#FFFFFF;
+    --rust:#A63A29; --haldi:#7A5E0A;
+    --okfill:rgba(46,125,102,.10); --nofill:rgba(166,58,41,.08);
+    --markfill:rgba(122,94,10,.12);
+    --motif:.065;
+  }
+  *{box-sizing:border-box}
+  html{background:var(--ink)}
+  body{margin:0;background:var(--ink);color:var(--text);font:16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+  #motif{position:fixed;right:-3%;bottom:-9%;width:clamp(240px,34vw,430px);
+         color:var(--text);opacity:var(--motif);pointer-events:none;z-index:0}
+  #motif svg{width:100%;height:auto;display:block}
+  .wrap{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 20px 96px}
 
-  [data-theme="light"] {
-    --ink: #F6F8F7;
-    --panel: #FFFFFF;
-    --panel2: #EEF3F0;
-    --line: #D5DFDC;
-    --text: #16201D;
-    --dim: #546660;
-    --faint: #798D86;
-    --patina: #1F7A5E;
-    --patina-dim: #99C7B8;
-    --rust: #BC3A26;
-    --haldi: #8E6500;
-    --flag-border: #D8C78B;
-    --right-bg: rgba(31, 122, 94, 0.12);
-    --wrong-bg: rgba(188, 58, 38, 0.12);
-    --btn-text: #FFFFFF;
-    --shadow: rgba(0, 0, 0, 0.08);
-  }
+  header{border-bottom:1px solid var(--line);padding:32px 0 20px;margin-bottom:22px}
+  h1{font:600 clamp(25px,5vw,35px)/1.15 var(--serif);margin:0 0 8px;letter-spacing:-.01em}
+  .sub{color:var(--dim);font-size:14.5px;margin:0}
+  .sub b{color:var(--patina);font-weight:600}
 
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: var(--ink); 
-    color: var(--text);
-    font-family: Barlow, "Helvetica Neue", Arial, sans-serif;
-    font-size: 16px; 
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    transition: background-color .2s ease, color .2s ease;
-  }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 96px; }
+  .setup{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .seg button{background:none;border:0;color:var(--dim);font:500 14px var(--sans);
+    padding:8px 14px;cursor:pointer;transition:background .12s,color .12s}
+  .seg button:hover{color:var(--text)}
+  .seg button[aria-pressed="true"]{background:var(--patina);color:var(--on-accent)}
+  .pill{background:none;border:1px solid var(--line);border-radius:8px;color:var(--dim);
+    font:500 14px var(--sans);padding:8px 14px;cursor:pointer;transition:color .12s,border-color .12s}
+  .pill:hover{color:var(--text)}
+  .pill[aria-pressed="true"]{border-color:var(--patina);color:var(--patina);background:var(--okfill)}
+  .hint{color:var(--faint);font-size:13px;margin:0 0 18px}
+  .find{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}
+  .find input,.find select{
+    background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--text);
+    font:400 14px var(--sans);padding:9px 12px}
+  .find input{flex:1;min-width:170px}
+  .find input::placeholder{color:var(--faint)}
+  .find input:focus,.find select:focus{outline:2px solid var(--patina);outline-offset:-1px}
 
-  /* ---------- top navigation controls ---------- */
-  .home-btn {
-    position: fixed;
-    top: 18px;
-    left: 20px;
-    z-index: 99;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    height: 38px;
-    padding: 0 14px;
-    border-radius: 9999px;
-    border: 1px solid var(--line);
-    background: var(--panel);
-    color: var(--text);
-    text-decoration: none;
-    font-size: 13.5px;
-    font-weight: 600;
-    box-shadow: 0 3px 10px var(--shadow);
-    transition: background .15s, border-color .15s, transform .1s;
-  }
-  .home-btn:hover {
-    border-color: var(--patina);
-    background: var(--panel2);
-    color: var(--patina);
-  }
-  .home-btn:active { transform: scale(0.96); }
+  .index{display:grid;gap:2px}
+  .topic{display:flex;align-items:center;gap:13px;width:100%;background:none;border:0;
+    border-bottom:1px solid var(--line);color:var(--text);font:inherit;text-align:left;
+    padding:12px 4px;cursor:pointer;transition:background .12s,padding .12s}
+  .topic:hover:not(:disabled),.topic:focus-visible{background:var(--panel);padding-left:10px}
+  .topic:focus-visible{outline:2px solid var(--patina);outline-offset:-2px}
+  .topic:disabled{opacity:.32;cursor:default}
+  .topic .name{font:400 17.5px var(--serif);flex:1}
+  .topic .bar2{width:64px;height:4px;background:var(--line);border-radius:2px;overflow:hidden;flex:0 0 64px}
+  .topic .bar2 i{display:block;height:100%;background:var(--patina)}
+  .topic .n{color:var(--dim);font-size:13.5px;font-variant-numeric:tabular-nums;min-width:52px;text-align:right}
+  .allbtn{margin-top:20px;width:100%;padding:15px;cursor:pointer;border:0;border-radius:var(--radius);
+    background:var(--patina);color:var(--on-accent);font:600 16px var(--sans)}
+  .allbtn:hover:not(:disabled){filter:brightness(1.08)}
+  .allbtn:disabled{opacity:.4;cursor:default}
+  .note-foot{color:var(--faint);font-size:13.5px;line-height:1.6;margin-top:24px;
+    border-top:1px solid var(--line);padding-top:16px}
+  .linkish{background:none;border:0;color:var(--rust);font:inherit;cursor:pointer;padding:0;text-decoration:underline}
 
-  .theme-toggle {
-    position: fixed;
-    top: 18px;
-    right: 20px;
-    z-index: 99;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    background: var(--panel);
-    color: var(--text);
-    cursor: pointer;
-    box-shadow: 0 3px 10px var(--shadow);
-    transition: background .15s, border-color .15s, transform .1s;
-    padding: 0;
-  }
-  .theme-toggle:hover {
-    border-color: var(--patina);
-    background: var(--panel2);
-  }
-  .theme-toggle:active { transform: scale(0.94); }
-  .theme-toggle svg {
-    width: 18px;
-    height: 18px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  .icon-sun { display: block; }
-  .icon-moon { display: none; }
-  [data-theme="light"] .icon-sun { display: none; }
-  [data-theme="light"] .icon-moon { display: block; }
+  .bar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:13px 0;
+       border-bottom:1px solid var(--line);margin-bottom:18px}
+  .back{background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;padding:4px 0}
+  .back:hover{color:var(--patina)}
+  .bar .now{font:400 16px var(--serif);flex:1;min-width:80px}
+  .clock{font-variant-numeric:tabular-nums;font:600 15px var(--sans);color:var(--dim);
+    border:1px solid var(--line);border-radius:7px;padding:5px 10px}
+  .clock.low{color:var(--rust);border-color:var(--rust)}
+  .tally{font-size:14px;color:var(--dim);font-variant-numeric:tabular-nums}
+  .tally .ok{color:var(--patina)}
+  .submit{background:none;border:1px solid var(--rust);color:var(--rust);border-radius:7px;
+    font:600 13px var(--sans);padding:6px 12px;cursor:pointer}
+  .submit:hover{background:var(--nofill)}
+  .track{height:2px;background:var(--line);margin-bottom:22px}
+  .track i{display:block;height:100%;background:var(--patina);transition:width .25s}
 
-  /* ---------- masthead ---------- */
-  header {
-    border-bottom: 1px solid var(--line);
-    padding: 34px 44px 22px 0;
-    margin-bottom: 30px;
-  }
-  .masthead-nav {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 14px;
-    font-size: 13px;
-  }
-  .portal-bread {
-    color: var(--patina);
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .portal-bread:hover { text-decoration: underline; }
+  .meta{color:var(--faint);font-size:13px;margin-bottom:10px;display:flex;gap:9px;
+    flex-wrap:wrap;align-items:center}
+  .flag{color:var(--haldi);border:1px solid var(--haldi);border-radius:4px;padding:1px 7px;font-size:12px}
+  .star{background:none;border:0;color:var(--faint);cursor:pointer;font-size:15px;padding:0 2px;line-height:1}
+  .star[aria-pressed="true"]{color:var(--haldi)}
+  .stem{font:400 19.5px/1.55 var(--serif);margin:0 0 20px}
+  .opts{display:grid;gap:9px;margin-bottom:18px}
+  .opt{display:flex;gap:13px;align-items:flex-start;width:100%;text-align:left;
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    color:var(--text);font:inherit;padding:13px 15px;cursor:pointer;
+    transition:border-color .12s,background .12s}
+  .opt:hover:not(:disabled){border-color:var(--patina-dim);background:var(--panel2)}
+  .opt:focus-visible{outline:2px solid var(--patina);outline-offset:2px}
+  .opt:disabled{cursor:default}
+  .opt .k{flex:0 0 24px;height:24px;border:1px solid var(--line);border-radius:5px;
+    display:grid;place-items:center;font-size:13px;color:var(--dim)}
+  .opt .v{flex:1}
+  .opt.chosen,.opt.right{border-color:var(--patina);background:var(--okfill)}
+  .opt.chosen .k,.opt.right .k{border-color:var(--patina);background:var(--patina);color:var(--on-accent)}
+  .opt.wrong{border-color:var(--rust);background:var(--nofill)}
+  .opt.wrong .k{border-color:var(--rust);color:var(--rust)}
 
-  h1 {
-    font-family: Spectral, Georgia, serif; 
-    font-weight: 600;
-    font-size: clamp(26px, 5vw, 36px); 
-    line-height: 1.15; 
-    margin: 0 0 8px;
-    letter-spacing: -.01em;
-  }
-  .sub { color: var(--dim); font-size: 14.5px; margin: 0; }
-  .sub b { color: var(--patina); font-weight: 600; }
+  .why{min-height:28px;margin-bottom:18px}
+  .why:not(:empty){border-left:2px solid var(--patina-dim);padding:2px 0 2px 15px}
+  .verdict{font:600 14px var(--sans);margin:0 0 6px}
+  .verdict.ok{color:var(--patina)} .verdict.no{color:var(--rust)}
+  .verdict em{font-style:normal;font-weight:400;color:var(--faint);margin-left:8px}
+  .why .note{font:400 16px/1.6 var(--serif);color:var(--text);margin:0}
+  .why .again{color:var(--haldi);font-size:13px;margin:8px 0 0}
 
-  /* ---------- topic index ---------- */
-  .index { display: grid; gap: 2px; }
-  .topic {
-    display: flex; align-items: baseline; gap: 14px; width: 100%;
-    background: none; border: 0; border-bottom: 1px solid var(--line);
-    color: var(--text); font: inherit; text-align: left;
-    padding: 13px 4px; cursor: pointer; transition: background .12s, padding .12s;
-  }
-  .topic:hover, .topic:focus-visible { background: var(--panel); padding-left: 10px; }
-  .topic:focus-visible { outline: 2px solid var(--patina); outline-offset: -2px; }
-  .topic .name { font-family: Spectral, Georgia, serif; font-size: 18px; flex: 1; }
-  .topic .rule { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-4px); min-width: 12px; }
-  .topic .n { color: var(--dim); font-variant-numeric: tabular-nums; font-size: 14px; }
-  .topic .done { color: var(--patina); font-size: 13px; font-variant-numeric: tabular-nums; }
-  .allbtn {
-    margin: 22px 0 0; width: 100%; padding: 15px; cursor: pointer;
-    background: var(--patina); color: var(--btn-text); border: 0; border-radius: var(--radius);
-    font: 600 16px Barlow, sans-serif;
-  }
-  .allbtn:hover { filter: brightness(1.08); }
-  .note {
-    color: var(--faint); font-size: 13.5px; line-height: 1.6; margin-top: 26px;
-    border-top: 1px solid var(--line); padding-top: 18px;
-  }
+  .nav{display:flex;gap:9px;flex-wrap:wrap}
+  .nav button{flex:1;min-width:110px;padding:13px;border-radius:var(--radius);cursor:pointer;
+    font:600 15px var(--sans);background:var(--panel);border:1px solid var(--line);color:var(--text)}
+  .nav button:hover:not(:disabled){border-color:var(--patina-dim)}
+  .nav button:disabled{opacity:.35;cursor:default}
+  .nav .go{background:var(--patina);border-color:var(--patina);color:var(--on-accent)}
+  .nav .mark[aria-pressed="true"]{border-color:var(--haldi);color:var(--haldi);background:var(--markfill)}
+  .keys{color:var(--faint);font-size:12.5px;text-align:center;margin-top:14px}
 
-  /* ---------- quiz ---------- */
-  .bar {
-    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-    padding: 14px 44px 14px 0; border-bottom: 1px solid var(--line); margin-bottom: 22px;
-  }
-  .back { background: none; border: 0; color: var(--dim); font: inherit; cursor: pointer; padding: 4px 0; }
-  .back:hover { color: var(--patina); }
-  .bar .now { font-family: Spectral, Georgia, serif; font-size: 16px; flex: 1; min-width: 120px; }
-  .tally { font-size: 14px; font-variant-numeric: tabular-nums; color: var(--dim); }
-  .tally .ok { color: var(--patina); } 
-  .tally .no { color: var(--rust); }
-  .track { height: 2px; background: var(--line); margin-bottom: 26px; }
-  .track i { display: block; height: 100%; background: var(--patina); transition: width .25s; }
+  .palette{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px;
+    border-top:1px solid var(--line);padding-top:16px}
+  .palette button{width:34px;height:31px;border-radius:6px;cursor:pointer;
+    font:500 13px var(--sans);font-variant-numeric:tabular-nums;
+    background:var(--panel);border:1px solid var(--line);color:var(--dim)}
+  .palette button:hover{border-color:var(--patina-dim);color:var(--text)}
+  .palette button.on{border-color:var(--patina);color:var(--patina);background:var(--okfill)}
+  .palette button.mk{border-color:var(--haldi);color:var(--haldi);background:var(--markfill)}
+  .palette button.ko{border-color:var(--rust);color:var(--rust);background:var(--nofill)}
+  .palette button.here{outline:2px solid var(--text);outline-offset:1px}
 
-  .meta {
-    color: var(--faint); font-size: 13px; letter-spacing: .02em; margin-bottom: 10px;
-    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
-  }
-  .flag { color: var(--haldi); border: 1px solid var(--flag-border); border-radius: 4px; padding: 1px 7px; font-size: 12px; }
-  .stem {
-    font-family: Spectral, Georgia, serif; font-size: 19.5px; line-height: 1.55;
-    margin: 0 0 22px;
-  }
-  .opts { display: grid; gap: 9px; margin-bottom: 22px; }
-  .opt {
-    display: flex; gap: 13px; align-items: flex-start; width: 100%; text-align: left;
-    background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
-    color: var(--text); font: inherit; padding: 13px 15px; cursor: pointer;
-    transition: border-color .12s, background .12s;
-  }
-  .opt:hover:not(:disabled) { border-color: var(--patina-dim); background: var(--panel2); }
-  .opt:focus-visible { outline: 2px solid var(--patina); outline-offset: 2px; }
-  .opt:disabled { cursor: default; }
-  .opt .k {
-    flex: 0 0 24px; height: 24px; border: 1px solid var(--line); border-radius: 5px;
-    display: grid; place-items: center; font-size: 13px; color: var(--dim);
-  }
-  .opt .v { flex: 1; }
-  .opt.right { border-color: var(--patina); background: var(--right-bg); }
-  .opt.right .k { border-color: var(--patina); background: var(--patina); color: var(--btn-text); }
-  .opt.wrong { border-color: var(--rust); background: var(--wrong-bg); }
-  .opt.wrong .k { border-color: var(--rust); color: var(--rust); }
+  .score{font:400 44px var(--serif);margin:10px 0 2px}
+  .score small{font-size:20px;color:var(--dim)}
+  .stats{display:flex;gap:24px;flex-wrap:wrap;margin:20px 0 4px}
+  .stat b{display:block;font:600 21px var(--sans);font-variant-numeric:tabular-nums}
+  .stat span{color:var(--dim);font-size:13px}
+  .h3{font:600 13px var(--sans);letter-spacing:.06em;text-transform:uppercase;
+    color:var(--faint);margin:26px 0 6px}
+  .row{display:flex;gap:12px;align-items:center;padding:10px 0;
+    border-bottom:1px solid var(--line);font-size:15px}
+  .row .name{flex:1}
+  .row .sc{color:var(--dim);font-variant-numeric:tabular-nums;font-size:14px;min-width:46px;text-align:right}
+  .row .bar2{width:64px;height:4px;background:var(--line);border-radius:2px;overflow:hidden;flex:0 0 64px}
+  .row .bar2 i{display:block;height:100%;background:var(--patina)}
+  .slow .name{font:400 15px var(--serif)}
 
-  .why { min-height: 34px; margin-bottom: 20px; }
-  .why:not(:empty) {
-    border-left: 2px solid var(--patina-dim); padding: 2px 0 2px 15px;
-  }
-  .verdict { font-size: 14px; font-weight: 600; margin: 0 0 6px; letter-spacing: .01em; }
-  .verdict.ok { color: var(--patina); } 
-  .verdict.no { color: var(--rust); }
-  .why .note {
-    font-family: Spectral, Georgia, serif; font-size: 16px; line-height: 1.6;
-    color: var(--text); margin: 0;
-  }
-  .why .again { color: var(--haldi); font-size: 13px; margin: 8px 0 0; }
-
-  .nav { display: flex; gap: 10px; }
-  .nav button {
-    flex: 1; padding: 13px; border-radius: var(--radius); font: 600 15px Barlow, sans-serif; cursor: pointer;
-    background: var(--panel); border: 1px solid var(--line); color: var(--text);
-  }
-  .nav button:hover:not(:disabled) { border-color: var(--patina-dim); }
-  .nav button:disabled { opacity: .35; cursor: default; }
-  .nav .go { background: var(--patina); border-color: var(--patina); color: var(--btn-text); }
-  .keys { color: var(--faint); font-size: 12.5px; text-align: center; margin-top: 16px; }
-
-  /* ---------- results ---------- */
-  .score { font-family: Spectral, Georgia, serif; font-size: 44px; margin: 10px 0 2px; }
-  .score small { font-size: 20px; color: var(--dim); }
-  .rows { margin: 24px 0; }
-  .row { display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
-  .row .name { flex: 1; }
-  .row .sc { font-variant-numeric: tabular-nums; color: var(--dim); }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  .theme{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+    flex:0 0 34px;padding:0;cursor:pointer;background:none;border:1px solid var(--line);
+    border-radius:8px;color:var(--dim);transition:color .12s,border-color .12s}
+  .theme:hover{color:var(--patina);border-color:var(--patina-dim)}
+  .theme:focus-visible{outline:2px solid var(--patina);outline-offset:2px}
+  .theme svg{width:17px;height:17px;display:block}
+  header .theme{float:right;margin-left:14px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
+<div id="motif"></div>
+<div class="wrap" id="app"></div>
+<script>
+"use strict";
+var DATA = [{"i":0,"t":"Stone Age","q":"The earliest evidence of animal Husbandry and agriculture in India has come from:","o":[["a","Anjira"],["b","Damb Sadat"],["c","Kili Gul Muhammad"],["d","Mehrgarh"],["e","None of the above/More than one of the above"]],"a":"d","s":"64th BPSC (Pre) 2018","y":["2018"],"n":"Mehrgarh, in present-day Balochistan, is the classic answer: wheat cultivation plus domesticated animals. Note that Lahuradewa (Sant Kabir Nagar, UP) has since yielded rice from c. 8000-7000 BCE, and Koldihwa on the Belan is the older rice site.","r":0,"z":["e"]},{"i":1,"t":"Stone Age","q":"Which one of the following periods is also known as the Chalcolithic Age?","o":[["a","Old Stone Age"],["b","New Stone Age"],["c","Copper Stone Age"],["d","Iron Age"]],"a":"c","s":"44th BPSC (Pre) 2000","y":["2000"],"n":"Chalco = copper, lithic = stone. Cultures using copper tools alongside stone ones are Chalcolithic.","r":0,"z":[]},{"i":2,"t":"Stone Age","q":"Which river valley in India was the first human fossil obtained from?","o":[["a","Ganga River"],["b","Yamuna Valley"],["c","Narmada Valley"],["d","Tapi Valley"],["e","None of the above / More than one of the above"]],"a":"c","s":"66th BPSC Re-Exam (Pre) 2020","y":["2020"],"n":"Found at Hathnora (Sehore district, MP) in the Narmada valley, by Arun Sonakia of the Geological Survey of India in 1982.","r":0,"z":["e"]},{"i":3,"t":"Stone Age","q":"Which of the following states is the Bhimbetka site located in?","o":[["a","Chhattisgarh"],["b","Madhya Pradesh"],["c","Tamil Nadu"],["d","Punjab"]],"a":"b","s":"BPSC (CDPO) (Pre) 2009","y":["2009"],"n":"Bhimbetka is in Raisen district, Madhya Pradesh. Around 750 rock shelters have been identified, roughly 500 of them painted, spanning the Early Stone Age to historical times.","r":0,"z":[]},{"i":4,"t":"Stone Age","q":"Match List - I with List - II and choose the correct answer using the codes given below the lists. List - I List - II (Neolithic Site) (Locations) A. Utnoor 1. Tamil Nadu B. Chirand 2. Kashmir C. Gufkral 3. Telangana D. Paiyampalli 4. Bihar A B C D","o":[["a","4 2 1 3"],["b","3 1 4 2"],["c","3 4 2 1"],["d","2 1 3 4"]],"a":"c","s":"BPSC (CDPO) (Pre) 2005","y":["2005"],"n":"Utnoor - Telangana; Chirand - Bihar; Gufkral - Kashmir; Paiyampalli - Tamil Nadu. Chirand and Gufkral are the two worth memorising.","r":0,"z":[]},{"i":5,"t":"Stone Age","q":"Match List I with List II and choose the correct answer using the code given below the lists. List - I List - II (Chalcolithic Site) ( Rivers of Chalcolithic Civilization Sites) A. Ahar 1. Tapti B. Kayatha 2. Narmada C. Savalda 3. Kali Sindh D. Malwa 4. Banas Code: A B C D","o":[["a","1 3 2 4"],["b","2 1 4 3"],["c","4 3 1 2"],["d","2 4 1 3"]],"a":"c","s":"BPSC (Assistant ) 2019","y":["2019"],"n":"Ahar - Banas; Kayatha - Kali Sindh; Savalda - Tapti; Malwa - Narmada.","r":0,"z":[]},{"i":6,"t":"Indus Valley Civilization","q":"Indus Civilization existed in:","o":[["a","Prehistoric age"],["b","Proto-historic age"],["c","Historic age"],["d","Post-historic age"]],"a":"b","s":"39th BPSC (Pre) 1994","y":["1994"],"n":"Protohistoric means writing existed but cannot be read. The Harappan script is known and undeciphered, which places the civilisation between prehistory and history. In Indian terms this covers roughly 3000-600 BCE.","r":0,"z":[]},{"i":7,"t":"Indus Valley Civilization","q":"What is the most significant feature of the Indus Valley Civilization?","o":[["a","Burnt brick buildings"],["b","First true arches"],["c","Buildings of worship"],["d","Art and architecture"],["e","None of the above/More than one of the above"]],"a":"e","s":"63rd BPSC (Pre.) 2017","y":["2017"],"n":"The Commission treated no single option as adequate. Town planning is normally called the defining feature; burnt-brick buildings and planned drainage are part of it, while true arches appear only much later, and no clear place of worship has been identified.","r":0,"z":["e"]},{"i":8,"t":"Indus Valley Civilization","q":"Which city is known as 'Mini Harappa'?","o":[["a","Lothal"],["b","Desalpur"],["c","Sohgaura"],["d","Kotdiji"]],"a":"a","s":"BPSC (CDPO) (Pre) 2009","y":["2009"],"n":"Lothal in Gujarat is called Mini Harappa. Its first excavation was directed by S.R. Rao.","r":0,"z":[]},{"i":9,"t":"Indus Valley Civilization","q":"Which of the following is a Harappan port?","o":[["a","Alexandria"],["b","Lothal"],["c","Mahasthangarh"],["d","Nagapattinam"]],"a":"b","s":"53rd to 55th BPSC (Pre) 2011","y":["2011"],"n":"Lothal sits on the Bhogava river in Ahmedabad district, Gujarat, and has yielded a structure widely read as a dockyard.","r":0,"z":[]},{"i":10,"t":"Indus Valley Civilization","q":"Which of the following is a Harappan site in Gujarat?","o":[["a","Lothal"],["b","Dabarkot"],["c","Kalibanga"],["d","Rakhigarhi"],["e","None of the above/ More than one of the above"]],"a":"a","s":"67th BPSC (Pre) 2022","y":["2022"],"n":"Lothal is in Gujarat. Kalibangan is in Rajasthan, Rakhigarhi in Haryana, Dabarkot in Balochistan.","r":0,"z":["e"]},{"i":11,"t":"Indus Valley Civilization","q":"Which is the oldest civilization in the world?","o":[["a","Indus Valley Civilization"],["b","Chinese Civilization"],["c","Egyptian Civilization"],["d","Mesopotamian Civilization (Iraq)"]],"a":"d","s":"70th BPSC Re-Exam (Pre) 2024","y":["2024"],"n":"Mesopotamia, in present-day Iraq, is reckoned the oldest. Egypt in the Nile valley came later, and the Indus later still.","r":0,"z":[]},{"i":12,"t":"Indus Valley Civilization","q":"Which of the following animals was not known to the people of the Indus Valley Civilization?","o":[["a","Bull"],["b","Horse"],["c","Elephant"],["d","None of the above"]],"a":"b","s":"69th BPSC (Pre) 2023","y":["2023"],"n":"Bulls and elephants are well attested on seals; the horse is not. Bones claimed as horse are hard to separate from the wild ass (onager), so its presence stays disputed.","r":0,"z":["d"]},{"i":13,"t":"Indus Valley Civilization","q":"Which among the following Harappan sites was terracotta of a 'plough' was found?","o":[["a","Dholavira"],["b","Banawali"],["c","Kalibangan"],["d","Lothal"],["e","None of the above/More than one of the above"]],"a":"e","s":"60th to 62nd BPSC (Pre) 2016","y":["2016"],"n":"Terracotta plough models have come from both Banawali (Haryana) and Kalibangan (Rajasthan), so no single option works. Kalibangan also gave the ploughed field.","r":0,"z":["e"]},{"i":14,"t":"Indus Valley Civilization","q":"In which of the following Harappan cities, furrows of ploughed fields have been found?","o":[["a","Kalibangan"],["b","Dholavira"],["c","Mohenjo-Daro"],["d","Lothal"],["e","None of the above/More than one of the above"]],"a":"a","s":"66th BPSC (Pre) 2020","y":["2020"],"n":"Kalibangan, on the Ghaggar in Hanumangarh district, Rajasthan, gave the ploughed field with criss-cross furrows. Pair it with Banawali for the plough model and Lothal for the dockyard.","r":0,"z":["e"]},{"i":15,"t":"Indus Valley Civilization","q":"At which Harappan site do we find evidence of a ploughed field?","o":[["a","Kalibangan (Rajasthan)"],["b","Lothal (Gujarat)"],["c","Banawali (Haryana)"],["d","More than one of the above"],["e","None of the above"]],"a":"a","s":"BPSC TRE-3 July, 2024","y":["2024"],"n":"Kalibangan, on the Ghaggar in Hanumangarh district, Rajasthan, gave the ploughed field with criss-cross furrows. Pair it with Banawali for the plough model and Lothal for the dockyard.","r":1,"z":["d","e"]},{"i":16,"t":"Indus Valley Civilization","q":"Who among the following was not associated with the excavation of Harappa and Mohenjodaro?","o":[["a","R. D. Banerjee"],["b","K.N. Dikshit"],["c","M.S. Vats"],["d","V.A. Smith"]],"a":"d","s":"56th to 59th BPSC (Pre) 2015","y":["2015"],"n":"V.A. Smith was a historian, not an excavator. Daya Ram Sahni excavated Harappa from 1921, Madho Sarup Vats continued there, and R.D. Banerjee identified Mohenjodaro in 1922.","r":0,"z":[]},{"i":17,"t":"Indus Valley Civilization","q":"Which colour was commonly used in the Harappan Pottery?","o":[["a","Red"],["b","Blue-grey (7) General Studies"],["c","Yellow"],["d","Blue"]],"a":"a","s":"40th BPSC (Pre) 1995","y":["1995"],"n":"Harappan pottery is characteristically red, often with black painted designs. Sand mixed into the clay gave the fired surface its brownish-red tone.","r":0,"z":[]},{"i":18,"t":"Indus Valley Civilization","q":"According to the report of the IIT Kharagpur study group, continuous low rainfall for how many years was the cause of the fall of the Indus Valley Civilization?","o":[["a","600 years"],["b","700 years"],["c","800 years"],["d","900 years"],["e","None of the above/More than one of the above"]],"a":"d","s":"64th BPSC (Pre) 2018","y":["2018"],"n":"An IIT Kharagpur study published in 2018 attributed the decline to a drought lasting about 900 years. Aurel Stein had earlier argued for climatic change.","r":0,"z":["e"]},{"i":19,"t":"Vedic Age","q":"Which one of the following is not related to the Rigvedic period?","o":[["a","Gargi"],["b","Ghosha"],["c","Apala"],["d","Vishvavara"]],"a":"a","s":"71st BPSC (Pre) 2025","y":["2025"],"n":"Ghosha, Apala and Vishvavara are women associated with Rigvedic hymns. Gargi belongs to the later Upanishadic period, so she is the odd one out.","r":0,"z":[]},{"i":20,"t":"Vedic Age","q":"Which city served as the capital of the ancient kingdom of Magadha during the early Vedic period?","o":[["a","Pataliputra"],["b","Rajagriha"],["c","Champa"],["d","Vaishali"]],"a":"b","s":"69th BPSC (Pre) 2023","y":["2023"],"n":"Rajagriha, modern Rajgir. Magadha's first dynasty was the Brihadratha, named in the Rigveda.","r":0,"z":[]},{"i":21,"t":"Vedic Age","q":"Which Mandala of the Rig Veda is completely dedicated to ‘Soma’?","o":[["a","Seventh Mandala"],["b","Eighth Mandala"],["c","Ninth Mandala"],["d","Tenth Mandala"]],"a":"c","s":"42nd BPSC (Pre) 1997-98","y":["1997"],"n":"The Rigveda has ten mandalas; all 114 hymns of the ninth are for Soma. The tenth mandala carries the Purusha Sukta on the origin of the four varnas.","r":0,"z":[]},{"i":22,"t":"Vedic Age","q":"To whom is the ninth Mandala of the Rigveda Samhita completely dedicated?","o":[["a","Indra and his elephant"],["b","Urvashi and heaven"],["c","Deities related to plants and herbs"],["d","Soma and the deity named after this drink"]],"a":"d","s":"40th BPSC (Pre) 1995","y":["1995"],"n":"Same point: the ninth mandala is given over entirely to Soma, both the drink and the deity.","r":1,"z":[]},{"i":23,"t":"Vedic Age","q":"Gayatri Mantra is found in which book?","o":[["a","Upanishad"],["b","Bhagavad Gita"],["c","Rig Veda"],["d","Yajurveda"]],"a":"c","s":"39th BPSC (Pre) 1994","y":["1994"],"n":"It sits in the third mandala of the Rigveda, is ascribed to Vishvamitra, and addresses Savitr, the sun.","r":0,"z":[]},{"i":24,"t":"Vedic Age","q":"In which phase was the concept of untouchability was clearly put?","o":[["a","Rigvedic phase"],["b","Later Vedic phase"],["c","Later Gupta phase"],["d","Dharmashastra phase"]],"a":"d","s":"39th BPSC (Pre) 1994","y":["1994"],"n":"Untouchability is stated plainly only in the Dharmashastra (Sutra) phase, when mixed castes multiplied through anuloma and pratiloma marriage. Panini's Niravasita Shudras were the excluded group.","r":0,"z":[]},{"i":25,"t":"Vedic Age","q":"When did the use of iron begin in the Indian subcontinent?","o":[["a","Around 9000 years ago"],["b","Around 12000 years ago"],["c","Around 6000 years ago (8) General Studies"],["d","More than one of the above"],["e","None of the above"]],"a":"e","s":"68th BPSC (Pre) 2022","y":["2022"],"n":"No option matches, so the answer is 'none'. Iron with Black-and-Red Ware at Noh (Rajasthan) dates to about 1400 BCE, and Atranjikhera's iron tools to about 1000 BCE, which most scholars accept. The Atharvaveda calls iron shyama ayas.","r":0,"z":["d","e"]},{"i":26,"t":"Vedic Age","q":"Boghaz-Koi is important because:","o":[["a","It was an important trading centre between Central Asia and Tibet"],["b","Inscriptions were found which mentioned the names of Vedic Gods and goddesses"],["c","Original texts of the Vedas were composed here"],["d","None of the above"]],"a":"b","s":"39th BPSC (Pre) 1994","y":["1994"],"n":"Fourteenth-century BCE inscriptions from Boghazkoi in Asia Minor invoke Indra, Mitra, Varuna and the Nasatyas as witnesses to a treaty, which is why they matter for the Aryan question.","r":0,"z":["d"]},{"i":27,"t":"Vedic Age","q":"Famous Battle of ‘Ten Kings’ was fought on the bank of the river:","o":[["a","Ganges"],["b","Brahmaputra"],["c","Kaveri"],["d","Parushni"]],"a":"d","s":"42nd BPSC (Pre) 1997","y":["1997"],"n":"The Dasarajna was fought on the Parushni, the modern Ravi. Sudas of the Bharatas won.","r":0,"z":[]},{"i":28,"t":"Vedic Age","q":"Which ancient Indian text, composed during the Later Vedic period, contains philosophical hymns and discussions on cosmology and ethics?","o":[["a","Yajurveda"],["b","Upanishads"],["c","Rigveda"],["d","More than one of the above"],["e","None of the above"]],"a":"b","s":"BPSC Preview ( | BPSC (Tre-3) July, 2024","y":["2024"],"n":"The Upanishads, composed roughly 700-300 BCE, carry the philosophical discussion of cosmology and ethics.","r":0,"z":["d","e"]},{"i":29,"t":"Buddhism","q":"Where was Gautam a Buddha born?","o":[["a","In Kundagram"],["b","In Pataliputra"],["c","In Lumbini"],["d","In Vaishali"]],"a":"c","s":"BPSC (CDPO) (Pre) 2005","y":["2005"],"n":"Born at Lumbini near Kapilavastu in 563 BCE. Fix the four sites together: born Lumbini, enlightened Bodh Gaya, first sermon Sarnath, died Kushinagar.","r":0,"z":[]},{"i":30,"t":"Buddhism","q":"At which place did Mahatma Buddha give his first ‘Dhammachakkhapavattana’?","o":[["a","Lumbini"],["b","Sarnath"],["c","Pataliputra"],["d","Vaishali"]],"a":"b","s":"47th BPSC (Pre) 2005","y":["2005"],"n":"Sarnath, near Kashi, also called Rishipattana or Mrigadava. The first sermon is the Dhammachakkappavattana.","r":0,"z":[]},{"i":31,"t":"Buddhism","q":"Where did Gautama Buddha give his first sermon?","o":[["a","Pataliputra"],["b","Sarnath"],["c","Gaya"],["d","Vaishali"],["e","None of the above/More than one of the above"]],"a":"b","s":"65th BPSC (Re-Exam) (Pre) 2020","y":["2020"],"n":"Sarnath, near Kashi, also called Rishipattana or Mrigadava. The first sermon is the Dhammachakkappavattana.","r":1,"z":["e"]},{"i":32,"t":"Buddhism","q":"Who got enlightenment in Bodh Gaya?","o":[["a","Mahavir Swami"],["b","Gautam Buddha"],["c","Samdhar Swami"],["d","Parshvanath Swami"],["e","None of the above/ More than one of the above"]],"a":"b","s":"67th BPSC (Pre) 2022","y":["2022"],"n":"Born at Lumbini near Kapilavastu in 563 BCE. Fix the four sites together: born Lumbini, enlightened Bodh Gaya, first sermon Sarnath, died Kushinagar.","r":1,"z":["e"]},{"i":33,"t":"Buddhism","q":"Four important events of Buddha’s life and there related four places are mentioned below. Match Schedule- I and Schedule- II and select the correct answer from the codes given below - Schedule - I Schedule - II A. Birth 1. Sarnath B. Enlightenment 2. Bodh Gaya C. First preaching 3. Lumbini D. Death 4. Kushinagar Code : A B C D","o":[["a","1 2 4 3"],["b","2 3 1 4"],["c","3 2 1 4"],["d","None of the above."]],"a":"c","s":"41st BPSC (Pre) 1996","y":["1996"],"n":"Birth - Lumbini; Enlightenment - Bodh Gaya; First preaching - Sarnath; Death - Kushinagar.","r":0,"z":["d"]},{"i":34,"t":"Buddhism","q":"Which Buddhist council was not held in Bihar?","o":[["a","Second"],["b","First"],["c","Third"],["d","Fourth"]],"a":"d","s":"71st BPSC (Pre) 2025","y":["2025"],"n":"First at Rajagriha, second at Vaishali, third at Pataliputra, all in Bihar. Only the fourth, at Kundalvan in Kashmir, was held outside.","r":0,"z":[]},{"i":35,"t":"Buddhism","q":"In which city was the first Buddhist council held during the reign of Ajatashatru?","o":[["a","Rajgriha"],["b","Magadha"],["c","Pataliputra"],["d","Kashmir"]],"a":"a","s":"BPSC (CDPO) (Pre) 2005","y":["2005"],"n":"Rajagriha, in the Saptaparni cave, immediately after the Buddha's death, when Ajatashatru ruled Magadha. Mahakassapa presided; Ananda and Upali supplied the Dhamma and Vinaya.","r":0,"z":[]},{"i":36,"t":"Buddhism","q":"Who was the chairman of the First Buddhist Council?","o":[["a","Vasumitra"],["b","Mahakashyapa"],["c","Sangharaksha"],["d","Parshva"],["e","None of the above/More than one of the above"]],"a":"b","s":"67th BPSC (Pre) 2022","y":["2022"],"n":"Rajagriha, in the Saptaparni cave, immediately after the Buddha's death, when Ajatashatru ruled Magadha. Mahakassapa presided; Ananda and Upali supplied the Dhamma and Vinaya.","r":1,"z":["e"]},{"i":37,"t":"Buddhism","q":"Where was the First Buddhist Council convened?","o":[["a","Pataliputra"],["b","Rajagriha"],["c","Amaravati"],["d","Kanganhalli"],["e","None of the above/More than one of the above"]],"a":"b","s":"67th BPSC (Re-exam) (Pre) 2021","y":["2021"],"n":"Rajagriha, in the Saptaparni cave, immediately after the Buddha's death, when Ajatashatru ruled Magadha. Mahakassapa presided; Ananda and Upali supplied the Dhamma and Vinaya.","r":1,"z":["e"]},{"i":38,"t":"Buddhism","q":"After the Mahaparinirvana of Lord Buddha, the first Buddhist council was held at:","o":[["a","Rajgriha (Rajgir)"],["b","Gaya"],["c","Pataliputra"],["d","Vaishali"],["e","None of the above/More than one of the above"]],"a":"a","s":"64th BPSC (Pre) 2018","y":["2018"],"n":"Rajagriha, in the Saptaparni cave, immediately after the Buddha's death, when Ajatashatru ruled Magadha. Mahakassapa presided; Ananda and Upali supplied the Dhamma and Vinaya.","r":1,"z":["e"]},{"i":39,"t":"Buddhism","q":"A Buddhist Council during the reign of Kanishka was held at –","o":[["a","Magadha"],["b","Pataliputra"],["c","Kashmir"],["d","Rajgriha"]],"a":"c","s":"47th BPSC (Pre) 2005","y":["2005"],"n":"Kundalvan in Kashmir, under Kanishka. Vasumitra presided with Ashvaghosha as deputy; the commentaries produced are the Vibhasha Shastra.","r":0,"z":[]},{"i":40,"t":"Buddhism","q":"Which of the following rulers convened the Fourth Buddhist Council in Kashmir?","o":[["a","Ashoka"],["b","Ajatashatru"],["c","Kanishka"],["d","Kalashoka"],["e","None of the above/More than one of the above"]],"a":"c","s":"66th BPSC (Pre.) 2020","y":["2020"],"n":"Kundalvan in Kashmir, under Kanishka. Vasumitra presided with Ashvaghosha as deputy; the commentaries produced are the Vibhasha Shastra.","r":1,"z":["e"]},{"i":41,"t":"Buddhism","q":"A Buddhist Council during the reign of Ashoka was held at –","o":[["a","Magadha"],["b","Pataliputra"],["c","Samastipur"],["d","Rajgriha"]],"a":"b","s":"45th BPSC (Pre) 2000","y":["2000"],"n":"Pataliputra, under Ashoka, chaired by Moggaliputta Tissa. The Sinhalese chronicles Dipavamsa and Mahavamsa are the source.","r":0,"z":[]},{"i":42,"t":"Buddhism","q":"Where was the third Buddhist Council held?","o":[["a","Taxila"],["b","Sarnath"],["c","Bodh Gaya"],["d","Pataliputra"]],"a":"d","s":"53rd to 55th BPSC (Pre) 2011","y":["2011"],"n":"Pataliputra, under Ashoka, chaired by Moggaliputta Tissa. The Sinhalese chronicles Dipavamsa and Mahavamsa are the source.","r":1,"z":[]},{"i":43,"t":"Buddhism","q":"Where did Mahatma Buddha’s ‘Mahaparinirvana’ take place?","o":[["a","Lumbini"],["b","Bodh Gaya"],["c","Kushinagar"],["d","Kapilvastu"]],"a":"c","s":"53rd to 55th BPSC (Pre) 2011 | 47th BPSC (Pre) 2005","y":["2005","2011"],"n":"Kushinagar, capital of the Mallas, in 483 BCE at the age of 80. He fell ill after eating sukaramaddava at Chunda's home in Pava.","r":0,"z":[]},{"i":44,"t":"Buddhism","q":"Tripitakas are the sacred books of the:","o":[["a","Jains"],["b","Hindus"],["c","Parsees"],["d","Buddhists"],["e","None of the above/More than one of the above"]],"a":"d","s":"63rd BPSC (Pre.) 2017","y":["2017"],"n":"The Tripitaka is Buddhist: Vinaya (monastic rules), Sutta (sermons) and Abhidhamma (philosophy).","r":0,"z":["e"]},{"i":45,"t":"Buddhism","q":"Which of the following represents a fundamental difference between Mahayana Buddhism and Hinayana Buddhism?","o":[["a","Emphasis on non-violence"],["b","Casteless society"],["c","Worship of idols of gods and goddesses"],["d","Worship of Stupas"]],"a":"c","s":"BPSC (Assistant) 2019","y":["2019"],"n":"Hinayana did not worship images; Mahayana treated the Buddha as a deity and worshipped his idols. Non-violence and stupa worship were common to both.","r":0,"z":[]},{"i":46,"t":"Buddhism","q":"The ‘Bodhi Vriksha’ in Bodh Gaya belongs to which generation of its family?","o":[["a","Third"],["b","Fourth"],["c","Fifth"],["d","Sixth"]],"a":"*","s":"48th to 52nd BPSC (Pre) 2008","y":["2008"],"n":"BPSC dropped this question. The Bihar tourism department calls the present tree fifth-generation, but counting the plantings by Ashoka, Pushyamitra Shunga, the Burmese king and Cunningham gives six, so the sources conflict.","r":0,"z":[]},{"i":47,"t":"Buddhism","q":"The Chinese traveler 'Sung yun' visited India in -","o":[["a","515 AD to 520 AD"],["b","525 AD to 529 AD"],["c","545 AD to 552 AD"],["d","592 AD to 597 AD"],["e","None of the above/More than one of the above"]],"a":"a","s":"60th to 62nd BPSC (Pre) 2016","y":["2016"],"n":"Sung-yun reached India in 518 CE and returned to China three years later with Buddhist texts, which is why the 515-520 window is marked correct.","r":0,"z":["e"]},{"i":48,"t":"Buddhism","q":"Gautama Buddha was elevated to the position of God during the period of:","o":[["a","Ashoka"],["b","Kanishka"],["c","Chandragupta Vikramaditya"],["d","Harsha"]],"a":"b","s":"44th BPSC (Pre) 2000","y":["2000"],"n":"Under Kanishka. The fourth council split Buddhism into Hinayana and Mahayana, and the Mahayana branch began worshipping the Buddha and the Bodhisattvas.","r":0,"z":[]},{"i":49,"t":"Buddhism","q":"The teachers from whom Buddha first attempted to gain enlightenment after the Mahabhinishkramana were:","o":[["a","Kaundinya and Kaladeva"],["b","Ananda and Ashvaghosha"],["c","Alara Kalama and Rudraka Ramaputra"],["d","Sariputta and Nagasena"]],"a":"c","s":"BPSC (CDPO) (Pre) 2005","y":["2005"],"n":"Alara Kalama, a Sankhya teacher, then Rudraka Ramaputra. He left both unsatisfied before finding his own path.","r":0,"z":[]},{"i":50,"t":"Buddhism","q":"Which one of the following is not common between Buddhism and Jainism?","o":[["a","Ahimsa"],["b","Indifference to Vedas"],["c","Self-mortification"],["d","Rejection of Rituals"]],"a":"c","s":"44th BPSC (Pre) 2000","y":["2000"],"n":"Extreme self-mortification is Jain; the Buddha rejected it for the Middle Path. Both faiths share non-violence, rejection of Vedic authority and dismissal of ritual.","r":0,"z":[]},{"i":51,"t":"Buddhism","q":"Nalanda University was a great center of knowledge of -","o":[["a","Buddhism"],["b","Jainism"],["c","Vaishnavism"],["d","Sankhya"]],"a":"a","s":"BPSC (CDPO) (Pre) 2005","y":["2005"],"n":"Nalanda was the great centre of Buddhist philosophy. It arose in the mid-fifth century CE under the Guptas, with Kumaragupta I as its first patron.","r":0,"z":[]},{"i":52,"t":"Jainism","q":"Where was Mahavira Swami born?","o":[["a","Kundagram"],["b","Pataliputra"],["c","Magadha"],["d","Vaishali"]],"a":"a","s":"53rd to 55thBPSC (Pre) 2011 | 47th BPSC (Pre) 2005 | 42nd BPSC (Pre) 1997-98","y":["1997","2005","2011"],"n":"Kundagrama (Kundalpur) near Vaishali, around 599 BCE. His father Siddhartha headed the Jnatrika clan; his mother Trishala was sister to the Licchavi chief Chetaka.","r":0,"z":[]},{"i":53,"t":"Jainism","q":"The first disciple of Lord Mahavira was –","o":[["a","Jamali"],["b","Yashoda"],["c","Bipin"],["d","Prabhash"]],"a":"a","s":"47th BPSC (Pre) 2005","y":["2005"],"n":"Jamali, who was also his son-in-law, married to his daughter Priyadarshana. Mahavira's wife was Yashoda.","r":0,"z":[]},{"i":54,"t":"Jainism","q":"The salvation place of Mahavira, the Propounder of Jain religion, is located at -:","o":[["a","Maner"],["b","Rajgir"],["c","Pavapuri"],["d","Jalan Port"],["e","None of the above/More than one of the above"]],"a":"c","s":"63rd BPSC (Pre.) 2017","y":["2017"],"n":"Pavapuri, in Nalanda district, Bihar, in 527 BCE at the age of 72. Mahavira was the 24th Tirthankara; Rishabhadeva is counted the original founder.","r":0,"z":["e"]},{"i":55,"t":"Jainism","q":"Mahavira Jain breathed his last at –","o":[["a","Rajgir"],["b","Ranchi"],["c","Pavapuri"],["d","Samastipur"]],"a":"c","s":"44th BPSC (Pre) 2001","y":["2001"],"n":"Pavapuri, in Nalanda district, Bihar, in 527 BCE at the age of 72. Mahavira was the 24th Tirthankara; Rishabhadeva is counted the original founder.","r":1,"z":[]},{"i":56,"t":"Jainism","q":"Which of the following is the earliest holy book of Jainism?","o":[["a","Twelve Angas"],["b","Twelve Upangas"],["c","Fourteen Purvas"],["d","Fourteen Uppurva"]],"a":"c","s":"40th BPSC (Pre) 1995","y":["1995"],"n":"The fourteen Purvas are the oldest Jain texts. Bhadrabahu was the last person who knew them all.","r":0,"z":[]},{"i":57,"t":"Jainism","q":"Triratna or Three Jewels, i.e., right knowledge, right faith and right action are related to which of the following?","o":[["a","Buddhism"],["b","Hinduism"],["c","Jainism"],["d","Christianity"],["e","None of the above/More than one of the above"]],"a":"c","s":"BPSC Preview (1 | 66th BPSC (Pre.) 2020","y":["2020"],"n":"Jainism. The Triratna are samyak darshan (right faith), samyak gyan (right knowledge) and samyak charitra (right conduct).","r":0,"z":["e"]},{"i":58,"t":"Jainism","q":"‘Ajivaka’, sect was founded by:","o":[["a","Anand"],["b","Rahulabhadra"],["c","Makkhali Gosala"],["d","Upali"]],"a":"c","s":"39th BPSC (Pre) 1994","y":["1994"],"n":"Makkhali Gosala, once a companion of Mahavira, is traditionally named the founder, though Ajivika teachers are recorded before him. He is better described as the man who popularised the sect.","r":0,"z":[]},{"i":59,"t":"Jainism","q":"Who was the chairman of the first Jain Sangiti convened in Pataliputra?","o":[["a","Vasumitra"],["b","Sthiramati"],["c","Sthulabhadra"],["d","Sudharman"],["e","None of the above/More than one of the above"]],"a":"c","s":"65th BPSC (Re-Exam) (Pre) 2020","y":["2020"],"n":"Sthulabhadra chaired the first Jain council at Pataliputra in the fourth century BCE, where the twelve Angas were compiled.","r":0,"z":["e"]},{"i":60,"t":"Jainism","q":"Who of the following kings was strongly inclined towards Jainism?","o":[["a","Dasaratha"],["b","Brihadrath"],["c","Kharavel"],["d","Huvishk"],["e","None of the above/ More than one of the above"]],"a":"c","s":"48th to 52nd BPSC (Pre) 2008","y":["2008"],"n":"Kharavela of Kalinga, of the Chedi dynasty. His Hathigumpha inscription on Udayagiri hill near Bhubaneswar, in Prakrit, is the main source for his reign.","r":0,"z":["e"]},{"i":61,"t":"Jainism","q":"The place where Mahavira attained complete spiritual knowledge (Kaivalya) is -","o":[["a","Kundagram"],["b","Vaishali"],["c","Gaya"],["d","Jrimbhikagrama"]],"a":"d","s":"BPSC (CDPO) (Pre) 2005","y":["2005"],"n":"Jrimbhikagrama, under a sal tree on the bank of the Rijupalika, after twelve years of austerity. He then became a Kevalin.","r":0,"z":[]},{"i":62,"t":"Shaiva & Bhagavata Religion","q":"Who contributed the most to the development of the Bhagavata sect?","o":[["a","Persian"],["b","Indo-Greek people"],["c","Kushan"],["d","Gupta"]],"a":"d","s":"39th BPSC (Pre) 1994","y":["1994"],"n":"The Guptas. Vaishnavism was effectively their state religion, most rulers took the title Paramabhagavata, and Garuda was their emblem.","r":0,"z":[]},{"i":63,"t":"Shaiva & Bhagavata Religion","q":"Nathpanthis, Siddhas and Yogis made devotional religion popular in","o":[["a","Northern India"],["b","Southern India"],["c","Eastern India"],["d","Western India"]],"a":"a","s":"69th BPSC (Pre) 2023","y":["2023"],"n":"North India. They argued against ritual and orthodoxy in plain language and taught meditation on a formless supreme reality.","r":0,"z":[]},{"i":64,"t":"6th Century BCE - Political Condition","q":"Who founded Pataliputra?","o":[["a","Udayin"],["b","Ashoka"],["c","Bimbisara"],["d","Mahapadmananda"]],"a":"*","s":"48th to 52nd BPSC (Pre) 2008","y":["2008"],"n":"BPSC accepted Udayin, which the book calls wrong. Ajatashatru built the fort at Pataligrama where the Ganga meets the Son; Udayin then moved the capital there.","r":0,"z":[]},{"i":65,"t":"6th Century BCE - Political Condition","q":"Which ruler first made Pataliputra his capital?","o":[["a","Chandragupta Maurya"],["b","Ashoka the Great"],["c","Chandragupta Vikramaditya"],["d","Kanishka"]],"a":"*","s":"42nd BPSC (Pre) Exam 1997","y":["1997"],"n":"Same dispute over founding versus shifting the capital, so no clean key.","r":1,"z":[]},{"i":66,"t":"6th Century BCE - Political Condition","q":"Which ruler moved his capital to Pataliputra?","o":[["a","Bimbisara"],["b","Ajatashatru"],["c","Udayin"],["d","Chandragupta Maurya"],["e","None of the above/More than one of the above"]],"a":"c","s":"65th BPSC (Re-Exam) (Pre) 2020","y":["2020"],"n":"BPSC accepted Udayin, which the book calls wrong. Ajatashatru built the fort at Pataligrama where the Ganga meets the Son; Udayin then moved the capital there.","r":1,"z":["e"]},{"i":67,"t":"6th Century BCE - Political Condition","q":"Which of the following kings founded Patliputra?","o":[["a","Shishunaga"],["b","Bimbisara"],["c","Ajatashatru"],["d","Udayin"]],"a":"c","s":"44th BPSC (Pre) 2000","y":["2000"],"n":"BPSC accepted Udayin, which the book calls wrong. Ajatashatru built the fort at Pataligrama where the Ganga meets the Son; Udayin then moved the capital there.","r":1,"z":[]},{"i":68,"t":"6th Century BCE - Political Condition","q":"By which ruler was Patliputra was chosen as the capital for the first time?","o":[["a","Ajatashatru"],["b","Kalashoka"],["c","Udayin"],["d","Kanishka"]],"a":"c","s":"46th BPSC (Pre) 2004","y":["2004"],"n":"BPSC accepted Udayin, which the book calls wrong. Ajatashatru built the fort at Pataligrama where the Ganga meets the Son; Udayin then moved the capital there.","r":1,"z":[]},{"i":69,"t":"6th Century BCE - Political Condition","q":"In ancient times, the area to the south of the Ganga was known as","o":[["a","Anarta"],["b","Takshashila 14) General Studies"],["c","Chola"],["d","More than one of the above"],["e","None of the above"]],"a":"e","s":"68th BPSC (Pre) 2022","y":["2022"],"n":"None of the options fits. The land south of the Ganga was Magadha. Taxila lay between the Indus and Jhelum, and Anarta was a Vedic-period state in the west.","r":0,"z":["d","e"]},{"i":70,"t":"6th Century BCE - Political Condition","q":"In which century did the first Magadhan Empire rise?","o":[["a","Fourth Century B.C."],["b","Sixth Century B.C."],["c","Second Century B.C."],["d","First Century B.C."]],"a":"b","s":"42nd BPSC (Pre) 1997-98","y":["1997"],"n":"The sixth century BCE. Bimbisara (c. 544-492 BCE) of the Haryanka dynasty is the real architect of Magadha's rise.","r":0,"z":[]},{"i":71,"t":"6th Century BCE - Political Condition","q":"Which of the following great rulers founded the \"Haryanka Vansh\" in ancient Bihar ?","o":[["a","Bimbisara"],["b","Brihadrath"],["c","Ajatashatru"],["d","More than one of the above"]],"a":"a","s":"70th BPSC Pre-2024","y":["2024"],"n":"Bimbisara founded the Haryanka dynasty and made Magadha the leading power.","r":0,"z":["d"]},{"i":72,"t":"6th Century BCE - Political Condition","q":"What was the Prakrit name of Rajgir, the capital of Magadha?","o":[["a","Grahraj"],["b","Rajagriha"],["c","Pataliputra"],["d","More than one of the above"],["e","None of the above"]],"a":"b","s":"BPSC TRE-3 July, 2024","y":["2024"],"n":"Rajgriha. The city is Girivraja in some texts; the Haryanka dynasty founded by Bimbisara ruled from here.","r":0,"z":["d","e"]},{"i":73,"t":"6th Century BCE - Political Condition","q":"Match List I with List II and select the correct answer using the codes given below the lists. List - I List - II (Mahajanapada) (Capitals of Mahajanapadas) A. Malla 1. Taxila B. Anga 2. Kaushambi C. Gandhara 3. Champa D. Vatsa 4. Kushinara Code:","o":[["a","A-4, B-3, C-1, D-2"],["b","A-1, B-2, C-4, D-3"],["c","A-3, B-1, C-2, D-4"],["d","A-2, B-3, C-4, D-1"]],"a":"a","s":"BPSC Preview (1 | BPSC CDPO (Pre) 2005","y":["2005"],"n":"Malla - Kushinara; Anga - Champa; Gandhara - Taxila; Vatsa - Kaushambi.","r":0,"z":[]},{"i":74,"t":"6th Century BCE - Political Condition","q":"By whom was the first republic of the world was established in Vaishali –","o":[["a","Maurya"],["b","Nanda"],["c","Gupta"],["d","Licchavi"]],"a":"d","s":"48th to 52nd BPSC (Pre) 2008","y":["2008"],"n":"The Licchavis of Vaishali. Among the Mahajanapadas only Vajji and Malla were republics, and the Licchavis were the strongest of the eight clans in the Vajji confederacy.","r":0,"z":[]},{"i":75,"t":"6th Century BCE - Political Condition","q":"Where was the world’s first republican system in the sixth century BC?","o":[["a","Vaishali"],["b","Athens"],["c","Sparta"],["d","Pataliputra"]],"a":"a","s":"46th BPSC (Pre) 2004","y":["2004"],"n":"The Licchavis of Vaishali. Among the Mahajanapadas only Vajji and Malla were republics, and the Licchavis were the strongest of the eight clans in the Vajji confederacy.","r":1,"z":[]},{"i":76,"t":"6th Century BCE - Political Condition","q":"Which one was the capital of Magadha?","o":[["a","Pataliputra"],["b","Vaishali"],["c","Girivraj (Rajagriha)"],["d","Champa"]],"a":"c","s":"53rd to 55th BPSC (Pre) 2011 | 47th BPSC (Pre) 2005","y":["2005","2011"],"n":"Girivraja, that is Rajagriha. The Puranas make the Brihadratha dynasty the first to rule Magadha, with Jarasandha ruling from Girivraja.","r":0,"z":[]},{"i":77,"t":"6th Century BCE - Political Condition","q":"Which was the first capital of the ancient Mahajanapada Magadh?","o":[["a","Pataliputra"],["b","Vaishali"],["c","Champa"],["d","Anga"],["e","None of the above/More than one of the above"]],"a":"e","s":"66th BPSC (Pre.) 2020","y":["2020"],"n":"No single option works, since Girivraja and Rajagriha are the same place under different names.","r":1,"z":["e"]},{"i":78,"t":"6th Century BCE - Political Condition","q":"What was the name of the dynasty of Ajatashatru?","o":[["a","Maurya"],["b","Haryanka"],["c","Nanda"],["d","Gupta"]],"a":"b","s":"53rd to 55th BPSC (Pre) 2011 | BPSC (CDPO) (Pre) 2005","y":["2005","2011"],"n":"Haryanka. Ajatashatru (492-460 BCE) took the throne by killing his father Bimbisara, and was in turn killed by his own son Udayin.","r":0,"z":[]},{"i":79,"t":"6th Century BCE - Political Condition","q":"The list of sixteen Mahajanapadas is available in –","o":[["a","Mahabharata"],["b","Anguttar Nikaya"],["c","Chandogya Upanishad"],["d","Samyukta Nikaya"]],"a":"b","s":"46th BPSC (Pre) 2004","y":["2004"],"n":"The Anguttara Nikaya, a Buddhist text, lists the sixteen. Of them only Ashmaka lay in the south.","r":0,"z":[]},{"i":80,"t":"6th Century BCE - Political Condition","q":"Pradyota was the king of–","o":[["a","Kasi"],["b","Kosala"],["c","Magadha"],["d","Avanti"],["e","None of the above/More than one of the above"]],"a":"d","s":"BPSC CDPO 2018","y":["2018"],"n":"Avanti. Chandapradyota ruled it in the Buddha's time; his daughter Vasavadatta married Udayana of Vatsa, the story behind Bhasa's Swapnavasavadatta. Avanti's northern capital was Ujjayini.","r":0,"z":["e"]},{"i":81,"t":"6th Century BCE - Political Condition","q":"Who was the physician of Magadha ruler Bimbisara?","o":[["a","Shilabhadra"],["b","Vijayasena"],["c","Jivaka"],["d","Manu"],["e","None of the above/More than one of the above"]],"a":"c","s":"67th BPSC (Re-Exam) (Pre)-2022","y":["2022"],"n":"Jivaka, whom Bimbisara also sent to treat Chandapradyota of Avanti.","r":0,"z":["e"]},{"i":82,"t":"6th Century BCE - Political Condition","q":"Which dynasty did ruled over Magadha after the Nanda Dynasty?","o":[["a","Maurya"],["b","Shunga"],["c","Gupta"],["d","Kushana"]],"a":"a","s":"44th BPSC (Pre) 2000","y":["2000"],"n":"The Mauryas. The Nandas had displaced the Shishunagas and grew unpopular through heavy taxation, which opened the way for Chandragupta Maurya.","r":0,"z":[]},{"i":83,"t":"6th Century BCE - Political Condition","q":"Kaling king Kharavel was related to-","o":[["a","Mahameghavahan Dynasty"],["b","Chedi Dynasty"],["c","Satavahan Dynasty"],["d","Rath-Bhojak Dynasty"],["e","None of the above/ More than one of the above"]],"a":"e","s":"60th to 62nd BPSC (Pre) 2016","y":["2016"],"n":"No option fits neatly. Kharavela belonged to the Chedi line of Kalinga, also called the Mahameghavahana dynasty after its founder.","r":0,"z":["e"]},{"i":84,"t":"6th Century BCE - Political Condition","q":"King Kharavela is related to –","o":[["a","Pillar inscription of Girnar"],["b","Pillar inscription of Junagarh"],["c","Hathigumpha inscription"],["d","Sarnath inscription"]],"a":"c","s":"43rd BPSC (Pre) 1999","y":["1999"],"n":"The Hathigumpha inscription on Udayagiri hill, Bhubaneswar, which gives a year-by-year account of his reign.","r":0,"z":[]},{"i":85,"t":"6th Century BCE - Political Condition","q":"Gorathagiri in the Barabar Hills was conquered by","o":[["a","Rajaraja Chola"],["b","Kharavela"],["c","Menander"],["d","Pushyamitra Shunga"],["e","None of the above/More than one of the above"]],"a":"b","s":"BPSC CDPO (Pre) 2018","y":["2018"],"n":"Kharavela. His Hathigumpha inscription records the conquest of Gorathagiri in the Barabar hills and is the first to use the term Maharaja.","r":0,"z":["e"]},{"i":86,"t":"6th Century BCE - Political Condition","q":"The capital of Anga Janapada was-","o":[["a","Champa"],["b","Ramagrama"],["c","Kapilvastu"],["d","Kundagram"]],"a":"a","s":"BPSC (CDPO) (Pre) 2005","y":["2005"],"n":"Champa, covering the modern Bhagalpur and Munger districts of south Bihar. The Mahabharata and Puranas call it Malini.","r":0,"z":[]},{"i":87,"t":"Greek Invasion","q":"Which one of the following rulers of Magadha was the contemporary of Alexander, the Great?","o":[["a","Mahapadmananda"],["b","Dhanananda"],["c","Sukalpa"],["d","Chandragupta Maurya"]],"a":"b","s":"44th BPSC (Pre) 2000","y":["2000"],"n":"Dhanananda, last of the Nandas, whom Greek writers called Agrammes. Xenophon notes his wealth.","r":0,"z":[]},{"i":88,"t":"Mauryan Empire","q":"Who recognized Sandrokottos as Chandragupta Maurya?","o":[["a","William Jones"],["b","V. Smith"],["c","R. K. Mukherjee"],["d","D. R. Bhandarkar"]],"a":"a","s":"48th to 52nd BPSC (Pre) 2008","y":["2008"],"n":"William Jones first identified the Greek Sandrokottos with Chandragupta Maurya, which anchors the whole chronology of ancient India.","r":0,"z":[]},{"i":89,"t":"Mauryan Empire","q":"The first empire was established by which ruler in India?","o":[["a","Chandragupta Maurya"],["b","Ashoka"],["c","Kanishka"],["d","Chandragupta-II Vikramaditya"],["e","None of the above/More than one of the above"]],"a":"a","s":"66th BPSC Re-Exam (Pre) 2020","y":["2020"],"n":"Chandragupta Maurya, the first ruler to bring most of the subcontinent under one political authority, with his frontier reaching towards Iran.","r":0,"z":["e"]},{"i":90,"t":"Mauryan Empire","q":"Who was the founder of the Maurya Empire?","o":[["a","Bindusara"],["b","Brihadratha"],["c","Ashoka"],["d","Chandragupta Maurya"]],"a":"d","s":"70th BPSC Re-Exam (Pre) 2024","y":["2024"],"n":"Chandragupta Maurya. The dynasty ran roughly 321-184 BCE.","r":0,"z":[]},{"i":91,"t":"Mauryan Empire","q":"Who amongst the following Mauryan rulers did conquered the Deccan?","o":[["a","Ashoka"],["b","Chandragupta"],["c","Bindusara"],["d","Kunala"]],"a":"b","s":"46th BPSC (Pre) 2004","y":["2004"],"n":"Chandragupta Maurya. Ashoka's only recorded conquest was Kalinga, and Bindusara is not remembered as a conqueror, so Jain and Tamil sources credit the Deccan campaign to Chandragupta.","r":0,"z":[]},{"i":92,"t":"Mauryan Empire","q":"Chandragupta Maurya figures prominently in the book of –","o":[["a","Bhasa"],["b","Sudraka"],["c","Vishakhadatta"],["d","Ashvaghosha"]],"a":"c","s":"46th BPSC (Pre) 2004","y":["2004"],"n":"Vishakhadatta's Mudrarakshasa, which calls him Vrishala and Kulahina. Dhundhiraj wrote an eighteenth-century commentary on it.","r":0,"z":[]},{"i":93,"t":"Mauryan Empire","q":"Megasthenes was the ambassador of -","o":[["a","Seleucus"],["b","Alexander"],["c","Darius"],["d","Greeks"],["e","None of the above/ More than one of the above"]],"a":"a","s":"63rd BPSC (Pre.) 2017","y":["2017"],"n":"Seleucus Nicator sent him to Chandragupta Maurya's court. He had earlier served Seleucus at the court of the satrap of Arachosia.","r":0,"z":["e"]},{"i":94,"t":"Mauryan Empire","q":"In how many categories did Megasthenes divide the Indian society?","o":[["a","Four"],["b","Five"],["c","Six"],["d","Seven"]],"a":"d","s":"46th BPSC (Pre) 2003","y":["2003"],"n":"Seven, in the Indica: philosophers, farmers, herders, artisans and traders, warriors, inspectors, and councillors. He records no slavery in India.","r":0,"z":[]},{"i":95,"t":"Mauryan Empire","q":"The description of the administration of Pataliputra is available in?","o":[["a","Divyavadana"],["b","Arthashastra"],["c","Indica"],["d","Ashoka’s inscriptions"]],"a":"c","s":"46th BPSC (Pre) 2004","y":["2004"],"n":"Megasthenes' Indica, which describes six committees of five members each running the city, and calls the officials Astynomoi.","r":0,"z":[]},{"i":96,"t":"Mauryan Empire","q":"Match List I with List II List-I List-II Event Place Connected with person A Chola Gangam Lake 1 Chandragupta Maurya B Appointment of 2 Harshavardhan Dharma Mahamatra C Assembly at Prayag 3 Rajendra I D Sudarshan Lake 4 Ashoka Select the correct answer using the codes given below: A B C D","o":[["a","3 4 2 1"],["b","1 4 2 3"],["c","3 4 1 2"],["d","2 3 1 4"]],"a":"a","s":"71st BPSC (Pre) 2025","y":["2025"],"n":"Chola Gangam lake - Rajendra I; Dharma Mahamatras - Ashoka; the Prayag assembly - Harshavardhana; Sudarshana lake - Chandragupta Maurya.","r":0,"z":[]},{"i":97,"t":"Mauryan Empire","q":"The inscription which proves Chandragupta’s sway over western India is:","o":[["a","Kalinga Rock Inscription"],["b","Girnar Rock Inscription of Ashoka"],["c","Junagarh Rock Inscription of Rudradaman"],["d","Sopara Rock Inscription of Ashoka"]],"a":"c","s":"39th BPSC (Pre) 1994","y":["1994"],"n":"Rudradaman's Junagadh inscription records that Pushyagupta, Chandragupta's governor in Saurashtra, built Sudarshana lake, which places Mauryan authority in the west.","r":0,"z":[]},{"i":98,"t":"Mauryan Empire","q":"In which inscription is Kalinga victory is mentioned?","o":[["a","Maski Inscription"],["b","Rudradaman Inscription"],["c","Junagarh Inscription"],["d","Hathigumpha Inscription"],["e","None of the above/More than one of the above"]],"a":"e","s":"66th BPSC Re-Exam (Pre) 2020","y":["2020"],"n":"None of the options. Kalinga is described in Ashoka's 13th Major Rock Edict. Hathigumpha is Kharavela's record, not Ashoka's.","r":0,"z":["e"]},{"i":99,"t":"Mauryan Empire","q":"Which one territory of the following was not a part of Ashoka’s empire?","o":[["a","Afghanistan"],["b","Bihar"],["c","Sri Lanka"],["d","Kalinga"]],"a":"c","s":"42nd BPSC (Pre) 1997-98","y":["1997"],"n":"Sri Lanka. The Second Rock Edict places Chola, Pandya, Satiyaputra, Keralaputra and Tamraparni (Sri Lanka) outside the empire, as frontier states.","r":0,"z":[]},{"i":100,"t":"Mauryan Empire","q":"The only pillar on which Ashoka declares himself as the emperor of Magadha –","o":[["a","Minor pillar of Maski"],["b","Rummindei pillar"],["c","Queen pillar"],["d","Bhabru pillar"]],"a":"d","s":"39th BPSC (Pre) 1994","y":["1994"],"n":"The Bhabru (Bairat) inscription, where he addresses the Sangha as king of Magadha. It also confirms his Buddhist allegiance.","r":0,"z":[]},{"i":101,"t":"Mauryan Empire","q":"The central point in Ashoka's Dhamma is -","o":[["a","Loyalty to the king"],["b","Peace and non-violence"],["c","Respect for elders"],["d","Religious tolerance"],["e","None of the above/More than one of the above"]],"a":"e","s":"BPSC Preview (1 | 63rd BPSC (Pre.) 2017","y":["2017"],"n":"No single option captures it. His Dhamma bundles together non-violence, compassion, charity, truthfulness, respect for elders and religious tolerance, set out in the second and seventh pillar edicts.","r":0,"z":["e"]},{"i":102,"t":"Mauryan Empire","q":"The name by which Ashoka is referred to in his inscriptions is :","o":[["a","Chakravarti"],["b","Dharmadeva"],["c","Dharmakirti"],["d","Priyadarshi"],["e","None of the above/More than one of the above"]],"a":"d","s":"65th BPSC (Pre) 2019","y":["2019"],"n":"Priyadarshi. The inscriptions use Devanampiya and Devanampiya Piyadasi; the Puranas call him Ashokavardhana.","r":0,"z":["e"]},{"i":103,"t":"Mauryan Empire","q":"Language used in the inscriptions of Ashoka is:","o":[["a","Sanskrit"],["b","Prakrit"],["c","Pali"],["d","Hindi"]],"a":"b","s":"44th BPSC (Pre) 2000","y":["2000"],"n":"Prakrit, mostly in Brahmi script. Shahbazgarhi and Mansehra are in Kharosthi, and Aramaic and Greek appear in the north-west.","r":0,"z":[]},{"i":104,"t":"Mauryan Empire","q":"The script written on Ashoka's Pillars is","o":[["a","Brahmi"],["b","Samaritan"],["c","Pali"],["d","Sanskrit"]],"a":"a","s":"70th BPSC Re-Exam 2024","y":["2024"],"n":"Brahmi, the script of nearly all his edicts.","r":0,"z":[]},{"i":105,"t":"Mauryan Empire","q":"Which one of the following scripts was written from right to left in ancient India?","o":[["a","Brahmi"],["b","Nandanagari"],["c","Sharada"],["d","Kharosthi"]],"a":"d","s":"BPSC (CDPO) 2005","y":["2005"],"n":"Kharosthi, a north-western script written right to left, deciphered through the work of Prinsep, Grotefend and Lassen.","r":0,"z":[]},{"i":106,"t":"Mauryan Empire","q":"Which one of the following scripts of ancient India was written from right to left?","o":[["a","Brahmi"],["b","Sharada"],["c","Kharosthi"],["d","Nandanagari"],["e","None of the above/More than one of the above"]],"a":"c","s":"65th BPSC (Pre) 2019","y":["2019"],"n":"Kharosthi, a north-western script written right to left, deciphered through the work of Prinsep, Grotefend and Lassen.","r":1,"z":["e"]},{"i":107,"t":"Mauryan Empire","q":"The inscriptions of Ashoka were read for the first time by -","o":[["a","James Prinsep"],["b","Buhler"],["c","Robert Sewell"],["d","Codrington"]],"a":"a","s":"BPSC (Assistant) 2019","y":["2019"],"n":"James Prinsep, who read the Delhi-Topra inscription in 1837.","r":0,"z":[]},{"i":108,"t":"Mauryan Empire","q":"Who first deciphered the Brahmi script ?","o":[["a","A. Cunningham"],["b","A.H. Dani"],["c","Buhler"],["d","James Prinsep"]],"a":"d","s":"48th to 52nd BPSC (Pre) 2008","y":["2008"],"n":"James Prinsep, who read the Delhi-Topra inscription in 1837.","r":1,"z":[]},{"i":109,"t":"Mauryan Empire","q":"Which ruler had made Pataliputra the capital of his empire for the first time?","o":[["a","Chandragupta Maurya"],["b","Ashoka the Great"],["c","Chandragupta Vikramaditya"],["d","Kanishka"]],"a":"a","s":"42nd BPSC (Pre) 1997-98","y":["1997"],"n":"Udayin actually did this, but he is not among the options, so Chandragupta Maurya is taken as the answer.","r":0,"z":[]},{"i":110,"t":"Mauryan Empire","q":"Who was the last ruler of the Mauryan dynasty?","o":[["a","Ashoka"],["b","Samudragupta"],["c","Brihadratha"],["d","Pushyamitra"]],"a":"c","s":"BPSC (CDPO) (Pre) 2005","y":["2005"],"n":"Brihadratha, killed in 184 BCE by his own commander Pushyamitra Shunga.","r":0,"z":[]},{"i":111,"t":"Mauryan Empire","q":"The last Mauryan emperor was:","o":[["a","Jaloka"],["b","Avanti Verma"],["c","Nandi Vardhana"],["d","Brihadratha"]],"a":"d","s":"48th to 52nd BPSC (Pre) 2008","y":["2008"],"n":"Brihadratha, killed in 184 BCE by his own commander Pushyamitra Shunga.","r":1,"z":[]},{"i":112,"t":"Mauryan Empire","q":"The decline of the Mauryan Empire was largely due to the economic consequences of Ashoka's policy. Who believed in this fact?","o":[["a","Romila Thapar"],["b","D. N. Jha"],["c","V. A. Smith"],["d","H. C. Raychaudhuri"],["e","None of the above / More than one of the above"]],"a":"a","s":"BPSC CDPO (Pre) 2022","y":["2022"],"n":"Romila Thapar argued that the economic burden of Ashoka's policies drained the empire.","r":0,"z":["e"]},{"i":113,"t":"Mauryan Empire","q":"The most famous centre of learning during the Mauryan period was:","o":[["a","Vaishali"],["b","Nalanda"],["c","Taxila"],["d","Ujjain"]],"a":"c","s":"47th BPSC (Pre) 2005","y":["2005"],"n":"Taxila, the great centre of learning in the Mauryan period, drawing students from across the known world. Nalanda came much later, under the Guptas.","r":0,"z":[]},{"i":114,"t":"Post-Mauryan Period","q":"Consider the following dynasties of Ancient India: 1. Shunga 2. Maurya 3. Kushana 4. Kanva Which of the following is the correct chronological order of their rule? - - - - - -","o":[["a","1 2 3 4"],["b","2 1 4 3 - - - - - -"],["c","2 3 1 4"],["d","2 1 3 4"]],"a":"b","s":"71st BPSC (Pre) 2025","y":["2025"],"n":"Maurya (321-184 BCE), Shunga (184-73 BCE), Kanva (73-28 BCE), Kushana (1st-3rd centuries CE).","r":0,"z":[]},{"i":115,"t":"Post-Mauryan Period","q":"Epigraphic records (Inscriptions) suggest that in ancient India, the rulers of Bihar had contact with –","o":[["a","Burma"],["b","Thailand"],["c","Cambodia"],["d","Java-Sumatra"]],"a":"d","s":"43rd BPSC (Pre) 1999","y":["1999"],"n":"Java and Sumatra. Balaputradeva, the Shailendra ruler of Java, asked the Pala king Devapala to endow a monastery at Nalanda, and Devapala granted five villages.","r":0,"z":[]},{"i":116,"t":"Post-Mauryan Period","q":"Who was the king of Suvarnabhumi who established a Buddhist monastery in Nalanda and requested Devapala through his messenger to donate five villages for its maintenance?","o":[["a","Dharanindra"],["b","Sangramadhananjaya"],["c","Balaputradeva"],["d","Chudamani Varman"],["e","None of the above/More than one of the above"]],"a":"c","s":"64th BPSC (Pre) 2018","y":["2018"],"n":"Java and Sumatra. Balaputradeva, the Shailendra ruler of Java, asked the Pala king Devapala to endow a monastery at Nalanda, and Devapala granted five villages.","r":1,"z":["e"]},{"i":117,"t":"Post-Mauryan Period","q":"Match List I with List II List-I List-II Places in Ancient Presently in which India State a. Karmasuvarna 1. Maharashtra b. Pragjyotish 2. Gujarat c. Girnar 3. West Bengal d. Pratishthan 4. Assam Select the correct answer using the codes given below: A B C D","o":[["a","3 4 2 1"],["b","4 3 1 2"],["c","3 2 4 1"],["d","4 2 1 3"]],"a":"a","s":"71st BPSC (Pre) 2025","y":["2025"],"n":"Karnasuvarna - West Bengal (Murshidabad); Pragjyotisha - Assam; Girnar - Gujarat; Pratishthana (Paithan) - Maharashtra.","r":0,"z":[]},{"i":118,"t":"Post-Mauryan Period","q":"Which inscription tells about the various achievements of Rudradaman-I?","o":[["a","Junagadh"],["b","Bhitari"],["c","Nasik"],["d","Sanchi"]],"a":"a","s":"53rd to 55th BPSC (Pre) 2011","y":["2011"],"n":"The Junagadh inscription, on Girnar hill in Gujarat. The same rock carries Ashoka's fourteen major edicts and a Skandagupta inscription.","r":0,"z":[]},{"i":119,"t":"Post-Mauryan Period","q":"According to the rock inscription in Sanskrit, composed around the second century CE, Sudarshan Lake, an artificial reservoir, was repaired by","o":[["a","Harsha"],["b","Kanishka"],["c","Rudradaman"],["d","More than one of the above"],["e","None of the above"]],"a":"c","s":"68th BPSC (Pre) 2022","y":["2022"],"n":"Rudradaman I. His Junagadh inscription (130-150 CE) is one of the earliest in polished Sanskrit and records the repair of the lake's dam.","r":0,"z":["d","e"]},{"i":120,"t":"Post-Mauryan Period","q":"Who among the following first issued gold coins on a large scale?","o":[["a","Pushyamitra Shunga"],["b","Menander"],["c","Vima Kadphises"],["d","Gautamiputra Satakarni"],["e","None of the above/More than one of the above"]],"a":"c","s":"64th BPSC (Pre) 2018","y":["2018"],"n":"Vima Kadphises. Large-scale gold coinage is the Kushanas' main contribution to Indian currency.","r":0,"z":["e"]},{"i":121,"t":"Post-Mauryan Period","q":"In pre-Gupta times, a large number of lead coins were issued by the","o":[["a","Satavahanas"],["b","Shakas"],["c","Kushanas"],["d","Mauryas"],["e","None of the above / More than one of the above"]],"a":"a","s":"BPSC (CDPO) 2022","y":["2022"],"n":"The Satavahanas, whose dynasty was founded by Simuka with its capital at Pratishthana (Paithan). The Puranas call them Andhrabhritya.","r":0,"z":["e"]},{"i":122,"t":"Post-Mauryan Period","q":"Which dynasty ruled over India after the Shunga dynasty?","o":[["a","Satavahana"],["b","Kushana"],["c","Kanva"],["d","Gupta"]],"a":"c","s":"44th BPSC (Pre) 2000","y":["2000"],"n":"The Kanvas. Vasudeva, a minister, killed the last Shunga king Devabhuti and founded the line; like the Shungas it was Brahmin.","r":0,"z":[]},{"i":123,"t":"Gupta & Post-Gupta Period","q":"Which Gupta ruler assumed the throne after killing his elder brother?","o":[["a","Shri Gupta"],["b","Samudragupta"],["c","Chandragupta II"],["d","Skandagupta"],["e","None of the above/More than one of the above"]],"a":"c","s":"67th BPSC (Re-Exam) (Pre)-2022","y":["2022"],"n":"Chandragupta II killed his brother Ramagupta, who had failed against the Shakas, married Ramagupta's wife Dhruvadevi and then defeated the Shakas himself.","r":0,"z":["e"]},{"i":124,"t":"Gupta & Post-Gupta Period","q":"Who is called ‘the Napoleon of Ancient India’?","o":[["a","Chandragupta Maurya"],["b","Pushyamitra"],["c","Kanishka"],["d","Samudragupta"]],"a":"d","s":"56th to 59th BPSC (Pre) 2014","y":["2014"],"n":"Samudragupta. Vincent Smith gave him the label in The Early History of India; his campaigns are recorded in Harishena's Prayag Prashasti.","r":0,"z":[]},{"i":125,"t":"Gupta & Post-Gupta Period","q":"The Gupta emperor who defeated the ‘Hunas’ was:","o":[["a","Samudragupta"],["b","Chandragupta- II"],["c","Skandagupta"],["d","Ramagupta"]],"a":"c","s":"53rd to 55th BPSC (Pre) 2011","y":["2011"],"n":"Skandagupta beat back the first Huna invasion around 455 CE. The raid did no lasting damage directly but hastened the empire's decline.","r":0,"z":[]},{"i":126,"t":"Gupta & Post-Gupta Period","q":"Who was the founder of Nalanda University?","o":[["a","Chandragupta Vikramaditya"],["b","Kumaragupta"],["c","Dharmapal"],["d","Pushyagupta"]],"a":"b","s":"56th to 59th BPSC (Pre) 2014","y":["2014"],"n":"Kumaragupta I, whom Hiuen Tsang names as Shakraditya. His better-known title was Mahendraditya.","r":0,"z":[]},{"i":127,"t":"Gupta & Post-Gupta Period","q":"Nalanda University was founded during the dynasty of","o":[["a","Maurya"],["b","Kushan"],["c","Gupta"],["d","Pala"]],"a":"c","s":"43rd BPSC (Pre) 1999","y":["1999"],"n":"Kumaragupta I, whom Hiuen Tsang names as Shakraditya. His better-known title was Mahendraditya.","r":1,"z":[]},{"i":128,"t":"Gupta & Post-Gupta Period","q":"Who among the following was not an Acharya in the Nalanda Vishvavidyalaya?","o":[["a","Kautilya"],["b","Nagarjuna"],["c","Shilabhadra"],["d","Shantarakshita"]],"a":"a","s":"71st BPSC (Pre) 2025","y":["2025"],"n":"Kautilya belongs to the fourth-third century BCE and to Taxila, long before Nalanda existed. Nagarjuna, Shilabhadra and Shantarakshita all taught there.","r":0,"z":[]},{"i":129,"t":"Gupta & Post-Gupta Period","q":"Why was Nalanda University famous in the world?","o":[["a","Medical Science"],["b","Philosophy"],["c","Buddhist Religious Philosophy"],["d","Chemical Science"]],"a":"c","s":"42nd BPSC (Pre) 1997-98","y":["1997"],"n":"For Buddhist philosophy. Hiuen Tsang came specifically to study it there.","r":0,"z":[]},{"i":130,"t":"Gupta & Post-Gupta Period","q":"Out of two statements below first is Assertion(A) and second is Reason (R), carefully read both statements. Assertion (A) : Till the end of the twelfth century Nalanda Mahavihara lost its glory. Reason (R) : State protection ceased to be available to the Mahavihara. With respect to the above-mentioned two statements, which of the following is true?","o":[["a","(A) and (R) both are true, and (R) is the correct explanation of (A)."],["b","(A) and (R) both are true, and (R) is not the correct explanation of (A)."],["c","(A) is true, but (R) is false."],["d","(A) is false, but (R) is true."]],"a":"b","s":"BPSC Preview (2 | 41st BPSC (Pre) 1996","y":["1996"],"n":"Both statements are true but the reason given is not the explanation. Nalanda declined through the Turkish invasions of the late twelfth century, while the loss of patronage came from the Palas favouring Vikramashila.","r":0,"z":[]},{"i":131,"t":"Gupta & Post-Gupta Period","q":"Consider the following statements : 1. Fa-Hien was a Chinese pilgrim who visited India during the reign of Harsha. 2. Hiuen Tsang was a Chinese Buddhist monk who visited India during the reign of Chandragupta II. Which of the above statements is/are correct?","o":[["a","Only 1"],["b","Only 2"],["c","Both 1 and 2"],["d","None of the above"]],"a":"d","s":"69th BPSC (Pre) 2023","y":["2023"],"n":"Both statements are wrong, and they are swapped. Fa-Hien came under Chandragupta II, Hiuen Tsang under Harsha.","r":0,"z":["d"]},{"i":132,"t":"Gupta & Post-Gupta Period","q":"The famous Chinese pilgrim Fa-Hien visited India during the reign of:","o":[["a","Chandragupta I"],["b","Chandragupta II"],["c","Ramagupta 23) General Studies"],["d","Srigupta"],["e","None of the above/More than one of the above"]],"a":"b","s":"63rd BPSC (Pre) 2017","y":["2017"],"n":"Both statements are wrong, and they are swapped. Fa-Hien came under Chandragupta II, Hiuen Tsang under Harsha.","r":1,"z":["e"]},{"i":133,"t":"Gupta & Post-Gupta Period","q":"The gradual decline of towns was an important feature of which period?","o":[["a","Gupta period"],["b","Pratihara era"],["c","Rashtrakut"],["d","Satavahana era"]],"a":"a","s":"40th BPSC (Pre) 1995","y":["1995"],"n":"The Gupta period. Once-prosperous Ganga valley towns were abandoned or shrank, and by Hiuen Tsang's visit Pataliputra had fallen to the size of a village.","r":0,"z":[]},{"i":134,"t":"Gupta & Post-Gupta Period","q":"Which one of the following ports was in use for the North Indian trade during the Gupta period?","o":[["a","Kalyan"],["b","Tamralipti"],["c","Broach"],["d","Cambay"],["e","None of the above/More than one of the above"]],"a":"e","s":"65th BPSC (Pre) 2019","y":["2019"],"n":"No single option works. Tamralipti in Bengal handled north Indian trade with South-East Asia and China, but Bharuch, Kalyan and Cambay were also in use.","r":0,"z":["e"]},{"i":135,"t":"Gupta & Post-Gupta Period","q":"Which ruling dynasty donated the maximum villages to temples and Brahmins?","o":[["a","Gupta Dynasty"],["b","Pala Dynasty"],["c","Rashtrakuta"],["d","Pratihara"]],"a":"a","s":"39th BPSC (Pre) 1994","y":["1994"],"n":"The Guptas. Their inscriptions show that land grants to Brahmins and temples carried the village's revenue along with the land.","r":0,"z":[]},{"i":136,"t":"Gupta & Post-Gupta Period","q":"What was the land revenue rate in the Gupta age?","o":[["a","Fourth part of the production"],["b","Sixth part of the production"],["c","Eighth part of the production"],["d","Half part of the production"]],"a":"b","s":"42nd BPSC (Pre) 1997-98","y":["1997"],"n":"One-sixth of the produce, the shashthansha. Gupta inscriptions call the land tax bhagakara or udranga.","r":0,"z":[]},{"i":137,"t":"Gupta & Post-Gupta Period","q":"What is the rate of land revenue in the Dharmashastras?","o":[["a","1/3"],["b","1/4"],["c","1/6"],["d","1/8"]],"a":"c","s":"40th BPSC (Pre) 1995","y":["1995"],"n":"One-sixth, the rate given in almost every Dharmashastra text.","r":0,"z":[]},{"i":138,"t":"Gupta & Post-Gupta Period","q":"What type of land was called ‘Aprahata’?","o":[["a","Unploughed wild land"],["b","Irrigated land"],["c","Land with dense forests"],["d","Ploughed/cultivated land"],["e","None of the above / More than one of the above"]],"a":"a","s":"60th to 62nd BPSC (Pre) 2016","y":["2016"],"n":"Aprahata was wild, unploughed land that had never been brought under cultivation, a term from the Gupta revenue vocabulary.","r":0,"z":["e"]},{"i":139,"t":"Gupta & Post-Gupta Period","q":"Consider the types of land according to the Amarkosha: (A) Urvara-fertile (B) Maru-desert (C) Shadvala-grassy (D) Devamatrika-watered by rain Which of the following is correct ?","o":[["a","(A) and (B) both"],["b","(C) and (D) both"],["c","(B), (C) and (D)"],["d","More than one of the above"]],"a":"d","s":"70th BPSC Pre-2024","y":["2024"],"n":"More than one pairing is right. The Amarakosha of Amarasimha, a courtier of Chandragupta II, lists twelve land types including urvara (fertile), maru (desert), ushara (barren), aprahata (fallow) and shadvala (grassy).","r":0,"z":["d"]},{"i":140,"t":"Gupta & Post-Gupta Period","q":"Who was the author of the famous ‘Allahabad Prashasti’?","o":[["a","Kalidasa"],["b","Harishena"],["c","Ravikirti"],["d","Shudraka"],["e","None of the above / More than one of the above"]],"a":"b","s":"BPSC (CDPO) (Pre) 2022","y":["2022"],"n":"Harishena, who composed it on an Ashokan pillar at Prayagraj in praise of Samudragupta. He describes himself as Sandhivigrahika, Kumaramatya and Dandanayaka.","r":0,"z":["e"]},{"i":141,"t":"Gupta & Post-Gupta Period","q":"In the Puranas, the rulers of which dynasty were called ‘Shriparvatiya’?","o":[["a","Vakataka"],["b","Ikshvaku"],["c","Shaka"],["d","Kharavela"]],"a":"b","s":"65th BPSC Re -Exam (Pre) 2020","y":["2020"],"n":"The Ikshvakus, called Shriparvatiya and Andhrabhritya in the Puranas. Once Satavahana feudatories, they broke away under Shri Shantamula.","r":0,"z":[]},{"i":142,"t":"Gupta & Post-Gupta Period","q":"Consider the following about the King “Pravaerasena” : (A) He was the real founder of the Vakataka dynasty. (B) His empire extended from Bundelkhand in the north to Hyderabad in the South. (C) He succeeded his father king Vindhyashakti. (D) He is mentioned in the Puranas. Which of the following statements are correct ?","o":[["a","(A) and (B) both"],["b","(A) and (C) both"],["c","(B), (C) and (D)"],["d","More than one of the above"]],"a":"d","s":"BPSC Preview (2 | 70th BPSC Pre-2024","y":["2024"],"n":"More than one statement holds. Vindhyashakti I founded the Vakatakas, but Pravarasena I is treated as the real founder, and the dynasty ruled central and southern India from the third to the early sixth century CE.","r":0,"z":["d"]},{"i":143,"t":"Gupta & Post-Gupta Period","q":"The Huna King Toramana was defeated by the Aulikara King","o":[["a","Yasodharman"],["b","Prakashadharman"],["c","Rajyavardhana"],["d","Vishnuvardhana"],["e","None of the above/More than one of the above"]],"a":"b","s":"BPSC CDPO 2018","y":["2018"],"n":"Prakashadharman, the Aulikara king. Toramana led the second Huna wave after Skandagupta's death; his Eran boar inscription records his presence in central India.","r":0,"z":["e"]},{"i":144,"t":"Gupta & Post-Gupta Period","q":"Who laid the foundation of the Vardhana Dynasty?","o":[["a","Pushyabhuti"],["b","Rajyavardhana"],["c","Adityavardhana"],["d","Prabhakarvardhana"],["e","None of the above/More than one of the above"]],"a":"a","s":"67th BPSC (Re-Exam) (Pre)-2021","y":["2021"],"n":"Pushyabhuti, at Thanesar, according to Banabhatta's Harshacharita. Harshavardhana was the dynasty's greatest ruler.","r":0,"z":["e"]},{"i":145,"t":"Gupta & Post-Gupta Period","q":"Poet Bana was an inhabitant of –","o":[["a","Pataliputra"],["b","Thanesar"],["c","Bhojpur"],["d","None of the above"]],"a":"d","s":"41st BPSC (Pre) 1996","y":["1996"],"n":"The sources disagree, so no option stands. One tradition puts his birth at Pritikuta on the Son in Bihar, another near Kannauj in Uttar Pradesh.","r":0,"z":["d"]},{"i":146,"t":"Gupta & Post-Gupta Period","q":"Which Chinese traveller visited India during Harsha- vardhana’s rule?","o":[["a","Fa-Hien"],["b","Hiuen-Tsang"],["c","I-Tsing"],["d","Taranath"]],"a":"b","s":"56th to 59th BPSC (Pre) 2014","y":["2014"],"n":"Hiuen Tsang, whose visit is the best-documented event of Harsha's reign.","r":0,"z":[]},{"i":147,"t":"Gupta & Post-Gupta Period","q":"Chinese traveller Hiuen Tsang studied at the University of –","o":[["a","Taxila"],["b","Vikramashila"],["c","Magadh"],["d","Nalanda"]],"a":"d","s":"46th BPSC (Pre) 2004","y":["2004"],"n":"Nalanda, where he arrived in 637 CE and studied Yogashastra for about fifteen months under Acharya Shilabhadra.","r":0,"z":[]},{"i":148,"t":"Gupta & Post-Gupta Period","q":"During Hiuen-Tsang tour in India the most famous city for the production of cotton clothes was:","o":[["a","Varanasi"],["b","Mathura"],["c","Pataliputra"],["d","Kanchi"]],"a":"b","s":"BPSC Preview (2 | 41st BPSC (Pre) 1996","y":["1996"],"n":"Mathura, famous for cotton. Varanasi was the silk centre, and Thanesar prospered on trade.","r":0,"z":[]},{"i":149,"t":"Gupta & Post-Gupta Period","q":"Which of the following rulers ruled Assam during the time of Harsha?","o":[["a","Asaf Jahan"],["b","Bhaskar Varman"],["c","Raja Dahir"],["d","More than one of the above"]],"a":"b","s":"70th BPSC (Pre) 2024","y":["2024"],"n":"Bhaskaravarman of the Varman dynasty of Kamarupa, Harsha's ally in Assam.","r":0,"z":["d"]},{"i":150,"t":"Gupta & Post-Gupta Period","q":"Who was the ruler of India during the 7th century CE known for his patronage of Buddhism and support for cultural activities?","o":[["a","Harsha"],["b","Ashoka the Great"],["c","Chandragupta Maurya"],["d","More than one of the above"],["e","None of the above"]],"a":"a","s":"BPSC (Tre-3) July, 2024","y":["2024"],"n":"Harshavardhana of the Pushyabhuti dynasty, who ruled roughly 606-647 CE and patronised Buddhism.","r":0,"z":["d","e"]},{"i":151,"t":"Gupta & Post-Gupta Period","q":"During the Gupta-Vakataka Era, which important school of Indian philosophy developed, focusing on logical reasoning and debate?","o":[["a","Vaisheshika"],["b","Mimamsa"],["c","Nyaya"],["d","More than one of the above"],["e","None of the above"]],"a":"c","s":"BPSC TRE-3 July, 2024","y":["2024"],"n":"Nyaya, the school built on logic and debate, founded by Gautama. It separates valid knowledge (prama) from invalid (aprama).","r":0,"z":["d","e"]},{"i":152,"t":"Gupta & Post-Gupta Period","q":"Who among these was the first to explain that the daily sunrise and sunset occur due to the Earth's rotation on its axis?","o":[["a","Aryabhatta"],["b","Bhaskara"],["c","Brahmagupta"],["d","Varahamihira"],["e","None of the above/More than one of the above"]],"a":"a","s":"64th BPSC (Pre) 2018","y":["2018"],"n":"Aryabhata, who explained the apparent daily movement of the sun by the Earth's rotation on its axis.","r":0,"z":["e"]},{"i":153,"t":"Gupta & Post-Gupta Period","q":"Who among the following is known for his work on medicine during the Gupta period?","o":[["a","Sushruta"],["b","Saumilla"],["c","Shudraka"],["d","Shaunaka"],["e","None of the above/More than one of the above"]],"a":"e","s":"65th BPSC (Pre) 2019","y":["2019"],"n":"No option fits the Gupta period. Sushruta, the father of surgery, belongs to roughly 1000-600 BCE, about a millennium too early.","r":0,"z":["e"]},{"i":154,"t":"Architecture in Ancient India","q":"Who used the caves of Barabar as their shelter-house?","o":[["a","Ajivakas"],["b","Tharus"],["c","Jains"],["d","Tantrikas"]],"a":"a","s":"40th BPSC (Pre) 1995","y":["1995"],"n":"The Ajivikas. Ashoka and his grandson Dasharatha cut caves in the Barabar and Nagarjuni hills for them, including the Sudama cave and Karna Chaupar.","r":0,"z":[]},{"i":155,"t":"Architecture in Ancient India","q":"In Indian art, the construction of ‘Stupa’, ‘Chaitya’ and ‘Vihara’ is related to which of the following?","o":[["a","Ajivika sect"],["b","Vaishnava sect"],["c","Buddhism"],["d","Shaiva sect"]],"a":"c","s":"69th BPSC (Pre) 2023","y":["2023"],"n":"Buddhism. The stupa holds relics, the chaitya is the prayer hall and the vihara the monastic residence.","r":0,"z":[]},{"i":156,"t":"Architecture in Ancient India","q":"The associates of Khajuraho Temple Architecture were –","o":[["a","Chandela"],["b","Gurjara-Pratihara"],["c","Chahamana"],["d","Paramara"]],"a":"a","s":"43rd BPSC (Pre) 1999","y":["1999"],"n":"The Chandelas, who built the Khajuraho temples in Chhatarpur district, Madhya Pradesh, mainly between about 950 and 1050 CE.","r":0,"z":[]},{"i":157,"t":"Architecture in Ancient India","q":"Art of Gandhara style flourished during the reign of –","o":[["a","Kushans"],["b","Guptas"],["c","Akbar"],["d","Mauryas"]],"a":"a","s":"38th BPSC (Pre) 1992","y":["1992"],"n":"The Kushanas. Gandhara art, with its Greco-Roman treatment of the Buddha figure, flourished under them.","r":0,"z":[]},{"i":158,"t":"Architecture in Ancient India","q":"The oldest sculpture of Buddha is made in which style?","o":[["a","Gandhara Style"],["b","Mathura Style"],["c","Mauryan Style"],["d","Gupta Style"],["e","None of the above/More than one of the above"]],"a":"a","s":"66th BPSC Re-Exam (Pre) 2020","y":["2020"],"n":"Gandhara is the answer taken here, though Mathura has a rival claim: V.S. Agrawal argued Buddha images were first made at Mathura. Both schools produced them under the Kushanas.","r":0,"z":["e"]},{"i":159,"t":"Architecture in Ancient India","q":"The temple of Deogarh near Jhansi and the sculptures in the temple at Garwha near Allahabad (Prayagraj) are the important remains of the which art?","o":[["a","Mauryan Art"],["b","Gupta Art"],["c","Rashtrakuta Art"],["d","More than one of the above"],["e","None of the above"]],"a":"b","s":"70th BPSC Re-Exam (Pre) 2024 | 68th BPSC (Pre) 2023","y":["2023","2024"],"n":"Gupta art. The Dashavatara temple at Deogarh and the Garhwa remains near Prayagraj are standard Gupta-period examples.","r":0,"z":["d","e"]},{"i":160,"t":"Architecture in Ancient India","q":"The painting of ‘Bodhisattva Padmapani’ is located at","o":[["a","Bagh"],["b","Ellora"],["c","Ajanta"],["d","Badami"]],"a":"c","s":"69th BPSC (Pre) 2023","y":["2023"],"n":"Ajanta, in the rock-cut Buddhist caves. The Padmapani mural dates to roughly the fifth-sixth century CE.","r":0,"z":[]},{"i":161,"t":"Architecture in Ancient India","q":"In which of the following inscriptions is an example of widow-burning mentioned?","o":[["a","Eran stone inscription of Samudragupta"],["b","Eran Pillar Inscription of Buddhagupta"],["c","Eran Pillar Inscription of Bhanugupta"],["d","Eran Varaha Inscription of Toramana"],["e","None of the above/More than one of the above"]],"a":"c","s":"BPSC (CDPO) (Pre) 2018","y":["2018"],"n":"The Eran pillar inscription of Bhanugupta, dated 510 CE, which records the sati of the wife of Goparaja after he died in battle. Eran is in Sagar district, Madhya Pradesh.","r":0,"z":["e"]},{"i":162,"t":"Architecture in Ancient India","q":"The contributors in the construction of Khajuraho temple architecture were—","o":[["a","Chandelas"],["b","Gurjara-Pratiharas"],["c","Chahamanas"],["d","Paramaras"]],"a":"a","s":"43rd BPSC (Pre) 1999","y":["1999"],"n":"The Chandelas, who built the Khajuraho temples in Chhatarpur district, Madhya Pradesh, mainly between about 950 and 1050 CE.","r":1,"z":[]},{"i":163,"t":"Architecture in Ancient India","q":"Borobudur is the most amazing stupa in the world and whose magnificent example is its statue and sculpture?","o":[["a","Indo-Tibetan art"],["b","Indo-Cambodian art"],["c","India-Champa Art"],["d","India-Java Art"],["e","None of the above/More than one of the above"]],"a":"d","s":"BPSC (CDPO) (Pre) 2022","y":["2022"],"n":"Indo-Javanese art. Borobudur stands on Java in Indonesia and is a UNESCO World Heritage Site.","r":0,"z":["e"]},{"i":164,"t":"Architecture in Ancient India","q":"According to Chinese source, Meghavarman, the ruler of Sri Lanka, sent a missionary to which of the following Gupta Kings for permission to build a Buddhist temple at Gaya?","o":[["a","Chandragupta I"],["b","Samudragupta"],["c","Chandragupta II"],["d","None of them"]],"a":"b","s":"69th BPSC (Pre) 2023","y":["2023"],"n":"Samudragupta, who allowed the Sri Lankan king Meghavarman to build a monastery at Bodh Gaya.","r":0,"z":[]},{"i":165,"t":"South India & Sangam Age","q":"Who was the founder of Chola dynasty?","o":[["a","Vijayalaya"],["b","Karikal"],["c","Aditya first"],["d","Rajaraja first"],["e","None of the above/ More than one of the above"]],"a":"a","s":"67th BPSC (Pre) 2022","y":["2022"],"n":"Vijayalaya, once a Pallava feudatory, who took Tanjore around 850 CE.","r":0,"z":["e"]},{"i":166,"t":"South India & Sangam Age","q":"The Chola age was most famous for:","o":[["a","Village assemblies"],["b","War with the Rashtrakutas"],["c","Trade with Ceylon"],["d","Advancement of Tamil culture"],["e","None of the above/More than one of the above"]],"a":"a","s":"63rd BPSC (Pre.) 2017","y":["2017"],"n":"Its village assemblies. Chola villages ran their own affairs, the most developed local self-government in Indian history.","r":0,"z":["e"]},{"i":167,"t":"South India & Sangam Age","q":"Which medieval Indian empire was famous for elaborate local self-government?","o":[["a","Chalukya"],["b","Chola"],["c","Solanki"],["d","Parmar"],["e","None of the above/More than one of the above"]],"a":"b","s":"66th BPSC (Pre) 2020","y":["2020"],"n":"Its village assemblies. Chola villages ran their own affairs, the most developed local self-government in Indian history.","r":1,"z":["e"]},{"i":168,"t":"South India & Sangam Age","q":"Which dynasty built the Kailasanatha Temple and in which state?","o":[["a","Chola, Andhra Pradesh"],["b","Chola, Tamil Nadu"],["c","Pallava, Tamil Nadu"],["d","Pallava, Andhra Pradesh"]],"a":"c","s":"BPSC (Assistant) 2019","y":["2019"],"n":"The Pallavas, at Kanchipuram in Tamil Nadu.","r":0,"z":[]},{"i":169,"t":"South India & Sangam Age","q":"Which of the following temples is located in Kanchipuram?","o":[["a","Sri Venkateswara Swami Vari Temple"],["b","Sri Padmanabhaswamy Temple"],["c","Arulmigu Ramanathaswamy Temple"],["d","Ekambareswarar Temple"]],"a":"d","s":"BPSC CDPO (Pre) 2009","y":["2009"],"n":"The Ekambareswarar temple, dedicated to Shiva, begun under the Pallavas and carrying inscriptions down to the Nayaka period.","r":0,"z":[]},{"i":170,"t":"South India & Sangam Age","q":"The Brihadisvara Temple at Thanjavur was constructed by which king?","o":[["a","Rajaraja I"],["b","Rajendra I"],["c","Rajendra II"],["d","Kulottunga I"],["e","None of the above/More than one of the above"]],"a":"a","s":"BPSC CDPO (Pre) 2018","y":["2018"],"n":"Rajaraja I, who built it between 1003 and 1010 CE in the Dravidian style. It is also called the Rajarajeshwara temple.","r":0,"z":["e"]},{"i":171,"t":"South India & Sangam Age","q":"Which of the following was the capital of the Chera dynasty ?","o":[["a","Kuravur/Karur"],["b","Kanchipuram"],["c","Madurai"],["d","More than one of the above"]],"a":"a","s":"70th BPSC Pre-2024","y":["2024"],"n":"Karur or Kuruvur, identified by many scholars with the Chera capital Vanchi. The Cheras held present-day Kerala and part of Tamil Nadu.","r":0,"z":["d"]},{"i":172,"t":"South India & Sangam Age","q":"Which of the following dynasties is not mentioned in Sangam literature?","o":[["a","Kadamba"],["b","Chera"],["c","Chola"],["d","Pandya"]],"a":"a","s":"41st BPSC (Pre) 1996","y":["1996"],"n":"The Kadambas. Sangam literature covers the Cholas, Cheras and Pandyas but not this later Karnataka dynasty.","r":0,"z":[]},{"i":173,"t":"South India & Sangam Age","q":"Why was ‘Uraiyur’ famous in Sangam Era?","o":[["a","An important trade centre of spices"],["b","An important trade centre of cotton"],["c","An important centre of foreign trade"],["d","An important centre of domestic trade"]],"a":"b","s":"39th BPSC (Pre) 1994","y":["1994"],"n":"Uraiyur, on the Kaveri in Tiruchirappalli, was the great cotton centre of the Sangam age. The Periplus calls it Argaru.","r":0,"z":[]},{"i":174,"t":"South India & Sangam Age","q":"The attractive doors of the temples of South India are called-","o":[["a","Shikhar (Peak)"],["b","Gopuram"],["c","Devalay"],["d","Mandapam"],["e","None of the above/ More than one of the above"]],"a":"b","s":"63rd BPSC (Pre) 2017","y":["2017"],"n":"Gopuram, the towering gateway of Dravidian temples. Modest under the Pandyas, they grew monumental later.","r":0,"z":["e"]},{"i":175,"t":"South India & Sangam Age","q":"Who established trade relations with Roman Empire?","o":[["a","Kushanas"],["b","Cheras"],["c","Western Shakas"],["d","Vakatakas"],["e","None of the above/More than one of the above"]],"a":"b","s":"BPSC Preview (3 | 67th BPSC (Re-Exam) (Pre)-2022","y":["2022"],"n":"The Cheras opened trade with Rome in the Sangam period. Arikamedu has yielded large quantities of Roman material.","r":0,"z":["e"]},{"i":176,"t":"South India & Sangam Age","q":"During whose reign did the Persian traveller ‘Abdur Razzaq’ come to India?","o":[["a","Devaraya I"],["b","Krishnadevaraya I"],["c","Devaraya II"],["d","Krishnaraya II"],["e","None of the above/More than one of the above"]],"a":"c","s":"60th to 62nd BPSC (Pre) 2016","y":["2016"],"n":"Devaraya II of the Sangama dynasty (1422-1446 CE), whose reign Abdur Razzaq describes in his Matla-us-Sadain.","r":0,"z":["e"]},{"i":177,"t":"Ancient Literature","q":"Which of the following Indian Philosophies has given the theory of atom?","o":[["a","Yoga"],["b","Nyaya"],["c","Sankhya"],["d","Vaiseshika"],["e","None of the above/ More than one of the above"]],"a":"d","s":"66th BPSC (Pre) 2020","y":["2020"],"n":"Vaisheshika, propounded by Kanada, which holds that matter is built from atoms.","r":0,"z":["e"]},{"i":178,"t":"Ancient Literature","q":"In Kalidasa's 'Kumarasambhavam', what mythological character's birth story is found?","o":[["a","Sanatkumar"],["b","Kartikeya"],["c","Pradyumna"],["d","Abhimanyu"]],"a":"b","s":"BPSC CDPO (Pre) 2005","y":["2005"],"n":"Kartikeya, also called Kumara or Skanda, son of Shiva and Parvati.","r":0,"z":[]},{"i":179,"t":"Ancient Literature","q":"Who of the following was the writer of Mudrarakshasa?","o":[["a","Ashvaghosha"],["b","Vishakhadatta"],["c","Kalidasa"],["d","Bhasa"]],"a":"b","s":"47th BPSC (Pre) 2005","y":["2005"],"n":"Vishakhadatta. The play centres on Chanakya's manoeuvring and lights up Mauryan politics.","r":0,"z":[]},{"i":180,"t":"Ancient Literature","q":"What is the name of Megasthenes’ book?","o":[["a","Economics"],["b","Rig Veda"],["c","Purana"],["d","Indica"]],"a":"d","s":"47th BPSC (Pre) 2005","y":["2005"],"n":"Indica. Megasthenes is the most useful of the Greek writers on Mauryan India, alongside Nearchus, Onesicritus and Aristobulus.","r":0,"z":[]},{"i":181,"t":"Ancient Literature","q":"Who was the author of ‘Indica’?","o":[["a","Vishnugupta"],["b","Megasthenes"],["c","Deimachus"],["d","Pliny"]],"a":"b","s":"56th to 59th BPSC (Pre) 2014","y":["2014"],"n":"Indica. Megasthenes is the most useful of the Greek writers on Mauryan India, alongside Nearchus, Onesicritus and Aristobulus.","r":1,"z":[]},{"i":182,"t":"Ancient Literature","q":"Match List-I and List-II and choose the correct answer using the codes given below the lists: List-I (Book) List-II (Author) A. Brihatsamhita 1. Kalhana B. Mushika Vamsha 2. Bilhana C. Rajatarangini 3. Atula D. Vikramanka- 4. Varahamihira devacharita","o":[["a","A-3, B-2, C-1, D-4"],["b","A-2, B-1, C-4, D-3"],["c","A-4, B-2, C-1, D-3"],["d","A-4, B-3, C-1, D-2"]],"a":"d","s":"BPSC (Auditor) 2019","y":["2019"],"n":"Brihatsamhita - Varahamihira; Mushika Vamsha - Atula; Rajatarangini - Kalhana; Vikramankadevacharita - Bilhana.","r":0,"z":[]},{"i":183,"t":"Ancient Literature","q":"Match List - I with List - II and select the correct answer using the codes given below the lists: List - I List - II (Author) (Books) A. Kautilya 1. Ashtadhyayi B. Panini 2. Arthashastra C. Kamandaka 3. Kumarasambhava D. Kalidasa 4. Nitisara","o":[["a","A-2, B-1, C-4 D-3"],["b","A-4, B-3, C-2, D-1"],["c","A-3, B-2, C-1, D-4"],["d","A-1, B-4, C-3, D-2"]],"a":"a","s":"BPSC (Assistant) 2019","y":["2019"],"n":"Kautilya - Arthashastra; Panini - Ashtadhyayi; Kamandaka - Nitisara; Kalidasa - Kumarasambhava.","r":0,"z":[]},{"i":184,"t":"Ancient Literature","q":"What is the name of Kalhana’s book?","o":[["a","Arthashastra"],["b","Indica"],["c","Purana"],["d","Rajatarangini"]],"a":"d","s":"53rdto 55th BPSC (Pre) 2011 | BPSC (CDPO) (Pre) 2005","y":["2005","2011"],"n":"Rajatarangini, a history of Kashmir written during the reign of Jayasimha (1128-1149 CE).","r":0,"z":[]},{"i":185,"t":"Ancient Literature","q":"Kautilya's Arthashastra is a book based on -","o":[["a","Economic relations"],["b","Principles and practice of statecraft"],["c","Foreign policy"],["d","Wealth accumulation"],["e","None of the above/More than one of the above"]],"a":"e","s":"63rd BPSC (Pre.) 2017","y":["2017"],"n":"No single option covers it. The Arthashastra is a manual of statecraft: the Mandala theory of foreign policy, the Saptanga theory of the seven limbs of the state, and detailed administrative practice.","r":0,"z":["e"]},{"i":186,"t":"Ancient Literature","q":"Kautilya’s Arthashastra deals with the aspects of –","o":[["a","Economic life"],["b","Political policies"],["c","Religious life"],["d","Social life"]],"a":"b","s":"45th BPSC (Pre) 2001","y":["2001"],"n":"Political policy and statecraft. It is a treatise on how to govern, not a work of history.","r":0,"z":[]},{"i":187,"t":"Ancient Literature","q":"Who was the author of the book 'Arthashastra'?","o":[["a","Banabhatta"],["b","Kautilya"],["c","Charvaka"],["d","Vishakhadatta"]],"a":"b","s":"BPSC (CDPO) (Pre) 2005","y":["2005"],"n":"No single option covers it. The Arthashastra is a manual of statecraft: the Mandala theory of foreign policy, the Saptanga theory of the seven limbs of the state, and detailed administrative practice.","r":1,"z":[]},{"i":188,"t":"Ancient Literature","q":"Which pair correctly matches the kings of the ancient and medieval periods of history with the works written by them?","o":[["a","Krishnadeva Raya - Samarangana sutradhara"],["b","Mahendravarman - Mattavilasa Prahasana"],["c","Bhojadeva - Manasollasa"],["d","Someshwar - Amukta Malyada"]],"a":"b","s":"BPSC (Assistant) 2019","y":["2019"],"n":"Mahendravarman I wrote the Mattavilasa Prahasana. Also worth holding: Krishnadeva Raya - Amuktamalyada; Bhoja - Samaranganasutradhara; Someshvara III - Manasollasa.","r":0,"z":[]},{"i":189,"t":"Ancient Literature","q":"Who wrote 'Periplus of the Erythraean Sea'?","o":[["a","Ctesias"],["b","Pliny"],["c","Ptolemy"],["d","Strabo"],["e","None of the above/More than one of the above"]],"a":"e","s":"64th BPSC (Pre) 2018","y":["2018"],"n":"The author is unknown, so no option is right. It is a Greco-Roman merchant's guide from about 60 CE describing sailing routes and trade from the ports of Roman Egypt.","r":0,"z":["e"]},{"i":190,"t":"Ancient Literature","q":"The author of ‘Prithviraj Raso’ is –","o":[["a","Kalhana"],["b","Bilhana"],["c","Jayanaka"],["d","Chand Bardai"]],"a":"d","s":"43rd BPSC (Pre) 1999","y":["1999"],"n":"Chand Bardai, court poet to Prithviraj Chauhan III. The poem gives the Chauhans an origin from the fire-pit.","r":0,"z":[]},{"i":191,"t":"Ancient Literature","q":"Who wrote the book 'Prithviraj Raso'?","o":[["a","Kalidas"],["b","Chand Bardai"],["c","Kalhana"],["d","Vishakhadatta"]],"a":"b","s":"BPSC (CDPO) (Pre) 2005","y":["2005"],"n":"Chand Bardai, court poet to Prithviraj Chauhan III. The poem gives the Chauhans an origin from the fire-pit.","r":1,"z":[]},{"i":192,"t":"Ancient Literature","q":"The author of ‘Swapnavasavadatta’ is","o":[["a","Kalidasa"],["b","Bhasa"],["c","Bhavabhuti"],["d","Rajashekhara"]],"a":"b","s":"43rd BPSC (Pre) 1999","y":["1999"],"n":"Bhasa. Thirteen plays are ascribed to him, recovered in Travancore in 1909 by T. Ganapati Shastri and published in 1912.","r":0,"z":[]},{"i":193,"t":"Ancient Literature","q":"‘Kumarasambhava,’ an epic poem was composed by –","o":[["a","Banabhatta"],["b","Chand Bardai"],["c","Harishena"],["d","Kalidasa"]],"a":"d","s":"44th BPSC (Pre) 2000","y":["2000"],"n":"Kalidasa. Of its seventeen cantos only the first eight are his; it tells of Kartikeya's birth and the killing of Tarakasura.","r":0,"z":[]},{"i":194,"t":"Ancient Literature","q":"Who wrote the book “Kiratarjuniya”?","o":[["a","Bhatti"],["b","Shudraka"],["c","Kalidasa"],["d","Bharavi"],["e","None of the above/More than one of the above"]],"a":"d","s":"67th BPSC (Pre) 2021","y":["2021"],"n":"Bharavi. The plot comes from the Mahabharata, and turns on Arjuna's fight with Shiva disguised as a hunter.","r":0,"z":["e"]},{"i":195,"t":"Ancient Literature","q":"Name the source that is silent about the trade routes of ancient India:","o":[["a","Sangam Literature"],["b","Milindpanho"],["c","Jataka Tales"],["d","All of the above"]],"a":"b","s":"39th BPSC (Pre) 1994","y":["1994"],"n":"The Milindapanho, a Pali dialogue between the monk Nagasena and the Indo-Greek king Menander. It says nothing about trade routes.","r":0,"z":[]},{"i":196,"t":"Ancient Literature","q":"Who wrote the book 'Harshacharita'?","o":[["a","Aryabhata"],["b","Banabhatta"],["c","Vishnugupta"],["d","Parimalagupta"]],"a":"b","s":"47th BPSC (Pre) 2005","y":["2005"],"n":"Banabhatta. The Harshacharita is the principal source for the Vardhana dynasty and a biography of his own patron.","r":0,"z":[]},{"i":197,"t":"Ancient Literature","q":"Match List–I with List–II : List—I List—II A. Charaka 1. Mathematics B. Brahmagupta 2. Medicine C. Varahamihira 3. Playwright D. Vishakhadatta 4. Astrology Select the correct answer using the codes given below. A B C D","o":[["a","2 1 4 3"],["b","1 2 3 4"],["c","3 2 4 1"],["d","1 4 3 2"]],"a":"a","s":"69th BPSC (Pre) 2023","y":["2023"],"n":"Charaka - medicine; Brahmagupta - mathematics; Varahamihira - astrology; Vishakhadatta - drama.","r":0,"z":[]},{"i":198,"t":"Ancient Literature","q":"Nitisara, an early book of politics, was written by","o":[["a","Kautilya"],["b","Kamandaka"],["c","Charaka"],["d","None of them"]],"a":"b","s":"69th BPSC (Pre) 2023","y":["2023"],"n":"Kamandaka. The Nitisara runs to 1,192 verses on statecraft, the Mandala theory and the constituents of the state.","r":0,"z":[]},{"i":199,"t":"Pre-Medieval Period","q":"Who was the founder of the Karnata dynasty?","o":[["a","Nanyadeva"],["b","Narasimhadeva"],["c","Vijaydev"],["d","Haridev"],["e","None of the above/More than one of the above"]],"a":"a","s":"56th to 59th BPSC (Pre) 2014","y":["2014"],"n":"Nanyadeva (1097-1147 CE), who made Simraongarh his capital. The Karnat period, 1097-1325 CE, is called the golden age of Mithila.","r":0,"z":["e"]},{"i":200,"t":"Pre-Medieval Period","q":"Who was the last king of the Karnata dynasty?","o":[["a","Harisimha"],["b","Ramsimha"],["c","Matisimha"],["d","Shyamsimha"],["e","None of the above/More than one of the above"]],"a":"a","s":"60th to 62nd BPSC (Pre) 2016","y":["2016"],"n":"Harisimha Deva, a patron of art and letters who introduced a registration system.","r":0,"z":["e"]},{"i":201,"t":"Pre-Medieval Period","q":"Consider the following statements regarding the Vikramshila University in Bihar : 1. It was located in the present-day Banka district of Bihar. 2. It was established by King Gopala I of the Pala dynasty. 3. The ‘Vajrayana’ sect of Buddhism flourished here. 4. Other subjects like Astronomy, Logic, Law, Grammar and Philosophy were also taught here. Which of the above statements are incorrect ?","o":[["a","2 and 3"],["b","1 and 4"],["c","1 and 2"],["d","None of the above"]],"a":"c","s":"69th BPSC (Pre) 2023","y":["2023"],"n":"Statements 1 and 2 are the wrong ones. Vikramashila was in Bhagalpur district, not Banka, and Dharmapala founded it, not Gopala. Vajrayana genuinely did flourish there.","r":0,"z":["d"]},{"i":202,"t":"Pre-Medieval Period","q":"Which ruler of Bengal founded the ancient University called ‘Vikramshila.’","o":[["a","Dharamapala"],["b","Gopala"],["c","Devpala"],["d","Mahipala 43rd B. P.S.C. (Pre) 1999"]],"a":"a","s":"BPSC","y":[],"n":"Dharmapala of the Palas (770-810 CE). Lama Taranatha records that by the tenth century it had outgrown Nalanda.","r":0,"z":[]},{"i":203,"t":"Pre-Medieval Period","q":"Vikramshila University was established by whom?","o":[["a","Gopal"],["b","Dharmapala"],["c","Devapala"],["d","More than one of the above"],["e","None of the above"]],"a":"b","s":"68th BPSC (Pre) 2023","y":["2023"],"n":"Dharmapala of the Palas (770-810 CE). Lama Taranatha records that by the tenth century it had outgrown Nalanda.","r":1,"z":["d","e"]},{"i":204,"t":"Pre-Medieval Period","q":"The founder of Vikramashila Education Center is -","o":[["a","Devpal"],["b","Dharmpal"],["c","Nayanpal"],["d","Narendra Pal"]],"a":"b","s":"43rd BPSC (Pre) 1999","y":["1999"],"n":"Dharmapala of the Palas (770-810 CE). Lama Taranatha records that by the tenth century it had outgrown Nalanda.","r":1,"z":[]},{"i":205,"t":"Pre-Medieval Period","q":"The Maithili language was started to develop during the reign of which of the following?","o":[["a","Chero dynasty"],["b","Oiniwar dynasty"],["c","Karnat dynasty"],["d","Pithipatis"]],"a":"c","s":"69th BPSC (Pre) 2023","y":["2023"],"n":"The Karnat dynasty, between the eleventh and fourteenth centuries. Nanyadeva founded the line.","r":0,"z":[]},{"i":206,"t":"Pre-Medieval Period","q":"‘Odantapura’ educational center was located in which state?","o":[["a","Bengal"],["b","Bihar"],["c","Gujarat"],["d","Tamil Nadu"],["e","None of these/More than one of the above"]],"a":"b","s":"60th to 62nd BPSC(Pre) 2016","y":["2016"],"n":"Bihar. Odantapuri was founded by Gopala, the first Pala ruler.","r":0,"z":["e"]},{"i":207,"t":"Pre-Medieval Period","q":"Which Sultan was reputed to be 'Akbar of Kashmir'?","o":[["a","Sultan Shamsuddin Shah"],["b","Sultan Qutbuddin"],["c","Sultan Sikandar"],["d","Sultan Zainul Abidin"],["e","None of the above/More than one of the above"]],"a":"d","s":"64th BPSC (Pre) 2018","y":["2018"],"n":"Zain-ul-Abidin, called the Akbar of Kashmir for his religious tolerance and reforms. He had Sanskrit works translated and patronised scholars such as Shri Bhatt.","r":0,"z":["e"]}];
+var TOPICS = [["Stone Age", 6], ["Indus Valley Civilization", 13], ["Vedic Age", 10], ["Buddhism", 23], ["Jainism", 10], ["Shaiva & Bhagavata Religion", 2], ["6th Century BCE - Political Condition", 23], ["Greek Invasion", 1], ["Mauryan Empire", 26], ["Post-Mauryan Period", 9], ["Gupta & Post-Gupta Period", 31], ["Architecture in Ancient India", 11], ["South India & Sangam Age", 12], ["Ancient Literature", 22], ["Pre-Medieval Period", 9]];
+var YEARS = ["2025", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2011", "2009", "2008", "2005", "2004", "2003", "2001", "2000", "1999", "1997", "1996", "1995", "1994", "1992"];
+/* Line motifs, one per topic. viewBox 0 0 200 200, stroke-only. */
+const MOTIF = {
+
+"Stone Age": `<g>
+<path d="M22 168c14-6 40-10 62-10s48 4 62 10"/>
+<path d="M60 96c-6 0-10 5-10 11s4 10 10 10"/>
+<path d="M60 117v26m0-11-11 15m11-15 11 15M50 105l-14-8m24 8 14-8"/>
+<path d="M96 92c-6 0-11 5-11 11s5 11 11 11"/>
+<path d="M96 114v30m0-13-12 17m12-17 12 17M86 101 71 92m25 9 16-6"/>
+<path d="M126 148c0-16 10-28 26-28s26 10 26 24c0 6-3 11-7 14"/>
+<path d="M152 120c-4-8-2-14 4-18m-4 18 14-4"/>
+<path d="M134 158v10m14-12v12m18-12v12m12-16v14"/>
+<circle cx="168" cy="126" r="2"/>
+<path d="M40 60c4-6 12-6 16 0m10-2c4-6 12-6 16 0"/>
+</g>`,
+
+"Indus Valley Civilization": `<g>
+<rect x="34" y="42" width="132" height="120" rx="8"/>
+<path d="M50 66h14m6 0h10m6 0h18m6 0h12m6 0h14"/>
+<path d="M62 132c0-10 2-20 8-26 8-8 22-10 34-10 10 0 18 2 24 6"/>
+<path d="M128 102c6-4 10-2 12 4 2 6-2 10-6 10"/>
+<path d="M134 116c4 4 6 10 6 16"/>
+<path d="M62 132v18m14-18v18m34-14v14m16-16v16"/>
+<path d="M70 106c-6-2-10-6-12-12m12 12c-2-8 0-14 4-18"/>
+<circle cx="134" cy="108" r="1.8"/>
+<path d="M140 100l10-8m-10 14 12 2"/>
+</g>`,
+
+"Vedic Age": `<g>
+<path d="M46 170h108"/>
+<path d="M56 170v-18h88v18M64 152v-16h72v16M72 136v-14h56v14"/>
+<path d="M56 161h88M64 144h72"/>
+<path d="M100 122c-8-10-4-22 2-28-2 10 6 12 8 22 2 8-2 14-6 18"/>
+<path d="M100 122c6-6 6-16 2-22"/>
+<path d="M88 122c-4-8-2-14 2-18-2 8 2 10 4 14"/>
+<path d="M112 122c4-8 2-14-2-18 2 8-2 10-4 14"/>
+<path d="M34 170c10-4 24-6 32-6m100 6c-10-4-24-6-32-6"/>
+</g>`,
+
+"Buddhism": `<g>
+<circle cx="100" cy="58" r="31"/>
+<ellipse cx="100" cy="58" rx="15" ry="17"/>
+<path d="M96 42c0-5 2-8 4-8s4 3 4 8"/>
+<path d="M92 55c2-2.5 5-2.5 7 0m2 0c2-2.5 5-2.5 7 0"/>
+<path d="M96 66c2 2 6 2 8 0"/>
+<path d="M85 52c-4 0-6 4-6 8s2 8 6 8m30-16c4 0 6 4 6 8s-2 8-6 8"/>
+<path d="M100 75c-15 0-26 9-30 22l-6 26m36-48c15 0 26 9 30 22l6 26"/>
+<path d="M64 123c-7 9-10 17-10 23 0 7 21 11 46 11s46-4 46-11c0-6-3-14-10-23"/>
+<path d="M54 146c10-8 28-12 46-12s36 4 46 12"/>
+<path d="M82 143c6-6 30-6 36 0"/>
+<path d="M92 139l8 7 8-7"/>
+<path d="M100 96v14"/>
+</g>`,
+
+"Jainism": `<g>
+<path d="M76 30h48M84 21h32M92 13h16"/>
+<path d="M100 30v8"/>
+<ellipse cx="100" cy="52" rx="13" ry="15"/>
+<path d="M97 39c0-4 1-6 3-6s3 2 3 6"/>
+<path d="M94 50c1.5-2 4-2 5.5 0m1 0c1.5-2 4-2 5.5 0"/>
+<path d="M88 48c-3 0-5 3-5 6s2 6 5 6m24-12c3 0 5 3 5 6s-2 6-5 6"/>
+<path d="M100 67c-9 0-15 6-15 15v46m15-61c9 0 15 6 15 15v46"/>
+<path d="M85 84c-6 3-9 8-9 15v33m48-48c6 3 9 8 9 15v33"/>
+<path d="M85 128v30m30-30v30"/>
+<path d="M100 92l-6 8 6 8 6-8-6-8Z"/>
+<ellipse cx="100" cy="163" rx="34" ry="8"/>
+<path d="M66 163c0 7 15 12 34 12s34-5 34-12"/>
+<path d="M74 158c4-6 10-9 16-9m36 9c-4-6-10-9-16-9"/>
+</g>`,
+
+"Shaiva & Bhagavata Religion": `<g>
+<path d="M100 150V54"/>
+<path d="M100 54c-5 0-8-4-8-10 0-8 4-14 8-18 4 4 8 10 8 18 0 6-3 10-8 10Z"/>
+<path d="M76 62c-5 0-8-4-8-10 0-9 3-16 6-22 4 8 8 16 8 24"/>
+<path d="M124 62c5 0 8-4 8-10 0-9-3-16-6-22-4 8-8 16-8 24"/>
+<path d="M76 62v20c0 10 10 14 24 14s24-4 24-14V62"/>
+<path d="M84 96c0 14 6 24 16 24s16-10 16-24"/>
+<ellipse cx="100" cy="156" rx="44" ry="12"/>
+<path d="M56 156c0 10 20 16 44 16s44-6 44-16"/>
+<path d="M144 156h24"/>
+</g>`,
+
+"6th Century BCE - Political Condition": `<g>
+<path d="M20 172h160"/>
+<path d="M36 172V96h128v76"/>
+<path d="M36 96h128M36 118h128M36 140h128"/>
+<path d="M60 96v22m28-22v22m28-22v22m28-22v22M46 118v22m28-22v22m28-22v22m28-22v22m28-22v22M60 140v32m28-32v32m56-32v32"/>
+<path d="M88 172v-32h24v32"/>
+<path d="M88 152c0-8 5-12 12-12s12 4 12 12"/>
+<path d="M36 96 24 84h24Zm128 0-12-12h24Z"/>
+<path d="M22 84c14-14 30-22 44-24m112 24c-14-14-30-22-44-24"/>
+</g>`,
+
+"Greek Invasion": `<g>
+<path d="M62 62h76v12H62Z"/>
+<path d="M62 62c-6 0-10-4-10-10 0-6 5-10 10-10 8 0 12 6 12 12m64 8c6 0 10-4 10-10 0-6-5-10-10-10-8 0-12 6-12 12"/>
+<path d="M56 52c2-3 6-3 8 0m72 0c2-3 6-3 8 0"/>
+<path d="M74 74v88m14-88v88m24-88v88m14-88v88"/>
+<path d="M68 74h64"/>
+<path d="M58 162h84v12H58Z"/>
+<path d="M50 174h100v10H50Z"/>
+<path d="M76 30h48l-6 12H82Z"/>
+</g>`,
+
+"Mauryan Empire": `<g>
+<path d="M86 192v-40m28 40v-40"/>
+<path d="M72 152c0-19 9-31 28-31s28 12 28 31Z"/>
+<path d="M78 140c11-6 33-6 44 0"/>
+<rect x="64" y="104" width="72" height="17" rx="3"/>
+<circle cx="100" cy="112.5" r="6.5"/>
+<path d="M100 106v13m-6.5-6.5h13m-4.6-4.6 9.2 9.2m-9.2 0 9.2-9.2"/>
+<path d="M76 104h-6m54 0h6"/>
+<circle cx="76" cy="64" r="14"/>
+<path d="M62 60c-6-1-9 3-8 7 1 4 5 5 8 4"/>
+<path d="M62 71c2 2 6 2 8 0"/>
+<circle cx="68" cy="61" r="1.7"/>
+<path d="M70 50c-2-5 0-9 3-10"/>
+<path d="M86 75c4 11 6 20 6 29m-24-27c-3 10-3 19-2 27"/>
+<path d="M62 79c-1 9 0 17 2 25"/>
+<circle cx="124" cy="64" r="14"/>
+<path d="M138 60c6-1 9 3 8 7-1 4-5 5-8 4"/>
+<path d="M138 71c-2 2-6 2-8 0"/>
+<circle cx="132" cy="61" r="1.7"/>
+<path d="M130 50c2-5 0-9-3-10"/>
+<path d="M114 75c-4 11-6 20-6 29m24-27c3 10 3 19 2 27"/>
+<path d="M138 79c1 9 0 17-2 25"/>
+<path d="M100 104V78"/>
+</g>`,
+
+"Post-Mauryan Period": `<g>
+<circle cx="100" cy="100" r="64"/>
+<circle cx="100" cy="100" r="55"/>
+<circle cx="100" cy="64" r="9"/>
+<circle cx="100" cy="64" r="15"/>
+<path d="M91 73c-8 3-13 10-13 19v20h44V92c0-9-5-16-13-19"/>
+<path d="M78 112l-6 22h56l-6-22"/>
+<path d="M94 134v8h12v-8"/>
+<path d="M88 142h-8m32 0h8"/>
+<path d="M78 96 62 84"/>
+<path d="M122 96l8-30"/>
+<path d="M126 60c0-3 3-5 5-4s3 4 1 6l-4 4Z"/>
+<path d="M100 88v34"/>
+<path d="M60 60l-5-5m85 5 5-5M60 140l-5 5m85-5 5 5M100 45v-6m0 122v6M45 100h-6m122 0h6"/>
+</g>`,
+
+"Gupta & Post-Gupta Period": `<g>
+<path d="M36 176h128"/>
+<path d="M48 176v-20h104v20"/>
+<path d="M56 156v-16h88v16"/>
+<path d="M68 140V96h64v44"/>
+<path d="M68 96c0-26 14-42 32-42s32 16 32 42"/>
+<path d="M78 96c0-20 10-32 22-32s22 12 22 32"/>
+<ellipse cx="100" cy="50" rx="14" ry="6"/>
+<path d="M100 44V32"/>
+<path d="M94 32c0-4 3-6 6-6s6 2 6 6Z"/>
+<path d="M90 140v-28h20v28"/>
+<path d="M90 120c0-6 4-10 10-10s10 4 10 10"/>
+<path d="M56 166h88M48 148h8m88 0h8"/>
+</g>`,
+
+"Architecture in Ancient India": `<g>
+<path d="M30 178h140"/>
+<path d="M44 178v-26h112v26M52 152v-14h96v14"/>
+<path d="M76 138V88c0-30 10-46 24-46s24 16 24 46v50"/>
+<path d="M86 138V92c0-22 6-34 14-34s14 12 14 34v46"/>
+<ellipse cx="100" cy="40" rx="13" ry="5"/>
+<path d="M100 35V24m-5 0c0-4 2-6 5-6s5 2 5 6Z"/>
+<path d="M64 138V104c0-20 5-30 12-30"/>
+<path d="M136 138v-34c0-20-5-30-12-30"/>
+<ellipse cx="64" cy="74" rx="9" ry="4"/><ellipse cx="136" cy="74" rx="9" ry="4"/>
+<path d="M64 70v-8m72 8v-8"/>
+<path d="M52 138V116c0-14 4-20 10-20m86 42v-22c0-14-4-20-10-20"/>
+<path d="M90 152v-14h20v14"/>
+</g>`,
+
+"South India & Sangam Age": `<g>
+<path d="M24 180h152"/>
+<path d="M42 180 58 42h84l16 138"/>
+<path d="M48 148h104M53 116h94M58 84h84M63 58h74"/>
+<path d="M86 180v-32h28v32"/>
+<path d="M86 156c0-8 6-14 14-14s14 6 14 14"/>
+<path d="M58 42h84l-6-12H64Z"/>
+<path d="M72 30v-8m0 0c0-3 2-5 4-5m-4 5c0-3-2-5-4-5m60 8v-8m0 0c0-3 2-5 4-5m-4 5c0-3-2-5-4-5M100 30v-10m0 0c0-4 3-6 6-6m-6 6c0-4-3-6-6-6"/>
+<path d="M66 132h8m24 0h8m24 0h8M70 100h8m22 0h8m22 0h8"/>
+</g>`,
+
+"Ancient Literature": `<g>
+<path d="M28 78h132a6 6 0 0 1 0 12H28a6 6 0 0 1 0-12Z"/>
+<path d="M28 100h132a6 6 0 0 1 0 12H28a6 6 0 0 1 0-12Z"/>
+<path d="M28 122h132a6 6 0 0 1 0 12H28a6 6 0 0 1 0-12Z"/>
+<path d="M44 84h28m10 0h40m10 0h18M44 106h18m10 0h44m10 0h24M44 128h34m10 0h30m10 0h22"/>
+<circle cx="72" cy="84" r="3"/><circle cx="72" cy="106" r="3"/><circle cx="72" cy="128" r="3"/>
+<path d="M72 78V60m0 68v18"/>
+<path d="M126 62 158 30"/>
+<path d="M154 26c4-4 10-4 12 0s0 10-4 12l-4-8Z"/>
+<path d="M126 62l-6 8 8-4Z"/>
+</g>`,
+
+"Pre-Medieval Period": `<g>
+<path d="M18 176h164"/>
+<path d="M34 176v-52h44v52m44 0v-52h44v52"/>
+<path d="M34 124h44M122 124h44"/>
+<path d="M46 176v-34h20v34m66 0v-34h20v34"/>
+<path d="M78 176v-40c0-24 10-38 22-38s22 14 22 38v40"/>
+<path d="M88 176v-38c0-16 5-26 12-26s12 10 12 26v38"/>
+<ellipse cx="100" cy="94" rx="12" ry="5"/>
+<path d="M100 89V76m-5 0c0-4 2-6 5-6s5 2 5 6Z"/>
+<path d="M92 176v-26h16v26"/>
+<path d="M34 140h12m20 0h12m54 0h12m20 0h12"/>
+</g>`,
+};
+MOTIF["_home"] = MOTIF["Mauryan Empire"];
+MOTIF["All topics"] = MOTIF["Mauryan Empire"];
+MOTIF["Questions you missed"] = MOTIF["Ancient Literature"];
+
+var app = document.getElementById('app');
+var KEY = 'ancientPYQ.mcq.v1';
+var SECS_PER_Q = 48;
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+/* ---------------- persistence ---------------- */
+var store = {star:{}, att:{}, theme:null};
+function load(){
+  try{
+    var raw = localStorage.getItem(KEY);
+    if(raw){ var s = JSON.parse(raw);
+      store.star = s.star||{}; store.att = s.att||{}; store.theme = s.theme||null; }
+  }catch(e){}
+  if(!store.theme) store.theme = matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+load();
+
+/* ---------------- state ---------------- */
+var mode='practice', shufQ=false, shufO=false, filter='all', year='all', query='';
+var examCount='all', neg=0;
+var pool=[], view={}, idx=0, picks={}, marks={}, times={}, atime={}, title='';
+var reviewing=false, deadline=0, began=0, qStart=0, ticker=null;
+
+/* ---------------- theme ---------------- */
+var SUN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/></svg>';
+var MOON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1Z"/></svg>';
+function paint(){ document.documentElement.setAttribute('data-theme', store.theme); }
+function themeBtn(){ return '<button class="theme" id="theme" title="Switch theme" aria-label="Switch theme">'+
+  (store.theme==='dark'?SUN:MOON)+'</button>'; }
+var redraw = function(){};
+function wire(fn){
+  redraw = fn;
+  var b = document.getElementById('theme');
+  if(b) b.onclick = function(){
+    store.theme = store.theme==='dark'?'light':'dark'; save(); paint(); redraw();
+  };
+}
+function setMotif(key){
+  document.getElementById('motif').innerHTML =
+    '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" '+
+    'stroke-linecap="round" stroke-linejoin="round">'+(MOTIF[key]||MOTIF['_home'])+'</svg>';
+}
+
+/* ---------------- time ---------------- */
+function pad(n){ return String(n).padStart(2,'0'); }
+function clock(ms){
+  ms = Math.max(0, Math.round(ms/1000));
+  var h = Math.floor(ms/3600);
+  return (h ? h+':'+pad(Math.floor(ms/60)%60) : String(Math.floor(ms/60)))+':'+pad(ms%60);
+}
+function human(ms){
+  var s = Math.max(1, Math.round(ms/1000));
+  return s<60 ? s+'s' : Math.floor(s/60)+'m '+pad(s%60)+'s';
+}
+function bank(){
+  if(!pool.length || reviewing) return;
+  var id = pool[idx].i, now = Date.now();
+  times[id] = (times[id]||0) + (now - qStart);
+  qStart = now;
+}
+function stopTicker(){ if(ticker) clearInterval(ticker); ticker = null; }
+function startTicker(){
+  stopTicker();
+  ticker = setInterval(function(){
+    var el = document.getElementById('clock');
+    if(!el) return;
+    if(mode==='exam'){
+      var left = deadline - Date.now();
+      el.textContent = clock(left);
+      el.classList.toggle('low', left < 0.15*SECS_PER_Q*1000*pool.length);
+      if(left<=0){ stopTicker(); results(true); }
+    } else {
+      el.textContent = clock(Date.now()-began);
+    }
+  }, 400);
+}
+
+/* ---------------- selection ---------------- */
+function matches(q){
+  if(year!=='all' && q.y.indexOf(year)<0) return false;
+  if(filter==='unseen' && store.att[q.i]) return false;
+  if(filter==='wrong' && !(store.att[q.i] && !store.att[q.i].ok)) return false;
+  if(filter==='star' && !store.star[q.i]) return false;
+  if(query){
+    var hay = (q.q+' '+q.o.map(function(x){return x[1];}).join(' ')+' '+q.n).toLowerCase();
+    if(hay.indexOf(query)<0) return false;
+  }
+  return true;
+}
+function avail(topic){
+  return DATA.filter(function(q){ return (!topic||q.t===topic) && matches(q); });
+}
+
+/* ---------------- home ---------------- */
+function home(){
+  stopTicker(); pool=[]; reviewing=false;
+  setMotif('_home');
+  var all = avail(null);
+  var attempted = Object.keys(store.att).length;
+
+  var topicRows = TOPICS.map(function(tn,i){
+    var t = tn[0], total = tn[1];
+    var pick = avail(t).length;
+    var done = DATA.filter(function(q){ return q.t===t && store.att[q.i]; }).length;
+    var got  = DATA.filter(function(q){ return q.t===t && store.att[q.i] && store.att[q.i].ok; }).length;
+    return '<button class="topic" data-t="'+i+'"'+(pick?'':' disabled')+'>'+
+      '<span class="name">'+esc(t)+'</span>'+
+      (done?'<span class="bar2"><i style="width:'+(got/done*100)+'%"></i></span>':'')+
+      '<span class="n">'+(done?got+'/'+done+'  ':'')+pick+'</span></button>';
+  }).join('');
+
+  var controls = mode==='practice'
+    ? '<button class="pill" id="sq" aria-pressed="'+shufQ+'">Shuffle questions</button>'+
+      '<button class="pill" id="so" aria-pressed="'+shufO+'">Shuffle options</button>'
+    : '<span class="seg" id="cnt">'+
+        ['25','50','100','all'].map(function(c){
+          return '<button data-c="'+c+'" aria-pressed="'+(examCount===c)+'">'+(c==='all'?'All':c)+'</button>';
+        }).join('')+'</span>'+
+      '<button class="pill" id="ng" aria-pressed="'+(neg>0)+'">Negative '+(neg>0?'1/3':'off')+'</button>';
+
+  var n = mode==='exam' ? Math.min(all.length, examCount==='all'?all.length:+examCount) : all.length;
+
+  app.innerHTML =
+  '<header>'+themeBtn()+
+    '<h1>Ancient India</h1>'+
+    '<p class="sub">Every previous-year question from the chapter - <b>'+DATA.length+'</b> in all, '+
+    'from the 38th BPSC Prelims through the 71st.'+
+    (attempted?' You have attempted <b>'+attempted+'</b> so far.':'')+'</p>'+
+  '</header>'+
+  '<div class="setup">'+
+    '<span class="seg" id="md">'+
+      '<button data-m="practice" aria-pressed="'+(mode==='practice')+'">Practice</button>'+
+      '<button data-m="exam" aria-pressed="'+(mode==='exam')+'">Exam</button>'+
+    '</span>'+controls+
+  '</div>'+
+  '<p class="hint">'+(mode==='practice'
+    ? 'The answer and the note appear as soon as you choose, and the clock counts up.'
+    : 'Nothing is revealed until you submit. '+SECS_PER_Q+' seconds a question - BPSC\'s own pace - '+
+      'so '+n+' questions gives you '+Math.max(1,Math.round(n*SECS_PER_Q/60))+' minutes.')+'</p>'+
+  '<div class="find">'+
+    '<input id="q" type="search" placeholder="Search questions and notes" value="'+esc(query)+'">'+
+    '<select id="yr"><option value="all">All years</option>'+
+      YEARS.map(function(y){ return '<option value="'+y+'"'+(year===y?' selected':'')+'>'+y+'</option>'; }).join('')+
+    '</select>'+
+  '</div>'+
+  '<div class="setup">'+
+    [['all','All'],['unseen','Unattempted'],['wrong','Wrong'],['star','Starred']].map(function(f){
+      return '<button class="pill" data-f="'+f[0]+'" aria-pressed="'+(filter===f[0])+'">'+f[1]+'</button>';
+    }).join('')+
+  '</div>'+
+  '<div class="index">'+topicRows+'</div>'+
+  '<button class="allbtn" id="all"'+(all.length?'':' disabled')+'>'+
+    (all.length===0 ? 'Nothing matches those filters'
+      : mode==='exam'
+        ? 'Start mock - '+n+' questions, '+Math.max(1,Math.round(n*SECS_PER_Q/60))+' minutes'
+        : 'Practise all '+all.length+' matching')+'</button>'+
+  '<p class="note-foot">Answer keys are the ones printed in the book; the notes are written to go with them. '+
+  'Three questions were later cancelled by the Commission - they are flagged and left out of your score. '+
+  'Progress is saved in this browser. '+
+  (attempted?'<button class="linkish" id="reset">Clear all progress</button>':'')+'</p>';
+
+  wire(home);
+  app.querySelectorAll('#md button').forEach(function(b){
+    b.onclick = function(){ mode = b.dataset.m; home(); }; });
+  app.querySelectorAll('[data-f]').forEach(function(b){
+    b.onclick = function(){ filter = b.dataset.f; home(); }; });
+  var cnt = document.getElementById('cnt');
+  if(cnt) cnt.querySelectorAll('button').forEach(function(b){
+    b.onclick = function(){ examCount = b.dataset.c; home(); }; });
+  var sq = document.getElementById('sq');
+  if(sq) sq.onclick = function(){ shufQ = !shufQ; home(); };
+  var so = document.getElementById('so');
+  if(so) so.onclick = function(){ shufO = !shufO; home(); };
+  var ng = document.getElementById('ng');
+  if(ng) ng.onclick = function(){ neg = neg>0 ? 0 : 1/3; home(); };
+
+  var qi = document.getElementById('q');
+  qi.oninput = function(){
+    query = qi.value.trim().toLowerCase();
+    var at = qi.selectionStart; home();
+    var el = document.getElementById('q'); el.focus(); el.setSelectionRange(at,at);
+  };
+  document.getElementById('yr').onchange = function(e){ year = e.target.value; home(); };
+
+  app.querySelectorAll('.topic').forEach(function(b){
+    b.onclick = function(){ var t = TOPICS[+b.dataset.t][0]; start(avail(t), t); }; });
+  document.getElementById('all').onclick = function(){ start(all, 'All topics'); };
+  var rs = document.getElementById('reset');
+  if(rs) rs.onclick = function(){
+    if(confirm('Clear every answer and star saved in this browser?')){
+      store.star={}; store.att={}; save(); home();
+    }
+  };
+}
+
+/* ---------------- run ---------------- */
+function shuffle(a){
+  for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+  return a;
+}
+function start(list, name){
+  pool = list.slice(); title = name; idx = 0; picks = {}; marks = {}; times = {}; atime = {}; reviewing = false;
+  if(mode==='practice'){ if(shufQ) shuffle(pool); }
+  else {
+    shuffle(pool);
+    if(examCount!=='all') pool = pool.slice(0, Math.min(pool.length, +examCount));
+    pool.sort(function(a,b){ return a.i-b.i; });
+  }
+  view = {};
+  pool.forEach(function(q){
+    var letters = q.o.map(function(x){ return x[0]; });
+    if(shufO && mode==='practice'){
+      var free = letters.filter(function(k){ return q.z.indexOf(k)<0; });
+      var last = letters.filter(function(k){ return q.z.indexOf(k)>=0; });
+      letters = shuffle(free).concat(last);
+    }
+    view[q.i] = letters;
+  });
+  setMotif(name);
+  began = Date.now(); qStart = began;
+  deadline = began + pool.length*SECS_PER_Q*1000;
+  startTicker();
+  question();
+}
+
+function paletteHTML(){
+  return '<div class="palette">'+pool.map(function(q,j){
+    var cls = '';
+    if(reviewing){ cls = picks[q.i] ? (picks[q.i].ok?'on':'ko') : ''; }
+    else if(marks[q.i]) cls = 'mk';
+    else if(picks[q.i]) cls = 'on';
+    if(j===idx) cls += ' here';
+    return '<button class="'+cls+'" data-j="'+j+'">'+(j+1)+'</button>';
+  }).join('')+'</div>';
+}
+
+function question(){
+  var q = pool[idx], picked = picks[q.i], dead = q.a==='*';
+  var show = reviewing || (mode==='practice' && !!picked);
+  var order = view[q.i];
+  var done = Object.keys(picks).length;
+  var right = 0; for(var k in picks) if(picks[k].ok) right++;
+
+  var why = '<div class="why"></div>';
+  if(show){
+    var verdict = !picked ? 'Not answered.'
+      : picked.ok ? 'Correct.'
+      : dead ? 'Withdrawn by the Commission - there is no valid key.'
+      : 'The answer is ('+String.fromCharCode(97+order.indexOf(q.a))+').';
+    why = '<div class="why">'+
+      '<p class="verdict '+(picked && picked.ok ? 'ok':'no')+'">'+verdict+
+        (atime[q.i] ? '<em>'+human(atime[q.i])+' to answer</em>' : '')+'</p>'+
+      '<p class="note">'+esc(q.n)+'</p>'+
+      (q.r ? '<p class="again">BPSC has asked this fact in more than one year.</p>' : '')+
+    '</div>';
+  }
+
+  app.innerHTML =
+  '<div class="bar">'+
+    '<button class="back" id="back">'+(reviewing?'&larr; Results':'&larr; Topics')+'</button>'+
+    '<span class="now">'+esc(title)+'</span>'+
+    (reviewing ? '' : '<span class="clock" id="clock">'+
+      clock(mode==='exam' ? deadline-Date.now() : Date.now()-began)+'</span>')+
+    (mode==='exam' && !reviewing
+      ? '<span class="tally">'+done+'/'+pool.length+' done</span><button class="submit" id="sub">Submit</button>'
+      : '<span class="tally"><span class="ok">'+right+'</span> / '+done+' answered</span>')+
+    themeBtn()+
+  '</div>'+
+  '<div class="track"><i style="width:'+((idx+1)/pool.length*100)+'%"></i></div>'+
+  '<div class="meta">'+
+    '<span>Question '+(idx+1)+' of '+pool.length+'</span><span>&middot;</span><span>'+esc(q.s)+'</span>'+
+    (dead ? '<span class="flag">Cancelled by BPSC</span>' : '')+
+    '<button class="star" id="star" aria-pressed="'+(store.star[q.i]?true:false)+'" '+
+      'title="Star this question">'+(store.star[q.i]?'\u2605':'\u2606')+'</button>'+
+  '</div>'+
+  '<p class="stem">'+esc(q.q)+'</p>'+
+  '<div class="opts">'+
+    order.map(function(orig, j){
+      var txt = '';
+      for(var m=0;m<q.o.length;m++) if(q.o[m][0]===orig) txt = q.o[m][1];
+      var cls = '';
+      if(show){ if(orig===q.a) cls=' right'; else if(picked && orig===picked.k) cls=' wrong'; }
+      else if(picked && orig===picked.k) cls=' chosen';
+      return '<button class="opt'+cls+'" data-k="'+orig+'"'+(show?' disabled':'')+'>'+
+        '<span class="k">'+String.fromCharCode(97+j)+'</span><span class="v">'+esc(txt)+'</span></button>';
+    }).join('')+
+  '</div>'+
+  why+
+  '<div class="nav">'+
+    '<button id="prev"'+(idx===0?' disabled':'')+'>Previous</button>'+
+    (mode==='exam' && !reviewing
+      ? '<button class="mark" id="mk" aria-pressed="'+(marks[q.i]?true:false)+'">Mark for review</button>' : '')+
+    '<button id="next" class="go">'+(idx===pool.length-1
+      ? (reviewing ? 'Back to results' : (mode==='exam' ? 'Submit exam' : 'See results'))
+      : 'Next')+'</button>'+
+  '</div>'+
+  '<p class="keys">Keys 1-5 to answer &middot; &larr; &rarr; to move'+
+    (mode==='exam'&&!reviewing?' &middot; M to mark':'')+'</p>'+
+  ((mode==='exam' || reviewing) ? paletteHTML() : '');
+
+  wire(question);
+  app.querySelectorAll('.opt').forEach(function(b){
+    b.onclick = function(){ answer(b.dataset.k); }; });
+  document.getElementById('star').onclick = function(){
+    if(store.star[q.i]) delete store.star[q.i]; else store.star[q.i]=1;
+    save(); question();
+  };
+  document.getElementById('back').onclick = function(){
+    bank(); if(reviewing) results(); else home(); };
+  document.getElementById('prev').onclick = function(){
+    if(idx>0){ bank(); idx--; question(); } };
+  document.getElementById('next').onclick = function(){
+    bank();
+    if(idx<pool.length-1){ idx++; question(); } else results();
+  };
+  var mk = document.getElementById('mk');
+  if(mk) mk.onclick = function(){
+    if(marks[q.i]) delete marks[q.i]; else marks[q.i]=1; question(); };
+  var sb = document.getElementById('sub');
+  if(sb) sb.onclick = function(){ bank(); if(confirm('Submit the exam now?')) results(); };
+  app.querySelectorAll('.palette button').forEach(function(b){
+    b.onclick = function(){ bank(); idx = +b.dataset.j; question(); }; });
+}
+
+function answer(k){
+  var q = pool[idx];
+  if(reviewing) return;
+  if(mode==='practice' && picks[q.i]) return;
+  bank();
+  picks[q.i] = {k:k, ok:(k===q.a)};
+  atime[q.i] = times[q.i] || 0;
+  if(q.a!=='*'){ store.att[q.i] = {k:k, ok:(k===q.a)}; save(); }
+  question();
+}
+
+/* ---------------- results ---------------- */
+function results(expired){
+  bank(); stopTicker(); reviewing = false;
+  if(mode==='exam'){
+    pool.forEach(function(q){
+      if(picks[q.i] && q.a!=='*'){ store.att[q.i] = {k:picks[q.i].k, ok:picks[q.i].ok}; }
+    });
+    save();
+  }
+  var graded = pool.filter(function(q){ return q.a!=='*' && picks[q.i]; });
+  var right = graded.filter(function(q){ return picks[q.i].ok; }).length;
+  var missed = graded.length - right;
+  var pct = graded.length ? Math.round(right/graded.length*100) : 0;
+  var net = right - missed*neg;
+  var wrong = pool.filter(function(q){ return picks[q.i] && !picks[q.i].ok && q.a!=='*'; });
+  var spent = 0; for(var k in times) spent += times[k];
+  var answered = Object.keys(picks).length;
+  var avg = answered ? spent/answered : 0;
+
+  var byTopic = {};
+  graded.forEach(function(q){
+    var b = byTopic[q.t] || (byTopic[q.t] = {d:0, r:0});
+    b.d++; if(picks[q.i].ok) b.r++;
+  });
+  var slow = pool.filter(function(q){ return atime[q.i]; })
+                 .sort(function(a,b){ return atime[b.i]-atime[a.i]; }).slice(0,3);
+
+  setMotif(title);
+  app.innerHTML =
+  '<header>'+themeBtn()+
+    '<h1>'+esc(title)+'</h1>'+
+    '<p class="score">'+pct+'%<small> &middot; '+right+' of '+graded.length+'</small></p>'+
+    '<p class="sub">'+(expired?'Time ran out. ':'')+(pool.length-answered)+' left unanswered'+
+      (mode==='exam'?' &middot; exam mode':'')+
+      (neg>0?' &middot; net score '+(Math.round(net*100)/100):'')+'</p>'+
+  '</header>'+
+  '<div class="stats">'+
+    '<span class="stat"><b>'+clock(spent)+'</b><span>time taken</span></span>'+
+    '<span class="stat"><b>'+(avg?human(avg):'-')+'</b><span>average a question</span></span>'+
+    '<span class="stat"><b>'+answered+'</b><span>attempted</span></span>'+
+    '<span class="stat"><b>'+missed+'</b><span>wrong</span></span>'+
+  '</div>'+
+  (Object.keys(byTopic).length>1
+    ? '<p class="h3">By topic</p>'+Object.keys(byTopic).map(function(t){
+        var b = byTopic[t];
+        return '<div class="row"><span class="name">'+esc(t)+'</span>'+
+          '<span class="bar2"><i style="width:'+(b.r/b.d*100)+'%"></i></span>'+
+          '<span class="sc">'+b.r+'/'+b.d+'</span></div>';
+      }).join('') : '')+
+  (slow.length
+    ? '<p class="h3">Longest to answer</p>'+slow.map(function(q){
+        return '<div class="row slow"><span class="name">'+esc(q.q.slice(0,70))+
+          (q.q.length>70?'&hellip;':'')+'</span><span class="sc">'+human(atime[q.i])+'</span></div>';
+      }).join('') : '')+
+  '<div class="nav" style="margin-top:26px">'+
+    '<button id="again">Topics</button>'+
+    (answered?'<button id="rev">Review answers</button>':'')+
+    (wrong.length?'<button id="redo" class="go">Redo '+wrong.length+' missed</button>':'')+
+  '</div>';
+
+  wire(function(){ results(expired); });
+  document.getElementById('again').onclick = home;
+  var rv = document.getElementById('rev');
+  if(rv) rv.onclick = function(){ reviewing = true; idx = 0; question(); };
+  var rd = document.getElementById('redo');
+  if(rd) rd.onclick = function(){ start(wrong, 'Questions you missed'); };
+}
+
+/* ---------------- keyboard ---------------- */
+addEventListener('keydown', function(e){
+  if(!pool.length) return;
+  if(/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName)) return;
+  var n = document.getElementById('next'), p = document.getElementById('prev');
+  if(e.key==='ArrowRight' && n){ n.click(); e.preventDefault(); }
+  if(e.key==='ArrowLeft' && p && !p.disabled){ p.click(); e.preventDefault(); }
+  if(e.key==='m' || e.key==='M'){ var mk = document.getElementById('mk'); if(mk) mk.click(); }
+  if(/^[1-5]$/.test(e.key)){
+    var b = app.querySelectorAll('.opt')[+e.key-1];
+    if(b && !b.disabled) b.click();
+  }
+});
+
+paint(); home();
+</script>
 
 <!-- Floating Back to Portal Button -->
 <a href="index.html" class="home-btn" title="Back to Portal">
