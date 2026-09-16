@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N7Y1J0QC66"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N7Y1J0QC66');
+</script>
+  
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Polity Flash Notes · BPSC Prelims</title>
@@ -637,6 +648,22 @@ document.addEventListener('keydown',function(e){
 
 if(S.chap>=DATA.length||S.chap<-1)S.chap=0;
 applyTheme();rebuild();refreshSide();render();
+})();
+</script>
+
+  <!-- Home Navigation Auto-Injector -->
+<script>
+(() => {
+  const topBar = document.querySelector('.top');
+  if (topBar && !document.getElementById('polityNotesHomeBtn')) {
+    const btn = document.createElement('a');
+    btn.id = 'polityNotesHomeBtn';
+    btn.href = 'index.html';
+    btn.className = 'btn';
+    btn.style.cssText = 'text-decoration:none;display:inline-flex;align-items:center;gap:4px;font-weight:600;margin-right:2px;flex:none;';
+    btn.textContent = '← Home';
+    topBar.prepend(btn);
+  }
 })();
 </script>
 </body>
