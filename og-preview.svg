@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F17" />
+      <stop offset="60%" stop-color="#111726" />
+      <stop offset="100%" stop-color="#080B11" />
+    </linearGradient>
+
+    <!-- Radial Glows -->
+    <radialGradient id="radial-glow" cx="20%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="#1E3A8A" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#1E3A8A" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="amber-glow" cx="85%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="#D97706" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#D97706" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Card Background Gradient -->
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1A253A" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#141D2E" stop-opacity="0.85" />
+    </linearGradient>
+
+    <!-- Accent Gradients -->
+    <linearGradient id="brand-orange" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FB923C" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="drop-shadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+  </defs>
+
+  <style>
+    .font-serif { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; }
+    .font-sans { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  </style>
+
+  <!-- 1. Background Layers -->
+  <rect width="1200" height="630" fill="url(#bg-grad)" />
+  <rect width="1200" height="630" fill="url(#radial-glow)" />
+  <rect width="1200" height="630" fill="url(#amber-glow)" />
+
+  <!-- Subtle Blueprint Grid Pattern -->
+  <g stroke="rgba(255, 255, 255, 0.03)" stroke-width="1">
+    <line x1="80" y1="0" x2="80" y2="630" />
+    <line x1="240" y1="0" x2="240" y2="630" />
+    <line x1="400" y1="0" x2="400" y2="630" />
+    <line x1="560" y1="0" x2="560" y2="630" />
+    <line x1="720" y1="0" x2="720" y2="630" />
+    <line x1="880" y1="0" x2="880" y2="630" />
+    <line x1="1040" y1="0" x2="1040" y2="630" />
+    <line x1="0" y1="90" x2="1200" y2="90" />
+    <line x1="0" y1="210" x2="1200" y2="210" />
+    <line x1="0" y1="330" x2="1200" y2="330" />
+    <line x1="0" y1="450" x2="1200" y2="450" />
+    <line x1="0" y1="570" x2="1200" y2="570" />
+  </g>
+
+  <!-- Decorative Outer Border -->
+  <rect x="24" y="24" width="1152" height="582" rx="20" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+
+  <!-- 2. Header Badge -->
+  <g transform="translate(80, 72)">
+    <rect width="320" height="34" rx="17" fill="rgba(96, 165, 250, 0.12)" stroke="rgba(96, 165, 250, 0.35)" stroke-width="1" />
+    <circle cx="20" cy="17" r="4" fill="#34D399" />
+    <text x="34" y="22" class="font-sans" font-size="12" font-weight="700" fill="#93C5FD" letter-spacing="1.2">BIHAR CIVIL SERVICES (38TH-71ST)</text>
+  </g>
+
+  <!-- 3. Main Brand & Headline -->
+  <g transform="translate(80, 185)">
+    <text class="font-serif" font-size="64" font-weight="500" fill="#F1F5F9" letter-spacing="-1">
+      BPSC <tspan fill="url(#brand-orange)" font-style="italic" font-weight="600">PYQ</tspan> and Notes
+    </text>
+
+    <text y="54" class="font-sans" font-size="22" font-weight="450" fill="#94A3B8">
+      Authentic Prelims Question Banks, Verified Solutions &amp; Active Recall Decks
+    </text>
+
+    <!-- Subject Badges Row -->
+    <g transform="translate(0, 84)">
+      <rect width="112" height="28" rx="6" fill="rgba(30, 58, 138, 0.4)" stroke="rgba(96, 165, 250, 0.4)" stroke-width="1" />
+      <text x="56" y="18" class="font-sans" font-size="12" font-weight="600" fill="#BFDBFE" text-anchor="middle">History</text>
+
+      <rect x="122" width="124" height="28" rx="6" fill="rgba(217, 119, 6, 0.25)" stroke="rgba(245, 158, 11, 0.45)" stroke-width="1" />
+      <text x="184" y="18" class="font-sans" font-size="12" font-weight="600" fill="#FDE68A" text-anchor="middle">Bihar Special</text>
+
+      <rect x="256" width="104" height="28" rx="6" fill="rgba(79, 70, 229, 0.3)" stroke="rgba(129, 140, 248, 0.45)" stroke-width="1" />
+      <text x="308" y="18" class="font-sans" font-size="12" font-weight="600" fill="#C7D2FE" text-anchor="middle">Polity</text>
+
+      <rect x="370" width="114" height="28" rx="6" fill="rgba(2, 132, 199, 0.3)" stroke="rgba(56, 189, 248, 0.45)" stroke-width="1" />
+      <text x="427" y="18" class="font-sans" font-size="12" font-weight="600" fill="#BAE6FD" text-anchor="middle">Geography</text>
+
+      <rect x="494" width="138" height="28" rx="6" fill="rgba(13, 148, 136, 0.3)" stroke="rgba(45, 212, 191, 0.45)" stroke-width="1" />
+      <text x="563" y="18" class="font-sans" font-size="12" font-weight="600" fill="#99F6E4" text-anchor="middle">General Science</text>
+    </g>
+  </g>
+
+  <!-- 4. Key Performance Metric Cards -->
+  <g transform="translate(80, 370)">
+    <!-- Box 1: Verified MCQs -->
+    <g filter="url(#drop-shadow)">
+      <rect width="320" height="114" rx="14" fill="url(#card-grad)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1" />
+      <rect x="0" y="0" width="320" height="3" rx="1.5" fill="#38BDF8" />
+      <text x="24" y="55" class="font-sans" font-size="38" font-weight="800" fill="#F8FAFC">3,058</text>
+      <text x="24" y="86" class="font-sans" font-size="13.5" font-weight="600" fill="#94A3B8" letter-spacing="0.5">VERIFIED PRELIMS PYQs</text>
+    </g>
+
+    <!-- Box 2: Theory Notes -->
+    <g transform="translate(355, 0)" filter="url(#drop-shadow)">
+      <rect width="320" height="114" rx="14" fill="url(#card-grad)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1" />
+      <rect x="0" y="0" width="320" height="3" rx="1.5" fill="#34D399" />
+      <text x="24" y="55" class="font-sans" font-size="38" font-weight="800" fill="#F8FAFC">75 Ch</text>
+      <text x="24" y="86" class="font-sans" font-size="13.5" font-weight="600" fill="#94A3B8" letter-spacing="0.5">REVISION FLASHNOTES</text>
+    </g>
+
+    <!-- Box 3: Coverage -->
+    <g transform="translate(710, 0)" filter="url(#drop-shadow)">
+      <rect width="330" height="114" rx="14" fill="url(#card-grad)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1" />
+      <rect x="0" y="0" width="330" height="3" rx="1.5" fill="#FB923C" />
+      <text x="24" y="55" class="font-sans" font-size="38" font-weight="800" fill="#F8FAFC">100%</text>
+      <text x="24" y="86" class="font-sans" font-size="13.5" font-weight="600" fill="#94A3B8" letter-spacing="0.5">FREE &amp; ZERO-LATENCY</text>
+    </g>
+  </g>
+
+  <!-- 5. Footer Branding Bar -->
+  <g transform="translate(80, 545)">
+    <!-- Domain on the left -->
+    <text y="0" class="mono" font-size="20" font-weight="700" fill="#F8FAFC" letter-spacing="0.5">
+      bpscpyq.com
+    </text>
+
+    <!-- Telegram Channel on the right -->
+    <g transform="translate(780, -25)">
+      <rect width="260" height="38" rx="19" fill="#229ED9" />
+      
+      <!-- Official Crisp Vector Telegram Emblem -->
+      <svg x="8" y="7" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="#FFFFFF" fill-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.14-.26.26-.534.26l.213-3.05 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.87 4.326-2.96-.924c-.64-.203-.654-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+      </svg>
+      
+      <text x="40" y="24" class="font-sans" font-size="13.5" font-weight="700" fill="#FFFFFF" letter-spacing="0.3">@bpscpyqandnotes</text>
+    </g>
+  </g>
+</svg>
