@@ -1,4 +1,4 @@
-# bpscpyq
+# BPSC PYQ
 **BPSC PYQ and Notes** (bpscpyq.com) is a specialized, open-access preparation portal built to streamline and elevate preliminary exam readiness for Bihar Public Service Commission (BPSC) Civil Services aspirants.
 
 Preparing for the BPSC Combined Competitive Examination (CCE) has traditionally required juggling heavy reference books, deciphering disputed unofficial answer keys, and scrolling through disorganized question PDFs. bpscpyq.com solves this by organizing decades of past papers and syllabus theory into an interactive, mobile-optimized, and zero-distraction study environment.
