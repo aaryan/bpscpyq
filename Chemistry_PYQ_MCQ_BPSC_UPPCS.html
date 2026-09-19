@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N7Y1J0QC66"></script>
 <script>
@@ -56,26 +55,57 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 input,select{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--orpiment); outline-offset:2px; border-radius:4px}
 .wrap{max-width:860px;margin:0 auto;padding:0 16px;position:relative;z-index:1}
+.shell{display:flex;align-items:flex-start;max-width:1220px;margin:0 auto;position:relative;z-index:1}
+.content{flex:1;min-width:0}
+.side{width:242px;flex:none;position:sticky;top:54px;max-height:calc(100vh - 54px);overflow-y:auto;
+  padding:18px 12px 30px 16px;border-right:1px solid var(--line)}
+.slab{font-size:10.5px;letter-spacing:.9px;text-transform:uppercase;color:var(--text3);margin:0 0 8px 7px}
+.sitem{display:block;width:100%;text-align:left;border:1px solid transparent;border-radius:9px;
+  padding:7px 9px 8px;margin-bottom:2px}
+.sitem:hover{background:var(--panel);border-color:var(--line)}
+.sitem.on{background:var(--panel);border-color:var(--line2)}
+.sitem .rw{display:flex;align-items:center;gap:8px}
+.sitem .dotc{width:7px;height:7px;border-radius:2px;background:var(--accent,var(--orpiment));flex:none}
+.sitem .nm{flex:1;min-width:0;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sitem.on .nm{font-weight:600}
+.sitem .ct{font-size:11px;color:var(--text3);font-family:var(--mono);flex:none}
+.sitem .mini{margin:6px 0 0 15px;height:3px;border-radius:2px;background:var(--line);overflow:hidden}
+.sitem .mini i{display:block;height:100%;background:var(--accent,var(--orpiment))}
+.sitem:disabled{opacity:.4;cursor:not-allowed}
+.sdiv{height:1px;background:var(--line);margin:13px 7px}
+@media(min-width:1000px){ .bar .wrap{max-width:1200px} }
+@media(max-width:999px){ .side{display:none} .shell{display:block} }
 .hide{display:none !important}
 
 /* ================= chemistry background ================= */
 #bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
-    contain:strict;opacity:1;transition:opacity .3s ease}
+    contain:strict;opacity:1;transition:opacity .3s ease;--bgtint:#d9a441}
 html[data-bg="off"] #bg{opacity:0}
-#bg .glow{position:absolute;border-radius:50%;filter:blur(70px)}
-#bg .g1{width:52vw;height:52vw;left:-14vw;top:-18vw;background:radial-gradient(circle,rgba(217,164,65,.13),transparent 68%)}
-#bg .g2{width:46vw;height:46vw;right:-12vw;bottom:-14vw;background:radial-gradient(circle,rgba(79,167,143,.12),transparent 68%)}
-#bg .g3{width:34vw;height:34vw;left:44vw;top:34vh;background:radial-gradient(circle,rgba(107,143,212,.08),transparent 70%)}
+#bg .glow{position:absolute;border-radius:50%;filter:blur(70px);transition:background .7s ease}
+#bg .g1{width:52vw;height:52vw;left:-14vw;top:-18vw;background:radial-gradient(circle,color-mix(in srgb,var(--bgtint) 17%,transparent),transparent 68%)}
+#bg .g2{width:46vw;height:46vw;right:-12vw;bottom:-14vw;background:radial-gradient(circle,color-mix(in srgb,var(--bgtint) 13%,transparent),transparent 68%)}
+#bg .g3{width:34vw;height:34vw;left:44vw;top:34vh;background:radial-gradient(circle,color-mix(in srgb,var(--bgtint) 9%,transparent),transparent 70%)}
 #bg .lattice{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);
-  color:var(--bgink);opacity:.085}
+  color:color-mix(in srgb,var(--bgtint) 62%,var(--bgink));opacity:.10;transition:color .7s ease}
 html[data-theme="light"] #bg .lattice{opacity:.16}
-#bg .float{position:absolute;font-family:var(--serif);color:var(--bgink);opacity:.10;white-space:nowrap;
+#bg .float{position:absolute;font-family:var(--serif);color:color-mix(in srgb,var(--bgtint) 55%,var(--bgink));opacity:.11;white-space:nowrap;
   letter-spacing:.4px;will-change:transform}
 html[data-theme="light"] #bg .float{opacity:.19}
 #bg .float.rx{font-size:13px;opacity:.075}
 html[data-theme="light"] #bg .float.rx{opacity:.15}
 #bg .bub{position:absolute;border-radius:50%;border:1px solid var(--bgink);opacity:.10;will-change:transform}
-#bg .atomwrap{position:absolute;right:3vw;bottom:8vh;width:170px;height:170px;color:var(--bgink);opacity:.11}
+#bg .atomwrap{position:absolute;right:3vw;bottom:8vh;width:170px;height:170px;
+  color:color-mix(in srgb,var(--bgtint) 70%,var(--bgink));opacity:.13;transition:color .7s ease}
+#bg .ptable{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);
+  width:min(96vw,1280px);color:var(--bgtint);opacity:0;transition:opacity .7s ease}
+#bg .ptable.on{opacity:.15}
+html[data-theme="light"] #bg .ptable.on{opacity:.26}
+#bg .ptable svg{width:100%;height:auto;display:block}
+@media(min-width:1000px){ #bg .ptable{left:calc(50% + 121px);width:min(92vw - 242px,1180px)} }
+#bg .wm{position:absolute;left:50%;bottom:5vh;transform:translateX(-50%);font-family:var(--serif);
+  font-size:min(7.5vw,72px);line-height:1;color:var(--bgtint);opacity:.07;white-space:nowrap;
+  letter-spacing:-.5px;transition:color .7s ease,opacity .5s ease}
+html[data-theme="light"] #bg .wm{opacity:.13}
 html[data-theme="light"] #bg .atomwrap{opacity:.2}
 #bg .orb{transform-origin:85px 85px;animation:spin 26s linear infinite}
 #bg .orb:nth-child(2){animation-duration:34s;animation-direction:reverse}
@@ -319,7 +349,7 @@ select.sel{border:1px solid var(--line);border-radius:8px;padding:7px 10px;backg
   <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
   <svg class="lattice" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <pattern id="hexpat" width="48.5" height="84" patternUnits="userSpaceOnUse">
+      <pattern id="pat_hex" width="48.5" height="84" patternUnits="userSpaceOnUse">
         <g fill="none" stroke="currentColor" stroke-width="1">
           <path d="M24.25,0 L48.5,14 L48.5,42 L24.25,56 L0,42 L0,14 Z"/>
           <path d="M0,42 L24.25,56 L24.25,84 L0,98 L-24.25,84 L-24.25,56 Z"/>
@@ -327,9 +357,61 @@ select.sel{border:1px solid var(--line);border-radius:8px;padding:7px 10px;backg
           <circle cx="24.25" cy="28" r="9" stroke-opacity=".55"/>
         </g>
       </pattern>
+      <pattern id="pat_dots" width="52" height="52" patternUnits="userSpaceOnUse">
+        <g fill="currentColor"><circle cx="12" cy="12" r="3"/><circle cx="38" cy="30" r="2"/><circle cx="24" cy="44" r="1.6"/></g>
+        <circle cx="38" cy="30" r="7" fill="none" stroke="currentColor" stroke-opacity=".5"/>
+      </pattern>
+      <pattern id="pat_atom" width="118" height="118" patternUnits="userSpaceOnUse">
+        <g fill="none" stroke="currentColor" stroke-width="1">
+          <ellipse cx="59" cy="59" rx="34" ry="13"/>
+          <ellipse cx="59" cy="59" rx="34" ry="13" transform="rotate(60 59 59)"/>
+          <ellipse cx="59" cy="59" rx="34" ry="13" transform="rotate(120 59 59)"/>
+        </g><circle cx="59" cy="59" r="3.5" fill="currentColor"/>
+      </pattern>
+      <pattern id="pat_tiles" width="76" height="76" patternUnits="userSpaceOnUse">
+        <rect x="9" y="9" width="58" height="58" rx="7" fill="none" stroke="currentColor"/>
+        <line x1="18" y1="56" x2="40" y2="56" stroke="currentColor"/>
+        <circle cx="20" cy="20" r="2" fill="currentColor"/>
+      </pattern>
+      <pattern id="pat_bond" width="92" height="80" patternUnits="userSpaceOnUse">
+        <g stroke="currentColor" fill="none"><line x1="0" y1="40" x2="92" y2="40"/><line x1="46" y1="0" x2="46" y2="80"/></g>
+        <circle cx="46" cy="40" r="6.5" fill="none" stroke="currentColor"/>
+        <g fill="currentColor"><circle cx="0" cy="40" r="3"/><circle cx="92" cy="40" r="3"/><circle cx="46" cy="0" r="3"/><circle cx="46" cy="80" r="3"/></g>
+      </pattern>
+      <pattern id="pat_wave" width="96" height="56" patternUnits="userSpaceOnUse">
+        <path d="M0,28 Q24,6 48,28 T96,28" fill="none" stroke="currentColor"/>
+        <circle cx="24" cy="14" r="2" fill="currentColor"/><circle cx="72" cy="42" r="2" fill="currentColor"/>
+      </pattern>
+      <pattern id="pat_arrow" width="116" height="74" patternUnits="userSpaceOnUse">
+        <g stroke="currentColor" fill="none"><line x1="16" y1="37" x2="92" y2="37"/><path d="M83,30 L94,37 L83,44"/></g>
+        <circle cx="54" cy="22" r="4" fill="none" stroke="currentColor" stroke-opacity=".6"/>
+      </pattern>
+      <pattern id="pat_drop" width="64" height="56" patternUnits="userSpaceOnUse">
+        <path d="M18,10 C27,24 25,36 18,36 C11,36 9,24 18,10 Z" fill="none" stroke="currentColor"/>
+        <path d="M48,30 C54,40 53,48 48,48 C43,48 42,40 48,30 Z" fill="none" stroke="currentColor" stroke-opacity=".6"/>
+      </pattern>
+      <pattern id="pat_bub" width="74" height="74" patternUnits="userSpaceOnUse">
+        <g fill="none" stroke="currentColor"><circle cx="20" cy="20" r="11"/><circle cx="52" cy="42" r="6" stroke-opacity=".7"/><circle cx="32" cy="60" r="3.5" stroke-opacity=".5"/></g>
+      </pattern>
+      <pattern id="pat_dna" width="64" height="120" patternUnits="userSpaceOnUse">
+        <g fill="none" stroke="currentColor">
+          <path d="M16,0 C46,30 46,30 16,60 C-14,90 -14,90 16,120"/>
+          <path d="M48,0 C18,30 18,30 48,60 C78,90 78,90 48,120"/>
+          <g stroke-opacity=".55"><line x1="24" y1="16" x2="40" y2="16"/><line x1="26" y1="44" x2="38" y2="44"/><line x1="24" y1="76" x2="40" y2="76"/><line x1="26" y1="104" x2="38" y2="104"/></g>
+        </g>
+      </pattern>
+      <pattern id="pat_rad" width="152" height="152" patternUnits="userSpaceOnUse">
+        <circle cx="76" cy="76" r="4" fill="currentColor"/>
+        <g fill="none" stroke="currentColor">
+          <circle cx="76" cy="76" r="19" stroke-width="5" stroke-dasharray="13 19"/>
+          <circle cx="76" cy="76" r="36" stroke-width="2" stroke-dasharray="13 19"/>
+        </g>
+      </pattern>
     </defs>
-    <rect width="100%" height="100%" fill="url(#hexpat)"/>
+    <rect id="latRect" width="100%" height="100%" fill="url(#pat_hex)"/>
   </svg>
+  <div class="ptable" id="ptable"></div>
+  <div class="wm" id="bgWm">Chemistry</div>
   <div class="atomwrap">
     <svg viewBox="0 0 170 170" xmlns="http://www.w3.org/2000/svg">
       <g class="orb"><ellipse cx="85" cy="85" rx="64" ry="23" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="149" cy="85" r="4" fill="currentColor"/></g>
@@ -351,6 +433,9 @@ select.sel{border:1px solid var(--line);border-radius:8px;padding:7px 10px;backg
   </div>
 </header>
 
+<div class="shell">
+<aside class="side" id="side"></aside>
+<div class="content">
 <main>
 
 <!-- =================== QUIZ (opens here, on question 1) =================== -->
@@ -486,6 +571,8 @@ select.sel{border:1px solid var(--line);border-radius:8px;padding:7px 10px;backg
 </section>
 
 </main>
+</div>
+</div>
 <div id="toast"></div>
 
 <script>
@@ -712,23 +799,96 @@ function applyBg(){
 $("btnTheme").onclick = () => { S.theme = S.theme==="dark" ? "light" : "dark"; applyTheme(); save(); };
 $("btnBg").onclick = () => { S.bg = !(S.bg !== false); applyBg(); save(); toast(S.bg ? "Backdrop on" : "Backdrop off"); };
 
-/* build the drifting molecules + bubbles */
-(function buildBackdrop(){
-  const bg = $("bg");
-  const forms = ["H₂O","CO₂","CH₄","NH₃","NaCl","C₆H₆","H₂SO₄","O₂","CaCO₃","HCl","KMnO₄","C₂H₅OH","N₂","Fe₂O₃","O₃","CH₃COOH"];
-  const rx = ["2H₂ + O₂ → 2H₂O","CaCO₃ →Δ CaO + CO₂","N₂ + 3H₂ ⇌ 2NH₃","Zn + H₂SO₄ → ZnSO₄ + H₂","2Na + Cl₂ → 2NaCl"];
-  const put = (txt, cls, x, y, size, delay, dur) => {
-    const d = document.createElement("div");
-    d.className = "float" + (cls ? " " + cls : "");
-    d.textContent = txt;
-    d.style.cssText = "left:"+x+"%;top:"+y+"%;font-size:"+size+"px;animation-delay:"+delay+"s;animation-duration:"+dur+"s";
-    bg.appendChild(d);
+/* ============ chapter-wise backdrop ============ */
+const GENERIC = ["H\u2082O","CO\u2082","CH\u2084","NH\u2083","NaCl","C\u2086H\u2086","H\u2082SO\u2084","O\u2082","CaCO\u2083","HCl","KMnO\u2084","N\u2082",
+  "2H\u2082 + O\u2082 \u2192 2H\u2082O","CaCO\u2083 \u2192\u0394 CaO + CO\u2082","N\u2082 + 3H\u2082 \u21cc 2NH\u2083"];
+const CHEM = [
+  {pat:"dots",  w:["H\u2082O","NaCl","CO\u2082","mol","g/cm\u00b3","atom","molecule","6.022 \u00d7 10\u00b2\u00b3","mixture \u2192 pure substance"]},
+  {pat:"atom",  w:["e\u207b","p\u207a","n\u2070","Z = 17","A = 35","1s\u00b2 2s\u00b2 2p\u2076","isotope","\u00b9\u00b2C","h\u03bd = E\u2082 \u2212 E\u2081"]},
+  {pat:"table", w:["Li Na K","F Cl Br I","He Ne Ar","Group 17","Period 3","Mendeleev","atomic radius \u2193","electronegativity \u2191"]},
+  {pat:"bond",  w:["Na\u207aCl\u207b","H\u2013H","O=O","N\u2261N","sp\u00b3","ionic","covalent","H\u2082O 104.5\u00b0","hydrogen bond"]},
+  {pat:"wave",  w:["PV = nRT","P\u2081V\u2081 = P\u2082V\u2082","STP","273 K","Boyle","Charles","plasma","diffusion","solid \u00b7 liquid \u00b7 gas"]},
+  {pat:"arrow", w:["\u0394H","catalyst","MnO\u2082","redox","2H\u2082 + O\u2082 \u2192 2H\u2082O","Fe + CuSO\u2084 \u2192","N\u2082 + 3H\u2082 \u21cc 2NH\u2083","rusting"]},
+  {pat:"drop",  w:["pH 7","H\u207a","OH\u207b","HCl","NaOH","CH\u2083COOH","litmus","NaCl + H\u2082O","acid + base \u2192 salt"]},
+  {pat:"hex",   w:["C\u2086H\u2086","CH\u2084","C\u2082H\u2085OH","CH\u2083COOH","\u2013OH","\u2013COOH","alkane","catenation","benzene ring"]},
+  {pat:"bub",   w:["NaHCO\u2083","Na\u2082CO\u2083","CaOCl\u2082","CaSO\u2084\u00b7\u00bdH\u2082O","soap","cement","bleach","C\u2081\u2082H\u2082\u2082O\u2081\u2081","plaster of Paris"]},
+  {pat:"dna",   w:["C\u2086H\u2081\u2082O\u2086","DNA","protein","\u2013NH\u2082","\u2013COOH","enzyme","vitamin C","glucose","amino acid"]},
+  {pat:"rad",   w:["\u03b1 \u03b2 \u03b3","\u00b2\u00b3\u2075U","t\u00bd","\u00b9\u2074C","Ra","becquerel","fission","fusion","half-life"]}
+];
+const PT_ROWS = [
+  {p:1, g:[[1,"H"],[18,"He"]]},
+  {p:2, g:[[1,"Li"],[2,"Be"],[13,"B"],[14,"C"],[15,"N"],[16,"O"],[17,"F"],[18,"Ne"]]},
+  {p:3, g:[[1,"Na"],[2,"Mg"],[13,"Al"],[14,"Si"],[15,"P"],[16,"S"],[17,"Cl"],[18,"Ar"]]},
+  {p:4, s:"K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr"},
+  {p:5, s:"Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe"},
+  {p:6, s:"Cs Ba La Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn"},
+  {p:7, s:"Fr Ra Ac Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og"}
+];
+const PT_F = [
+  {row:0, s:"Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu"},
+  {row:1, s:"Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr"}
+];
+function buildPeriodicTable(){
+  const C = 30, PAD = 22, GAP = 14;
+  const cell = (col, rowY, sym, block) => {
+    const x = PAD + (col-1)*C, y = rowY;
+    const op = block === "s" ? .13 : block === "p" ? .09 : block === "d" ? .055 : .11;
+    return '<rect x="'+(x+1)+'" y="'+(y+1)+'" width="'+(C-2)+'" height="'+(C-2)+'" rx="3" ' +
+           'fill="currentColor" fill-opacity="'+op+'" stroke="currentColor" stroke-opacity=".55" stroke-width="1"/>' +
+           '<text x="'+(x+C/2)+'" y="'+(y+C/2+4)+'" text-anchor="middle" font-size="11.5" ' +
+           'font-family="var(--serif)" fill="currentColor" fill-opacity=".92">'+sym+'</text>';
   };
-  forms.forEach((f,i) => put(f, "", (i*61 + 7) % 92, (i*37 + 5) % 90, 15 + (i%4)*5, -(i*2.3), 22 + (i%5)*5));
-  rx.forEach((r,i) => put(r, "rx", (i*43 + 12) % 62, (i*71 + 22) % 86, 13, -(i*4.1), 30 + i*4));
+  const blockOf = g => g <= 2 ? "s" : (g >= 13 ? "p" : "d");
+  let out = "";
+  PT_ROWS.forEach(r => {
+    const y = PAD + (r.p-1)*C;
+    const items = r.s ? r.s.split(" ").map((sym,i) => [i+1, sym]) : r.g;
+    items.forEach(([g,sym]) => { out += cell(g, y, sym, (sym==="H"||sym==="He") ? "s" : blockOf(g)); });
+    out += '<text x="'+(PAD-7)+'" y="'+(y+C/2+4)+'" text-anchor="end" font-size="9.5" ' +
+           'fill="currentColor" fill-opacity=".5">'+r.p+'</text>';
+  });
+  PT_F.forEach(f => {
+    const y = PAD + 7*C + GAP + f.row*C;
+    f.s.split(" ").forEach((sym,i) => { out += cell(i+4, y, sym, "f"); });
+  });
+  for(let g=1; g<=18; g++){
+    out += '<text x="'+(PAD + (g-1)*C + C/2)+'" y="'+(PAD-7)+'" text-anchor="middle" font-size="9.5" ' +
+           'fill="currentColor" fill-opacity=".5">'+g+'</text>';
+  }
+  const W = PAD*2 + 18*C, H = PAD*2 + 7*C + GAP + 2*C;
+  $("ptable").innerHTML = '<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">'+out+'</svg>';
+}
+buildPeriodicTable();
+
+let curTint = -2;
+function setFloats(words){
+  const bg = $("bg");
+  bg.querySelectorAll(".float").forEach(n => n.remove());
+  words.forEach((txt,i) => {
+    const long = txt.length > 12;
+    const d = document.createElement("div");
+    d.className = "float" + (long ? " rx" : "");
+    d.textContent = txt;
+    d.style.cssText = "left:"+((i*61 + 7) % 92)+"%;top:"+((i*37 + 5) % 88)+"%;" +
+      "font-size:"+(long ? 13 : 15 + (i%4)*5)+"px;animation-delay:"+(-(i*2.3))+"s;animation-duration:"+(22 + (i%5)*5)+"s";
+    bg.appendChild(d);
+  });
+}
+function setChem(t){
+  if(t === curTint) return;
+  curTint = t;
+  const c = (t >= 0 && CHEM[t]) ? CHEM[t] : null;
+  $("bg").style.setProperty("--bgtint", c ? TOPICS[t][1] : "#d9a441");
+  const isPT = (c && c.pat === "table");
+  $("ptable").classList.toggle("on", !!isPT);
+  $("latRect").setAttribute("fill", isPT ? "none" : "url(#pat_" + (c ? c.pat : "hex") + ")");
+  $("bgWm").textContent = c ? TOPICS[t][0] : "Chemistry";
+  setFloats(isPT ? [] : (c ? c.w : GENERIC));
+}
+(function bubbles(){
+  const bg = $("bg");
   for(let i=0;i<9;i++){
-    const b = document.createElement("div");
-    const sz = 6 + (i%4)*7;
+    const b = document.createElement("div"), sz = 6 + (i%4)*7;
     b.className = "bub";
     b.style.cssText = "left:"+((i*53+9)%95)+"%;top:"+(70 + (i%3)*12)+"%;width:"+sz+"px;height:"+sz+"px;"+
                       "animation-delay:"+(-i*3.4)+"s;animation-duration:"+(26 + (i%5)*6)+"s";
@@ -832,7 +992,7 @@ function backToQuiz(){
 }
 function openSetup(){
   if(mode === "exam"){ toast("You are already in a mock."); return; }
-  commitTimer(); fixCount(); buildSetup(); buildHistory();
+  commitTimer(); setChem(-1); fixCount(); buildSetup(); buildHistory();
   $("setupFilt").textContent = "drawing on " +
     (filter === "ALL" ? "all papers" : filter === "BPSC" ? "the BPSC papers" :
      filter === "UPPSC" ? "the UPPCS papers" : label(filter) + " only");
@@ -844,7 +1004,7 @@ $("setupChapters").onclick = () => { buildHome(); show("vHome"); };
 $("btnChapters").onclick = () => {
   if(!$("vHome").classList.contains("hide")){ backToQuiz(); return; }
   if(mode === "exam"){ toast("Submit or finish the mock first."); return; }
-  commitTimer(); buildHome(); show("vHome");
+  commitTimer(); setChem(-1); buildHome(); show("vHome");
 };
 
 /* ============ deck ============ */
@@ -927,6 +1087,8 @@ function render(){
     ? '<kbd>1</kbd>–<kbd>5</kbd> answer · <kbd>→</kbd> next · <kbd>←</kbd> back · <kbd>M</kbd> mark · <kbd>C</kbd> clear'
     : '<kbd>1</kbd>–<kbd>5</kbd> answer · <kbd>→</kbd> next · <kbd>←</kbd> back · <kbd>F</kbd> flag · <kbd>P</kbd> pause · <kbd>E</kbd> mock · <kbd>Esc</kbd> chapters';
 
+  setChem(q.t);
+  buildSide(q.t);
   beginTimer(q.n);
 }
 
@@ -1142,6 +1304,52 @@ function paintReport(r){
   $("eBack").onclick = () => { buildHome(); show("vHome"); };
 }
 
+/* ============ left chapter rail ============ */
+function buildSide(active){
+  const box = $("side"), p = pool();
+  const row = (name, count, sub, accent, on, dis, fn) => {
+    const b = document.createElement("button");
+    b.className = "sitem" + (on ? " on" : "");
+    b.style.setProperty("--accent", accent);
+    b.disabled = !!dis;
+    b.innerHTML = '<span class="rw"><span class="dotc"></span><span class="nm">'+esc(name)+'</span>' +
+                  '<span class="ct">'+count+'</span></span>' +
+                  (sub != null ? '<span class="mini"><i style="width:'+sub+'%"></i></span>' : '');
+    if(fn) b.onclick = fn;
+    box.appendChild(b);
+  };
+  box.innerHTML = "";
+  const lab = document.createElement("p"); lab.className = "slab"; lab.textContent = "Chapters"; box.appendChild(lab);
+
+  const doneAll = p.filter(q => S.ans[q.n] != null).length;
+  row("All chapters", p.length, p.length ? Math.round(doneAll/p.length*100) : 0, "var(--text3)",
+      active === -1, false, () => pickSide(() => startDeck(p, filter === "ALL" ? "All chapters" : label(filter))));
+
+  TOPICS.forEach((t,i) => {
+    const qs = p.filter(q => q.t === i);
+    if(!qs.length) return;
+    const a = qs.filter(q => S.ans[q.n] != null).length;
+    row(t[0], qs.length, Math.round(a/qs.length*100), t[1], active === i, false,
+        () => pickSide(() => startDeck(qs, t[0])));
+  });
+
+  const div = document.createElement("div"); div.className = "sdiv"; box.appendChild(div);
+  const lab2 = document.createElement("p"); lab2.className = "slab"; lab2.textContent = "Shortcuts"; box.appendChild(lab2);
+  const unseen = p.filter(q => S.ans[q.n] == null), missed = p.filter(q => S.ans[q.n] != null && S.ans[q.n] !== q.a),
+        flagged = p.filter(q => flagSet.has(q.n));
+  row("Unattempted", unseen.length, null, "var(--lapis)", false, !unseen.length,
+      () => pickSide(() => startDeck(p, "All chapters", p.indexOf(unseen[0]))));
+  row("Missed", missed.length, null, "var(--cinnabar)", false, !missed.length,
+      () => pickSide(() => startDeck(missed, "Missed questions")));
+  row("Flagged", flagged.length, null, "var(--orpiment)", false, !flagged.length,
+      () => pickSide(() => startDeck(flagged, "Flagged questions")));
+  row("Timed mock", "\u2192", null, "var(--cinnabar)", false, false, openSetup);
+}
+function pickSide(fn){
+  if(mode === "exam"){ toast("Finish the mock first."); return; }
+  fn();
+}
+
 /* ============ chapters / home ============ */
 function buildChips(){
   const w = $("yearChips"); w.innerHTML = "";
@@ -1155,6 +1363,7 @@ function buildChips(){
   });
 }
 function buildHome(){
+  setChem(-1);
   const all = QUESTIONS.length;
   const ansd = QUESTIONS.filter(q => S.ans[q.n] != null);
   const right = ansd.filter(q => S.ans[q.n] === q.a).length;
@@ -1183,6 +1392,7 @@ function buildHome(){
     grid.appendChild(b);
   });
 
+  buildSide(deck.length ? deck[idx].t : -1);
   $("btnShuffle").textContent = "Shuffle: " + (S.shuffle ? "on" : "off");
   $("btnResume").disabled = !p.some(q => S.ans[q.n] == null);
   $("btnMissed").disabled = !p.some(q => S.ans[q.n] != null && S.ans[q.n] !== q.a);
@@ -1299,7 +1509,7 @@ document.addEventListener("visibilitychange", () => {
 });
 
 /* ============ boot: straight into question 1 ============ */
-applyTheme(); applyBg(); buildHome(); buildSetup(); buildHistory();
+applyTheme(); applyBg(); setChem(-1); buildHome(); buildSetup(); buildHistory();
 
 if(S.run && S.run.ids && S.run.endAt > Date.now() + 2000){
   EX = S.run; enterExam();
@@ -1309,7 +1519,6 @@ if(S.run && S.run.ids && S.run.endAt > Date.now() + 2000){
   startDeck(pool(), "All chapters", 0);
 }
 </script>
-
   <script>
 (() => {
   const barIn = document.querySelector('.bar-in');
@@ -1325,6 +1534,5 @@ if(S.run && S.run.ids && S.run.endAt > Date.now() + 2000){
   }
 })();
 </script>
-  
 </body>
 </html>
