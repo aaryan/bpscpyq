@@ -11,10 +11,17 @@
 
   gtag('config', 'G-N7Y1J0QC66');
 </script>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Chemistry PYQs · BPSC + UPPCS</title>
+<script>
+/* no-flash boot */
+try{
+  var b = JSON.parse(localStorage.getItem("chemPYQ.mcq.v2") || localStorage.getItem("chemPYQ.mcq.v1") || "{}");
+  document.documentElement.setAttribute("data-theme", b.theme === "light" ? "light" : "dark");
+  document.documentElement.setAttribute("data-bg", b.bg === false ? "off" : "on");
+}catch(e){ document.documentElement.setAttribute("data-theme","dark"); document.documentElement.setAttribute("data-bg","on"); }
+</script>
 <style>
 :root{
   --ink:#11151a; --ink2:#171d24; --panel:#1c242c; --panel2:#222c36;
@@ -26,6 +33,8 @@
   --r:10px;
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --bgink:#e9e4d9;
 }
 html[data-theme="light"]{
   --ink:#efeade; --ink2:#f6f2e8; --panel:#fffdf6; --panel2:#f7f2e6;
@@ -34,6 +43,7 @@ html[data-theme="light"]{
   --orpiment:#a9761c; --malachite:#2f7d68; --lapis:#40609e; --cinnabar:#ac4437;
   --good:#2f7d4e; --bad:#ac4437;
   --shadow:0 1px 0 rgba(255,255,255,.6), 0 10px 24px rgba(90,75,45,.10);
+  --bgink:#4a3d22;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -43,16 +53,51 @@ body{
   padding-bottom:env(safe-area-inset-bottom);
 }
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+input,select{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--orpiment); outline-offset:2px; border-radius:4px}
-.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px;position:relative;z-index:1}
 .hide{display:none !important}
+
+/* ================= chemistry background ================= */
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+    contain:strict;opacity:1;transition:opacity .3s ease}
+html[data-bg="off"] #bg{opacity:0}
+#bg .glow{position:absolute;border-radius:50%;filter:blur(70px)}
+#bg .g1{width:52vw;height:52vw;left:-14vw;top:-18vw;background:radial-gradient(circle,rgba(217,164,65,.13),transparent 68%)}
+#bg .g2{width:46vw;height:46vw;right:-12vw;bottom:-14vw;background:radial-gradient(circle,rgba(79,167,143,.12),transparent 68%)}
+#bg .g3{width:34vw;height:34vw;left:44vw;top:34vh;background:radial-gradient(circle,rgba(107,143,212,.08),transparent 70%)}
+#bg .lattice{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);
+  color:var(--bgink);opacity:.085}
+html[data-theme="light"] #bg .lattice{opacity:.16}
+#bg .float{position:absolute;font-family:var(--serif);color:var(--bgink);opacity:.10;white-space:nowrap;
+  letter-spacing:.4px;will-change:transform}
+html[data-theme="light"] #bg .float{opacity:.19}
+#bg .float.rx{font-size:13px;opacity:.075}
+html[data-theme="light"] #bg .float.rx{opacity:.15}
+#bg .bub{position:absolute;border-radius:50%;border:1px solid var(--bgink);opacity:.10;will-change:transform}
+#bg .atomwrap{position:absolute;right:3vw;bottom:8vh;width:170px;height:170px;color:var(--bgink);opacity:.11}
+html[data-theme="light"] #bg .atomwrap{opacity:.2}
+#bg .orb{transform-origin:85px 85px;animation:spin 26s linear infinite}
+#bg .orb:nth-child(2){animation-duration:34s;animation-direction:reverse}
+#bg .orb:nth-child(3){animation-duration:44s}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes drift{
+  0%{transform:translate3d(0,0,0)} 50%{transform:translate3d(14px,-22px,0)} 100%{transform:translate3d(0,0,0)}
+}
+@keyframes rise{
+  0%{transform:translate3d(0,0,0) scale(.85);opacity:0}
+  12%{opacity:.12} 88%{opacity:.09}
+  100%{transform:translate3d(24px,-62vh,0) scale(1.25);opacity:0}
+}
+#bg .float{animation:drift 26s ease-in-out infinite}
+#bg .bub{animation:rise 30s linear infinite}
 
 /* ---------- top bar ---------- */
 .bar{
-  position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--ink) 92%, transparent);
-  backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--ink) 88%, transparent);
+  backdrop-filter:blur(12px); border-bottom:1px solid var(--line);
 }
-.bar-in{display:flex;align-items:center;gap:10px;height:54px}
+.bar-in{display:flex;align-items:center;gap:8px;height:54px}
 .brand{font-family:var(--serif);font-size:19px;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .brand b{color:var(--orpiment);font-weight:600}
 .spacer{flex:1}
@@ -61,17 +106,25 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   display:grid;place-items:center;color:var(--text2);font-size:15px;flex:none;
 }
 .icbtn:hover{border-color:var(--line2);color:var(--text)}
+.icbtn.on{border-color:var(--orpiment);color:var(--orpiment)}
+.tbtn{border:1px solid var(--line);border-radius:8px;padding:6px 11px;font-size:13px;color:var(--text2);flex:none;white-space:nowrap}
+.tbtn:hover{border-color:var(--line2);color:var(--text)}
+.tbtn.ex{border-color:var(--cinnabar);color:var(--cinnabar)}
+.tbtn.ex:hover{background:var(--cinnabar);border-color:var(--cinnabar);color:#fff}
+.vhead{padding:24px 0 4px}
+.vhead h1{font-family:var(--serif);font-weight:600;font-size:27px;line-height:1.2;margin:0 0 7px}
+.vhead p{margin:0;color:var(--text2);font-size:14.5px;max-width:58ch}
 
 /* ---------- home ---------- */
-.hero{padding:26px 0 10px}
+.hero{padding:22px 0 10px}
 .hero h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.18;margin:0 0 8px}
 .hero p{margin:0;color:var(--text2);font-size:14.5px;max-width:60ch}
 .ribbon{display:flex;gap:0;margin:20px 0 6px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--panel)}
-.rib{flex:1;padding:11px 12px;border-right:1px solid var(--line);text-align:center}
+.rib{flex:1;padding:11px 10px;border-right:1px solid var(--line);text-align:center}
 .rib:last-child{border-right:none}
 .rib .n{font-family:var(--serif);font-size:21px;display:block;line-height:1.15}
 .rib .l{font-size:11.5px;color:var(--text3);letter-spacing:.3px}
-.rib.a .n{color:var(--orpiment)} .rib.b .n{color:var(--malachite)} .rib.c .n{color:var(--lapis)}
+.rib.a .n{color:var(--orpiment)} .rib.b .n{color:var(--malachite)} .rib.c .n{color:var(--lapis)} .rib.d .n{color:var(--cinnabar)}
 
 .sec{margin:26px 0 10px;display:flex;align-items:baseline;gap:10px}
 .sec h2{font-family:var(--serif);font-weight:600;font-size:17px;margin:0}
@@ -85,6 +138,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 }
 .chip:hover{border-color:var(--line2)}
 .chip.on{background:var(--orpiment);border-color:var(--orpiment);color:#1a1206;font-weight:600}
+.chip:disabled{opacity:.38;cursor:not-allowed}
 
 .topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:10px}
 .tcard{
@@ -106,22 +160,34 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .btn:hover{background:var(--panel2)}
 .btn.pri{background:var(--orpiment);border-color:var(--orpiment);color:#1a1206;font-weight:600}
 .btn.pri:hover{filter:brightness(1.07);background:var(--orpiment)}
+.btn.exam{background:var(--cinnabar);border-color:var(--cinnabar);color:#fff;font-weight:600}
+.btn.exam:hover{filter:brightness(1.08);background:var(--cinnabar)}
 .btn.gho{background:none;border-color:var(--line)}
+.btn.sm{padding:7px 12px;font-size:13px}
 .btn:disabled{opacity:.4;cursor:not-allowed}
 
 /* ---------- quiz ---------- */
 .qtop{padding:14px 0 0}
-.qmeta{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text3);flex-wrap:wrap}
+.qmeta{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--text3);flex-wrap:wrap}
 .qmeta .dot{width:3px;height:3px;border-radius:50%;background:var(--text3)}
 .prog{height:3px;background:var(--line);border-radius:2px;margin:10px 0 0;overflow:hidden}
 .prog i{display:block;height:100%;background:var(--orpiment);transition:width .25s ease}
 
+.tmr{font-family:var(--mono);font-size:12.5px;letter-spacing:.5px;color:var(--text2);
+  border:1px solid var(--line);border-radius:999px;padding:2px 10px;white-space:nowrap}
+.tmr.big{font-size:15px;padding:4px 13px;color:var(--text)}
+.tmr.warn{border-color:var(--orpiment);color:var(--orpiment)}
+.tmr.crit{border-color:var(--bad);color:var(--bad);animation:pulse 1.1s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.45}}
+.tmr.pause{border-style:dashed;opacity:.65}
+
 .qcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:14px 0 0;box-shadow:var(--shadow);overflow:hidden}
-.qhead{padding:14px 18px 0;display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.qhead{padding:14px 18px 0;display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap}
 .tag{font-size:11px;letter-spacing:.3px;padding:3px 9px;border-radius:999px;border:1px solid var(--line2);color:var(--text2)}
 .tag.src{border-color:var(--lapis);color:var(--lapis)}
 .tag.rep{border-color:var(--cinnabar);color:var(--cinnabar)}
 .tag.top{border-color:var(--malachite);color:var(--malachite)}
+.tag.mark{border-color:var(--orpiment);color:var(--orpiment)}
 .qnum{font-family:var(--serif);font-size:13px;color:var(--text3)}
 .qtext{font-family:var(--serif);font-size:19.5px;line-height:1.5;padding:12px 18px 4px;white-space:pre-wrap}
 .opts{padding:6px 12px 14px;display:flex;flex-direction:column;gap:6px}
@@ -139,25 +205,61 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .opt.right .k{border-color:var(--good);color:var(--good)}
 .opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--ink2))}
 .opt.wrong .k{border-color:var(--bad);color:var(--bad)}
+.opt.pick{border-color:var(--orpiment);background:color-mix(in srgb,var(--orpiment) 13%,var(--ink2))}
+.opt.pick .k{border-color:var(--orpiment);color:var(--orpiment)}
 .opt:disabled{cursor:default}
 .opt.dim{opacity:.55}
 
 .expl{border-top:1px solid var(--line);background:var(--ink2);padding:14px 18px 16px}
-.verdict{font-family:var(--serif);font-size:15.5px;margin:0 0 9px}
+.verdict{font-family:var(--serif);font-size:15.5px;margin:0 0 9px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .verdict.ok{color:var(--good)} .verdict.no{color:var(--bad)}
+.verdict .tt{font-family:var(--mono);font-size:11.5px;color:var(--text3);letter-spacing:.4px}
 .expl ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
 .expl li{position:relative;padding-left:17px;font-size:14.5px;color:var(--text2);line-height:1.55}
 .expl li:before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:1px;background:var(--orpiment)}
 .expl b{color:var(--text);font-weight:600}
 
-.navrow{display:flex;gap:9px;align-items:center;margin:14px 0 30px}
+.navrow{display:flex;gap:9px;align-items:center;margin:14px 0 22px;flex-wrap:wrap}
 .keys{margin:0 0 34px;font-size:12px;color:var(--text3);text-align:center}
 .keys kbd{border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-family:var(--sans);font-size:11px;color:var(--text2)}
+
+/* ---------- exam palette ---------- */
+.palwrap{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);padding:12px 13px;margin:0 0 26px}
+.palhead{display:flex;align-items:center;gap:9px;margin:0 0 10px;font-size:12.5px;color:var(--text3);flex-wrap:wrap}
+.pal{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px}
+.pcell{height:34px;border-radius:7px;border:1px solid var(--line);background:var(--ink2);
+  font-size:12.5px;color:var(--text2);font-family:var(--mono);display:grid;place-items:center}
+.pcell:hover{border-color:var(--line2)}
+.pcell.ans{background:color-mix(in srgb,var(--malachite) 26%,var(--ink2));border-color:var(--malachite);color:var(--text)}
+.pcell.mark{background:color-mix(in srgb,var(--orpiment) 26%,var(--ink2));border-color:var(--orpiment);color:var(--text)}
+.pcell.now{outline:2px solid var(--orpiment);outline-offset:1px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11.5px;color:var(--text3);margin-top:10px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px;vertical-align:-1px;border:1px solid var(--line2)}
+.legend .a{background:var(--malachite);border-color:var(--malachite)}
+.legend .b{background:var(--orpiment);border-color:var(--orpiment)}
+.legend .c{background:var(--ink2)}
+
+/* ---------- exam setup ---------- */
+.setup{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);padding:4px 16px 16px;margin:0 0 16px;box-shadow:var(--shadow)}
+.frow{padding:14px 0;border-bottom:1px solid var(--line)}
+.frow:last-child{border-bottom:none}
+.frow .lb{font-size:13.5px;font-weight:600;margin-bottom:3px}
+.frow .hint{font-size:12.5px;color:var(--text3);margin-bottom:9px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.sbtn{border:1px solid var(--line);border-radius:8px;padding:6px 13px;font-size:13.5px;color:var(--text2);background:var(--ink2)}
+.sbtn:hover{border-color:var(--line2)}
+.sbtn.on{background:var(--orpiment);border-color:var(--orpiment);color:#1a1206;font-weight:600}
+.sbtn:disabled{opacity:.35;cursor:not-allowed}
+select.sel{border:1px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--ink2);font-size:13.5px;max-width:100%}
+.plan{font-size:13.5px;color:var(--text2);background:var(--ink2);border:1px solid var(--line);
+  border-left:3px solid var(--orpiment);border-radius:8px;padding:11px 13px;margin:14px 0 0}
+.plan b{color:var(--text)}
 
 /* ---------- results ---------- */
 .score{text-align:center;padding:24px 0 6px}
 .score .big{font-family:var(--serif);font-size:54px;line-height:1;color:var(--orpiment)}
 .score .sub{color:var(--text2);font-size:14.5px;margin-top:6px}
+.score .big.neg{color:var(--bad)}
 .brk{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--panel)}
 .brow{display:flex;align-items:center;gap:11px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:14px}
 .brow:last-child{border-bottom:none}
@@ -165,10 +267,25 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .brow .bar2{width:82px;height:5px;border-radius:3px;background:var(--line);overflow:hidden;flex:none}
 .brow .bar2 i{display:block;height:100%;background:var(--malachite)}
 .brow .sc{width:58px;text-align:right;color:var(--text2);font-size:13px;flex:none}
+.brow .tm{width:54px;text-align:right;color:var(--text3);font-size:12px;font-family:var(--mono);flex:none}
 .misslist{display:flex;flex-direction:column;gap:8px}
 .miss{border:1px solid var(--line);border-left:3px solid var(--bad);border-radius:8px;padding:10px 13px;background:var(--panel);text-align:left;width:100%}
+.miss.skip{border-left-color:var(--text3)}
 .miss .q{font-size:14px;line-height:1.45}
 .miss .a{font-size:12.5px;color:var(--text3);margin-top:4px}
+.miss .a b{color:var(--good);font-weight:600}
+.hist{display:flex;flex-direction:column;gap:7px}
+.hrow{display:flex;align-items:center;gap:11px;font-size:13px;color:var(--text2);
+  border:1px solid var(--line);border-radius:8px;padding:9px 12px;background:var(--panel)}
+.hrow .d{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text3);font-size:12.5px}
+.hrow .s{font-family:var(--serif);font-size:15px;color:var(--orpiment);flex:none}
+.empty{color:var(--text3);font-size:13.5px;margin:0}
+
+/* ---------- toast ---------- */
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(14px);z-index:60;
+  background:var(--panel2);border:1px solid var(--line2);border-radius:999px;padding:9px 18px;
+  font-size:13.5px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
 @media(max-width:600px){
   .hero h1{font-size:25px}
@@ -181,7 +298,16 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   .tcard h3{font-size:13.5px}
   .tcard .meta{font-size:11.5px}
   .rib .n{font-size:18px}
+  .rib .l{font-size:10.5px}
   .score .big{font-size:44px}
+  .brand{font-size:17px}
+  .brand .lg{display:none}
+  .tbtn{padding:6px 9px;font-size:12.5px}
+  .bar-in{gap:6px}
+  .pal{grid-template-columns:repeat(auto-fill,minmax(34px,1fr))}
+  #bg .atomwrap{width:120px;height:120px;right:-10px}
+  #bg .float{font-size:13px}
+  #bg .float.rx{display:none}
 }
 @media(max-width:380px){ .topics{grid-template-columns:1fr} }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -189,53 +315,56 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 </head>
 <body>
 
-<div class="bar"><div class="wrap bar-in">
-  <div class="brand">Chemistry <b>PYQs</b> · BPSC + UPPCS</div>
-  <div class="spacer"></div>
-  <button class="icbtn" id="btnTheme" title="Switch theme">◐</button>
-  <button class="icbtn hide" id="btnHome" title="Back to chapters">✕</button>
-</div></div>
-
-<!-- HOME -->
-<main class="wrap hide" id="vHome">
-  <section class="hero">
-    <h1>152 previous-year chemistry questions,<br>sorted by chapter.</h1>
-    <p>Every question from the BPSC and UPPCS papers in your PDF, with the explanation shown the moment you answer. Progress saves in this browser.</p>
-  </section>
-
-  <div class="ribbon">
-    <div class="rib a"><span class="n" id="sAns">0</span><span class="l">answered</span></div>
-    <div class="rib b"><span class="n" id="sAcc">—</span><span class="l">accuracy</span></div>
-    <div class="rib c"><span class="n" id="sMiss">0</span><span class="l">to revisit</span></div>
+<div id="bg" aria-hidden="true">
+  <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
+  <svg class="lattice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="hexpat" width="48.5" height="84" patternUnits="userSpaceOnUse">
+        <g fill="none" stroke="currentColor" stroke-width="1">
+          <path d="M24.25,0 L48.5,14 L48.5,42 L24.25,56 L0,42 L0,14 Z"/>
+          <path d="M0,42 L24.25,56 L24.25,84 L0,98 L-24.25,84 L-24.25,56 Z"/>
+          <path d="M48.5,42 L72.75,56 L72.75,84 L48.5,98 L24.25,84 L24.25,56 Z"/>
+          <circle cx="24.25" cy="28" r="9" stroke-opacity=".55"/>
+        </g>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#hexpat)"/>
+  </svg>
+  <div class="atomwrap">
+    <svg viewBox="0 0 170 170" xmlns="http://www.w3.org/2000/svg">
+      <g class="orb"><ellipse cx="85" cy="85" rx="64" ry="23" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="149" cy="85" r="4" fill="currentColor"/></g>
+      <g class="orb"><ellipse cx="85" cy="85" rx="64" ry="23" fill="none" stroke="currentColor" stroke-width="1.2" transform="rotate(60 85 85)"/><circle cx="149" cy="85" r="4" fill="currentColor" transform="rotate(60 85 85)"/></g>
+      <g class="orb"><ellipse cx="85" cy="85" rx="64" ry="23" fill="none" stroke="currentColor" stroke-width="1.2" transform="rotate(120 85 85)"/><circle cx="149" cy="85" r="4" fill="currentColor" transform="rotate(120 85 85)"/></g>
+      <circle cx="85" cy="85" r="8" fill="currentColor"/>
+    </svg>
   </div>
+</div>
 
-  <div class="sec"><h2>Filter by paper</h2><div class="line"></div></div>
-  <div class="chips" id="yearChips"></div>
-
-  <div class="sec"><h2>Chapters</h2><span id="filtNote"></span><div class="line"></div></div>
-  <div class="topics" id="topicGrid"></div>
-
-  <div class="btnrow">
-    <button class="btn pri" id="btnAll">Start all chapters</button>
-    <button class="btn" id="btnResume">Resume</button>
-    <button class="btn" id="btnMissed">Practise missed</button>
-    <button class="btn" id="btnFlag">Flagged</button>
-    <button class="btn gho" id="btnShuffle">Shuffle: off</button>
-    <button class="btn gho" id="btnReset">Clear progress</button>
+<header class="bar">
+  <div class="wrap bar-in">
+    <div class="brand"><span class="lg">Chemistry </span><b>PYQs</b></div>
+    <div class="spacer"></div>
+    <button id="btnExamMode" class="tbtn ex">Exam mode</button>
+    <button id="btnChapters" class="tbtn">Chapters</button>
+    <button id="btnBg" class="icbtn" title="Chemistry backdrop on/off" aria-label="Backdrop">⚗</button>
+    <button id="btnTheme" class="icbtn" title="Light / dark" aria-label="Theme">◐</button>
   </div>
-</main>
+</header>
 
-<!-- QUIZ -->
-<main class="wrap hide" id="vQuiz">
+<main>
+
+<!-- =================== QUIZ (opens here, on question 1) =================== -->
+<section id="vQuiz" class="wrap">
   <div class="qtop">
     <div class="qmeta">
       <span id="qSetName">All chapters</span><i class="dot"></i>
       <span id="qPos">1 / 152</span><i class="dot"></i>
       <span id="qScore">0 correct</span>
-      <div class="spacer"></div>
-      <button class="icbtn" id="btnFlagQ" title="Flag this question">☆</button>
+      <span class="spacer"></span>
+      <button id="qTimer" class="tmr" title="Time on this question — click to pause">00:00</button>
+      <button id="btnFlagQ" class="icbtn" title="Flag this question" aria-label="Flag">☆</button>
     </div>
-    <div class="prog"><i id="qProg" style="width:0%"></i></div>
+    <div class="prog"><i id="qProg"></i></div>
   </div>
 
   <article class="qcard">
@@ -246,30 +375,118 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   </article>
 
   <div class="navrow">
-    <button class="btn gho" id="btnPrev">Previous</button>
-    <div class="spacer" style="flex:1"></div>
-    <button class="btn" id="btnSkip">Skip</button>
-    <button class="btn pri" id="btnNext">Next</button>
+    <button id="btnPrev" class="btn gho">Previous</button>
+    <button id="btnMark" class="btn gho hide">Mark for review</button>
+    <span style="flex:1"></span>
+    <button id="btnSkip" class="btn">Skip</button>
+    <button id="btnNext" class="btn pri">Next</button>
+    <button id="btnSubmit" class="btn exam hide">Submit exam</button>
   </div>
-  <p class="keys"><kbd>1</kbd>–<kbd>5</kbd> answer · <kbd>→</kbd> next · <kbd>←</kbd> back · <kbd>F</kbd> flag · <kbd>Esc</kbd> chapters</p>
-</main>
 
-<!-- RESULTS -->
-<main class="wrap hide" id="vDone">
+  <div id="palwrap" class="palwrap hide">
+    <div class="palhead"><b>Answer palette</b><span id="palStat"></span></div>
+    <div class="pal" id="pal"></div>
+    <div class="legend">
+      <span><i class="a"></i>answered</span><span><i class="b"></i>marked for review</span>
+      <span><i class="c"></i>not answered</span>
+    </div>
+  </div>
+
+  <p class="keys" id="keys"></p>
+</section>
+
+<!-- =================== CHAPTERS / HOME =================== -->
+<section id="vHome" class="wrap hide">
+  <div class="hero">
+    <h1>Every Chemistry PYQ<br>from BPSC and UPPCS.</h1>
+    <p>152 questions from the papers in your PDF, each with the explanation. Pick a chapter, filter by paper, or sit a timed mock. Everything saves in this browser.</p>
+  </div>
+
+  <div class="ribbon">
+    <div class="rib a"><span class="n" id="sAns">0/152</span><span class="l">answered</span></div>
+    <div class="rib b"><span class="n" id="sAcc">0%</span><span class="l">accuracy</span></div>
+    <div class="rib c"><span class="n" id="sMiss">0</span><span class="l">to revisit</span></div>
+    <div class="rib d"><span class="n" id="sTime">0m</span><span class="l">avg / question</span></div>
+  </div>
+
+  <div class="sec"><h2>Papers</h2><span id="filtNote"></span><div class="line"></div></div>
+  <div class="chips" id="yearChips"></div>
+
+  <div class="sec"><h2>Chapters</h2><div class="line"></div></div>
+  <div class="topics" id="topicGrid"></div>
+
+  <div class="btnrow">
+    <button id="btnAll" class="btn pri">Practise all</button>
+    <button id="btnResume" class="btn">Resume</button>
+    <button id="btnMissed" class="btn">Practise missed</button>
+    <button id="btnFlag" class="btn">Flagged</button>
+    <button id="btnExam2" class="btn exam">Exam mode</button>
+    <button id="btnShuffle" class="btn gho">Shuffle: off</button>
+    <button id="btnReset" class="btn gho">Clear progress</button>
+  </div>
+
+  <div style="height:20px"></div>
+</section>
+
+<!-- =================== EXAM SETUP =================== -->
+<section id="vSetup" class="wrap hide">
+  <div class="vhead">
+    <h1>Sit a timed mock.</h1>
+    <p>No explanations until you submit. The clock runs down, the paper submits itself when it hits zero, and your net score lands in the report.</p>
+  </div>
+  <div class="sec"><h2>Set the paper</h2><span id="setupFilt"></span><div class="line"></div></div>
+  <div id="setupBox" class="setup"></div>
+  <div class="btnrow" style="margin:6px 0 10px">
+    <button id="setupBack" class="btn gho">Back to questions</button>
+    <button id="setupChapters" class="btn gho">Chapters and filters</button>
+  </div>
+  <div class="sec"><h2>Past mocks</h2><div class="line"></div></div>
+  <div class="hist" id="histList"></div>
+  <div style="height:40px"></div>
+</section>
+
+<!-- =================== PRACTICE RESULTS =================== -->
+<section id="vDone" class="wrap hide">
   <div class="score">
     <div class="big" id="rPct">0%</div>
-    <div class="sub" id="rSub">—</div>
+    <div class="sub" id="rSub"></div>
   </div>
   <div class="sec"><h2>By chapter</h2><div class="line"></div></div>
   <div class="brk" id="rBreak"></div>
-  <div class="sec"><h2>Questions you missed</h2><span id="rMissN"></span><div class="line"></div></div>
+  <div class="sec"><h2>Worth another look</h2><span id="rMissN"></span><div class="line"></div></div>
   <div class="misslist" id="rMiss"></div>
   <div class="btnrow">
-    <button class="btn pri" id="btnRedo">Redo the missed ones</button>
-    <button class="btn" id="btnAgain">Restart this set</button>
-    <button class="btn gho" id="btnBack2">Back to chapters</button>
+    <button id="btnRedo" class="btn pri">Redo the missed ones</button>
+    <button id="btnAgain" class="btn">Restart this set</button>
+    <button id="btnBack2" class="btn gho">Chapters</button>
   </div>
+</section>
+
+<!-- =================== EXAM REPORT =================== -->
+<section id="vReport" class="wrap hide">
+  <div class="score">
+    <div class="big" id="eScore">0</div>
+    <div class="sub" id="eSub"></div>
+  </div>
+  <div class="ribbon">
+    <div class="rib b"><span class="n" id="eRight">0</span><span class="l">correct</span></div>
+    <div class="rib d"><span class="n" id="eWrong">0</span><span class="l">wrong</span></div>
+    <div class="rib c"><span class="n" id="eSkip">0</span><span class="l">left blank</span></div>
+    <div class="rib a"><span class="n" id="eTime">0m</span><span class="l">time used</span></div>
+  </div>
+  <div class="sec"><h2>By chapter</h2><div class="line"></div></div>
+  <div class="brk" id="eBreak"></div>
+  <div class="sec"><h2>Question review</h2><span id="eRevN"></span><div class="line"></div></div>
+  <div class="misslist" id="eReview"></div>
+  <div class="btnrow">
+    <button id="eRedoWrong" class="btn pri">Practise what went wrong</button>
+    <button id="eNewExam" class="btn exam">New mock</button>
+    <button id="eBack" class="btn gho">Chapters</button>
+  </div>
+</section>
+
 </main>
+<div id="toast"></div>
 
 <script>
 const TOPICS = [
@@ -443,28 +660,81 @@ const QUESTIONS = /*DATA*/[
 {n:152,t:10,src:"59th BPSC",q:"What was the fissionable material used in the bombs dropped at Nagasaki (Japan) in the year 1945?",o:["Sodium","Potassium","Plutonium","Uranium"],a:2,e:["The **Nagasaki** bomb (\"Fat Man\", **1945**) used **Plutonium (Pu, atomic number 94)** as its fissionable material.","The earlier **Hiroshima** bomb used **Uranium**, which is why uranium is a tempting distractor.","Sodium and potassium are reactive metals, not fissionable nuclear fuels."]}
 ]/*ENDDATA*/;
 
-/* ============ state ============ */
-const LS = "chemPYQ.mcq.v1";
-let S = {ans:{}, flag:[], theme:"dark", shuffle:false};
-try{ const raw = localStorage.getItem(LS); if(raw) S = Object.assign(S, JSON.parse(raw)); }catch(e){}
-const save = () => { try{ localStorage.setItem(LS, JSON.stringify(S)); }catch(e){} };
-const flagSet = new Set(S.flag||[]);
-
-let filter = "ALL";           // paper filter
-let set = [];                 // current question list
-let idx = 0;
-let setName = "All chapters";
-let sessionSeen = new Set();
-
+/* ============ helpers ============ */
 const $ = id => document.getElementById(id);
-const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const md = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
 const KEYS = ["A","B","C","D","E"];
+const byId = new Map(QUESTIONS.map(q => [q.n, q]));
+function mmss(ms){
+  const s = Math.max(0, Math.round(ms/1000));
+  const h = Math.floor(s/3600), m = Math.floor(s%3600/60), x = s%60;
+  return (h ? h+":"+String(m).padStart(2,"0") : m) + ":" + String(x).padStart(2,"0");
+}
+function human(ms){
+  const s = Math.round(ms/1000);
+  if(s < 60) return s + "s";
+  const m = Math.floor(s/60);
+  return m < 60 ? m + "m " + (s%60) + "s" : Math.floor(m/60) + "h " + (m%60) + "m";
+}
+function shuffleArr(a){ const x=a.slice(); for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]];} return x; }
+let toastT = null;
+function toast(msg){
+  const t = $("toast"); t.textContent = msg; t.classList.add("on");
+  clearTimeout(toastT); toastT = setTimeout(()=>t.classList.remove("on"), 2300);
+}
 
-/* ============ theme ============ */
+/* ============ state ============ */
+const LS = "chemPYQ.mcq.v2", LS_OLD = "chemPYQ.mcq.v1";
+let S = {
+  ans:{}, flag:[], tm:{}, theme:"dark", bg:true, shuffle:false,
+  exams:[], cfg:{scope:"ALL", topic:0, count:25, dur:0, neg:0.25}, last:null, run:null
+};
+try{
+  const raw = localStorage.getItem(LS) || localStorage.getItem(LS_OLD);
+  if(raw){ const o = JSON.parse(raw); S = Object.assign(S, o); S.cfg = Object.assign({scope:"ALL",topic:0,count:25,dur:0,neg:0.25}, o.cfg||{}); }
+}catch(e){}
+const save = () => { try{ localStorage.setItem(LS, JSON.stringify(S)); }catch(e){} };
+const flagSet = new Set(S.flag || []);
+
+let filter = "ALL";
+let deck = [], idx = 0, setName = "All chapters";
+let mode = "practice";                   /* practice | exam */
+let EX = null;                           /* live exam object */
+let ord = {};                            /* qid -> option order */
+
+/* ============ theme + backdrop ============ */
 function applyTheme(){ document.documentElement.setAttribute("data-theme", S.theme); }
-applyTheme();
+function applyBg(){
+  document.documentElement.setAttribute("data-bg", S.bg === false ? "off" : "on");
+  $("btnBg").classList.toggle("on", S.bg !== false);
+}
 $("btnTheme").onclick = () => { S.theme = S.theme==="dark" ? "light" : "dark"; applyTheme(); save(); };
+$("btnBg").onclick = () => { S.bg = !(S.bg !== false); applyBg(); save(); toast(S.bg ? "Backdrop on" : "Backdrop off"); };
+
+/* build the drifting molecules + bubbles */
+(function buildBackdrop(){
+  const bg = $("bg");
+  const forms = ["H₂O","CO₂","CH₄","NH₃","NaCl","C₆H₆","H₂SO₄","O₂","CaCO₃","HCl","KMnO₄","C₂H₅OH","N₂","Fe₂O₃","O₃","CH₃COOH"];
+  const rx = ["2H₂ + O₂ → 2H₂O","CaCO₃ →Δ CaO + CO₂","N₂ + 3H₂ ⇌ 2NH₃","Zn + H₂SO₄ → ZnSO₄ + H₂","2Na + Cl₂ → 2NaCl"];
+  const put = (txt, cls, x, y, size, delay, dur) => {
+    const d = document.createElement("div");
+    d.className = "float" + (cls ? " " + cls : "");
+    d.textContent = txt;
+    d.style.cssText = "left:"+x+"%;top:"+y+"%;font-size:"+size+"px;animation-delay:"+delay+"s;animation-duration:"+dur+"s";
+    bg.appendChild(d);
+  };
+  forms.forEach((f,i) => put(f, "", (i*61 + 7) % 92, (i*37 + 5) % 90, 15 + (i%4)*5, -(i*2.3), 22 + (i%5)*5));
+  rx.forEach((r,i) => put(r, "rx", (i*43 + 12) % 62, (i*71 + 22) % 86, 13, -(i*4.1), 30 + i*4));
+  for(let i=0;i<9;i++){
+    const b = document.createElement("div");
+    const sz = 6 + (i%4)*7;
+    b.className = "bub";
+    b.style.cssText = "left:"+((i*53+9)%95)+"%;top:"+(70 + (i%3)*12)+"%;width:"+sz+"px;height:"+sz+"px;"+
+                      "animation-delay:"+(-i*3.4)+"s;animation-duration:"+(26 + (i%5)*6)+"s";
+    bg.appendChild(b);
+  }
+})();
 
 /* ============ paper filter ============ */
 function srcRank(s){
@@ -475,222 +745,569 @@ function srcRank(s){
   return [2,0];
 }
 const SOURCES = [...new Set(QUESTIONS.map(q=>q.src))].sort((x,y)=>{
-  const a=srcRank(x), b=srcRank(y);
-  return a[0]-b[0] || a[1]-b[1];
+  const a=srcRank(x), b=srcRank(y); return a[0]-b[0] || a[1]-b[1];
 });
+const label = s => s.replace("UPPSC","UPPCS");
 function passFilter(q){
-  if(filter==="ALL") return true;
-  if(filter==="BPSC") return /BPSC/.test(q.src);
-  if(filter==="UPPCS") return /UPPSC/.test(q.src);
+  if(filter === "ALL") return true;
+  if(filter === "BPSC") return /BPSC/.test(q.src);
+  if(filter === "UPPSC") return /UPPSC/.test(q.src);
   return q.src === filter;
 }
-function buildChips(){
-  const wrap = $("yearChips");
-  const list = [["ALL","All papers"],["BPSC","All BPSC"],["UPPCS","All UPPCS"]].concat(SOURCES.map(s=>[s, s.replace("UPPSC","UPPCS")]));
-  wrap.innerHTML = "";
-  list.forEach(([v,label])=>{
-    const b = document.createElement("button");
-    b.className = "chip" + (filter===v ? " on":"");
-    b.textContent = label;
-    b.onclick = () => { filter = v; buildChips(); buildHome(); };
-    wrap.appendChild(b);
-  });
+const pool = () => QUESTIONS.filter(passFilter);
+
+/* ============ option order (shuffle) ============ */
+const LAST_RX = /^(none of|all of|more than one|no answer|not attempted)/i;
+function orderFor(q){
+  if(!S.shuffle && mode !== "exam") return q.o.map((_,i)=>i);
+  if(ord[q.n]) return ord[q.n];
+  const tail = [], head = [];
+  q.o.forEach((t,i) => (LAST_RX.test(t.trim()) ? tail : head).push(i));
+  const o = shuffleArr(head).concat(tail);
+  ord[q.n] = o;
+  return o;
+}
+function reshuffleOptions(){ ord = {}; }
+
+/* ============ per-question timer ============ */
+let tick = null, tStart = 0, tQid = null, paused = false;
+function beginTimer(qid){
+  commitTimer();
+  tQid = qid; tStart = Date.now(); paused = false;
+  $("qTimer").classList.remove("pause");
+  if(!tick) tick = setInterval(paintTimer, 1000);
+  paintTimer();
+}
+function elapsed(){ return paused ? 0 : (Date.now() - tStart); }
+function commitTimer(){
+  if(tQid != null && !paused){
+    const add = Date.now() - tStart;
+    if(add > 400 && add < 40*60*1000){
+      if(mode === "exam" && EX) EX.tm[tQid] = (EX.tm[tQid]||0) + add;
+      S.tm[tQid] = (S.tm[tQid]||0) + add;
+      save();
+    }
+  }
+  tQid = null;
+}
+function stopTimer(){ commitTimer(); clearInterval(tick); tick = null; }
+function paintTimer(){
+  const el = $("qTimer");
+  if(mode === "exam" && EX){
+    const left = EX.endAt - Date.now();
+    el.textContent = mmss(left);
+    el.classList.toggle("warn", left < 300000 && left >= 60000);
+    el.classList.toggle("crit", left < 60000);
+    el.title = "Time left in this mock";
+    if(left <= 0) submitExam(true);
+    return;
+  }
+  const spent = (S.tm[tQid] || 0) + elapsed();
+  el.textContent = mmss(spent);
+  el.classList.remove("warn","crit");
+  el.title = paused ? "Timer paused — click to resume" : "Time on this question — click to pause";
+}
+$("qTimer").onclick = () => {
+  if(mode === "exam"){ toast("The mock clock cannot be paused."); return; }
+  if(paused){ tStart = Date.now(); paused = false; }
+  else { commitTimerSoft(); paused = true; }
+  $("qTimer").classList.toggle("pause", paused);
+  paintTimer();
+  toast(paused ? "Timer paused" : "Timer running");
+};
+function commitTimerSoft(){
+  const add = Date.now() - tStart;
+  if(add > 400 && add < 40*60*1000){ S.tm[tQid] = (S.tm[tQid]||0) + add; save(); }
+  tStart = Date.now();
 }
 
-/* ============ home ============ */
-function buildHome(){
-  const pool = QUESTIONS.filter(passFilter);
-  const answered = pool.filter(q=>S.ans[q.n]!=null);
-  const right = answered.filter(q=>S.ans[q.n]===q.a).length;
-  $("sAns").textContent = answered.length + "/" + pool.length;
-  $("sAcc").textContent = answered.length ? Math.round(right/answered.length*100)+"%" : "—";
-  $("sMiss").textContent = answered.length - right;
-  $("filtNote").textContent = filter==="ALL" ? "" : pool.length + " questions in this filter";
-
-  const grid = $("topicGrid"); grid.innerHTML = "";
-  TOPICS.forEach((t, i) => {
-    const qs = pool.filter(q=>q.t===i);
-    if(!qs.length) return;
-    const done = qs.filter(q=>S.ans[q.n]!=null);
-    const ok = done.filter(q=>S.ans[q.n]===q.a).length;
-    const b = document.createElement("button");
-    b.className = "tcard"; b.style.setProperty("--accent", t[1]);
-    b.innerHTML = '<span class="bandm"></span><h3>'+esc(t[0])+'</h3>'+
-      '<div class="meta">'+qs.length+' questions'+(done.length?' · '+ok+'/'+done.length+' correct':'')+'</div>'+
-      '<div class="mini"><i style="width:'+(qs.length?Math.round(done.length/qs.length*100):0)+'%"></i></div>';
-    b.onclick = () => startSet(qs, t[0]);
-    grid.appendChild(b);
-  });
-
-  const missed = pool.filter(q=>S.ans[q.n]!=null && S.ans[q.n]!==q.a);
-  $("btnMissed").disabled = !missed.length;
-  $("btnMissed").textContent = "Practise missed" + (missed.length? " ("+missed.length+")" : "");
-  const fl = pool.filter(q=>flagSet.has(q.n));
-  $("btnFlag").disabled = !fl.length;
-  $("btnFlag").textContent = "Flagged" + (fl.length? " ("+fl.length+")" : "");
-  const unseen = pool.filter(q=>S.ans[q.n]==null);
-  $("btnResume").disabled = !unseen.length || unseen.length===pool.length;
-  $("btnShuffle").textContent = "Shuffle: " + (S.shuffle?"on":"off");
-}
-
-function shuffled(a){ const x=a.slice(); for(let i=x.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [x[i],x[j]]=[x[j],x[i]]; } return x; }
-
-function startSet(list, name){
-  if(!list.length) return;
-  set = S.shuffle ? shuffled(list) : list.slice();
-  setName = name; idx = 0; sessionSeen = new Set();
-  show("vQuiz"); renderQ();
-}
+/* ============ view switching ============ */
 function show(v){
-  ["vHome","vQuiz","vDone"].forEach(x=>$(x).classList.toggle("hide", x!==v));
-  $("btnHome").classList.toggle("hide", v==="vHome");
+  ["vQuiz","vHome","vDone","vReport","vSetup"].forEach(x => $(x).classList.toggle("hide", x !== v));
+  $("btnChapters").textContent = (v === "vHome") ? "Back to questions" : "Chapters";
   window.scrollTo(0,0);
 }
+function backToQuiz(){
+  if(deck.length){ show("vQuiz"); render(); } else { startDeck(pool(), "All chapters"); }
+}
+function openSetup(){
+  if(mode === "exam"){ toast("You are already in a mock."); return; }
+  commitTimer(); fixCount(); buildSetup(); buildHistory();
+  $("setupFilt").textContent = "drawing on " +
+    (filter === "ALL" ? "all papers" : filter === "BPSC" ? "the BPSC papers" :
+     filter === "UPPSC" ? "the UPPCS papers" : label(filter) + " only");
+  show("vSetup");
+}
+$("btnExamMode").onclick = openSetup;
+$("setupBack").onclick = backToQuiz;
+$("setupChapters").onclick = () => { buildHome(); show("vHome"); };
+$("btnChapters").onclick = () => {
+  if(!$("vHome").classList.contains("hide")){ backToQuiz(); return; }
+  if(mode === "exam"){ toast("Submit or finish the mock first."); return; }
+  commitTimer(); buildHome(); show("vHome");
+};
 
-/* ============ quiz ============ */
-function renderQ(){
-  const q = set[idx];
+/* ============ deck ============ */
+function startDeck(list, name, startAt){
+  if(!list.length){ toast("Nothing in that set yet."); return; }
+  mode = "practice"; EX = null;
+  deck = S.shuffle ? shuffleArr(list) : list.slice();
+  idx = Math.max(0, Math.min(startAt || 0, deck.length - 1));
+  setName = name;
+  $("palwrap").classList.add("hide");
+  $("btnMark").classList.add("hide");
+  $("btnSubmit").classList.add("hide");
+  $("btnSkip").classList.remove("hide");
+  show("vQuiz"); render();
+}
+
+/* ============ render one question ============ */
+function render(){
+  const q = deck[idx];
+  const examing = (mode === "exam");
+  const chosen = examing ? EX.ans[q.n] : S.ans[q.n];
+  const done = chosen != null;
+
   $("qSetName").textContent = setName;
-  $("qPos").textContent = (idx+1) + " / " + set.length;
-  const done = set.filter(x=>sessionSeen.has(x.n));
-  const ok = done.filter(x=>S.ans[x.n]===x.a).length;
-  $("qScore").textContent = ok + " correct";
-  $("qProg").style.width = Math.round((idx)/set.length*100) + "%";
+  $("qPos").textContent = (idx+1) + " / " + deck.length;
+  $("qScore").textContent = examing
+    ? (Object.keys(EX.ans).length + " answered")
+    : (deck.filter(x => S.ans[x.n] === x.a).length + " correct");
+  $("qProg").style.width = Math.round((idx+1)/deck.length*100) + "%";
   $("btnFlagQ").textContent = flagSet.has(q.n) ? "★" : "☆";
   $("btnFlagQ").style.color = flagSet.has(q.n) ? "var(--orpiment)" : "";
 
-  let head = '<span class="qnum">Q'+q.n+'</span><span class="tag src">'+esc(q.src.replace("UPPSC","UPPCS"))+'</span>'+
-             '<span class="tag top">'+esc(TOPICS[q.t][0])+'</span>';
-  if(q.r) head += '<span class="tag rep">repeat fact</span>';
-  $("qHead").innerHTML = head;
+  $("qHead").innerHTML =
+    '<span class="qnum">Q'+q.n+'</span>' +
+    '<span class="tag src">'+esc(label(q.src))+'</span>' +
+    '<span class="tag top">'+esc(TOPICS[q.t][0])+'</span>' +
+    (q.r ? '<span class="tag rep">repeat fact</span>' : '') +
+    (examing && EX.mark[q.n] ? '<span class="tag mark">marked</span>' : '');
   $("qText").innerHTML = md(q.q);
 
-  const chosen = S.ans[q.n];
   const box = $("qOpts"); box.innerHTML = "";
-  q.o.forEach((o,i)=>{
+  orderFor(q).forEach((oi, pos) => {
     const b = document.createElement("button");
     b.className = "opt";
-    b.innerHTML = '<span class="k">'+KEYS[i]+'</span><span>'+md(o)+'</span>';
-    if(chosen!=null){
+    b.innerHTML = '<span class="k">'+KEYS[pos]+'</span><span>'+md(q.o[oi])+'</span>';
+    if(examing){
+      if(chosen === oi) b.classList.add("pick");
+      b.onclick = () => pickExam(q, oi);
+    } else if(done){
       b.disabled = true;
-      if(i===q.a) b.classList.add("right");
-      else if(i===chosen) b.classList.add("wrong");
+      if(oi === q.a) b.classList.add("right");
+      else if(oi === chosen) b.classList.add("wrong");
       else b.classList.add("dim");
     } else {
-      b.onclick = () => answer(i);
+      b.onclick = () => pickPractice(q, oi);
     }
     box.appendChild(b);
   });
 
   const ex = $("qExpl");
-  if(chosen!=null){
+  if(!examing && done){
+    const ok = chosen === q.a;
+    const t = S.tm[q.n];
+    ex.innerHTML =
+      '<p class="verdict '+(ok?"ok":"no")+'">' + (ok ? "Correct." : "Not this one — the answer is " + KEYS[orderFor(q).indexOf(q.a)] + ".") +
+      (t ? '<span class="tt">'+mmss(t)+' on this question</span>' : '') + '</p>' +
+      '<ul>' + q.e.map(x => '<li>'+md(x)+'</li>').join("") + '</ul>';
     ex.classList.remove("hide");
-    const good = chosen===q.a;
-    ex.innerHTML = '<p class="verdict '+(good?"ok":"no")+'">'+(good?"Correct — ":"Answer — ")+
-      KEYS[q.a]+". "+md(q.o[q.a])+'</p><ul>'+q.e.map(x=>'<li>'+md(x)+'</li>').join("")+'</ul>';
-  } else { ex.classList.add("hide"); ex.innerHTML=""; }
+  } else { ex.classList.add("hide"); ex.innerHTML = ""; }
 
-  $("btnPrev").disabled = idx===0;
-  $("btnNext").textContent = idx===set.length-1 ? "See results" : "Next";
+  $("btnPrev").disabled = idx === 0;
+  $("btnNext").textContent = (idx === deck.length-1) ? (examing ? "Last question" : "See results") : "Next";
+  $("btnNext").disabled = examing && idx === deck.length-1;
+  $("btnSkip").classList.toggle("hide", examing || done);
+  if(examing){
+    $("btnMark").textContent = EX.mark[q.n] ? "Unmark" : "Mark for review";
+    paintPalette();
+  }
+  $("keys").innerHTML = examing
+    ? '<kbd>1</kbd>–<kbd>5</kbd> answer · <kbd>→</kbd> next · <kbd>←</kbd> back · <kbd>M</kbd> mark · <kbd>C</kbd> clear'
+    : '<kbd>1</kbd>–<kbd>5</kbd> answer · <kbd>→</kbd> next · <kbd>←</kbd> back · <kbd>F</kbd> flag · <kbd>P</kbd> pause · <kbd>E</kbd> mock · <kbd>Esc</kbd> chapters';
+
+  beginTimer(q.n);
 }
 
-function answer(i){
-  const q = set[idx];
-  S.ans[q.n] = i; sessionSeen.add(q.n); save();
-  renderQ();
-  const ex = $("qExpl");
-  if(ex && ex.scrollIntoView) setTimeout(()=>{
-    const r = ex.getBoundingClientRect();
-    if(r.bottom > window.innerHeight) ex.scrollIntoView({block:"nearest", behavior:"smooth"});
-  }, 40);
+/* ============ practice answering ============ */
+function pickPractice(q, oi){
+  S.ans[q.n] = oi;
+  commitTimer();
+  save(); render();
 }
-function next(){ if(idx < set.length-1){ idx++; renderQ(); window.scrollTo(0,0);} else finish(); }
-function prev(){ if(idx>0){ idx--; renderQ(); window.scrollTo(0,0);} }
-
+function next(){
+  commitTimer();
+  if(idx < deck.length-1){ idx++; render(); }
+  else if(mode === "practice"){ finishPractice(); }
+}
+function prev(){ commitTimer(); if(idx > 0){ idx--; render(); } }
 $("btnNext").onclick = next;
-$("btnSkip").onclick = () => { sessionSeen.add(set[idx].n); next(); };
 $("btnPrev").onclick = prev;
+$("btnSkip").onclick = next;
 $("btnFlagQ").onclick = () => {
-  const n = set[idx].n;
+  const n = deck[idx].n;
   if(flagSet.has(n)) flagSet.delete(n); else flagSet.add(n);
-  S.flag = [...flagSet]; save(); renderQ();
+  S.flag = [...flagSet]; save();
+  $("btnFlagQ").textContent = flagSet.has(n) ? "★" : "☆";
+  $("btnFlagQ").style.color = flagSet.has(n) ? "var(--orpiment)" : "";
+  toast(flagSet.has(n) ? "Flagged for later" : "Flag removed");
 };
 
-/* ============ results ============ */
-function finish(){
-  const done = set.filter(q=>S.ans[q.n]!=null);
-  const ok = done.filter(q=>S.ans[q.n]===q.a);
-  const pct = done.length ? Math.round(ok.length/done.length*100) : 0;
-  $("rPct").textContent = pct + "%";
-  $("rSub").textContent = ok.length + " of " + done.length + " answered correctly in " + setName +
-    (done.length<set.length ? " · " + (set.length-done.length) + " left unanswered" : "");
+/* ============ exam mode ============ */
+const NEGS = [[0,"None"],[0.25,"¼ mark"],[1/3,"⅓ mark"],[0.5,"½ mark"]];
+const COUNTS = [10,25,50,100,0];
+const DURS = [0,10,20,30,45,60,90];
 
-  const brk = $("rBreak"); brk.innerHTML = "";
-  TOPICS.forEach((t,i)=>{
-    const qs = set.filter(q=>q.t===i && S.ans[q.n]!=null);
-    if(!qs.length) return;
-    const c = qs.filter(q=>S.ans[q.n]===q.a).length;
-    const row = document.createElement("div"); row.className="brow";
-    row.innerHTML = '<span class="nm">'+esc(t[0])+'</span><span class="bar2"><i style="width:'+
-      Math.round(c/qs.length*100)+'%;background:'+t[1]+'"></i></span><span class="sc">'+c+'/'+qs.length+'</span>';
-    brk.appendChild(row);
-  });
+function scopeList(){
+  const c = S.cfg;
+  if(c.scope === "TOPIC") return pool().filter(q => q.t === c.topic);
+  if(c.scope === "WEAK")  return pool().filter(q => S.ans[q.n] != null && S.ans[q.n] !== q.a);
+  if(c.scope === "NEW")   return pool().filter(q => S.ans[q.n] == null);
+  return pool();
+}
+function planned(){
+  const avail = scopeList().length;
+  const n = S.cfg.count === 0 ? avail : Math.min(S.cfg.count, avail);
+  const mins = S.cfg.dur === 0 ? Math.max(1, n) : S.cfg.dur;
+  return {avail, n, mins};
+}
+function buildSetup(){
+  const c = S.cfg, p = planned();
+  const seg = (items, cur, attr) => items.map(([v,t,dis]) =>
+    '<button class="sbtn'+(String(v)===String(cur)?" on":"")+'" data-'+attr+'="'+v+'"'+(dis?" disabled":"")+'>'+t+'</button>').join("");
 
-  const missed = set.filter(q=>S.ans[q.n]!=null && S.ans[q.n]!==q.a);
-  $("rMissN").textContent = missed.length ? missed.length + " to revisit" : "nothing missed";
-  const ml = $("rMiss"); ml.innerHTML = "";
-  missed.forEach(q=>{
-    const b = document.createElement("button"); b.className="miss";
-    b.innerHTML = '<div class="q">Q'+q.n+'. '+md(q.q.split("\n")[0])+'</div>'+
-      '<div class="a">Correct: '+md(q.o[q.a])+' · you chose '+md(q.o[S.ans[q.n]])+'</div>';
-    b.onclick = () => { const j = set.findIndex(x=>x.n===q.n); if(j>=0){ idx=j; show("vQuiz"); renderQ(); } };
-    ml.appendChild(b);
-  });
-  $("btnRedo").disabled = !missed.length;
-  show("vDone"); buildHome();
+  $("setupBox").innerHTML =
+    '<div class="frow"><div class="lb">What to sit</div>' +
+      '<div class="seg">' + seg([
+        ["ALL","All papers in the filter"],["TOPIC","One chapter"],
+        ["NEW","Only unattempted", pool().filter(q=>S.ans[q.n]==null).length===0],
+        ["WEAK","Only ones I got wrong", pool().filter(q=>S.ans[q.n]!=null&&S.ans[q.n]!==q.a).length===0]
+      ], c.scope, "scope") + '</div>' +
+      '<div style="margin-top:9px"' + (c.scope==="TOPIC" ? '' : ' class="hide"') + '>' +
+        '<select class="sel" id="examTopic">' +
+        TOPICS.map((t,i) => '<option value="'+i+'"'+(i===c.topic?" selected":"")+'>'+esc(t[0])+' — '+pool().filter(q=>q.t===i).length+' questions</option>').join("") +
+        '</select></div>' +
+    '</div>' +
+    '<div class="frow"><div class="lb">How many questions</div>' +
+      '<div class="seg">' + seg(COUNTS.map(n => [n, n===0 ? "All ("+p.avail+")" : String(n), n!==0 && n>p.avail]), c.count, "count") + '</div></div>' +
+    '<div class="frow"><div class="lb">Time limit</div>' +
+      '<div class="hint">Auto gives you one minute a question.</div>' +
+      '<div class="seg">' + seg(DURS.map(d => [d, d===0 ? "Auto" : d+" min"]), c.dur, "dur") + '</div></div>' +
+    '<div class="frow"><div class="lb">Negative marking</div>' +
+      '<div class="hint">Deducted for each wrong answer. Blanks never cost you anything.</div>' +
+      '<div class="seg">' + seg(NEGS.map(([v,t]) => [v,t]), c.neg, "neg") + '</div></div>' +
+    '<div class="plan" id="examPlan"></div>' +
+    '<div class="btnrow" style="margin:14px 0 4px"><button class="btn exam" id="btnStartExam">Start the mock</button></div>';
+
+  paintPlan();
+  $("setupBox").querySelectorAll("[data-scope]").forEach(b => b.onclick = () => { S.cfg.scope = b.dataset.scope; fixCount(); save(); buildSetup(); });
+  $("setupBox").querySelectorAll("[data-count]").forEach(b => b.onclick = () => { S.cfg.count = +b.dataset.count; save(); buildSetup(); });
+  $("setupBox").querySelectorAll("[data-dur]").forEach(b => b.onclick = () => { S.cfg.dur = +b.dataset.dur; save(); buildSetup(); });
+  $("setupBox").querySelectorAll("[data-neg]").forEach(b => b.onclick = () => { S.cfg.neg = +b.dataset.neg; save(); buildSetup(); });
+  const sel = $("examTopic");
+  if(sel) sel.onchange = () => { S.cfg.topic = +sel.value; fixCount(); save(); buildSetup(); };
+  $("btnStartExam").onclick = startExam;
+}
+function fixCount(){ const a = scopeList().length; if(S.cfg.count !== 0 && S.cfg.count > a) S.cfg.count = 0; }
+function paintPlan(){
+  const p = planned(), c = S.cfg;
+  const neg = (NEGS.find(x => x[0] === c.neg) || NEGS[0])[1];
+  $("examPlan").innerHTML = p.n
+    ? '<b>'+p.n+'</b> questions · <b>'+p.mins+'</b> minutes · negative marking <b>'+neg.toLowerCase()+'</b> · maximum <b>'+p.n+'</b> marks. Questions and options are shuffled, and the paper submits itself when the clock runs out.'
+    : 'Nothing available in this scope yet — try another one.';
+  const btn = $("btnStartExam"); if(btn) btn.disabled = !p.n;
 }
 
-$("btnRedo").onclick = () => {
-  const missed = set.filter(q=>S.ans[q.n]!=null && S.ans[q.n]!==q.a);
-  missed.forEach(q=>{ delete S.ans[q.n]; }); save();
-  startSet(missed, "Missed from " + setName);
-};
-$("btnAgain").onclick = () => { set.forEach(q=>{ delete S.ans[q.n]; }); save(); startSet(set, setName); };
-$("btnBack2").onclick = () => { show("vHome"); buildHome(); };
+function startExam(){
+  const p = planned();
+  if(!p.n) return;
+  const ids = shuffleArr(scopeList()).slice(0, p.n).map(q => q.n);
+  EX = {ids, ans:{}, mark:{}, tm:{}, dur:p.mins, neg:S.cfg.neg,
+        startedAt:Date.now(), endAt:Date.now() + p.mins*60000};
+  S.run = EX; save();
+  enterExam();
+}
+function enterExam(){
+  mode = "exam";
+  ord = {};
+  deck = EX.ids.map(n => byId.get(n)).filter(Boolean);
+  idx = 0;
+  setName = "Mock · " + deck.length + " questions";
+  $("palwrap").classList.remove("hide");
+  $("btnMark").classList.remove("hide");
+  $("btnSubmit").classList.remove("hide");
+  $("btnSkip").classList.add("hide");
+  show("vQuiz"); render();
+}
+function leaveExam(){ ord = {}; mode = "practice"; EX = null; S.run = null; save(); }
 
-/* ============ home buttons ============ */
-$("btnAll").onclick   = () => startSet(QUESTIONS.filter(passFilter), filter==="ALL" ? "All chapters" : "All chapters · "+filter.replace("UPPSC","UPPCS"));
-$("btnResume").onclick= () => startSet(QUESTIONS.filter(q=>passFilter(q) && S.ans[q.n]==null), "Unanswered");
-$("btnMissed").onclick= () => {
-  const m = QUESTIONS.filter(q=>passFilter(q) && S.ans[q.n]!=null && S.ans[q.n]!==q.a);
-  m.forEach(q=>{ delete S.ans[q.n]; }); save();
-  startSet(m, "Missed questions");
+function pickExam(q, oi){
+  if(EX.ans[q.n] === oi) delete EX.ans[q.n]; else EX.ans[q.n] = oi;
+  S.run = EX; save(); render();
+}
+function clearResponse(){
+  const q = deck[idx];
+  if(EX.ans[q.n] != null){ delete EX.ans[q.n]; S.run = EX; save(); render(); toast("Response cleared"); }
+}
+$("btnMark").onclick = () => {
+  const n = deck[idx].n;
+  if(EX.mark[n]) delete EX.mark[n]; else EX.mark[n] = 1;
+  S.run = EX; save(); render();
 };
-$("btnFlag").onclick  = () => startSet(QUESTIONS.filter(q=>passFilter(q) && flagSet.has(q.n)), "Flagged questions");
-$("btnShuffle").onclick = () => { S.shuffle = !S.shuffle; save(); buildHome(); };
+function paintPalette(){
+  const box = $("pal"); box.innerHTML = "";
+  deck.forEach((q,i) => {
+    const b = document.createElement("button");
+    b.className = "pcell" + (EX.ans[q.n] != null ? " ans" : "") + (EX.mark[q.n] ? " mark" : "") + (i === idx ? " now" : "");
+    b.textContent = i+1;
+    b.onclick = () => { commitTimer(); idx = i; render(); window.scrollTo(0,0); };
+    box.appendChild(b);
+  });
+  const a = Object.keys(EX.ans).length;
+  $("palStat").textContent = a + " answered · " + (deck.length - a) + " left · " + Object.keys(EX.mark).length + " marked";
+}
+$("btnSubmit").onclick = () => submitExam(false);
+
+function submitExam(auto){
+  if(!EX) return;
+  const blank = deck.length - Object.keys(EX.ans).length;
+  if(!auto){
+    const msg = blank ? "Submit now? " + blank + " question" + (blank>1?"s are":" is") + " still blank." : "Submit the mock now?";
+    if(!confirm(msg)) return;
+  }
+  commitTimer(); stopTimer();
+  const used = Math.min(Date.now() - EX.startedAt, EX.dur*60000);
+  let right = 0, wrong = 0, skip = 0;
+  const rows = deck.map(q => {
+    const c = EX.ans[q.n];
+    const st = c == null ? "skip" : (c === q.a ? "right" : "wrong");
+    if(st === "right") right++; else if(st === "wrong") wrong++; else skip++;
+    return {n:q.n, st, c, t:EX.tm[q.n] || 0};
+  });
+  const score = right - wrong*EX.neg;
+  const res = {d:Date.now(), n:deck.length, right, wrong, skip, neg:EX.neg,
+               score:Math.round(score*100)/100, used, rows};
+  S.last = res;
+  S.exams = [res].concat(S.exams || []).slice(0,10).map(e => ({d:e.d,n:e.n,right:e.right,wrong:e.wrong,skip:e.skip,neg:e.neg,score:e.score,used:e.used}));
+  /* the freshest one keeps its rows for the report */
+  leaveExam(); save();
+  paintReport(res);
+  show("vReport");
+  if(auto) toast("Time up — the paper was submitted for you.");
+}
+
+function paintReport(r){
+  const pct = Math.round(r.score / r.n * 100);
+  $("eScore").textContent = r.score + " / " + r.n;
+  $("eScore").classList.toggle("neg", r.score < 0);
+  const negTxt = (NEGS.find(x => x[0] === r.neg) || NEGS[0])[1].toLowerCase();
+  $("eSub").textContent = pct + "% of the paper · " + r.right + " right, " + r.wrong + " wrong at " + negTxt +
+    " each · " + (r.right + r.wrong ? Math.round(r.right/(r.right+r.wrong)*100) : 0) + "% accuracy on what you attempted";
+  $("eRight").textContent = r.right; $("eWrong").textContent = r.wrong; $("eSkip").textContent = r.skip;
+  $("eTime").textContent = human(r.used);
+
+  /* by chapter */
+  const per = {};
+  r.rows.forEach(row => {
+    const q = byId.get(row.n); if(!q) return;
+    (per[q.t] = per[q.t] || {n:0,r:0,t:0});
+    per[q.t].n++; per[q.t].t += row.t; if(row.st === "right") per[q.t].r++;
+  });
+  $("eBreak").innerHTML = Object.keys(per).sort((a,b)=>a-b).map(k => {
+    const p = per[k], pc = Math.round(p.r/p.n*100);
+    return '<div class="brow"><span class="nm">'+esc(TOPICS[k][0])+'</span>' +
+           '<span class="bar2"><i style="width:'+pc+'%;background:'+TOPICS[k][1]+'"></i></span>' +
+           '<span class="sc">'+p.r+'/'+p.n+'</span><span class="tm">'+mmss(p.t)+'</span></div>';
+  }).join("");
+
+  /* review */
+  const bad = r.rows.filter(x => x.st !== "right");
+  $("eRevN").textContent = bad.length ? bad.length + " to go over" : "clean sweep";
+  $("eReview").innerHTML = r.rows.map(row => {
+    const q = byId.get(row.n); if(!q) return "";
+    const mine = row.c == null ? "left blank" : q.o[row.c];
+    const cls = row.st === "right" ? "miss" : (row.st === "skip" ? "miss skip" : "miss");
+    const style = row.st === "right" ? ' style="border-left-color:var(--good)"' : "";
+    return '<div class="'+cls+'"'+style+'>' +
+      '<div class="q">Q'+q.n+' · '+md(q.q.split("\n")[0]) + '</div>' +
+      '<div class="a">Your answer: '+esc(typeof mine === "string" ? mine : "")+' · <b>Correct: '+esc(q.o[q.a])+'</b> · '+mmss(row.t)+'</div>' +
+      (row.st === "right" ? "" : '<div class="a" style="margin-top:6px;color:var(--text2)">'+md(q.e[0])+'</div>') +
+      '</div>';
+  }).join("");
+
+  $("eRedoWrong").disabled = !bad.length;
+  $("eRedoWrong").onclick = () => startDeck(bad.map(x => byId.get(x.n)).filter(Boolean), "Mock · what went wrong");
+  $("eNewExam").onclick = openSetup;
+  $("eBack").onclick = () => { buildHome(); show("vHome"); };
+}
+
+/* ============ chapters / home ============ */
+function buildChips(){
+  const w = $("yearChips"); w.innerHTML = "";
+  const list = [["ALL","All papers"],["BPSC","All BPSC"],["UPPSC","All UPPCS"]].concat(SOURCES.map(s => [s, label(s)]));
+  list.forEach(([v,t]) => {
+    const b = document.createElement("button");
+    b.className = "chip" + (filter === v ? " on" : "");
+    b.textContent = t;
+    b.onclick = () => { filter = v; fixCount(); buildHome(); };
+    w.appendChild(b);
+  });
+}
+function buildHome(){
+  const all = QUESTIONS.length;
+  const ansd = QUESTIONS.filter(q => S.ans[q.n] != null);
+  const right = ansd.filter(q => S.ans[q.n] === q.a).length;
+  const totT = ansd.reduce((a,q) => a + (S.tm[q.n]||0), 0);
+  $("sAns").textContent = ansd.length + "/" + all;
+  $("sAcc").textContent = (ansd.length ? Math.round(right/ansd.length*100) : 0) + "%";
+  $("sMiss").textContent = ansd.length - right;
+  $("sTime").textContent = ansd.length ? human(totT/ansd.length) : "—";
+
+  buildChips();
+  const p = pool();
+  $("filtNote").textContent = p.length + " questions in this filter";
+
+  const grid = $("topicGrid"); grid.innerHTML = "";
+  TOPICS.forEach((t,i) => {
+    const qs = p.filter(q => q.t === i);
+    if(!qs.length) return;
+    const a = qs.filter(q => S.ans[q.n] != null).length;
+    const r = qs.filter(q => S.ans[q.n] === q.a).length;
+    const b = document.createElement("button");
+    b.className = "tcard"; b.style.setProperty("--accent", t[1]);
+    b.innerHTML = '<span class="bandm"></span><h3>'+esc(t[0])+'</h3>' +
+      '<div class="meta">'+qs.length+' questions'+(a ? ' · '+r+'/'+a+' right' : '')+'</div>' +
+      '<div class="mini"><i style="width:'+Math.round(a/qs.length*100)+'%"></i></div>';
+    b.onclick = () => startDeck(qs, t[0]);
+    grid.appendChild(b);
+  });
+
+  $("btnShuffle").textContent = "Shuffle: " + (S.shuffle ? "on" : "off");
+  $("btnResume").disabled = !p.some(q => S.ans[q.n] == null);
+  $("btnMissed").disabled = !p.some(q => S.ans[q.n] != null && S.ans[q.n] !== q.a);
+  $("btnFlag").disabled = !flagSet.size;
+
+}
+function buildHistory(){
+  const h = $("histList");
+  const list = (S.exams || []);
+  if(!list.length){ h.innerHTML = '<p class="empty">No mocks sat yet. Set one up above and your scores will collect here.</p>'; return; }
+  h.innerHTML = list.map(e => {
+    const d = new Date(e.d);
+    const dt = d.toLocaleDateString(undefined,{day:"numeric",month:"short"}) + ", " +
+               d.toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"});
+    return '<div class="hrow"><span class="s">'+e.score+'/'+e.n+'</span>' +
+           '<span class="d">'+dt+' · '+e.right+' right · '+e.wrong+' wrong · '+e.skip+' blank · '+human(e.used)+'</span></div>';
+  }).join("");
+}
+
+$("btnAll").onclick = () => startDeck(pool(), filter === "ALL" ? "All chapters" : label(filter));
+$("btnResume").onclick = () => {
+  const p = pool(), i = p.findIndex(q => S.ans[q.n] == null);
+  startDeck(p, "All chapters", i < 0 ? 0 : i);
+};
+$("btnMissed").onclick = () => startDeck(pool().filter(q => S.ans[q.n] != null && S.ans[q.n] !== q.a), "Missed questions");
+$("btnFlag").onclick = () => startDeck(pool().filter(q => flagSet.has(q.n)), "Flagged questions");
+$("btnExam2").onclick = openSetup;
+$("btnShuffle").onclick = () => { S.shuffle = !S.shuffle; reshuffleOptions(); save(); buildHome(); toast(S.shuffle ? "Questions and options will be shuffled" : "Back to paper order"); };
 $("btnReset").onclick = () => {
-  if(!confirm("Clear all answers and flags stored in this browser?")) return;
-  S.ans = {}; S.flag = []; flagSet.clear(); save(); buildHome();
+  if(!confirm("Clear every answer, flag, timing and mock score saved in this browser?")) return;
+  S.ans = {}; S.flag = []; S.tm = {}; S.exams = []; S.last = null; S.run = null;
+  flagSet.clear(); save(); buildHome(); toast("Progress cleared");
 };
-$("btnHome").onclick = () => { show("vHome"); buildHome(); };
+
+/* ============ practice results ============ */
+function finishPractice(){
+  stopTimer();
+  const done = deck.filter(q => S.ans[q.n] != null);
+  const right = done.filter(q => S.ans[q.n] === q.a);
+  const pct = done.length ? Math.round(right.length/done.length*100) : 0;
+  $("rPct").textContent = pct + "%";
+  const t = deck.reduce((a,q) => a + (S.tm[q.n]||0), 0);
+  $("rSub").textContent = right.length + " of " + done.length + " answered correctly in " + setName +
+    (t ? " · " + human(t) + " spent" : "");
+
+  const per = {};
+  deck.forEach(q => { const p = per[q.t] = per[q.t] || {n:0,r:0,a:0,t:0};
+    p.n++; p.t += (S.tm[q.n]||0); if(S.ans[q.n] != null){ p.a++; if(S.ans[q.n] === q.a) p.r++; } });
+  $("rBreak").innerHTML = Object.keys(per).sort((a,b)=>a-b).map(k => {
+    const p = per[k], pc = p.a ? Math.round(p.r/p.a*100) : 0;
+    return '<div class="brow"><span class="nm">'+esc(TOPICS[k][0])+'</span>' +
+      '<span class="bar2"><i style="width:'+pc+'%;background:'+TOPICS[k][1]+'"></i></span>' +
+      '<span class="sc">'+p.r+'/'+p.a+'</span><span class="tm">'+mmss(p.t)+'</span></div>';
+  }).join("");
+
+  const missed = deck.filter(q => S.ans[q.n] != null && S.ans[q.n] !== q.a);
+  $("rMissN").textContent = missed.length ? missed.length + " to revisit" : "nothing missed";
+  $("rMiss").innerHTML = "";
+  missed.forEach(q => {
+    const b = document.createElement("button");
+    b.className = "miss";
+    b.innerHTML = '<div class="q">Q'+q.n+' · '+md(q.q.split("\n")[0])+'</div>' +
+      '<div class="a">You chose: '+esc(q.o[S.ans[q.n]])+' · <b>Correct: '+esc(q.o[q.a])+'</b> · '+mmss(S.tm[q.n]||0)+'</div>';
+    b.onclick = () => { const i = deck.indexOf(q); if(i >= 0){ idx = i; show("vQuiz"); render(); } };
+    $("rMiss").appendChild(b);
+  });
+  if(!missed.length) $("rMiss").innerHTML = '<p class="empty">Nothing wrong in this set. Worth a shuffle and another pass later.</p>';
+
+  $("btnRedo").disabled = !missed.length;
+  show("vDone");
+}
+$("btnRedo").onclick = () => startDeck(deck.filter(q => S.ans[q.n] != null && S.ans[q.n] !== q.a), setName + " · missed");
+$("btnAgain").onclick = () => { deck.forEach(q => { delete S.ans[q.n]; }); save(); startDeck(deck, setName); };
+$("btnBack2").onclick = () => { buildHome(); show("vHome"); };
 
 /* ============ keyboard ============ */
 document.addEventListener("keydown", e => {
-  if(e.metaKey||e.ctrlKey||e.altKey) return;
-  if(!$("vQuiz").classList.contains("hide")){
-    const q = set[idx];
-    if(e.key>="1" && e.key<="5"){ const i=+e.key-1; if(i<q.o.length && S.ans[q.n]==null){ e.preventDefault(); answer(i);} return; }
-    if(e.key==="ArrowRight"||e.key==="Enter"){ e.preventDefault(); next(); return; }
-    if(e.key==="ArrowLeft"){ e.preventDefault(); prev(); return; }
-    if(e.key.toLowerCase()==="f"){ e.preventDefault(); $("btnFlagQ").click(); return; }
-    if(e.key==="Escape"){ show("vHome"); buildHome(); return; }
-  } else if(!$("vDone").classList.contains("hide")){
-    if(e.key==="Escape"){ show("vHome"); buildHome(); }
+  if(e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+  if(e.metaKey || e.ctrlKey || e.altKey) return;
+  const quizOpen = !$("vQuiz").classList.contains("hide");
+  if(!quizOpen){
+    const onHome = !$("vHome").classList.contains("hide"), onSetup = !$("vSetup").classList.contains("hide");
+    if(e.key === "Escape" && (onHome || onSetup) && deck.length){ show("vQuiz"); render(); }
+    return;
+  }
+  const q = deck[idx];
+  if(/^[1-5]$/.test(e.key)){
+    const pos = +e.key - 1, order = orderFor(q);
+    if(pos < order.length){
+      e.preventDefault();
+      if(mode === "exam") pickExam(q, order[pos]);
+      else if(S.ans[q.n] == null) pickPractice(q, order[pos]);
+    }
+    return;
+  }
+  if(e.key === "ArrowRight" || e.key === "Enter"){ e.preventDefault(); if(!$("btnNext").disabled) next(); return; }
+  if(e.key === "ArrowLeft"){ e.preventDefault(); prev(); return; }
+  const k = e.key.toLowerCase();
+  if(k === "f" && mode === "practice"){ e.preventDefault(); $("btnFlagQ").click(); return; }
+  if(k === "p" && mode === "practice"){ e.preventDefault(); $("qTimer").click(); return; }
+  if(k === "e" && mode === "practice"){ e.preventDefault(); openSetup(); return; }
+  if(k === "m" && mode === "exam"){ e.preventDefault(); $("btnMark").click(); return; }
+  if(k === "c" && mode === "exam"){ e.preventDefault(); clearResponse(); return; }
+  if(e.key === "Escape"){
+    e.preventDefault();
+    if(mode === "exam"){ toast("Submit the mock to leave it."); return; }
+    commitTimer(); buildHome(); show("vHome");
   }
 });
+window.addEventListener("beforeunload", commitTimer);
+document.addEventListener("visibilitychange", () => {
+  if(document.hidden) commitTimer();
+  else if(!$("vQuiz").classList.contains("hide") && deck[idx]) beginTimer(deck[idx].n);
+});
 
-/* ============ go ============ */
-buildChips(); buildHome(); show("vHome");
+/* ============ boot: straight into question 1 ============ */
+applyTheme(); applyBg(); buildHome(); buildSetup(); buildHistory();
+
+if(S.run && S.run.ids && S.run.endAt > Date.now() + 2000){
+  EX = S.run; enterExam();
+  toast("Picking your mock back up — " + mmss(EX.endAt - Date.now()) + " left.");
+} else {
+  if(S.run){ S.run = null; save(); }
+  startDeck(pool(), "All chapters", 0);
+}
 </script>
 
   <script>
